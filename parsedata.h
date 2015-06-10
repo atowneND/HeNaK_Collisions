@@ -40,7 +40,7 @@ struct arecord{
 // returns 1 for new data chunk
 // returns 2 for new element
 //int checkdatatype(char indata[BUFSIZE],float *theta, float *B_theta);
-int checkdatatype(char indata[BUFSIZE],int *theta, float *B_theta);
+int checkdatatype(char indata[BUFSIZE],float *theta, float *B_theta);
 
 // calculates expectation value of alpha
 float expectationvalue(struct alldata *datastruct);

@@ -11,7 +11,7 @@
 /*********************************************************/
 // parse data
 //int checkdatatype(char indata[BUFSIZE],float *theta, float *B_theta){
-int checkdatatype(char indata[BUFSIZE],int *theta, float *B_theta){
+int checkdatatype(char indata[BUFSIZE],float *theta, float *B_theta){
     int ctr = 0;
     char firstchar;
     while (isspace(indata[ctr])){
@@ -22,16 +22,12 @@ int checkdatatype(char indata[BUFSIZE],int *theta, float *B_theta){
     firstchar = indata[ctr];
     switch (firstchar){
         case '#':
-//            printf("Comment line\n");
-            break;
+            return 1;
         default: 
             // parse data line
-            sscanf(indata,"%i %f %f",theta,B_theta,foo);
-            printf("1theta = %i\tB = %f\telse = %f\n",*theta,*B_theta,foo);
-            break;
+            sscanf(indata,"%f %f",theta,B_theta);
+            return 0;
     }
-
-    return 0;
 }
 /*********************************************************/
 

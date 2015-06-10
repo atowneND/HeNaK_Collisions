@@ -22,11 +22,13 @@ int main(){
     FILE *fd = fopen(datadir,"r");
     char indata[BUFSIZE];
 
-    int *theta = malloc(sizeof(int*));
-    float *B_theta = malloc(sizeof(float));
+    float *theta = malloc(sizeof(float *));
+    float *B_theta = malloc(sizeof(float *));
 
-    int *thetavec = malloc(sizeof(int));
-    float *Bvec = malloc(sizeof(float));
+    float *thetavec = malloc(sizeof(float)*91);
+    float *Bvec = malloc(sizeof(float)*91);
+
+    int typeflag = 1;
     int ctr = 0;
 
     // read in data
@@ -38,10 +40,12 @@ int main(){
     else{
         // read in one line of data
         while (fgets(indata,BUFSIZE,fd)!=NULL){
-            checkdatatype(indata, theta, B_theta);
-//            thetavec[0] = *theta;
-//            Bvec[0] = *B_theta;
-//            printf("theta = %f\tB = %f\n",*theta,*B_theta);
+            typeflag = checkdatatype(indata, theta, B_theta);
+            if (!typeflag){
+                thetavec[ctr] = *theta;
+                Bvec[ctr] = *B_theta;
+                ctr = ctr + 1;
+            }
         }
     }
 

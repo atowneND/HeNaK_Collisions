@@ -27,11 +27,6 @@ int main(){
 
     int *thetavec = malloc(sizeof(int));
     float *Bvec = malloc(sizeof(float));
-    /*float *theta = malloc(sizeof(float*));
-    float *B_theta = malloc(sizeof(float*));
-
-    float *thetavec = malloc(sizeof(float));
-    float *Bvec = malloc(sizeof(float));*/
     int ctr = 0;
 
     // read in data

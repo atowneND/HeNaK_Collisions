@@ -18,6 +18,7 @@ int checkdatatype(char indata[BUFSIZE],int *theta, float *B_theta){
         ctr = ctr + 1;
     }
 
+    float foo;
     firstchar = indata[ctr];
     switch (firstchar){
         case '#':
@@ -25,8 +26,8 @@ int checkdatatype(char indata[BUFSIZE],int *theta, float *B_theta){
             break;
         default: 
             // parse data line
-            sscanf(indata,"%i %f",theta,B_theta);
-            printf("1theta = %i\tB = %f\n",*theta,*B_theta);
+            sscanf(indata,"%i %f %f",theta,B_theta,foo);
+            printf("1theta = %i\tB = %f\telse = %f\n",*theta,*B_theta,foo);
             break;
     }
 

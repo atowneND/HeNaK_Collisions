@@ -25,11 +25,14 @@ int main(){
     float *theta = malloc(sizeof(float *));
     float *B_theta = malloc(sizeof(float *));
 
-    float *thetavec = malloc(sizeof(float)*91);
-    float *Bvec = malloc(sizeof(float)*91);
+//    float *thetavec = malloc(sizeof(float)*91);
+//    float *Bvec = malloc(sizeof(float)*91);
 
     int typeflag = 1;
     int ctr = 0;
+
+    float *thetavec = malloc((ctr + 1)*sizeof(float));
+    float *Bvec = malloc((ctr + 1)*sizeof(float));
 
     // read in data
     if (fd==NULL){
@@ -42,8 +45,13 @@ int main(){
         while (fgets(indata,BUFSIZE,fd)!=NULL){
             typeflag = checkdatatype(indata, theta, B_theta);
             if (!typeflag){
-                thetavec[ctr] = *theta;
-                Bvec[ctr] = *B_theta;
+                printf("ctr = %i\n",ctr);
+                typeflag = thetavec[ctr] = *theta;
+                typeflag = Bvec[ctr] = *B_theta;
+
+                realloc(thetavec,(ctr + 1)*sizeof(float));
+                realloc(Bvec,(ctr + 1)*sizeof(float));
+
                 ctr = ctr + 1;
             }
         }
@@ -55,7 +63,7 @@ int main(){
     free(theta);
     free(B_theta);
     free(thetavec);
-    free(Bvec);
+//    free(Bvec);
 
 
     // calculate expectation value of alpha

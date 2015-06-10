@@ -15,8 +15,10 @@ double fmean(double B[]){
         sum = B[i] + sum;
     }
 
+//    printf("sum = %f\n",sum);
     // divide by number of points
-    double avgB = sum/npoints;
+    double avgB = sum/((double)npoints);
+//    printf("avgB: %f\tsum: %f\tnpoints: %f\n",avgB,sum,(double)npoints);
 
     return avgB;
 }

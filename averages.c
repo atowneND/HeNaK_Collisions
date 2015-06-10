@@ -103,8 +103,8 @@ int main(){
     int i;
     double sum = 0;
     for (i=0;i<MAXDATA;i++){
-        theta[i] = data[i][1]*PI/180;
-        B[i] = data[i][2];
+        theta[i] = data[i][0]*PI/180;
+        B[i] = data[i][1];
         Bsin[i] = theta[i]*B[i];
     }
 

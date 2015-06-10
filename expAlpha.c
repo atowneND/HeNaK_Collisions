@@ -18,9 +18,21 @@
 /*********************************************************/
 // main
 int main(){
-    char *datadir = "./look.pcc12"; // from Prof. Hickman's data
+    char *datadir = "./outdata_dq18-16"; // from Prof. Hickman's data
     FILE *fd = fopen(datadir,"r");
     char indata[BUFSIZE];
+
+    int *theta = malloc(sizeof(int*));
+    float *B_theta = malloc(sizeof(float));
+
+    int *thetavec = malloc(sizeof(int));
+    float *Bvec = malloc(sizeof(float));
+    /*float *theta = malloc(sizeof(float*));
+    float *B_theta = malloc(sizeof(float*));
+
+    float *thetavec = malloc(sizeof(float));
+    float *Bvec = malloc(sizeof(float));*/
+    int ctr = 0;
 
     // read in data
     if (fd==NULL){
@@ -29,23 +41,23 @@ int main(){
         exit(1);
     }
     else{
-        // declare data structure for all data
-        struct alldata test;
-        test.jmin = 0;
-        test.jmax = 0;
-        test.maxlamb = 0;
-        test.djcount = 0;
-        struct alldata *datastruct = &test;
-
         // read in one line of data
         while (fgets(indata,BUFSIZE,fd)!=NULL){
-            // check if comment or metadata
-            checkdatatype(indata,datastruct);
+            checkdatatype(indata, theta, B_theta);
+//            thetavec[0] = *theta;
+//            Bvec[0] = *B_theta;
+//            printf("theta = %f\tB = %f\n",*theta,*B_theta);
         }
-        float foo = expectationvalue(datastruct);
     }
 
     fclose(fd);
+
+    // clean up
+    free(theta);
+    free(B_theta);
+    free(thetavec);
+    free(Bvec);
+
 
     // calculate expectation value of alpha
 

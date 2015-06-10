@@ -10,12 +10,8 @@
 
 /*********************************************************/
 // parse data
-int globalfoo=0;
-int checkdatatype(char indata[BUFSIZE], struct alldata *datastruct){
-    globalfoo = globalfoo + 1;
-    if(globalfoo >= 48184){
-        return 3;
-    }
+//int checkdatatype(char indata[BUFSIZE],float *theta, float *B_theta){
+int checkdatatype(char indata[BUFSIZE],int *theta, float *B_theta){
     int ctr = 0;
     char firstchar;
     while (isspace(indata[ctr])){
@@ -27,49 +23,14 @@ int checkdatatype(char indata[BUFSIZE], struct alldata *datastruct){
         case '#':
 //            printf("Comment line\n");
             break;
-        case 'j':
-//            printf("delta j line\n");
-            if (!(indata[ctr+1]==' ')){
-                // GENERAL DATA
-
-                // declare tmp variables
-                char *foo = malloc(100);
-                char *bar = malloc(100);
-                int jmin,jmax,lambdamax;
-                
-                // parse data line
-                sscanf(indata,"%s %s %i %i %i",foo,bar,&jmin,&jmax,&lambdamax);
-
-                // save into data structure
-                datastruct->jmin = jmin;
-                datastruct->jmax = jmax;
-                datastruct->maxlamb = lambdamax;
-                datastruct->djcount = 0;
-
-                // clean up
-                free(foo);
-                free(bar);
-
-                // general data, no new elements or j values
-                return 0;
-            }
-            else{
-                // create new module of data
-                // find the two integers and save to this module's data
-            }
-            break;
-        case 'l':
-//            printf("header line\n");
-            break;
-        default:
-//            printf("dataline\n");
-            // add new record to data module
-            // scan three numbers (%i,%f,%f)
-            // save to record of data module
+        default: 
+            // parse data line
+            sscanf(indata,"%i %f",theta,B_theta);
+            printf("1theta = %i\tB = %f\n",*theta,*B_theta);
             break;
     }
 
-    return 1;
+    return 0;
 }
 /*********************************************************/
 

@@ -12,24 +12,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "avgFun.h"
 #include "parsedata.h"
 /*********************************************************/
 
 /*********************************************************/
 // main
 int main(){
+    // open file
     char *datadir = "./outdata_dq18-16"; // from Prof. Hickman's data
     FILE *fd = fopen(datadir,"r");
     char indata[BUFSIZE];
 
-    float *theta = malloc(sizeof(float *));
-    float *B_theta = malloc(sizeof(float *));
-
-//    float *thetavec = malloc(sizeof(float)*91);
-//    float *Bvec = malloc(sizeof(float)*91);
-
+    // initialize temporary pointers and flags and head of arrays
     int typeflag = 1;
     int ctr = 0;
+
+    float *theta = malloc(sizeof(float *));
+    float *B_theta = malloc(sizeof(float *));
 
     float *thetavec = (float *)malloc((ctr + 1)*sizeof(float));
     float *Bvec = (float *)malloc((ctr + 1)*sizeof(float));

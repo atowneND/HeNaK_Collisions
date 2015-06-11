@@ -1,7 +1,7 @@
 all: main averages
 
-main: expAlpha.o parsedata.o
-	gcc -g -o main expAlpha.o parsedata.o
+main: expAlpha.o avgFun.o dsimp.o
+	gcc -g -o main expAlpha.o avgFun.o dsimp.o -lgfortran -lm
 
 expAlpha.o: parsedata.h
 	gcc -g -c expAlpha.c

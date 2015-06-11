@@ -13,7 +13,6 @@
 #include <stdlib.h>
 
 #include "avgFun.h"
-#include "parsedata.h"
 /*********************************************************/
 
 /*********************************************************/
@@ -28,11 +27,11 @@ int main(){
     int typeflag = 1;
     int ctr = 0;
 
-    float *theta = malloc(sizeof(float *));
-    float *B_theta = malloc(sizeof(float *));
+    double *theta = malloc(sizeof(double *));
+    double *B_theta = malloc(sizeof(double *));
 
-    float *thetavec = (float *)malloc((ctr + 1)*sizeof(float));
-    float *Bvec = (float *)malloc((ctr + 1)*sizeof(float));
+    double *thetavec = (double *)malloc((ctr + 1)*sizeof(double));
+    double *Bvec = (double *)malloc((ctr + 1)*sizeof(double));
 
     // read in data
     if (fd==NULL){
@@ -48,8 +47,8 @@ int main(){
             
             if (!typeflag){
                 // resize array of dat
-                thetavec = realloc(thetavec,(ctr + 1)*sizeof(float));
-                Bvec = realloc(Bvec,(ctr + 1)*sizeof(float));
+                thetavec = realloc(thetavec,(ctr + 1)*sizeof(double));
+                Bvec = realloc(Bvec,(ctr + 1)*sizeof(double));
 
                 // assign values to arrays
                 thetavec[ctr] = *theta;
@@ -62,6 +61,12 @@ int main(){
     }
 
     fclose(fd);
+
+    // get statistics
+    struct stats thetaStats = expvals(thetavec,Bvec);
+
+    printf("Stats:\n");
+    printf("\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg,thetaStats.var,thetaStats.std);
 
     // clean up
     free(theta);

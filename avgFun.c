@@ -1,9 +1,19 @@
+/*********************************************************/
+#include <ctype.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "avgFun.h"
+/*********************************************************/
 
+/*********************************************************/
+// FORTRAN function declaration
 extern double dsimp_(int *N,double F[]);
+/*********************************************************/
 
+/*********************************************************/
+// calculate the mean value
 double fmean(double B[]){
     int npoints = MAXDATA;
 
@@ -15,15 +25,16 @@ double fmean(double B[]){
         sum = B[i] + sum;
     }
 
-//    printf("sum = %f\n",sum);
     // divide by number of points
     double avgB = sum/((double)npoints);
-//    printf("avgB: %f\tsum: %f\tnpoints: %f\n",avgB,sum,(double)npoints);
 
     return avgB;
 }
+/*********************************************************/
 
-double expvals(double theta[],double B[],int retval){
+/*********************************************************/
+// calculate statistical values
+struct stats expvals(double theta[],double B[]){
     int numpoints = MAXDATA;
 
     // assuming theta is from 0 to pi
@@ -45,19 +56,32 @@ double expvals(double theta[],double B[],int retval){
     double denominator = dsimp_(&numpoints,denominatorvec);
 
     // combine for average value of tipping angle
-    double avgTheta = numerator/denominator;
-    double avgTheta2 = numerator2/denominator;
-    double varTheta = avgTheta2 - avgTheta*avgTheta;
+    struct stats thetaStats;
+    thetaStats.avg = numerator/denominator;
+    thetaStats.var = numerator2/denominator;
+    thetaStats.std = thetaStats.var - pow(thetaStats.avg,2);
 
-    switch (retval){
-        case 0: // average theta
-            return avgTheta;
-        case 1: // variance theta
-            return varTheta;
-        case 2: // standard deviation
-            return sqrt(varTheta);
-        default:
-            return -1;
+    return thetaStats;
+}
+/*********************************************************/
+
+/*********************************************************/
+// parse data
+int checkdatatype(char indata[BUFSIZE],double *theta, double *B_theta){
+    int ctr = 0;
+    char firstchar;
+    while (isspace(indata[ctr])){
+        ctr = ctr + 1;
+    }
+
+    firstchar = indata[ctr];
+    switch (firstchar){
+        case '#':
+            return 1;
+        default: 
+            // parse data line
+            sscanf(indata,"%lf %lf",theta,B_theta);
+            return 0;
     }
 }
-
+/*********************************************************/

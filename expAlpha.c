@@ -17,9 +17,20 @@
 
 /*********************************************************/
 // main
-int main(){
+int main(int argc, char *argv[]){
+    // get inputs
+    char *datadir;
+    if (argc<2){
+        printf("usage: ./main <filename>\n");
+        printf("Please enter the name of the file that contains the data\n");
+        printf("Exiting program\n");
+        exit(1);
+    }
+    else if (argc==2){
+        datadir = argv[1];
+    }
+
     // open file
-    char *datadir = "./outdata_dq18-16"; // from Prof. Hickman's data
     FILE *fd = fopen(datadir,"r");
     char indata[BUFSIZE];
 
@@ -41,6 +52,7 @@ int main(){
     }
     else{
         // read in one line of data
+        printf("Reading %s\n",datadir);
         while (fgets(indata,BUFSIZE,fd)!=NULL){
             // check if it's a comment
             typeflag = checkdatatype(indata, theta, B_theta);

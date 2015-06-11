@@ -22,4 +22,4 @@ dsimp.o: dsimp.for
 	gfortran -g -c dsimp.for
 
 clean:
-	rm *.f expAlpha.o parsedata.o main avgFun.o averages.o dsimp.o averages
+	rm *.cmp *.f expAlpha.o parsedata.o main avgFun.o averages.o dsimp.o averages

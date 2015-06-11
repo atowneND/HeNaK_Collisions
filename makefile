@@ -13,4 +13,6 @@ dsimp.o: dsimp.for
 	gfortran -g -c dsimp.for
 
 clean:
-	rm *.cmp *.f expAlpha.o parsedata.o main avgFun.o averages.o dsimp.o averages
+	rm *.cmp *.f
+	rm expAlpha.o avgFun.o main 
+	rm dsimp.o

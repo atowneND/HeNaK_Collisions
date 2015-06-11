@@ -1,10 +1,12 @@
 *.o
-*.for
 *.f
 *.aph
 *.pcc12
 dq2theta
+dqcalc
+pcc12
 ff
 ll
 fpp
 main
+averages

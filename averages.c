@@ -1,5 +1,8 @@
-#include <stdio.h>
+#include <fcntl.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "avgFun.h"
 
 int main(){
@@ -118,6 +121,24 @@ int main(){
     double stdTheta = expvals(theta,B,2);
     printf("Stats:\n\t<theta> = %f rad, %f deg.\n\tvar = %f\n\tstd = %f\n",avgTheta,avgTheta*180/PI,varTheta,stdTheta);
     int foo = 3;
+    
+    // test these functions
+    // y = cos(x);
+    int testnpoints = 1000;
+    int p;
+    double y[testnpoints], x[testnpoints];
+    double avgx,varx,stdx;
+    for (p=0;p<testnpoints;p++){
+        x[p] = p*2*PI/testnpoints;
+        y[p] = cos(x[p]);
+        printf("%f %f\n",x[p],y[p]);
+    }
+
+    avgx = expvals(x,y,0);
+    varx = expvals(x,y,1);
+    stdx = expvals(x,y,2);
+    printf("Stats:\n\t<x> = %f rad, %f deg.\n\tvar = %f\n\tstd = %f\n",avgx,avgx*180/PI,varx,stdx);
+    
     return 0;
 }
 

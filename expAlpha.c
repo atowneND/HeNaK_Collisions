@@ -43,15 +43,19 @@ int main(){
     else{
         // read in one line of data
         while (fgets(indata,BUFSIZE,fd)!=NULL){
+            // check if it's a comment
             typeflag = checkdatatype(indata, theta, B_theta);
+            
             if (!typeflag){
-//                printf("ctr = %i\n",ctr);
+                // resize array of dat
                 thetavec = realloc(thetavec,(ctr + 1)*sizeof(float));
                 Bvec = realloc(Bvec,(ctr + 1)*sizeof(float));
+
+                // assign values to arrays
                 thetavec[ctr] = *theta;
                 Bvec[ctr] = *B_theta;
-                printf("%i:\t%f\t%f\n",ctr,thetavec[ctr],Bvec[ctr]);
 
+                // increment to prepare for next array value
                 ctr = ctr + 1;
             }
         }

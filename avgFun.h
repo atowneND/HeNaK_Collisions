@@ -2,13 +2,18 @@
 #ifndef AVGFUN_H_
 #define AVGFUN_H_
 
-#define MAXDATA 91
+#define MAXDATA 100
 #define PI 3.14159265358979323
 #define BUFSIZE 1000
 /*********************************************************/
 
 /*********************************************************/
 double fmean(double B[]);
+/*********************************************************/
+
+/*********************************************************/
+// compute new x axis for B(alpha) -> B(lambda)
+void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints);
 /*********************************************************/
 
 /*********************************************************/
@@ -20,7 +25,13 @@ int checkdatatype(char indata[BUFSIZE],double *theta, double *B_theta);
 /*********************************************************/
 
 /*********************************************************/
+// calculates average, variance, and standard deviation for B(theta)
 struct stats expvals(double theta[],double B[]);
+/*********************************************************/
+
+/*********************************************************/
+// quadratic formula
+void quadformula(double a, double b, double c, double *x1, double *x2);
 /*********************************************************/
 
 /*********************************************************/

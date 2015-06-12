@@ -13,6 +13,34 @@ extern double dsimp_(int *N,double F[]);
 /*********************************************************/
 
 /*********************************************************/
+// compute new x axis for B(alpha) -> B(lambda)
+void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints){
+    // l*(l+1) = j*(j+1) + jp*(jp+1) -2*sqrt(j*(j+1)*jp*(jp+1))*cos(alpha)
+    // l^2 + l - (RHS) = 0
+    // a = 1, b = 1, c = -RHS
+    double a = 1;
+    double b = 1;
+    double c;
+    double x[numpoints][2];
+
+    int i;
+    for (i=0;i<numpoints;i++){
+        c = -(j*(j+1) + jp*(jp+1) -2*sqrt(j*(j+1)*jp*(jp+1))*cos(theta[i]));
+        quadformula(a,b,c,&x[i][0],&x[i][1]);
+//        printf("t: %f\tc = %f\tlambda = %f, %f\n",theta[i],c,x[i][0],x[i][1]);
+
+        if ((x[i][0]>0)&&(x[i][1]<0)){
+            lambda[i] = x[i][0];
+        }
+        else{
+            printf("check lambda[%i]\n",i);
+            lambda[i] = x[i][0];
+        }
+    }
+}
+/*********************************************************/
+
+/*********************************************************/
 // calculate the mean value
 double fmean(double B[]){
     int npoints = MAXDATA;
@@ -62,6 +90,22 @@ struct stats expvals(double theta[],double B[]){
     thetaStats.std = thetaStats.var - pow(thetaStats.avg,2);
 
     return thetaStats;
+}
+/*********************************************************/
+
+/*********************************************************/
+// quaddratic formula: x = (-b +- sqrt(b^2 - 4ac))/2a
+void quadformula(double a, double b, double c, double *x1, double *x2){
+    double determinant;
+    determinant = pow(b,2)-4*a*c;
+    if (determinant<0){
+        printf("quadformula: answer is imaginary\nexiting program\n");
+        exit(1);
+    }
+    else{
+        *x1 = (-b + sqrt(determinant))/(2*a);
+        *x2 = (-b - sqrt(determinant))/(2*a);
+    }
 }
 /*********************************************************/
 

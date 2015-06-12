@@ -1,0 +1,12 @@
+#!/usr/local/gnuplot
+set samples 10000
+plot "Btheta_16_18.dat" using 1:($2*sin($1*pi/180)) with lines smooth csplines
+#replot "Blambda_16_18.dat" using 3:($2*sin($3*pi/180))
+#replot "Blambda_16_18.dat" using 3:($2*sin($3*pi/180)) with lines
+replot "Blambda_16_18.dat" using 3:($2*(2*(2*$1+1)/sqrt(16*17*18*19)))
+replot "Blambda_16_18.dat" using 3:($2*(2*(2*$1+1)/sqrt(16*17*18*19))) with lines
+
+set term postscript
+set output "Bvals_16_18_2lp1d2sqrt.ps"
+replot
+quit

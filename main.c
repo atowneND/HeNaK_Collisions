@@ -3,7 +3,7 @@
 // expected value of alpha
 // Ashley Towne
 // 06/09/2015
-// calculates expected value of alpha
+// calculates expected value of alpha given B(alpha)
 /*********************************************************/
 
 /*********************************************************/
@@ -88,8 +88,8 @@ int main(int argc, char *argv[]){
     // get statistics
     struct stats thetaStats = expvals(thetavec,Bvec);
 
-    printf("#Stats:\n");
-    printf("#\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg,thetaStats.var,thetaStats.std);
+    printf("Stats: (deg)\n");
+    printf("\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
 
     // convert alpha to lambda
     double lambda[numpoints];

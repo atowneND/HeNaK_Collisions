@@ -2,6 +2,6 @@
 set samples 10000
 set term x11 0
 set angles degrees
-plot 'Dl18_16' using 1:($2*sin($1)) with lines smooth csplines
-replot 'dq18_16.dat' using (acos((($1+(18-16))*($1+(18-16)+1)-18*(18+1)-16*(16+1))/(-2*sqrt(18*(18+1)*16*(16+1))))):2
+plot 'Dl15_11' using 1:($2*sin($1)/4.5) with lines smooth csplines
+replot 'dq15_11.dat' using (acos((($1+(15-11))*($1+(15-11)+1)-15*(15+1)-11*(11+1))/(-2*sqrt(15*(15+1)*11*(11+1))))):2
 quit

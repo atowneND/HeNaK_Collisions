@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# put the j and jp values in the right order
+if [ $1 -gt $2 ]; then
+    j=$1
+    jp=$2
+elif [ $1 -lt $2 ]; then
+    j=$2
+    jp=$1
+fi
+
+Dlname=Dl$j\_$jp
+dqname=dq$j\_$jp\.dat
+echo $j-$jp
+
+echo "#! /usr/bin/gnuplot
+set samples 10000
+set term x11 0
+set angles degrees
+plot '$Dlname' using 1:(\$2*sin(\$1)) with lines smooth csplines
+replot '$dqname' using (acos(((\$1+($j-$jp))*(\$1+($j-$jp)+1)-$j*($j+1)-$jp*($jp+1))/(-2*sqrt($j*($j+1)*$jp*($jp+1))))):2
+quit" > deleteme
+
+gnuplot -persistent < deleteme

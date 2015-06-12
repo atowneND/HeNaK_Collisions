@@ -1,0 +1,4 @@
+DOCUMENTATION:
+
+usage: ./dqcalc
+usage: ./dq2theta <.dat file> <output file name>

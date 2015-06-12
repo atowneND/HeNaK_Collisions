@@ -1,5 +1,7 @@
 *.o
+*.a
 *.f
+*.out
 *.aph
 *.pcc12
 dq2theta

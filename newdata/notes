@@ -1,3 +1,0 @@
-compile fortran
-link with dpackb
-    calculate 3j/6j

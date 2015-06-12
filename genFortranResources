@@ -42,7 +42,6 @@ done
 mv dq2theta dqcalc pcc12 ../
 
 # clean up
-rm *.f
 rm *.o
 rm fpp
 cd ..

@@ -1,0 +1,12 @@
+set samples 10000
+set term x11 0
+plot "dq15_11r.dat" using 1:2
+set term x11 1
+plot "dq15_13r.dat" using 1:2
+set term x11 2
+plot "dq18_16r.dat" using 1:2
+set term x11 3
+plot "dq18_17r.dat" using 1:2
+set term x11 4
+plot "dq25_21r.dat" using 1:2
+quit

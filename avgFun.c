@@ -83,6 +83,9 @@ struct stats expvals(double theta[],double B[]){
     double numerator2 = dsimp_(&numpoints,numeratorvec2);
     double denominator = dsimp_(&numpoints,denominatorvec);
 
+    // TO DO
+    // B[i]/denominator
+
     // combine for average value of tipping angle
     struct stats thetaStats;
     thetaStats.avg = numerator/denominator;

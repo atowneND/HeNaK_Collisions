@@ -1,6 +1,21 @@
 DOCUMENTATION:
 
-usage: ./dqcalc <.blam file> <.dat file>
-    .dat file contains commented B(lambda) and d(q) values !!UNDER CONSTRUCTION!!
-usage: ./dq2theta <.dat file> <output file name>
+dqcalc: ./dqcalc <.blam file> <.dat file>
+    .dat file contains commented B(lambda) and d(q) values
+dq2theta: ./dq2theta <.dat file> <B_theta file>
     output file contains B(theta) values
+main: ./main.out <B_theta file> <output (optional)>
+    input file from dq2theta, outputs normalized B(lambda)
+Bplot: gnuplot -persistent < Bplot_16_18.script
+    plots j=18,jp=16 data
+    depends on Blambda_16_18.dat (from dqcalc) and Btheta_16_18.dat (from dq2theta)
+    eventually, might want to use dkData/ and DthetaData/ directories
+
+GOAL
+./dqcalc <.blam file> Blambda_j_jp.dat
+    outputs: Blambda_j_jp.dat
+./dq2theta Blambda_j_jp.dat Btheta_j_jp.dat
+    outputs: Btheta_j_jp.dat
+./main.out j jp
+    outputs: Bpl.dat - normalized Blambda
+             Bpt.dat - normalized Btheta

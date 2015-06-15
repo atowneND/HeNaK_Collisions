@@ -34,12 +34,12 @@ int main(int argc, char *argv[]){
     else if(argc==3){
         j = atoi(argv[1]);
         jp = atoi(argv[2]);
+    }
         if (j < jp){
             int jtmp = j;
             j = jp;
             jp = jtmp;
         }
-    }
     printf("j = %i;\tjp = %i;\n",j,jp);
     sprintf(inBtheta,"Btheta_%i_%i.dat",j,jp);
     printf("inBtheta = %s\n",inBtheta);
@@ -119,13 +119,14 @@ int main(int argc, char *argv[]){
                 // resize array of dat
                 lambdavec = realloc(lambdavec,(ctr + 1)*sizeof(double));
                 Blambdavec = realloc(Blambdavec,(ctr + 1)*sizeof(double));
-                theta_lvec = realloc(Blambdavec,(ctr + 1)*sizeof(double));
+                theta_lvec = realloc(theta_lvec,(ctr + 1)*sizeof(double));
 
                 // assign values to arrays
                 lambdavec[ctr] = (*xtmp);
+                printf("B before = %lf\t",Blambdavec[ctr]);
                 Blambdavec[ctr] = *Btmp;
-                theta_lvec[ctr] = *thetatmp;
 
+                theta_lvec[ctr] = *thetatmp;
                 // increment to prepare for next array value
                 ctr = ctr + 1;
             }

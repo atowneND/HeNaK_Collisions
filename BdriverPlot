@@ -9,10 +9,10 @@ elif [ $1 -lt $2 ]; then
     jp=$1
 fi
 
-Bt=normBtheta\_$j\_$jp\.dat
-Bl=normBlambda\_$j\_$jp\.dat
-echo Bt=$Bt
-echo Bl=$Bl
+Btheta=normBtheta\_$j\_$jp\.dat
+Blambda=normBlambda\_$j\_$jp\.dat
+echo Bt=$Btheta
+echo Bl=$Blambda
 
 # write the gnuplot commands
 echo "
@@ -20,11 +20,11 @@ echo "
 set samples 10000
 
 # B(theta)*sin(theta) vs theta
-plot 'Btheta_18_16.dat' using 1:(\$2*sin(\$1*pi/180)) with lines smooth csplines
+plot '$Btheta' using 1:(\$2*sin(\$1*pi/180)) with lines smooth csplines
 
 # B[lambda]*sin(theta->lambda)
-replot 'Blambda_18_16.dat' using 3:(\$2*sin(\$3*pi/180))
-replot 'Blambda_18_16.dat' using 3:(\$2*sin(\$3*pi/180)) with lines
+replot '$Blambda' using 3:(\$2*sin(\$3*pi/180))
+replot '$Blambda' using 3:(\$2*sin(\$3*pi/180)) with lines
 
 # set arrows
 #jp=18

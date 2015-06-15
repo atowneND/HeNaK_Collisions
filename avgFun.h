@@ -21,7 +21,7 @@ void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints)
 // returns 0 if no new data
 // returns 1 for new data chunk
 // returns 2 for new element
-int checkdatatype(char indata[BUFSIZE],double *theta, double *B_theta);
+int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xaltval, int Btype);
 /*********************************************************/
 
 /*********************************************************/

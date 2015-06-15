@@ -16,3 +16,6 @@ echo creating $bthdat ...
 
 # main
 ./main.out $j $jp
+
+# plot it
+./BplotOneDataSet $j $jp

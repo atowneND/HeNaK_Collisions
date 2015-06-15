@@ -62,8 +62,7 @@ double fmean(double B[]){
 
 /*********************************************************/
 // calculate statistical values
-struct stats expvals(double theta[],double B[]){
-    int numpoints = MAXDATA;
+struct stats expvals(double theta[],double B[],int numpoints){
 
     // assuming theta is from 0 to pi
     int i;
@@ -83,9 +82,6 @@ struct stats expvals(double theta[],double B[]){
     double numerator2 = dsimp_(&numpoints,numeratorvec2);
     double denominator = dsimp_(&numpoints,denominatorvec);
 
-    // TO DO
-    // B[i]/denominator
-
     // combine for average value of tipping angle
     struct stats thetaStats;
     thetaStats.avg = numerator/denominator;
@@ -93,6 +89,44 @@ struct stats expvals(double theta[],double B[]){
     thetaStats.std = thetaStats.var - pow(thetaStats.avg,2);
 
     return thetaStats;
+}
+/*********************************************************/
+
+/*********************************************************/
+// normalize B's
+void normBtheta(double theta[],double B[],double Bnorm[],int numpoints){
+    int i;
+    double integrand[numpoints];
+
+    // calculate integrands
+    for (i=0;i<numpoints;i++){
+        integrand[i] = B[i]*sin(theta[i]);
+    }
+
+    // calculate integrals
+    double NormFactor = dsimp_(&numpoints,integrand);
+
+    // normalize B
+    for (i=0;i<numpoints;i++){
+        Bnorm[i] = B[i]/NormFactor;
+    }
+}
+void normBlambda(double lambda[],double B[],double Bnorm[],int numpoints){
+    int i;
+//    double integrand[numpoints];
+
+    // calculate integrands
+//    for (i=0;i<numpoints;i++){
+//    }
+
+    // calculate integrals
+    // CURRENTLY NOT NORMALIZED
+    double NormFactor = 1;
+
+    // normalize B
+    for (i=0;i<numpoints;i++){
+        Bnorm[i] = B[i]/NormFactor;
+    }
 }
 /*********************************************************/
 

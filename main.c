@@ -78,7 +78,7 @@ int main(int argc, char *argv[]){
         printf("Reading %s\n",inBtheta);
         while (fgets(indata,BUFSIZE,fdBtheta)!=NULL){
             // check if it's a comment
-            typeflag = checkdatatype(indata, xtmp, Btmp, thetatmp, Btype);
+            typeflag = checkdatatype(indata, xtmp, Btmp, NULL, Btype);
             
             if (!typeflag){
                 // resize array of dat
@@ -94,7 +94,7 @@ int main(int argc, char *argv[]){
             }
         }
     }
-    int numpoints = ctr;
+    int numAngles = ctr;
 
     fclose(fdBtheta);
 
@@ -131,35 +131,78 @@ int main(int argc, char *argv[]){
             }
         }
     }
+    int numLambdas = ctr;
 
     fclose(fdBlambda);
 
     /*********************************************************/
     // get statistics
-    struct stats thetaStats = expvals(thetavec,Bthetavec);
+    struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles);
 
     printf("Stats: (deg)\n");
     printf("\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
 
     /*********************************************************/
-    // convert alpha to lambda
-    double lambda[numpoints];
-    alpha2lambda(thetavec,lambda,j,jp,numpoints);
-    
+    // normalize B's
+    double Bthetanorm[numAngles];
+    normBtheta(thetavec,Bthetavec,Bthetanorm,numAngles);
+    double Blambdanorm[numLambdas];
+    normBlambda(lambdavec,Blambdavec,Blambdanorm,numLambdas);
+
+    /*********************************************************/
+    // write B(theta) to file
+    // need to delete old file or overwrite new file
+    int bak,new;
+    char thetaOutput[100];
+    sprintf(thetaOutput,"normBtheta_%i_%i.dat",j,jp);
+    printf("writing B(theta) to %s\n",thetaOutput);
+
     // redirect stdout to file
     // from http://stackoverflow.com/questions/4832603/how-could-i-temporary-redirect-stdout-to-a-file-in-a-c-program
-    int bak,new;
     fflush(stdout);
     bak = dup(1);
-    new = open(outfiledir,O_RDWR|O_CREAT,0666);
+    new = open(thetaOutput,O_RDWR|O_CREAT|O_TRUNC,0666);
     dup2(new,1);
     close(new);
 
+    // print header
     printf("# lambda, B(lambda)/B(1)\n");
     printf("# j=%i\tjp=%i\n",j,jp);
-    // write to file lambda and B
-    for (ctr=0;ctr<numpoints;ctr++){
-        printf("%f\t%f\n",lambda[ctr],(Bthetavec[ctr]*sin(thetavec[ctr]))/(Bthetavec[1])*sin(thetavec[ctr]));
+    printf("# theta (rad)\tB(theta)\n");
+
+    // write to file theta and B
+    for (ctr=0;ctr<numAngles;ctr++){
+        printf("%lf\t%lf\n",thetavec[ctr],Bthetanorm[ctr]);
+    }
+
+    // finish stdout redirection
+    fflush(stdout);
+    dup2(bak,1);
+    close(bak);
+
+    /*********************************************************/
+    // write B(lambda) to file
+    // need to delete old file or overwrite new file
+    char lambdaOutput[100];
+    sprintf(lambdaOutput,"normBlambda_%i_%i.dat",j,jp);
+    printf("writing B(lambda) to %s\n",lambdaOutput);
+
+    // redirect stdout to file
+    // from http://stackoverflow.com/questions/4832603/how-could-i-temporary-redirect-stdout-to-a-file-in-a-c-program
+    fflush(stdout);
+    bak = dup(1);
+    new = open(lambdaOutput,O_RDWR|O_CREAT|O_TRUNC,0666);
+    dup2(new,1);
+    close(new);
+
+    // print header
+    printf("# lambda, B(lambda)/B(1)\n");
+    printf("# j=%i\tjp=%i\n",j,jp);
+    printf("# lambda\tB(lambda)\ttheta (deg)\n");
+
+    // write to file lambda, B, theta
+    for (ctr=0;ctr<numLambdas;ctr++){
+        printf("%lf\t%lf\t%lf\n",lambdavec[ctr],Blambdanorm[ctr],theta_lvec[ctr]);
     }
 
     // finish stdout redirection

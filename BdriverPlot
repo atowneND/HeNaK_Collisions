@@ -9,13 +9,14 @@ elif [ $1 -lt $2 ]; then
     jp=$1
 fi
 
-Bt=Btheta\_$j\_$jp\.dat
-Bl=Blambda\_$j\_$jp\.dat
+Bt=normBtheta\_$j\_$jp\.dat
+Bl=normBlambda\_$j\_$jp\.dat
 echo Bt=$Bt
 echo Bl=$Bl
 
 # write the gnuplot commands
-echo "#!/usr/local/gnuplot
+echo "
+#!/usr/local/gnuplot
 set samples 10000
 
 # B(theta)*sin(theta) vs theta

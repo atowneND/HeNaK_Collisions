@@ -1,5 +1,8 @@
-***** C:\wkarea\adcode\blam\pcc1.for created Sunday, June 26, 2011 at 14:14
+***** C:\wkarea\adcode\blam\dqcalc2.for created Monday, June 15, 2015 at 16:43
 ***** Peet Hickman
+
+*     this version reads j and jp from the command line, which must be
+*     dqcalc2 inputfile.blam outputfile j jp
 
       implicit     none
       integer      in,out,nchar,lp,jmin,jmax,maxlamb,j,jp,nj,lam,
@@ -15,12 +18,26 @@
       parameter    (PI=4.d0*atan(1.0d0) )
 
 *     calls:
-      integer      GetLine,fassign,dassign,index
+      integer      GetLine,fassign,dassign,index,iargc
       character    strR8*16
       double precision d3j
       external     abort
 
+      integer     argc
+      character    argv(10)*(10)
+
       call stdio (in,out)
+
+      argc = iargc()
+      IF (argc.eq.4) THEN
+         DO k = 1,argc
+            call getarg(k,argv(k))
+         END DO
+         read (argv(3),*) j
+         read (argv(4),*) jp
+      ELSE
+         call abort ('wrong number of command line arguments')
+      END IF
 
 *     read the B file (which is specified as input file on command line)
 *     get the root of the file name
@@ -57,8 +74,8 @@
         read (in,*) (B(lam,k),k=1,count)
       END DO
 
-      write(*,*) 'Enter j and jp'
-      read (*,*) j,jp
+!      write(*,*) 'Enter j and jp'
+!      read (*,*) j,jp
 
       write (out,*) '# j and jp are', j, jp
       IF (j.lt.jmin .or. j.gt.jmax .or. jp.lt.jmin .or. jp.gt.jmax) THEN

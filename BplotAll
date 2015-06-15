@@ -1,0 +1,17 @@
+#!/bin/bash
+
+j=10
+jp=12
+# put these into a for loop for all combinations
+
+# dqcalc
+blamdat=Blambda_$j\_$jp.dat
+echo blamdat=$blamdat
+./dqcalc newdata/Ep002mf5i-50b.blam $blamdat
+
+# dq2theta
+bthdat=Btheta_$j\_$jp.dat
+echo bthdat=$bthdat
+./dq2theta $blamdat $bthdat
+
+# main

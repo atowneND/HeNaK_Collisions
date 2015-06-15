@@ -23,6 +23,7 @@ COMP_FLAGS = -g
 
 
 ################################################
+# need to put all Prof. Hickman's .for & .f files in src/
 
 all: $(EXECS) $(EXEC_A)
 

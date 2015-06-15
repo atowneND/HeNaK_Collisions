@@ -28,12 +28,13 @@ replot '$Blambda' using 3:(\$2*sin(\$3*pi/180)/200)
 replot '$Blambda' using 3:(\$2*sin(\$3*pi/180)/200) with lines
 
 # set arrows
-amin=(sqrt($j-$jp)/(($j+$jp)/2+1/2))*180/pi
+amin=(sqrt($jp-$j)/(($j+$jp)/2+1/2))*180/pi
+print 'j=',$j,' jp=',$jp
 print 'amin=',amin,'deg'
-#lmin=$j-$jp
+#lmin=$jp-$j
 #ldeg=(lmin*(lmin+1)-$j*($j+1)-$jp*($jp+1))/(-2*sqrt($j*($j+1)*$jp*($jp+1)))
 set parametric
-set trange [0:1]
+set trange [0:0.9]
 set term x11 0
 replot amin,t
 

@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
         j = atoi(argv[1]);
         jp = atoi(argv[2]);
     }
-        if (j < jp){
+        if (j > jp){
             int jtmp = j;
             j = jp;
             jp = jtmp;
@@ -126,6 +126,7 @@ int main(int argc, char *argv[]){
                 Blambdavec[ctr] = *Btmp;
                 theta_lvec[ctr] = *thetatmp;
 
+                printf("%i\t%lf\t%lf\t%lf\n",ctr,lambdavec[ctr],Blambdavec[ctr],theta_lvec[ctr]);
                 // increment to prepare for next array value
                 ctr = ctr + 1;
             }
@@ -166,7 +167,7 @@ int main(int argc, char *argv[]){
     close(new);
 
     // print header
-    printf("# lambda, B(lambda)/B(1)\n");
+    printf("# theta, B(theta)/B(1)\n");
     printf("# j=%i\tjp=%i\n",j,jp);
     printf("# theta (rad)\tB(theta)\n");
 

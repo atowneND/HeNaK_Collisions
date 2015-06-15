@@ -151,6 +151,7 @@ void quadformula(double a, double b, double c, double *x1, double *x2){
 int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xaltval, int Btype){
     // at some point, a data struct should probably be passed in... or there should be two functions
     int ctr = 0;
+    static int linectr;
     char firstchar;
     while (isspace(indata[ctr])){
         ctr = ctr + 1;
@@ -159,14 +160,27 @@ int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xalt
     firstchar = indata[ctr];
     switch (firstchar){
         case '#':
-            return 1;
+            if (Btype==0){
+                return 1;
+            }
+            else if (Btype==1){
+                linectr = linectr + 1;
+                if (linectr<=8){
+                    return 1;
+                }
+                if (linectr>8){
+                    sscanf(indata,"%c %lf %lf %lf",&firstchar,xval,B_val,xaltval);
+                    return 0;
+                }
+            }
         default: 
             // parse data line
             if (Btype==0){ // B(theta)
                 sscanf(indata,"%lf %lf",xval,B_val);
             }
             else if(Btype==1){ // B(lambda)
-                sscanf(indata,"%lf %lf %lf",xval,B_val,xaltval);
+                //sscanf(indata,"%lf %lf %lf",xval,B_val,xaltval);
+                return 1;
             }
             return 0;
     }

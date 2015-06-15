@@ -123,10 +123,9 @@ int main(int argc, char *argv[]){
 
                 // assign values to arrays
                 lambdavec[ctr] = (*xtmp);
-                printf("B before = %lf\t",Blambdavec[ctr]);
                 Blambdavec[ctr] = *Btmp;
-
                 theta_lvec[ctr] = *thetatmp;
+
                 // increment to prepare for next array value
                 ctr = ctr + 1;
             }

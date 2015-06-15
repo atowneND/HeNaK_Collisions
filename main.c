@@ -40,11 +40,9 @@ int main(int argc, char *argv[]){
             j = jp;
             jp = jtmp;
         }
-    printf("j = %i;\tjp = %i;\n",j,jp);
+//    printf("j = %i;\tjp = %i;\n",j,jp);
     sprintf(inBtheta,"Btheta_%i_%i.dat",j,jp);
-    printf("inBtheta = %s\n",inBtheta);
     sprintf(inBlambda,"Blambda_%i_%i.dat",j,jp);
-    printf("inBlambda = %s\n",inBlambda);
 
     /*********************************************************/
     // initialize temporary pointers and flags and head of arrays
@@ -75,7 +73,7 @@ int main(int argc, char *argv[]){
     }
     else{
         // read in one line of data
-        printf("Reading %s\n",inBtheta);
+        printf("Reading %s...\n",inBtheta);
         while (fgets(indata,BUFSIZE,fdBtheta)!=NULL){
             // check if it's a comment
             typeflag = checkdatatype(indata, xtmp, Btmp, NULL, Btype);
@@ -110,7 +108,7 @@ int main(int argc, char *argv[]){
     }
     else{
         // read in one line of data
-        printf("Reading %s\n",inBlambda);
+        printf("Reading %s...\n",inBlambda);
         while (fgets(indata,BUFSIZE,fdBlambda)!=NULL){
             // check if it's a comment
             typeflag = checkdatatype(indata, xtmp, Btmp, thetatmp, Btype);
@@ -126,7 +124,6 @@ int main(int argc, char *argv[]){
                 Blambdavec[ctr] = *Btmp;
                 theta_lvec[ctr] = *thetatmp;
 
-                printf("%i\t%lf\t%lf\t%lf\n",ctr,lambdavec[ctr],Blambdavec[ctr],theta_lvec[ctr]);
                 // increment to prepare for next array value
                 ctr = ctr + 1;
             }
@@ -140,8 +137,27 @@ int main(int argc, char *argv[]){
     // get statistics
     struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles);
 
+    int bak,new;
+    char statFile[100];
+    sprintf(statFile,"stats_%i_%i.dat",j,jp);
+
+    // redirect stdout to file
+    // from http://stackoverflow.com/questions/4832603/how-could-i-temporary-redirect-stdout-to-a-file-in-a-c-program
+    fflush(stdout);
+    bak = dup(1);
+    new = open(statFile,O_RDWR|O_CREAT|O_TRUNC,0666);
+    dup2(new,1);
+    close(new);
+    
+    // write to file
+    printf("# j=%i\tjp=%i\n",j,jp);
     printf("Stats: (deg)\n");
     printf("\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
+
+    // finish stdout redirection
+    fflush(stdout);
+    dup2(bak,1);
+    close(bak);
 
     /*********************************************************/
     // normalize B's
@@ -153,7 +169,6 @@ int main(int argc, char *argv[]){
     /*********************************************************/
     // write B(theta) to file
     // need to delete old file or overwrite new file
-    int bak,new;
     char thetaOutput[100];
     sprintf(thetaOutput,"normBtheta_%i_%i.dat",j,jp);
     printf("writing B(theta) to %s\n",thetaOutput);

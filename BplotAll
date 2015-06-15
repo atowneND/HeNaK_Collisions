@@ -6,12 +6,13 @@ jp=12
 
 # dqcalc
 blamdat=Blambda_$j\_$jp.dat
-echo blamdat=$blamdat
+echo creating $blamdat ...
 ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat
 
 # dq2theta
 bthdat=Btheta_$j\_$jp.dat
-echo bthdat=$bthdat
+echo creating $bthdat ...
 ./dq2theta $blamdat $bthdat
 
 # main
+./main.out $j $jp

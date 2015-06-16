@@ -1,0 +1,16 @@
+#!/usr/local/gnuplot
+set samples 10000
+plot "dtheta.dat" using 3:5
+replot "dtheta.dat" using 3:5 with lines smooth csplines
+replot "dtheta.dat" using 3:6
+replot "dtheta.dat" using 3:6 with lines smooth csplines
+
+set xlabel "jbar"
+set ylabel "angle (theta)"
+set title "tipping angle comparison"
+
+replot
+
+set term postscript
+set output "TippingAngleComparison_0d1.ps"
+replot

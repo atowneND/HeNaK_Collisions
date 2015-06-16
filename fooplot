@@ -1,0 +1,11 @@
+plot "dtheta.dat" using 3:5
+replot "dtheta.dat" using 3:6
+replot "dtheta.dat" using 3:9
+set title "5:discrete, 6:continuous, 9:approximate"
+set xlabel "jbar"
+set ylabel "angle (degrees)"
+replot
+
+set term postscript
+set output "Theta_min Values.ps"
+replot

@@ -6,7 +6,7 @@ CTR=1
 MAX=49
 
 dthOut=dtheta.dat
-echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\)>> $dthOut
+echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha>> $dthOut
 
 while [ $CTR -lt $MAX ]; do
     j=$CTR
@@ -39,7 +39,9 @@ while [ $CTR -lt $MAX ]; do
     jbar=$(awk "BEGIN {print ($j+$jp)/2}")
 
     # write to file
-    echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl>> $dthOut
+    appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
+    echo $appalpha
+    echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthOut
     outputfile=BPlots_$j\_$jp\.ps
 
     # plot it
@@ -52,8 +54,9 @@ while [ $CTR -lt $MAX ]; do
 
     set parametric
     set trange [0:$Bmax]
-    set term x11 $jctr
+    set term x11 0
     replot $alphamin,t
+    #replot $alphapp,t
 
     set term postscript
     set output '$outputfile'
@@ -62,32 +65,6 @@ while [ $CTR -lt $MAX ]; do
     " > deleteme2
 
 #    gnuplot -persistent < deleteme2
-    gnuplot < deleteme2
+#    gnuplot < deleteme2
     let CTR=CTR+1
 done
-
-    echo "#!/usr/local/gnuplot
-    set term x11 1
-    plot '$dthOut' using 3:4
-    set xlabel 'jbar'
-    set ylabel 'theta(jp)-theta(j)'
-    replot
-    
-    set term postscript
-    set output 'DThetas.ps'
-    replot
-
-    set term x11 2
-    plot '$dthOut' using 3:4 with lines
-    set xlabel 'jbar'
-    set ylabel 'theta(jp)-theta(j)'
-    replot
-    
-    set term postscript
-    set output 'DThetas2.ps'
-    replot
-    " > deleteme3
-
-    gnuplot -persistent < deleteme3
-
-

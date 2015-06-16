@@ -3,18 +3,18 @@
 dj=2
 rm dtheta.dat
 CTR=1
+MAX=49
 MAX=5
 
-    echo j jp dtheta >> dtheta.dat
+dthOut=dtheta.dat
+echo j jp dtheta discrete continuous>> $dthOut
+
 while [ $CTR -lt $MAX ]; do
     j=$CTR
     jp=$(($CTR+2))
-    echo J VALUES: $j $jp
-
 
     # dqcalc
     blamdat=Blambda_$j\_$jp.dat
-    echo creating $blamdat ...
     ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 
     # dq2theta
@@ -25,24 +25,25 @@ while [ $CTR -lt $MAX ]; do
         bthdat=Btheta_0$j\_$jp.dat
         normblams=Blam_0$j\_$jp.dat
     else
-        bthdat=Btheta_$j_$jp.dat
+        bthdat=Btheta_$j\_$jp.dat
         normblams=Blam_$j\_$jp.dat
     fi
-
-    echo creating $bthdat ...
-    echo creating $normblams ...
     read alphamin Bmax <<<$(./dq2theta $blamdat $bthdat)
 
     # get the first angle (for lambda = lambdaMIN)
-    dtheta=$(cat $normblams|sed -n '2p'|awk '{print $3}')
-    echo $j $jp $dtheta >> dtheta.dat
+    # column 3, line 2
+    lmindeg=$(cat $normblams|sed -n '2p'|awk '{print $3}')
 
-    # main
-    #./main.out $j $jp
+    # calculate difference in theta
+    dtheta=$(awk "BEGIN {print $lmindeg-$alphamin}")
+
+    # write to file
+    echo $j $jp $dtheta $lmindeg $alphamin >> $dthOut
+    outputfile=results/Run1Plots/BPlots_$j\_$jp\.ps
 
     # plot it
     echo "#!/usr/local/gnuplot
-    set term x11 $jctr
+    set term x11 0
     set samples 10000
 
     plot '$normblams' using 3:4 with impulse
@@ -52,10 +53,24 @@ while [ $CTR -lt $MAX ]; do
     set trange [0:$Bmax]
     set term x11 $jctr
     replot $alphamin,t
+
+    set term postscript
+    set output '$outputfile'
+    replot
+    quit
     " > deleteme2
 
-    #gnuplot -persistent < deleteme2
-    #cat deleteme2
+    gnuplot -persistent < deleteme2
+
+    echo "#!/usr/local/gnuplot
+    set term x11 1
+    plot 'dtheta.dat' using 1:3
+
+    set term x11 2
+    plot 'dtheta.dat' using 1:3 with lines
+    " > deleteme3
+
+    gnuplot -persistent < deleteme3
 
     let CTR=CTR+1
 done

@@ -7,7 +7,7 @@ jp=18
 # dqcalc
 blamdat=Blambda_$j\_$jp.dat
 echo creating $blamdat ...
-./dqcalc newdata/Ep002mf5i-50b.blam $blamdat
+./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 
 # dq2theta
 bthdat=Btheta_$j\_$jp.dat

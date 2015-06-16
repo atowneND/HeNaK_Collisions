@@ -48,7 +48,7 @@
 *     now construct a file name that includes j and jp
       write (line,'("Blam_",i2.2,"_",i2.2,".dat")') j,jp
       IF(fassign(blamfile,trim(line),2).gt.0) THEN
-         write (*,*) 'Blamda will be written to '//trim(line)
+*         write (*,*) 'Blamda will be written to '//trim(line)
       ELSE
          call abort('problem opening file for Blambda')
       END IF
@@ -65,7 +65,7 @@
          !write(blamfile,*) line(ix:nchar)
       END DO
       sumBlam = tmp    ! will use this later
-      write (*,*) 'sum (2*lam+1)*Blam = ',sumBlam
+*      write (*,*) 'sum (2*lam+1)*Blam = ',sumBlam
       
       qend = 2*min(j,jp)
       count = -1
@@ -111,8 +111,10 @@
          ! check if we've passed the first max of ftheta*sin(theta)
          tmp = ftheta * sin(thdeg*PI/180.d0)
          IF (.not.found .and. tmp.lt.thx) THEN
-            write (*,*) 'first max found at ',thdeg-thdegdel
-            write (*,'(f15.7,'' was first max'')') thx
+*            write (*,*) 'first max found at ',thdeg-thdegdel
+            write (*,*) thdeg-thdegdel
+*            write (*,'(f15.7,'' was first max'')') thx
+            write (*,*) thx
             thxsave = thx
             found = .true.
          ELSE

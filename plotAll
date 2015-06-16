@@ -4,7 +4,6 @@ dj=2
 rm dtheta.dat
 CTR=1
 MAX=49
-MAX=5
 
 dthOut=dtheta.dat
 echo j jp dtheta discrete continuous>> $dthOut
@@ -39,7 +38,7 @@ while [ $CTR -lt $MAX ]; do
 
     # write to file
     echo $j $jp $dtheta $lmindeg $alphamin >> $dthOut
-    outputfile=results/Run1Plots/BPlots_$j\_$jp\.ps
+    outputfile=BPlots_$j\_$jp\.ps
 
     # plot it
     echo "#!/usr/local/gnuplot
@@ -70,7 +69,7 @@ while [ $CTR -lt $MAX ]; do
     plot 'dtheta.dat' using 1:3 with lines
     " > deleteme3
 
-    gnuplot -persistent < deleteme3
+#    gnuplot -persistent < deleteme3
 
     let CTR=CTR+1
 done

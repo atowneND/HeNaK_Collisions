@@ -1,0 +1,267 @@
+==6236== Memcheck, a memory error detector
+==6236== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==6236== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==6236== Command: ./main.out 10 12
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x400F50: main (main.c:67)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x400F82: main (main.c:68)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x401029: main (main.c:76)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x401046: main (main.c:76)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x402315: expvals (avgFun.c:133)
+==6236==    by 0x4010B9: main (main.c:86)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x402333: expvals (avgFun.c:133)
+==6236==    by 0x4010B9: main (main.c:86)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x40235D: expvals (avgFun.c:133)
+==6236==    by 0x4010B9: main (main.c:86)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x4023C0: expvals (avgFun.c:134)
+==6236==    by 0x4010B9: main (main.c:86)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x4023F4: expvals (avgFun.c:135)
+==6236==    by 0x4010B9: main (main.c:86)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x40241A: expvals (avgFun.c:135)
+==6236==    by 0x4010B9: main (main.c:86)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+Reading Btheta_10_12.dat...
+&B  =0x5515820	B[0] = 2485.030685
+&Bth = 0x5502180	B[0] = 0.000000
+	*Bth = 0.000000
+Reading Blambda_10_12.dat...
+&B  =0x5518250	B[0] = 1410.452700
+&Blambdavec = 0x5502220
+
+MAIN
+0:	theta=0.000000	B=0.000000
+1:	theta=0.000000	B=0.000000
+2:	theta=0.000000	B=0.000000
+3:	theta=0.000000	B=0.000000
+4:	theta=0.000000	B=0.000000
+5:	theta=0.000000	B=0.000000
+6:	theta=0.000000	B=0.000000
+7:	theta=0.000000	B=0.000000
+8:	theta=0.000000	B=0.000000
+9:	theta=0.000000	B=0.000000
+10:	theta=0.000000	B=0.000000
+11:	theta=0.000000	B=0.000000
+12:	theta=0.000000	B=0.000000
+13:	theta=0.000000	B=0.000000
+14:	theta=0.000000	B=0.000000
+15:	theta=0.000000	B=0.000000
+16:	theta=0.000000	B=0.000000
+17:	theta=0.000000	B=0.000000
+18:	theta=0.000000	B=0.000000
+19:	theta=0.000000	B=0.000000
+20:	theta=0.000000	B=0.000000
+21:	theta=0.000000	B=0.000000
+22:	theta=0.000000	B=0.000000
+23:	theta=0.000000	B=0.000000
+24:	theta=0.000000	B=0.000000
+25:	theta=0.000000	B=0.000000
+26:	theta=0.000000	B=0.000000
+27:	theta=0.000000	B=0.000000
+28:	theta=0.000000	B=0.000000
+29:	theta=0.000000	B=0.000000
+30:	theta=0.000000	B=0.000000
+31:	theta=0.000000	B=0.000000
+32:	theta=0.000000	B=0.000000
+33:	theta=0.000000	B=0.000000
+34:	theta=0.000000	B=0.000000
+35:	theta=0.000000	B=0.000000
+36:	theta=0.000000	B=0.000000
+37:	theta=0.000000	B=0.000000
+38:	theta=0.000000	B=0.000000
+39:	theta=0.000000	B=0.000000
+40:	theta=0.000000	B=0.000000
+41:	theta=0.000000	B=0.000000
+42:	theta=0.000000	B=0.000000
+43:	theta=0.000000	B=0.000000
+44:	theta=0.000000	B=0.000000
+45:	theta=0.000000	B=0.000000
+46:	theta=0.000000	B=0.000000
+47:	theta=0.000000	B=0.000000
+48:	theta=0.000000	B=0.000000
+49:	theta=0.000000	B=0.000000
+50:	theta=0.000000	B=0.000000
+51:	theta=0.000000	B=0.000000
+52:	theta=0.000000	B=0.000000
+53:	theta=0.000000	B=0.000000
+54:	theta=0.000000	B=0.000000
+55:	theta=0.000000	B=0.000000
+56:	theta=0.000000	B=0.000000
+57:	theta=0.000000	B=0.000000
+58:	theta=0.000000	B=-nan
+59:	theta=0.000000	B=0.000000
+60:	theta=0.000000	B=0.000000
+61:	theta=0.000000	B=0.000000
+62:	theta=0.000000	B=0.000000
+63:	theta=0.000000	B=0.000000
+64:	theta=0.000000	B=0.000000
+65:	theta=0.000000	B=0.000000
+66:	theta=0.000000	B=0.000000
+67:	theta=0.000000	B=0.000000
+68:	theta=-nan	B=0.000000
+69:	theta=0.000000	B=0.000000
+70:	theta=0.000000	B=0.000000
+71:	theta=0.000000	B=0.000000
+72:	theta=0.000000	B=0.000000
+73:	theta=0.000000	B=0.000000
+74:	theta=0.000000	B=0.000000
+75:	theta=0.000000	B=0.000000
+76:	theta=0.000000	B=0.000000
+77:	theta=0.000000	B=0.000000
+78:	theta=0.000000	B=0.000000
+79:	theta=0.000000	B=0.000000
+80:	theta=0.000000	B=0.000000
+81:	theta=0.000000	B=0.000000
+82:	theta=0.000000	B=0.000000
+83:	theta=0.000000	B=0.000000
+84:	theta=0.000000	B=0.000000
+85:	theta=0.000000	B=0.000000
+86:	theta=0.000000	B=0.000000
+87:	theta=0.000000	B=0.000000
+88:	theta=0.000000	B=0.000000
+89:	theta=0.000000	B=0.000000
+90:	theta=0.000000	B=0.000000
+==6236== Invalid read of size 8
+==6236==    at 0x402628: normBtheta (avgFun.c:161)
+==6236==    by 0x4012B3: main (main.c:113)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x402645: normBtheta (avgFun.c:161)
+==6236==    by 0x4012B3: main (main.c:113)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x4026C8: normBtheta (avgFun.c:169)
+==6236==    by 0x4012B3: main (main.c:113)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x40273D: normBlambda (avgFun.c:186)
+==6236==    by 0x401342: main (main.c:115)
+==6236==  Address 0x5502220 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400FD9: main (main.c:72)
+==6236== 
+writing B(theta) to normBtheta_10_12.dat
+==6236== Invalid read of size 8
+==6236==    at 0x40144E: main (main.c:139)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+writing B(lambda) to normBlambda_10_12.dat
+==6236== Invalid read of size 8
+==6236==    at 0x4015BB: main (main.c:169)
+==6236==  Address 0x5502270 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x4020A1: readBfile (avgFun.c:100)
+==6236==    by 0x400FD9: main (main.c:72)
+==6236== 
+==6236== Invalid read of size 8
+==6236==    at 0x4015EC: main (main.c:169)
+==6236==  Address 0x55021d0 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400FD9: main (main.c:72)
+==6236== 
+==6236== Invalid free() / delete / delete[] / realloc()
+==6236==    at 0x4C2BDEC: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x40169E: main (main.c:181)
+==6236==  Address 0x5502130 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401F99: readBfile (avgFun.c:89)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== Invalid free() / delete / delete[] / realloc()
+==6236==    at 0x4C2BDEC: free (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x4016AD: main (main.c:182)
+==6236==  Address 0x5502180 is 0 bytes inside a block of size 8 free'd
+==6236==    at 0x4C2CE8E: realloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6236==    by 0x401FC5: readBfile (avgFun.c:90)
+==6236==    by 0x400F42: main (main.c:66)
+==6236== 
+==6236== 
+==6236== HEAP SUMMARY:
+==6236==     in use at exit: 1,968 bytes in 6 blocks
+==6236==   total heap usage: 255 allocs, 251 frees, 73,720 bytes allocated
+==6236== 
+==6236== LEAK SUMMARY:
+==6236==    definitely lost: 1,968 bytes in 6 blocks
+==6236==    indirectly lost: 0 bytes in 0 blocks
+==6236==      possibly lost: 0 bytes in 0 blocks
+==6236==    still reachable: 0 bytes in 0 blocks
+==6236==         suppressed: 0 bytes in 0 blocks
+==6236== Rerun with --leak-check=full to see details of leaked memory
+==6236== 
+==6236== For counts of detected and suppressed errors, rerun with: -v
+==6236== ERROR SUMMARY: 1159 errors from 19 contexts (suppressed: 0 from 0)

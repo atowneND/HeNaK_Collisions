@@ -61,64 +61,6 @@ double fmean(double B[]){
 /*********************************************************/
 
 /*********************************************************/
-// read data files
-int readBfile(char *filename, double *xval, double *B_val, double *xaltval, int Btype){
-    FILE *fd = fopen(filename,"r");
-    char indata[BUFSIZE];
-    int ctr = 0;
-    int typeflag;
-    double xtmp, Btmp, xaltmp;
-    xtmp = 0;
-    Btmp = 0;
-    xaltmp = 0;
-
-    if (fd==NULL){
-        // error checking
-        printf("ERROR: unable to open %s\n",filename);
-        exit(1);
-    }
-    else{
-        // read in one line of data
-        printf("Reading %s...\n",filename);
-        while (fgets(indata,BUFSIZE,fd)!=NULL){
-            // check if it's a comment
-            typeflag = checkdatatype(indata, &xtmp, &Btmp, &xaltmp, Btype);
-            
-            if (!typeflag){
-                // resize array of dat
-                xval = realloc(xval,(ctr + 1)*sizeof(double));
-                B_val = realloc(B_val,(ctr + 1)*sizeof(double));
-
-                // assign values to arrays
-                xval[ctr] = (xtmp);
-                if (Btype==0){
-                    // put degrees into radians
-                    xval[ctr] = xval[ctr]*PI/180;
-                }
-                B_val[ctr] = Btmp;
-                if (xaltval!=NULL){
-                    xaltval = realloc(xaltval,(ctr + 1)*sizeof(double));
-                    xaltval[ctr] = xaltmp;
-                    //printf("%i:\tx=%lf\tB=%lfx2=%lf\n",ctr,xval[ctr],B_val[ctr],xaltval[ctr]);
-                }
-                else{
-                    //printf("%i:\tx=%lf\tB=%lf\n",ctr,xval[ctr],B_val[ctr]);
-                }
-
-                // increment to prepare for next array value
-                ctr = ctr + 1;
-            }
-        }
-    }
-    int numpoints = ctr;
-    fclose(fd);
-    printf("&B  =%p\tB[0] = %lf\n",B_val,B_val[0]);
-
-    return numpoints;
-}
-/*********************************************************/
-
-/*********************************************************/
 // calculate statistical values
 struct stats expvals(double theta[],double B[],int numpoints){
 

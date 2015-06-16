@@ -1,5 +1,5 @@
 /*********************************************************/
-// main.c
+// oldmain.c
 // expected value of alpha
 // Ashley Towne
 // 06/09/2015
@@ -62,24 +62,76 @@ int main(int argc, char *argv[]){
 
     /*********************************************************/
     // read Btheta file
+    FILE *fdBtheta = fopen(inBtheta,"r");
+    char indata[BUFSIZE];
     int Btype = 0;
-    int numAngles = readBfile(inBtheta,thetavec,Bthetavec,NULL,Btype);
-    printf("&Bth = %p\tB[0] = %lf\n",Bthetavec,Bthetavec[0]);
-    printf("\t*Bth = %lf\n",*Bthetavec);
+
+    if (fdBtheta==NULL){
+        // error checking
+        printf("ERROR: unable to open %s\n",inBtheta);
+        exit(1);
+    }
+    else{
+        // read in one line of data
+        printf("Reading %s...\n",inBtheta);
+        while (fgets(indata,BUFSIZE,fdBtheta)!=NULL){
+            // check if it's a comment
+            typeflag = checkdatatype(indata, xtmp, Btmp, NULL, Btype);
+            
+            if (!typeflag){
+                // resize array of dat
+                thetavec = realloc(thetavec,(ctr + 1)*sizeof(double));
+                Bthetavec = realloc(Bthetavec,(ctr + 1)*sizeof(double));
+
+                // assign values to arrays
+                thetavec[ctr] = (*xtmp)*PI/180;
+                Bthetavec[ctr] = *Btmp;
+
+                // increment to prepare for next array value
+                ctr = ctr + 1;
+            }
+        }
+    }
+    int numAngles = ctr;
+
+    fclose(fdBtheta);
 
     /*********************************************************/
+    FILE *fdBlambda = fopen(inBlambda,"r");
     Btype = 1;
-    int numLambdas = readBfile(inBlambda,lambdavec,Blambdavec,theta_lvec,Btype);
-    printf("&Blambdavec = %p\n",Blambdavec);
-    printf("\nMAIN\n");
-    for (ctr = 0; ctr < numAngles; ctr ++){
-        printf("%i:\ttheta=%lf\tB=%lf\n",ctr,thetavec[ctr],Bthetavec[ctr]);
+    ctr = 0;
+
+    if (fdBlambda==NULL){
+        // error checking
+        printf("ERROR: unable to open %s\n",inBlambda);
+        exit(1);
     }
-    /*
-    for (ctr = 0; ctr < numLambdas; ctr ++){
-        printf("%i:\tlambda=%lf\tB=%lftheta=%lf\n",ctr,thetavec[ctr],Bthetavec[ctr],theta_lvec[ctr]);
+    else{
+        // read in one line of data
+        printf("Reading %s...\n",inBlambda);
+        while (fgets(indata,BUFSIZE,fdBlambda)!=NULL){
+            // check if it's a comment
+            typeflag = checkdatatype(indata, xtmp, Btmp, thetatmp, Btype);
+            
+            if (!typeflag){
+                // resize array of dat
+                lambdavec = realloc(lambdavec,(ctr + 1)*sizeof(double));
+                Blambdavec = realloc(Blambdavec,(ctr + 1)*sizeof(double));
+                theta_lvec = realloc(theta_lvec,(ctr + 1)*sizeof(double));
+
+                // assign values to arrays
+                lambdavec[ctr] = (*xtmp);
+                Blambdavec[ctr] = *Btmp;
+                theta_lvec[ctr] = *thetatmp;
+
+                // increment to prepare for next array value
+                ctr = ctr + 1;
+            }
+        }
     }
-    */
+    int numLambdas = ctr;
+
+    fclose(fdBlambda);
 
     /*********************************************************/
     // get statistics

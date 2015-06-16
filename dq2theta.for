@@ -89,7 +89,7 @@
 
       thdegmin=0.d0
       thdegmax=180.d0
-      thdegdel=0.5d0
+      thdegdel=0.1d0
 
       ntheta = nint( (thdegmax-thdegmin)/thdegdel )
       thdegdel = (thdegmax-thdegmin)/dble(ntheta)

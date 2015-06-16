@@ -1,52 +1,62 @@
 #!/bin/bash
 
+dj=2
 rm dtheta.dat
+CTR=1
+MAX=5
 
-j=16
-jp=18
-# put these into a for loop for all combinations
-jctr=0
-echo j jp dtheta >> dtheta.dat
+    echo j jp dtheta >> dtheta.dat
+while [ $CTR -lt $MAX ]; do
+    j=$CTR
+    jp=$(($CTR+2))
+    echo J VALUES: $j $jp
 
-# dqcalc
-blamdat=Blambda_$j\_$jp.dat
-echo creating $blamdat ...
-./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 
-# dq2theta
-bthdat=Btheta_$j\_$jp.dat
-normblams=Blam_$j\_$jp.dat
-echo creating $bthdat ...
-echo creating $normblams ...
-read alphamin Bmax <<<$(./dq2theta $blamdat $bthdat)
+    # dqcalc
+    blamdat=Blambda_$j\_$jp.dat
+    echo creating $blamdat ...
+    ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 
-cp $normblams test.dat
-sed 's/[\t ][\t ]*/ /g' < test.dat > ntest.dat
-col4=$(cut -d' ' -f4 < ntest.dat)
-cut -d' ' -f4 < ntest.dat > nout.dat
+    # dq2theta
+    if [ $jp -lt 10 ]; then
+        bthdat=Btheta_0$j\_0$jp.dat
+        normblams=Blam_0$j\_0$jp.dat
+    elif [ $j -lt 10 ]; then
+        bthdat=Btheta_0$j\_$jp.dat
+        normblams=Blam_0$j\_$jp.dat
+    else
+        bthdat=Btheta_$j_$jp.dat
+        normblams=Blam_$j\_$jp.dat
+    fi
 
-item=$(sed -n '2{p;q}' nout.dat)
-#rm test.dat ntest.dat nout.dat
+    echo creating $bthdat ...
+    echo creating $normblams ...
+    read alphamin Bmax <<<$(./dq2theta $blamdat $bthdat)
 
-dtheta=$(awk "BEGIN {printf \"%.4f\n\", $item-$alphamin}")
-echo $j $jp $dtheta >> dtheta.dat
+    # get the first angle (for lambda = lambdaMIN)
+    dtheta=$(cat $normblams|sed -n '2p'|awk '{print $3}')
+    echo $j $jp $dtheta >> dtheta.dat
 
-# main
-#./main.out $j $jp
+    # main
+    #./main.out $j $jp
 
-# plot it
-echo "#!/usr/local/gnuplot
-set term x11 $jctr
-set samples 10000
+    # plot it
+    echo "#!/usr/local/gnuplot
+    set term x11 $jctr
+    set samples 10000
 
-plot '$normblams' using 3:4 with impulse
-replot '$bthdat' using 1:3 with lines smooth csplines
+    plot '$normblams' using 3:4 with impulse
+    replot '$bthdat' using 1:3 with lines smooth csplines
 
-set parametric
-set trange [0:$Bmax]
-set term x11 $jctr
-replot $alphamin,t
-" > deleteme2
+    set parametric
+    set trange [0:$Bmax]
+    set term x11 $jctr
+    replot $alphamin,t
+    " > deleteme2
 
-#gnuplot -persistent < deleteme2
-#cat deleteme2
+    #gnuplot -persistent < deleteme2
+    #cat deleteme2
+
+    let CTR=CTR+1
+done
+

@@ -16,6 +16,7 @@ GOAL
     outputs: Blambda_j_jp.dat
 ./dq2theta Blambda_j_jp.dat Btheta_j_jp.dat
     outputs: Btheta_j_jp.dat
-./main.out j jp
-    outputs: Bpl.dat - normalized Blambda
-             Bpt.dat - normalized Btheta
+
+./plotAll
+    runs dqcalc, dq2theta, and plots
+    check sed/awk stuff later

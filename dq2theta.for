@@ -46,7 +46,7 @@
 10    continue
 
 *     now construct a file name that includes j and jp
-      write (line,'("Blam_",i2.2,"_",i2.2,".dat")') j,jp
+      write (line,'("Blam_",i2.2,"_",i2.2,"_dj",i2.2".dat")') j,jp,jp-j
       IF(fassign(blamfile,trim(line),2).gt.0) THEN
 *         write (*,*) 'Blamda will be written to '//trim(line)
       ELSE

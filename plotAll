@@ -1,33 +1,45 @@
 #!/bin/bash
 
-dj=2
+dj=1
 rm dtheta.dat
 CTR=1
-MAX=49
+MAX=50
 
-dthOut=dtheta.dat
+while [ $dj -le $MAX ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+    while [ $CTR -lt $(($MAX-$dj+1)) ]; do
+        j=$CTR
+        jp=$((CTR+$dj))
+
+dthOut=Run2Results/dtheta_dj$djstr\.dat
 echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha>> $dthOut
 
-while [ $CTR -lt $MAX ]; do
     j=$CTR
-    jp=$(($CTR+2))
+    jp=$(($CTR+$dj))
+
+    # change so zeros are appended
+    if [ $jp -lt 10 ]; then
+        jp=0$jp
+    fi
+    if [ $j -lt 10 ]; then
+        j=0$j
+    fi
+    echo $j $jp
 
     # dqcalc
-    blamdat=Blambda_$j\_$jp.dat
+    blamdat=Run2Results/Blambda_$j\_$jp.dat
     ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 
     # dq2theta
-    if [ $jp -lt 10 ]; then
-        bthdat=Btheta_0$j\_0$jp.dat
-        normblams=Blam_0$j\_0$jp.dat
-    elif [ $j -lt 10 ]; then
-        bthdat=Btheta_0$j\_$jp.dat
-        normblams=Blam_0$j\_$jp.dat
-    else
-        bthdat=Btheta_$j\_$jp.dat
-        normblams=Blam_$j\_$jp.dat
-    fi
+    bthdat=Run2Results/Btheta_$j\_$jp\_dj$djstr\.dat
+    normblams=Blam_$j\_$jp\_dj$djstr\.dat
     read alphamin Bmaxa <<<$(./dq2theta $blamdat $bthdat)
+    mv $normblams Run2Results/$normblams
+    normblams=Run2Results/$normblams
 
     # get the first angle (for lambda = lambdaMIN)
     # column 3, line 2
@@ -40,9 +52,8 @@ while [ $CTR -lt $MAX ]; do
 
     # write to file
     appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
-    echo $appalpha
     echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthOut
-    outputfile=BPlots_$j\_$jp\.ps
+    outputfile=Run2Results/BPlots_$j\_$jp\_dj$djstr\.ps
 
     # plot it
     echo "#!/usr/local/gnuplot
@@ -65,6 +76,11 @@ while [ $CTR -lt $MAX ]; do
     " > deleteme2
 
 #    gnuplot -persistent < deleteme2
-#    gnuplot < deleteme2
+    gnuplot < deleteme2
     let CTR=CTR+1
 done
+    let dj=dj+1
+    CTR=1
+done
+
+exit

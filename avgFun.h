@@ -17,6 +17,11 @@ void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints)
 /*********************************************************/
 
 /*********************************************************/
+// read B file
+int readBfile(char *filename, double *xval, double *B_val, double *xaltval, int Btype);
+/*********************************************************/
+
+/*********************************************************/
 // parses data
 // returns 0 if no new data
 // returns 1 for new data chunk

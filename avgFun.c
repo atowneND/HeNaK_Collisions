@@ -61,6 +61,47 @@ double fmean(double B[]){
 /*********************************************************/
 
 /*********************************************************/
+int readBfile(char *filename, double *xval, double *B_val, double *xaltval, int Btype){
+    FILE *fd = fopen(filename,"r");
+    char indata[BUFSIZE];
+    int ctr = 0;
+    int typeflag;
+    double *xtmp, *Btmp;
+
+    if (fd==NULL){
+        // error checking
+        printf("ERROR: unable to open %s\n",filename);
+        exit(1);
+    }
+    else{
+        // read in one line of data
+        printf("Reading %s...\n",filename);
+        while (fgets(indata,BUFSIZE,fd)!=NULL){
+            // check if it's a comment
+            typeflag = checkdatatype(indata, xtmp, Btmp, NULL, Btype);
+            
+            if (!typeflag){
+                // resize array of dat
+                xval = realloc(xval,(ctr + 1)*sizeof(double));
+                B_val = realloc(B_val,(ctr + 1)*sizeof(double));
+
+                // assign values to arrays
+                xval[ctr] = (*xtmp)*PI/180;
+                B_val[ctr] = *Btmp;
+
+                // increment to prepare for next array value
+                ctr = ctr + 1;
+            }
+        }
+    }
+    fclose(fd);
+
+    int numpoints = ctr;
+    return numpoints;
+}
+/*********************************************************/
+
+/*********************************************************/
 // calculate statistical values
 struct stats expvals(double theta[],double B[],int numpoints){
 
@@ -176,7 +217,14 @@ int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xalt
         default: 
             // parse data line
             if (Btype==0){ // B(theta)
-                sscanf(indata,"%lf %lf",xval,B_val);
+                printf("indata =%s\t@\t%p\n",indata,&indata);
+                char foo[BUFSIZE];
+                int bar;
+                //sscanf(indata,"%s %lf %lf",foo,xval,B_val);
+                sscanf(indata,"%i",&bar);
+                sscanf(indata,"%s",foo);
+                printf("foo=%s\n",foo);
+                xval = 0;B_val = 0;
             }
             else if(Btype==1){ // B(lambda)
                 //sscanf(indata,"%lf %lf %lf",xval,B_val,xaltval);

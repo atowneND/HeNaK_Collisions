@@ -11,7 +11,7 @@ while [ $dj -le $MAX ]; do
     else
         djstr=$dj
     fi
-	dthOut=Run1Results/dtheta/dtheta_dj$djstr\.dat
+	dthOut=Run2Results/dtheta/dtheta_dj$djstr\.dat
 	echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthOut
 
 	while [ $CTR -lt $(($MAX-$dj+1)) ]; do
@@ -28,15 +28,15 @@ while [ $dj -le $MAX ]; do
 	    echo $j $jp
 	
 	    # dqcalc
-	    blamdat=Run1Results/Blambdas/Blambda_$j\_$jp.dat
+	    blamdat=Run2Results/Blambdas/Blambda_$j\_$jp.dat
 	    ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 	
 	    # dq2theta
-	    bthdat=Run1Results/Bthetas/Btheta_$j\_$jp\_dj$djstr\.dat
+	    bthdat=Run2Results/Bthetas/Btheta_$j\_$jp\_dj$djstr\.dat
 	    normblams=Blam_$j\_$jp\_dj$djstr\.dat
 	    read alphamin Bmaxa <<<$(./dq2theta $blamdat $bthdat)
-	    mv $normblams Run1Results/Blams/$normblams
-	    normblams=Run1Results/Blams/$normblams
+	    mv $normblams Run2Results/Blams/$normblams
+	    normblams=Run2Results/Blams/$normblams
 	
 	    # get the first angle (for lambda = lambdaMIN)
 	    # column 3, line 2
@@ -50,7 +50,7 @@ while [ $dj -le $MAX ]; do
 	    # write to file
 	    appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
 	    echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthOut
-	    outputfile=Run1Results/plots/BPlots_$j\_$jp\_dj$djstr\.ps
+	    outputfile=Run2Results/plots/BPlots_$j\_$jp\_dj$djstr\.ps
 	
 	    # plot it
 	    echo "#!/usr/local/gnuplot

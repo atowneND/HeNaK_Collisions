@@ -4,6 +4,7 @@ dj=1
 rm dtheta.dat
 CTR=1
 MAX=50
+make
 
 while [ $dj -le $MAX ]; do
     if [ $dj -lt 10 ]; then
@@ -83,4 +84,5 @@ done
 
 # remove dj=50 file because there's no data
 rm $dthOut
+./calcstats
 exit

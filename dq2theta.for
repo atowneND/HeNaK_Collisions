@@ -106,7 +106,7 @@
             ftheta = ftheta + dble(2*q+3)*d(q+1)*P(q+1) ! 2q+3 = 2(q+1)+1
          END DO
          ftheta = dzero*ftheta/sqrt(dble((2*j+1)*(2*jp+1)))
-         write(out,'(f10.1,2f15.7)') thdeg, ftheta,
+         write(out,'(f10.2,2f15.7)') thdeg, ftheta,
      -      ftheta*sin(thdeg*PI/180.d0)
          ! check if we've passed the first max of ftheta*sin(theta)
          tmp = ftheta * sin(thdeg*PI/180.d0)

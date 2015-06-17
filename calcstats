@@ -1,0 +1,48 @@
+#!/bin/bash
+
+dj=1
+CTR=1
+MAX=50
+
+while [ $dj -le $MAX ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+
+    echo Running dj = $dj
+    while [ $CTR -lt $(($MAX-$dj+1)) ]; do
+        j=$CTR
+        jp=$((CTR+$dj))
+
+        # change so zeros are appended
+        if [ $jp -lt 10 ]; then
+            jp=0$jp
+        fi
+        if [ $j -lt 10 ]; then
+            j=0$j
+        fi
+        echo $j $jp
+        if [ $dj -lt 10 ]; then
+            djstr=0$dj
+        else
+            djstr=$dj
+        fi
+
+        ./main.out $j $jp
+        let CTR=CTR+1
+
+    done
+    let dj=dj+1
+    CTR=1
+done
+#thetadir=Bthetas/Btheta_$j\_$jp\_dj$djstr\.dat
+#sed '/#/d' $thetadir|awk '{print $2}'>Bvals
+#sed '/#/d' $thetadir|awk '{print $1}'>thvals
+
+# theta*B*sin(theta)
+# theta^2*B*sin(theta)
+# B*sin(theta)
+# dsimp
+#Blambdas  Blams  Bthetas  calcstats  dtheta  plots

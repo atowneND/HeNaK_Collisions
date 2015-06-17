@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#outputfile=Dtheta_all.dat
+
+#echo dj jbar Bmax >$outputfile
+
+ctr=0
+for i in $(ls dtheta_dj*dat); do
+    rm foo
+    echo $i
+    echo "#!/usr/local/gnuplot
+    plot '$i' u 3:7
+    replot '$i' u 3:7 with lines
+    quit" > foo
+    gnuplot -persistent < foo
+    let ctr=ctr+1
+    if [ $ctr -gt 15 ]; then
+        exit
+    fi
+#    sed '0,/^.*$/d' $i|awk '{print $2-$1 " " $3 " " $7}'>>$outputfile
+done

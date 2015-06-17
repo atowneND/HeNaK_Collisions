@@ -1,0 +1,4 @@
+#!/usr/local/gnuplot
+    plot 'dtheta_dj16.dat' u 3:7
+    replot 'dtheta_dj16.dat' u 3:7 with lines
+    quit

@@ -17,7 +17,8 @@
      -             ,ix,LAMMAX,lam,lammin
       parameter    (QMAX=200,LAMMAX=200)
       double precision d(0:QMAX),P(0:QMAX),tmp, x,PI,thdeg,thdegmin,
-     -             thdegmax,thdegdel,ftheta,dzero,thx,sumBlam,thxsave
+     -             thdegmax,thdegdel,ftheta,dzero,thw,thx,sumBlam,fsave,
+     -             thxsave,y
       double precision Blamda(0:LAMMAX),lambda(0:LAMMAX),angle(0:LAMMAX)
       parameter    (PI = 4.d0*atan(1.0d0))
       character    line*80
@@ -27,6 +28,7 @@
       integer      GetLine,fassign
       character    fnbc     ! returns first nonblank character of string
       external     abort
+      double precision fmax
 
       call stdio (in,out)
 
@@ -46,9 +48,9 @@
 10    continue
 
 *     now construct a file name that includes j and jp
-      write (line,'("Blam_",i2.2,"_",i2.2,"_dj",i2.2".dat")') j,jp,jp-j
+      write (line,'("Blam_",i2.2,"_",i2.2,".dat")') j,jp
       IF(fassign(blamfile,trim(line),2).gt.0) THEN
-*         write (*,*) 'Blamda will be written to '//trim(line)
+         write (*,*) 'Blamda will be written to '//trim(line)
       ELSE
          call abort('problem opening file for Blambda')
       END IF
@@ -65,7 +67,7 @@
          !write(blamfile,*) line(ix:nchar)
       END DO
       sumBlam = tmp    ! will use this later
-*      write (*,*) 'sum (2*lam+1)*Blam = ',sumBlam
+      write (*,*) 'sum (2*lam+1)*Blam = ',sumBlam
       
       qend = 2*min(j,jp)
       count = -1
@@ -89,10 +91,11 @@
 
       thdegmin=0.d0
       thdegmax=180.d0
-      thdegdel=0.01d0
+      thdegdel=0.1d0
 
       ntheta = nint( (thdegmax-thdegmin)/thdegdel )
       thdegdel = (thdegmax-thdegmin)/dble(ntheta)
+      thw = -2.d0
       thx = -1.d0
       P(0) = 1.d0
       DO i=0,ntheta
@@ -106,18 +109,19 @@
             ftheta = ftheta + dble(2*q+3)*d(q+1)*P(q+1) ! 2q+3 = 2(q+1)+1
          END DO
          ftheta = dzero*ftheta/sqrt(dble((2*j+1)*(2*jp+1)))
-         write(out,'(f10.2,2f15.7)') thdeg, ftheta,
+         write(out,'(f10.1,2f15.7)') thdeg, ftheta,
      -      ftheta*sin(thdeg*PI/180.d0)
          ! check if we've passed the first max of ftheta*sin(theta)
          tmp = ftheta * sin(thdeg*PI/180.d0)
          IF (.not.found .and. tmp.lt.thx) THEN
-*            write (*,*) 'first max found at ',thdeg-thdegdel
-            write (*,*) thdeg-thdegdel
-*            write (*,'(f15.7,'' was first max'')') thx
-            write (*,*) thx
+            fsave = fmax(thw,thx,tmp,y)
+            write (*,'('' first max found at '',f15.7)')
+     -         thdeg-thdegdel + y*thdegdel
+            write (*,'(f15.7,'' was first max'')') fsave
             thxsave = thx
             found = .true.
          ELSE
+            thw = thx
             thx = tmp
          END IF
       END DO
@@ -136,3 +140,35 @@
  
 
       end
+
+
+      
+      function fmax(fm,f0,fp,x)
+      
+*     find max value of a function, given three equally spaced points
+      
+      implicit     none
+      double precision fmax,fm,f0,fp,x,d1,d2
+      double precision, parameter :: ZERO=0.d0, HALF=0.5d0, ONE=dble(1),
+     -                                TWO=2.d0
+      d1 = HALF*(fp-fm)
+      d2 = fm - TWO*f0 + fp
+      IF (d1.eq.ZERO) THEN
+         fmax = f0
+         x = ZERO
+         return
+      ELSE IF (d2.eq.ZERO) THEN
+         IF (fm.lt.fp) THEN
+            fmax = fp
+            x = ONE
+         ELSE
+            fmax = fm
+            x = -ONE
+         END IF
+      ELSE
+         x = -d1 / d2
+         fmax = f0 + x*d1 +HALF*x*x*d2
+      END IF
+
+      end
+      

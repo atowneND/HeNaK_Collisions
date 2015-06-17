@@ -81,4 +81,6 @@ while [ $dj -le $MAX ]; do
     CTR=1
 done
 
+# remove dj=50 file because there's no data
+rm $dthOut
 exit

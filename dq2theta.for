@@ -18,6 +18,7 @@
       parameter    (QMAX=200,LAMMAX=200)
       double precision d(0:QMAX),P(0:QMAX),tmp, x,PI,thdeg,thdegmin,
      -             thdegmax,thdegdel,ftheta,dzero,thx,sumBlam,thxsave
+     -             ,thprev
       double precision Blamda(0:LAMMAX),lambda(0:LAMMAX),angle(0:LAMMAX)
       parameter    (PI = 4.d0*atan(1.0d0))
       character    line*80
@@ -94,7 +95,9 @@
       ntheta = nint( (thdegmax-thdegmin)/thdegdel )
       thdegdel = (thdegmax-thdegmin)/dble(ntheta)
       thx = -1.d0
+      thprev = -1.d0
       P(0) = 1.d0
+      thprev = -100
       DO i=0,ntheta
          thdeg = thdegmin + dble(i)*thdegdel
          x = cos(thdeg*PI/180.d0)
@@ -118,6 +121,7 @@
             thxsave = thx
             found = .true.
          ELSE
+            thprev = thx
             thx = tmp
          END IF
       END DO

@@ -6,7 +6,7 @@ CTR=1
 MAX=50
 make
 
-while [ $dj -le $MAX ]; do
+while [ $dj -le $($MAX-1) ]; do
     if [ $dj -lt 10 ]; then
         djstr=0$dj
     else
@@ -82,7 +82,5 @@ while [ $dj -le $MAX ]; do
     CTR=1
 done
 
-# remove dj=50 file because there's no data
-rm $dthOut
 ./calcstats
 exit

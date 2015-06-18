@@ -1,0 +1,30 @@
+#!/bin/bash
+args='getopt j:p:d $*'
+j=0;jp=0;dj=0
+echo parsing...
+for i
+do
+    case "$i" in
+        -j) shift; echo "j=$1";shift
+            ;;
+        -p) shift; echo "jp=$1";shift
+            ;;
+        -d) shift; echo "dj=$1";shift
+            ;;
+    esac
+done
+
+if [ $dj -ne $(($jp-$j)) ] ; then
+    echo bad input values
+    echo dj=$dj; j=$j; jp=$jp
+    exit
+fi
+
+foofile=foo 
+foofile2=wut
+echo foofile=$foofile
+[[ $(ls) =~ $foofile ]] && echo 'yes' || echo 'no'
+[[ $(ls) =~ $foofile2 ]] || echo 'no'
+        blamdir=Run2Results/Blambdas
+        blamdat=Blambda_$j\_$jp.dat
+        echo $blamdir\/$blamdat

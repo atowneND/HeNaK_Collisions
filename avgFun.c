@@ -1,9 +1,11 @@
 /*********************************************************/
 #include <ctype.h>
+#include <fcntl.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "avgFun.h"
 /*********************************************************/
 
@@ -62,7 +64,7 @@ double fmean(double B[]){
 
 /*********************************************************/
 // calculate statistical values
-struct stats expvals(double theta[],double B[],int numpoints){
+struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
 
     // assuming theta is from 0 to pi
     int i;
@@ -70,12 +72,37 @@ struct stats expvals(double theta[],double B[],int numpoints){
     double numeratorvec2[numpoints];
     double denominatorvec[numpoints];
 
-    // calculate integrands
+    // write data to file - redirect stdout to file
+    int bak, new;
+    char datfile[BUFSIZE];
+    sprintf(datfile,"Run2Results/Stats/check/checkstats_%i_%i.dat",j,jp);
+    fflush(stdout);
+    bak = dup(1);
+    new = open(datfile,O_RDWR|O_CREAT|O_APPEND,0666);
+    dup2(new,1);
+    close(new);
+    printf("alpha\talpha^2\tB*sin(alpha)\n");
+
+    double sums[3];
+    sums[0] = 0;
+    sums[1] = 0;
+    sums[2] = 0;
+    // calculate integrands and write to file
     for (i=0;i<numpoints;i++){
         numeratorvec[i] = theta[i]*B[i]*sin(theta[i]);
         numeratorvec2[i] = numeratorvec[i]*theta[i];
         denominatorvec[i] = B[i]*sin(theta[i]);
+        printf("%lf\t%lf\t%lf\n",theta[i],pow(theta[i],2),denominatorvec[i]);
+        sums[0] = sums[0] + theta[i];
+        sums[1] = sums[1] + pow(theta[i],2);
+        sums[2] = sums[2] + denominatorvec[i];
     }
+    printf("\n%lf\t%lf\t%lf\n",sums[0],sums[1],sums[2]);
+
+    // finish stdout redirection
+    fflush(stdout);
+    dup2(bak,1);
+    close(bak);
 
     // calculate integrals
     double numerator = dsimp_(&numpoints,numeratorvec);

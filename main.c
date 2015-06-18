@@ -157,10 +157,10 @@ int main(int argc, char *argv[]){
 
     /*********************************************************/
     // get statistics
-    struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles);
+    struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles,j,jp);
 
 //    int bak,new;
-//    char statFile[100];
+//    char statFile[101];
 //    sprintf(statFile,"Run2Results/Stats/stats_%s_%s.dat",jstr,jpstr);
 
     // redirect stdout to file

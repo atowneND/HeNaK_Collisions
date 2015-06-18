@@ -81,7 +81,7 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     new = open(datfile,O_RDWR|O_CREAT|O_APPEND,0666);
     dup2(new,1);
     close(new);
-    printf("alpha\talpha^2\tB*sin(alpha)\n");
+    printf("# alpha\talpha^2\tB*sin(alpha)\n");
 
     double sums[3];
     sums[0] = 0;
@@ -97,7 +97,7 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
         sums[1] = sums[1] + pow(theta[i],2);
         sums[2] = sums[2] + denominatorvec[i];
     }
-    printf("\n%lf\t%lf\t%lf\n",sums[0],sums[1],sums[2]);
+    printf("#Sums: %lf\t%lf\t%lf\n",sums[0],sums[1],sums[2]);
 
     // finish stdout redirection
     fflush(stdout);

@@ -14,7 +14,7 @@ while [ $dj -le $(($MAX-1)) ]; do
     fi
     
     statfile=Run2Results/Stats/stats_dj$djstr\.dat
-#    echo \#j jp avg std var >$statfile
+    echo \#j jp avg std var >$statfile
     dthOut=Run2Results/dtheta/dtheta_dj$djstr\.dat
 #    echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthOut
     echo Running dj = $dj
@@ -59,7 +59,7 @@ while [ $dj -le $(($MAX-1)) ]; do
 
         # stats
         read avg std var <<<$(./main.out $j $jp)
-#        echo $j $jp $avg $std $var >>$statfile
+        echo $j $jp $avg $std $var >>$statfile
 
         # plot it
         # suppress visual output

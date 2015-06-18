@@ -1,0 +1,18 @@
+#!/usr/local/gnuplot
+	    set term x11 0
+	    set samples 10000
+	
+	    plot 'Run2Results/Blams/Blam_01_03_dj02.dat' using 3:4 with impulse
+	    replot 'Run2Results/Bthetas/Btheta_01_03_dj02.dat' using 1:3 with lines smooth csplines
+	
+	    set parametric
+	    set trange [0:]
+	    set term x11 0
+	    replot ,t
+	    #replot ,t
+	
+	    set term postscript
+	    set output 'Run2Results/plots/BPlots_01_03_dj02.ps'
+	    replot
+	    quit
+	    

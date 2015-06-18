@@ -1,0 +1,4 @@
+
+    set samples 10000
+    plot 'stats_dj49.dat' using 1:3 with lines
+    

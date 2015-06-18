@@ -11,16 +11,16 @@ while [ $dj -le $MAX ]; do
         djstr=$dj
     fi
 
-#    echo Running dj = $dj
+    echo Running dj = $dj
     djfile=Run2Results/Stats/stats_dj$djstr\.dat
-#    echo \#j jp avg std var >$djfile
+    echo \#j jp avg std var >$djfile
     while [ $CTR -lt $(($MAX-$dj+1)) ]; do
         j=$CTR
         jp=$((CTR+$dj))
 
         read avg std var <<<$(./main.out $j $jp)
         echo $avg $std $var
-#        echo $j $jp $avg $std $var >>$djfile
+        echo $j $jp $avg $std $var >>$djfile
         let CTR=CTR+1
 
     done

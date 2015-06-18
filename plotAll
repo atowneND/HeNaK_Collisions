@@ -6,7 +6,7 @@ CTR=1
 MAX=50
 make
 
-while [ $dj -le $($MAX-1) ]; do
+while [ $dj -le $MAX ]; do
     if [ $dj -lt 10 ]; then
         djstr=0$dj
     else
@@ -14,6 +14,7 @@ while [ $dj -le $($MAX-1) ]; do
     fi
 	dthOut=Run2Results/dtheta/dtheta_dj$djstr\.dat
 	echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthOut
+	echo Running dj = $dj
 
 	while [ $CTR -lt $(($MAX-$dj+1)) ]; do
 	    j=$CTR
@@ -26,7 +27,6 @@ while [ $dj -le $($MAX-1) ]; do
 	    if [ $j -lt 10 ]; then
 	        j=0$j
 	    fi
-	    echo $j $jp
 	
 	    # dqcalc
 	    blamdat=Run2Results/Blambdas/Blambda_$j\_$jp.dat

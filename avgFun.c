@@ -112,8 +112,8 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     // combine for average value of tipping angle
     struct stats thetaStats;
     thetaStats.avg = numerator/denominator;
-    thetaStats.var = numerator2/denominator;
-    thetaStats.std = thetaStats.var - pow(thetaStats.avg,2);
+    thetaStats.std = numerator2/denominator - pow(thetaStats.avg,2);
+    thetaStats.var = sqrt(thetaStats.std);
 
     return thetaStats;
 }

@@ -41,3 +41,11 @@ if [ "$foo" != "$blamdir$blamdat" ]; then
 else
     echo found it
 fi
+
+
+myflag=0
+if [ $myflag ]; then
+    echo 0
+else
+    echo 1
+fi

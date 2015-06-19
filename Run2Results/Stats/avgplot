@@ -1,0 +1,38 @@
+#!/bin/bash
+
+dj=1
+max=50
+
+while [ $dj -lt $max ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+
+    echo "
+    set term postscript
+    set samples 10000
+    plot 'stats_dj$djstr.dat' using 1:3 with lines smooth csplines title 'SCavg fit'
+    replot 'stats_dj$djstr.dat' using 1:3 title 'SCavg'
+    replot 'stats_dj$djstr.dat' using 1:6 with lines smooth csplines title 'QMavg fit'
+    replot 'stats_dj$djstr.dat' using 1:6 title 'QMavg'
+    set xlabel 'j';set ylabel 'alpha (deg)'; set title 'dj=$dj'
+    
+    set output 'avg_dj$djstr.ps'
+    replot
+
+    set term postscript
+    set samples 10000
+    plot 'stats_dj$djstr.dat' using 1:9 with lines smooth csplines title 'diffs fit'
+    replot 'stats_dj$djstr.dat' using 1:9 title 'diffs'
+    set output 'avgdiffs_dj$djstr.ps'
+    replot
+    " > plotme
+
+    gnuplot < plotme >/dev/null
+    gv avg_dj$djstr.ps >/dev/null 2>&1
+    gv avgdiffs_dj$djstr.ps >/dev/null 2>&1
+
+    let dj=dj+1
+done

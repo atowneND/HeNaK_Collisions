@@ -36,10 +36,8 @@ blamdir=Run2Results/Blambdas/
 blamdat=Blambda_$jstr\_$jpstr\.dat
 
 foo=$(find $blamdir -name $blamdat -nowarn)
-if [ "$foo" = "$blamdir$blamdat" ]; then
-    echo found it
-else
+if [ "$foo" != "$blamdir$blamdat" ]; then
     echo not here
+else
+    echo found it
 fi
-
-gnuplot < fooplot > /dev/null

@@ -6,6 +6,7 @@ CTR=1
 MAX=50
 make
 rm Run2Results/Stats/check/check*
+dm=0
 
 while [ $dj -le $(($MAX-1)) ]; do
     if [ $dj -lt 10 ]; then
@@ -21,6 +22,7 @@ while [ $dj -le $(($MAX-1)) ]; do
     echo Running dj = $dj
 
     while [ $CTR -lt $(($MAX-$dj+1)) ]; do
+    let dm=dm+1
         j=$CTR
         jp=$((CTR+$dj))
 
@@ -105,5 +107,6 @@ while [ $dj -le $(($MAX-1)) ]; do
     let dj=dj+1
     CTR=1
 done
+echo number of loops = $dm
 
 exit

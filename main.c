@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
                 Bthetavec = realloc(Bthetavec,(ctr + 1)*sizeof(double));
 
                 // assign values to arrays
-                thetavec[ctr] = (*xtmp)*PI/180;
+                thetavec[ctr] = (*xtmp);
                 Bthetavec[ctr] = *Btmp;
 
                 // increment to prepare for next array value
@@ -144,7 +144,7 @@ int main(int argc, char *argv[]){
                 // assign values to arrays
                 lambdavec[ctr] = (*xtmp);
                 Blambdavec[ctr] = *Btmp;
-                theta_lvec[ctr] = *thetatmp*PI/180;
+                theta_lvec[ctr] = *thetatmp;
 
                 // increment to prepare for next array value
                 ctr = ctr + 1;
@@ -158,10 +158,12 @@ int main(int argc, char *argv[]){
     /*********************************************************/
     // get statistics
     struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles,j,jp);
-    printf("%f %f %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
+//    printf("%f %f %f\n",thetaStats.avg*180/PI,thetaStats.std*180/PI,thetaStats.var*180/PI);
+    printf("%f %f %f\n",thetaStats.avg,thetaStats.std,thetaStats.var);
 
     struct stats lambdaStats = expvalsQM(lambdavec,theta_lvec,Blambdavec,numLambdas,j,jp);
-    printf("%f %f %f\n",lambdaStats.avg*180/PI,lambdaStats.var*180/PI,lambdaStats.std*180/PI);
+//    printf("%f %f %f\n",lambdaStats.avg*180/PI,lambdaStats.std*180/PI,lambdaStats.var*180/PI);
+    printf("%f %f %f\n",lambdaStats.avg,lambdaStats.std,lambdaStats.var);
 
     //    /*********************************************************/
     //    // normalize B's

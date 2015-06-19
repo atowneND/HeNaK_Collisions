@@ -85,8 +85,8 @@ struct stats expvalsQM(double lambda[],double theta_l[],double B[], int numpoint
     }
     struct stats thetaStats;
     thetaStats.avg = num/denom;
-    thetaStats.std = num2/denom - pow(thetaStats.avg,2);
-    thetaStats.var = sqrt(thetaStats.std);
+    thetaStats.var = num2/denom - pow(thetaStats.avg,2);
+    thetaStats.std = sqrt(thetaStats.var);
     return thetaStats;
 }
 /*********************************************************/
@@ -118,9 +118,9 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     sums[2] = 0;
     // calculate integrands and write to file
     for (i=0;i<numpoints;i++){
-        numeratorvec[i] = theta[i]*B[i]*sin(theta[i]);
+        numeratorvec[i] = theta[i]*B[i]*sin(theta[i]*PI/180);
         numeratorvec2[i] = numeratorvec[i]*theta[i];
-        denominatorvec[i] = B[i]*sin(theta[i]);
+        denominatorvec[i] = B[i]*sin(theta[i]*PI/180);
         printf("%lf\t%lf\t%lf\n",theta[i],pow(theta[i],2),denominatorvec[i]);
         sums[0] = sums[0] + theta[i];
         sums[1] = sums[1] + pow(theta[i],2);
@@ -141,8 +141,8 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     // combine for average value of tipping angle
     struct stats thetaStats;
     thetaStats.avg = numerator/denominator;
-    thetaStats.std = numerator2/denominator - pow(thetaStats.avg,2);
-    thetaStats.var = sqrt(thetaStats.std);
+    thetaStats.var = numerator2/denominator - pow(thetaStats.avg,2);
+    thetaStats.std = sqrt(thetaStats.var);
 
     return thetaStats;
 }
@@ -156,7 +156,7 @@ void normBtheta(double theta[],double B[],double Bnorm[],int numpoints){
 
     // calculate integrands
     for (i=0;i<numpoints;i++){
-        integrand[i] = B[i]*sin(theta[i]);
+        integrand[i] = B[i]*sin(theta[i]*PI/180);
     }
 
     // calculate integrals

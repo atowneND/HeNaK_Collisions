@@ -144,7 +144,7 @@ int main(int argc, char *argv[]){
                 // assign values to arrays
                 lambdavec[ctr] = (*xtmp);
                 Blambdavec[ctr] = *Btmp;
-                theta_lvec[ctr] = *thetatmp;
+                theta_lvec[ctr] = *thetatmp*PI/180;
 
                 // increment to prepare for next array value
                 ctr = ctr + 1;
@@ -157,6 +157,8 @@ int main(int argc, char *argv[]){
 
     /*********************************************************/
     // get statistics
+//    struct stats lambdaStats = expvals(lambdavec,Blambdavec,numLambdas,j,jp);
+//    struct stats tlStats = expvals(theta_lvec,Blambdavec,numLambdas,j,jp);
     struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles,j,jp);
 
 //    int bak,new;
@@ -175,6 +177,8 @@ int main(int argc, char *argv[]){
     //printf("# j=%i\tjp=%i\n",j,jp);
     //printf("Stats: (deg)\n");
     //printf("\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
+//    printf("%f %f %f\n",lambdaStats.avg*180/PI,lambdaStats.var*180/PI,lambdaStats.std*180/PI);
+//    printf("%f %f %f\n",tlStats.avg*180/PI,tlStats.var*180/PI,tlStats.std*180/PI);
     printf("%f %f %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
 
     // finish stdout redirection

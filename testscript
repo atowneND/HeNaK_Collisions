@@ -22,9 +22,16 @@ fi
 
 foofile=foo 
 foofile2=wut
-echo foofile=$foofile
 [[ $(ls) =~ $foofile ]] && echo 'yes' || echo 'no'
 [[ $(ls) =~ $foofile2 ]] || echo 'no'
-        blamdir=Run2Results/Blambdas
-        blamdat=Blambda_$j\_$jp.dat
-        echo $blamdir\/$blamdat
+
+foo=$(find Run2Results/Blambdas/Blambda_07_14.dat)
+echo $foo
+foo=$(find Run2Results/Blambdas/Blambda_07_14.d)
+# find <file> -nowarn didn't turn off warning
+echo $foo
+if [ "$foo" = "Run2Results/Blambdas/Blambda_07_14.dat" ]; then
+    echo found it
+else
+    echo not here
+fi

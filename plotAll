@@ -5,6 +5,7 @@ rm dtheta.dat
 CTR=1
 MAX=50
 make
+rm Run2Results/Stats/check/check*
 
 while [ $dj -le $(($MAX-1)) ]; do
     if [ $dj -lt 10 ]; then
@@ -14,9 +15,9 @@ while [ $dj -le $(($MAX-1)) ]; do
     fi
     
     statfile=Run2Results/Stats/stats_dj$djstr\.dat
-    echo \#j jp avg std var >$statfile
+    echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statfile
     dthOut=Run2Results/dtheta/dtheta_dj$djstr\.dat
-#    echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthOut
+    echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthOut
     echo Running dj = $dj
 
     while [ $CTR -lt $(($MAX-$dj+1)) ]; do
@@ -25,20 +26,24 @@ while [ $dj -le $(($MAX-1)) ]; do
 
         # change so zeros are appended
         if [ $jp -lt 10 ]; then
-            jp=0$jp
+            jpstr=0$jp
+        else
+            jpstr=$jp
         fi
         if [ $j -lt 10 ]; then
-            j=0$j
+            jstr=0$j
+        else
+            jstr=$j
         fi
 
         # dqcalc
         blamdir=Run2Results/Blambdas/
-        blamdat=$blamdir\Blambda_$j\_$jp.dat
+        blamdat=$blamdir\Blambda_$jstr\_$jpstr.dat
         ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
 
         # dq2theta
-        bthdat=Run2Results/Bthetas/Btheta_$j\_$jp\_dj$djstr\.dat
-        normblams=Blam_$j\_$jp\_dj$djstr\.dat
+        bthdat=Run2Results/Bthetas/Btheta_$jstr\_$jpstr\_dj$djstr\.dat
+        normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
         read alphamin Bmaxa <<<$(./dq2theta $blamdat $bthdat)
         mv $normblams Run2Results/Blams/$normblams
         normblams=Run2Results/Blams/$normblams
@@ -54,12 +59,15 @@ while [ $dj -le $(($MAX-1)) ]; do
 
         # write to file
         appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
-#        echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthOut
-        outputfile=Run2Results/plots/BPlots_$j\_$jp\_dj$djstr\.ps
+        echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthOut
+        outputfile=Run2Results/plots/BPlots_$jstr\_$jpstr\_dj$djstr\.ps
 
         # stats
-        read avg std var <<<$(./main.out $j $jp)
-        echo $j $jp $avg $std $var >>$statfile
+        read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp)
+        diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
+        diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
+        diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
+        echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statfile
 
         # plot it
         # suppress visual output
@@ -75,7 +83,12 @@ while [ $dj -le $(($MAX-1)) ]; do
         set trange [0:$Bmaxa]
 #        set term x11 0
         replot $alphamin,t title 'alpha_min'
-        replot $avg,t title 'average'
+        replot $SCavg,t title 'SC average'
+        replot $QMavg,t title 'QM average'
+        set xlabel 'theta (deg)'
+        set ylabel 'B'
+        set title 'j=$j, jp=$jp'
+        replot
 
 #        set term postscript
         set output '$outputfile'
@@ -84,7 +97,7 @@ while [ $dj -le $(($MAX-1)) ]; do
         " > deleteme2
 
         #    gnuplot -persistent < deleteme2
-#        gnuplot < deleteme2
+        gnuplot < deleteme2 > /dev/null
 
         let CTR=CTR+1
     done

@@ -1,3 +1,5 @@
+#!/usr/local/gnuplot
+set term postscript
 plot "dtheta.dat" using 3:5
 replot "dtheta.dat" using 3:6
 replot "dtheta.dat" using 3:9
@@ -6,6 +8,5 @@ set xlabel "jbar"
 set ylabel "angle (degrees)"
 replot
 
-set term postscript
-set output "Theta_min Values.ps"
+set output "Theta_min_Values.ps"
 replot

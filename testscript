@@ -1,5 +1,11 @@
 #!/bin/bash
-args='getopt j:p:d $*'
+#j=starting smaller j value
+#jp=j+dj
+#range
+#   j - all dj's possible for j {j,j+range} ; range gives jpmax
+#   dj - all j,jp combinations for dj {dj,dj+range} ; range gives djmax
+
+args='getopt j:p:d:r $*'
 j=0;jp=0;dj=0
 echo parsing...
 for i
@@ -11,8 +17,11 @@ do
             ;;
         -d) shift; echo "dj=$1";shift
             ;;
+        -r) shift; echo "range=$1";shift
     esac
 done
+jmin=$j
+jmax=$(($j+$range))
 
 if [ $dj -ne $(($jp-$j)) ] ; then
     echo bad input values

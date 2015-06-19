@@ -11,28 +11,32 @@ while [ $dj -lt $max ]; do
     fi
 
     echo "
-    set term postscript
+    set term postscript eps enhanced
     set samples 10000
-    plot 'stats_dj$djstr.dat' using 1:4 with lines smooth csplines title 'SCstd fit'
-    replot 'stats_dj$djstr.dat' using 1:4 title 'SCstd'
-    replot 'stats_dj$djstr.dat' using 1:7 with lines smooth csplines title 'QMstd fit'
-    replot 'stats_dj$djstr.dat' using 1:7 title 'QMstd'
-    set xlabel 'j';set ylabel 'alpha (deg)'; set title 'dj=$dj'
-    
-    set output 'std_dj$djstr.ps'
+    set xrange [0:50]
+    set yrange [0:60]
+    plot 'stats_dj$djstr.dat' using ((\$1+\$2)/2):4 with lines smooth csplines title 'SCstd fit'
+    replot 'stats_dj$djstr.dat' using ((\$1+\$2)/2):4 title 'SCstd'
+    replot 'stats_dj$djstr.dat' using ((\$1+\$2)/2):7 with lines smooth csplines title 'QMstd fit'
+    replot 'stats_dj$djstr.dat' using ((\$1+\$2)/2):7 title 'QMstd'
+    set xlabel 'jbar';set ylabel 'd{/Symbol a} (deg)'; set title 'Standard devation, dj=$dj'
+    set output 'std_dj$djstr.eps'
     replot
 
-    set term postscript
+    set term postscript eps enhanced
     set samples 10000
-    plot 'stats_dj$djstr.dat' using 1:10 with lines smooth csplines title 'diffs fit'
-    replot 'stats_dj$djstr.dat' using 1:10 title 'diffs'
-    set output 'stddiffs_dj$djstr.ps'
+    set xrange [0:50]
+    set yrange [-3:10]
+    plot 'stats_dj$djstr.dat' using ((\$1+\$2)/2):10 with lines smooth csplines title 'diffs fit'
+    replot 'stats_dj$djstr.dat' using ((\$1+\$2)/2):10 title 'diffs'
+    set xlabel 'jbar';set ylabel '{/Symbol D}d{/Symbol a} (deg)'; set title 'Standard devation diffs, dj=$dj'
+    set output 'stddiffs_dj$djstr.eps'
     replot
     " > plotme
 
-    gnuplot < plotme >/dev/null
-    gv std_dj$djstr.ps >/dev/null 2>&1
-    gv stddiffs_dj$djstr.ps >/dev/null 2>&1
+    gnuplot < plotme >/dev/null 2>&1
+    gv std_dj$djstr.eps >/dev/null 2>&1
+#    gv stddiffs_dj$djstr.eps >/dev/null 2>&1
 
     let dj=dj+1
 done

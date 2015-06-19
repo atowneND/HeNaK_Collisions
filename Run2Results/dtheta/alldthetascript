@@ -8,10 +8,15 @@ ctr=0
 for i in $(ls dtheta_dj*dat); do
     rm foo
     echo $i
-    if [ $ctr -gt 15 ]; then
+    if [ $ctr -gt 0 ]; then
         echo "#!/usr/local/gnuplot
+        set term postscript
         plot '$i' u 3:7
         replot '$i' u 3:7 with lines
+        set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dj = $dj';
+        replot
+        set output 'Bmax_dj$(($ctr+1)).ps'
+        replot
         quit" > foo
         gnuplot -persistent < foo
     elif [ $ctr -gt 30 ]; then

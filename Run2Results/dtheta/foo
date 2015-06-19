@@ -1,4 +1,9 @@
 #!/usr/local/gnuplot
-        plot 'dtheta_dj50.dat' u 3:7
-        replot 'dtheta_dj50.dat' u 3:7 with lines
+        set term postscript
+        plot 'dtheta_dj49.dat' u 3:7
+        replot 'dtheta_dj49.dat' u 3:7 with lines
+        set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dj = ';
+        replot
+        set output 'Bmax_dj49.ps'
+        replot
         quit

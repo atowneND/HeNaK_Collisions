@@ -29,7 +29,7 @@ void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints)
     for (i=0;i<numpoints;i++){
         c = -(j*(j+1) + jp*(jp+1) -2*sqrt(j*(j+1)*jp*(jp+1))*cos(theta[i]));
         quadformula(a,b,c,&x[i][0],&x[i][1]);
-//        printf("t: %f\tc = %f\tlambda = %f, %f\n",theta[i],c,x[i][0],x[i][1]);
+        //        printf("t: %f\tc = %f\tlambda = %f, %f\n",theta[i],c,x[i][0],x[i][1]);
 
         if ((x[i][0]>0)&&(x[i][1]<0)){
             lambda[i] = x[i][0];
@@ -64,6 +64,35 @@ double fmean(double B[]){
 
 /*********************************************************/
 // calculate statistical values
+struct stats expvalsQM(double lambda[],double theta_l[],double B[], int numpoints, int j, int jp){
+    int i;
+    double numeratorvec[numpoints];
+    double numeratorvec2[numpoints];
+    double denominatorvec[numpoints];
+
+    double num=0;
+    double num2=0;
+    double denom=0;
+
+    for (i=0;i<numpoints;i++){
+        numeratorvec[i] = theta_l[i]*B[i]*(2*lambda[i]+1);
+        numeratorvec2[i] = numeratorvec[i]*theta_l[i];
+        denominatorvec[i] = B[i]*(2*lambda[i]+1);
+
+        num = num + numeratorvec[i];
+        num2 = num2 + numeratorvec2[i];
+        denom = denom + denominatorvec[i];
+    }
+    struct stats thetaStats;
+    thetaStats.avg = num/denom;
+    thetaStats.std = num2/denom - pow(thetaStats.avg,2);
+    thetaStats.var = sqrt(thetaStats.std);
+    return thetaStats;
+}
+/*********************************************************/
+
+/*********************************************************/
+// calculate statistical values
 struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
 
     // assuming theta is from 0 to pi
@@ -82,7 +111,7 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     dup2(new,1);
     close(new);
 
-    printf("# alpha\tB\talpha^2\tB*sin(alpha)\n");
+    printf("# alpha\talpha^2\tB*sin(alpha)\n");
     double sums[3];
     sums[0] = 0;
     sums[1] = 0;
@@ -92,7 +121,7 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
         numeratorvec[i] = theta[i]*B[i]*sin(theta[i]);
         numeratorvec2[i] = numeratorvec[i]*theta[i];
         denominatorvec[i] = B[i]*sin(theta[i]);
-        printf("%lf\t%lf\t%lf\t%lf\n",theta[i],B[i],pow(theta[i],2),denominatorvec[i]);
+        printf("%lf\t%lf\t%lf\n",theta[i],pow(theta[i],2),denominatorvec[i]);
         sums[0] = sums[0] + theta[i];
         sums[1] = sums[1] + pow(theta[i],2);
         sums[2] = sums[2] + denominatorvec[i];
@@ -108,7 +137,6 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     double numerator = dsimp_(&numpoints,numeratorvec);
     double numerator2 = dsimp_(&numpoints,numeratorvec2);
     double denominator = dsimp_(&numpoints,denominatorvec);
-    printf("num=%lf\tnum2=%lf\tden=%lf\n",numerator,numerator2,denominator);
 
     // combine for average value of tipping angle
     struct stats thetaStats;
@@ -141,11 +169,11 @@ void normBtheta(double theta[],double B[],double Bnorm[],int numpoints){
 }
 void normBlambda(double lambda[],double B[],double Bnorm[],int numpoints){
     int i;
-//    double integrand[numpoints];
+    //    double integrand[numpoints];
 
     // calculate integrands
-//    for (i=0;i<numpoints;i++){
-//    }
+    //    for (i=0;i<numpoints;i++){
+    //    }
 
     // calculate integrals
     // CURRENTLY NOT NORMALIZED

@@ -27,6 +27,7 @@ int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xalt
 /*********************************************************/
 // calculates average, variance, and standard deviation for B(theta)
 struct stats expvals(double theta[],double B[],int numpoints,int j,int jp);
+struct stats expvalsQM(double lambda[],double theat_l[],double B[],int numpoints,int j,int jp);
 /*********************************************************/
 
 /*********************************************************/

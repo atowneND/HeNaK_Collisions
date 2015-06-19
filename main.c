@@ -157,34 +157,11 @@ int main(int argc, char *argv[]){
 
     /*********************************************************/
     // get statistics
-//    struct stats lambdaStats = expvals(lambdavec,Blambdavec,numLambdas,j,jp);
-//    struct stats tlStats = expvals(theta_lvec,Blambdavec,numLambdas,j,jp);
     struct stats thetaStats = expvals(thetavec,Bthetavec,numAngles,j,jp);
-
-//    int bak,new;
-//    char statFile[101];
-//    sprintf(statFile,"Run2Results/Stats/stats_%s_%s.dat",jstr,jpstr);
-
-    // redirect stdout to file
-    // from http://stackoverflow.com/questions/4832603/how-could-i-temporary-redirect-stdout-to-a-file-in-a-c-program
-//    fflush(stdout);
-//    bak = dup(1);
-//    new = open(statFile,O_RDWR|O_CREAT|O_TRUNC,0666);
-//    dup2(new,1);
-//    close(new);
-
-    // write to file
-    //printf("# j=%i\tjp=%i\n",j,jp);
-    //printf("Stats: (deg)\n");
-    //printf("\tavg = %f\n\tvar = %f\n\tstd = %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
-//    printf("%f %f %f\n",lambdaStats.avg*180/PI,lambdaStats.var*180/PI,lambdaStats.std*180/PI);
-//    printf("%f %f %f\n",tlStats.avg*180/PI,tlStats.var*180/PI,tlStats.std*180/PI);
     printf("%f %f %f\n",thetaStats.avg*180/PI,thetaStats.var*180/PI,thetaStats.std*180/PI);
 
-    // finish stdout redirection
-//    fflush(stdout);
-//    dup2(bak,1);
-//    close(bak);
+    struct stats lambdaStats = expvalsQM(lambdavec,theta_lvec,Blambdavec,numLambdas,j,jp);
+    printf("%f %f %f\n",lambdaStats.avg*180/PI,lambdaStats.var*180/PI,lambdaStats.std*180/PI);
 
     //    /*********************************************************/
     //    // normalize B's

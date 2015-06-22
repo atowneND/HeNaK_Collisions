@@ -1,8 +1,9 @@
 #!/usr/local/gnuplot
         set term postscript
+        set xrange [0:50]
         plot 'dtheta_dj49.dat' u 3:7
-        replot 'dtheta_dj49.dat' u 3:7 with lines
-        set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dj = ';
+        replot 'dtheta_dj49.dat' u 3:7 with lines smooth csplines
+        set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dtheta_dj49.dat';
         replot
         set output 'Bmax_dj49.ps'
         replot

@@ -4,8 +4,9 @@ dj=1
 CTR=1
 MAX=50
 make
-rm Run2Results/Stats/check/check*
+rm Ar1Results/Stats/check/check*
 dm=0
+MAX=3
 
 while [ $dj -le $(($MAX-1)) ]; do
     if [ $dj -lt 10 ]; then
@@ -14,10 +15,10 @@ while [ $dj -le $(($MAX-1)) ]; do
         djstr=$dj
     fi
 
-    statdir=Run2Results/Stats
+    statdir=Ar1Results/Stats
     statfile=stats_dj$djstr\.dat
     echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statdir/$statfile
-    dthdir=Run2Results/dtheta
+    dthdir=Ar1Results/dtheta
     dthout=dtheta_dj$djstr\.dat
     echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthdir/$dthout
     echo Running dj = $dj
@@ -40,19 +41,19 @@ while [ $dj -le $(($MAX-1)) ]; do
         fi
 
         # dqcalc
-        blamdir=Run2Results/Blambdas
+        blamdir=Ar1Results/Blambdas
         blamdat=Blambda_$jstr\_$jpstr.dat
         runprog=$(find $blamdir -name $blamdat -nowarn)
         if [ "$runprog" != "$blamdir/$blamdat" ]; then
-            time ./dqcalc newdata/Ep002mf5i-50b.blam $blamdir/$blamdat $j $jp
+            ./dqcalc newdata/Ep002mf5i-50b.blam $blamdir/$blamdat $j $jp
         fi
 
         # dq2theta
-        bthdir=Run2Results/Bthetas
+        bthdir=Ar1Results/Bthetas
         bthdat=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
         normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
         read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat)
-        normdir=Run2Results/Blams
+        normdir=Ar1Results/Blams
         mv $normblams $normdir/$normblams
 
         # get the first angle (for lambda = lambdaMIN)
@@ -67,8 +68,9 @@ while [ $dj -le $(($MAX-1)) ]; do
         # write to file
         appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
         echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthdir/$dthout
-        outdir=Run2Results/plots
+        outdir=Ar1Results/plots
         outputfile=BPlots_$jstr\_$jpstr\_dj$djstr\.ps
+        echo here
 
         # stats
         read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp)
@@ -77,6 +79,7 @@ while [ $dj -le $(($MAX-1)) ]; do
         diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
         echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statdir/$statfile
 
+        echo here
         # plot it
         # suppress visual output
         echo "#!/usr/local/gnuplot

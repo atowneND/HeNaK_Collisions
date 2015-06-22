@@ -65,8 +65,8 @@ int main(int argc, char *argv[]){
 
 //    printf("j = %i;\tjp = %i;dj = %i\n",j,jp,dj);
 //    printf("j = %s;\tjp = %s;dj = %s\n",jstr,jpstr,djstr);
-    sprintf(inBtheta,"Run2Results/Bthetas/Btheta_%s_%s_dj%s.dat",jstr,jpstr,djstr);
-    sprintf(inBlambda,"Run2Results/Blambdas/Blambda_%s_%s.dat",jstr,jpstr);
+    sprintf(inBtheta,"Ar1Results/Bthetas/Btheta_%s_%s_dj%s.dat",jstr,jpstr,djstr);
+    sprintf(inBlambda,"Ar1Results/Blambdas/Blambda_%s_%s.dat",jstr,jpstr);
 
     /*********************************************************/
     // initialize temporary pointers and flags and head of arrays

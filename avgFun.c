@@ -104,7 +104,7 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     // write data to file - redirect stdout to file
     int bak, new;
     char datfile[BUFSIZE];
-    sprintf(datfile,"Run2Results/Stats/check/checkstats_%i_%i.dat",j,jp);
+    sprintf(datfile,"Ar1Results/Stats/check/checkstats_%i_%i.dat",j,jp);
     fflush(stdout);
     bak = dup(1);
     new = open(datfile,O_RDWR|O_CREAT|O_APPEND,0666);

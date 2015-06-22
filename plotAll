@@ -4,9 +4,9 @@ dj=1
 CTR=1
 MAX=50
 make
-rm Ar1Results/Stats/check/check*
+errfile=Ar1Results/errors.log
+rm Ar1Results/Stats/check/check* $errfile
 dm=0
-MAX=3
 
 while [ $dj -le $(($MAX-1)) ]; do
     if [ $dj -lt 10 ]; then
@@ -48,67 +48,79 @@ while [ $dj -le $(($MAX-1)) ]; do
             ./dqcalc newdata/Ep002mf5i-50b.blam $blamdir/$blamdat $j $jp
         fi
 
-        # dq2theta
-        bthdir=Ar1Results/Bthetas
-        bthdat=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
-        normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
-        read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat)
-        normdir=Ar1Results/Blams
-        mv $normblams $normdir/$normblams
+        # only proceed if the files were successfully created
+        runprog=$(find $blamdir -name $blamdat -nowarn)
+        if [ "$runprog" != "$blamdir/$blamdat" ]; then
+            echo Error running dqcalc on j=$j,jp=$jp. Proceeding to next dataset >>$errfile
+        else
+            # dq2theta
+            bthdir=Ar1Results/Bthetas
+            bthdat=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
+            normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
+            read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat)
+            normdir=Ar1Results/Blams
+            mv $normblams $normdir/$normblams
 
-        # get the first angle (for lambda = lambdaMIN)
-        # column 3, line 2
-        lmindeg=$(cat $normdir/$normblams|sed -n '2p'|awk '{print $3}')
-        Bmaxl=$(cat $normdir/$normblams|sed -n '2p'|awk '{print $4}') # normalized
+            # only proceed if the files were successfully created
+            runprog=$(find $bthdir -name $bthdat -nowarn)
+            runprog1=$(find $normdir -name $normblams -nowarn)
+            if [ "$runprog" != "$bthdir/$bthdat" ] || [ "$runprog1" != "$normdir/$normblams" ]; then
+                echo Error running dq2theta on j=$j,jp=$jp. Proceeding to next dataset >>$errfile
+            else
 
-        # calculate difference in theta
-        dtheta=$(awk "BEGIN {print $lmindeg-$alphamin}")
-        jbar=$(awk "BEGIN {print ($j+$jp)/2}")
+                # get the first angle (for lambda = lambdaMIN)
+                # column 3, line 2
+                lmindeg=$(cat $normdir/$normblams|sed -n '2p'|awk '{print $3}')
+                Bmaxl=$(cat $normdir/$normblams|sed -n '2p'|awk '{print $4}') # normalized
 
-        # write to file
-        appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
-        echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthdir/$dthout
-        outdir=Ar1Results/plots
-        outputfile=BPlots_$jstr\_$jpstr\_dj$djstr\.ps
-        echo here
+                # calculate difference in theta
+                dtheta=$(awk "BEGIN {print $lmindeg-$alphamin}")
+                jbar=$(awk "BEGIN {print ($j+$jp)/2}")
 
-        # stats
-        read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp)
-        diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
-        diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
-        diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
-        echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statdir/$statfile
+                # write to file
+                appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
+                echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthdir/$dthout
+                outdir=Ar1Results/plots
+                outputfile=BPlots_$jstr\_$jpstr\_dj$djstr\.ps
 
-        echo here
-        # plot it
-        # suppress visual output
-        echo "#!/usr/local/gnuplot
-        #        set term x11 0
-        set samples 10000
-        set term postscript
+                # stats
+                read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp)
+                diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
+                diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
+                diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
+                echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statdir/$statfile
 
-        plot '$normdir/$normblams' using 3:4 with impulse title 'Quantum Mechanical'
-        replot '$bthdir/$bthdat' using 1:3 with lines smooth csplines title 'Semiclassical'
+                # plot it
+                # suppress visual output
+                echo "#!/usr/local/gnuplot
+                #        set term x11 0
+                set samples 10000
+                set term postscript
 
-        set parametric
-        set trange [0:$Bmaxa]
-        #        set term x11 0
-        replot $alphamin,t title 'alpha_min'
-        replot $SCavg,t title 'SC average'
-        replot $QMavg,t title 'QM average'
-        set xlabel 'theta (deg)'
-        set ylabel 'B'
-        set title 'j=$j, jp=$jp'
-        replot
+                plot '$normdir/$normblams' using 3:4 with impulse title 'Quantum Mechanical'
+                replot '$bthdir/$bthdat' using 1:3 with lines smooth csplines title 'Semiclassical'
 
-        #        set term postscript
-        set output '$outdir/$outputfile'
-        replot
-        quit
-        " > deleteme2
+                set parametric
+                set trange [0:$Bmaxa]
+                #        set term x11 0
+                replot $alphamin,t title 'alpha_min'
+                replot $SCavg,t title 'SC average'
+                replot $QMavg,t title 'QM average'
+                set xlabel 'theta (deg)'
+                set ylabel 'B'
+                set title 'j=$j, jp=$jp'
+                replot
 
-        #    gnuplot -persistent < deleteme2
-        gnuplot < deleteme2 > /dev/null
+                #        set term postscript
+                set output '$outdir/$outputfile'
+                replot
+                quit
+                " > deleteme2
+
+                #    gnuplot -persistent < deleteme2
+                gnuplot < deleteme2 > /dev/null
+            fi
+        fi
 
         let CTR=CTR+1
     done

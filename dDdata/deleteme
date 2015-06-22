@@ -1,7 +1,0 @@
-#! /usr/bin/gnuplot
-set samples 10000
-set term x11 0
-set angles degrees
-plot 'Dl15_11' using 1:($2*sin($1)/4.5) with lines smooth csplines
-replot 'dq15_11.dat' using (acos((($1+(15-11))*($1+(15-11)+1)-15*(15+1)-11*(11+1))/(-2*sqrt(15*(15+1)*11*(11+1))))):2
-quit

@@ -2,13 +2,13 @@
 
 dj=1
 CTR=1
-MAX=50
+MAX=40
+MAXdj=15
 make
 errfile=Ar1Results/errors.log
 rm Ar1Results/Stats/check/check* $errfile
 dm=0
-
-while [ $dj -le $(($MAX-1)) ]; do
+while [ $dj -le $MAXdj ]; do
     if [ $dj -lt 10 ]; then
         djstr=0$dj
     else
@@ -44,8 +44,9 @@ while [ $dj -le $(($MAX-1)) ]; do
         blamdir=Ar1Results/Blambdas
         blamdat=Blambda_$jstr\_$jpstr.dat
         runprog=$(find $blamdir -name $blamdat -nowarn)
+        origfile=Arp002-5i-40-384J-5.blam
         if [ "$runprog" != "$blamdir/$blamdat" ]; then
-            ./dqcalc newdata/Ep002mf5i-50b.blam $blamdir/$blamdat $j $jp
+            ./dqcalc newdata/$origfile $blamdir/$blamdat $j $jp
         fi
 
         # only proceed if the files were successfully created

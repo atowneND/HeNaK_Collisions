@@ -1,0 +1,12 @@
+
+    set term postscript eps enhanced
+    set samples 10000
+    set xrange [0:50]
+    plot 'dj09.dat' using (($1+$2)/2):($14-$3) with lines smooth csplines title 'SCavg'
+    replot 'dj09.dat' using (($1+$2)/2):($17-$6) title 'QMavg'
+    replot 'dj09.dat' using (($1+$2)/2):($15-$4) with lines smooth csplines title 'SCstd'
+    replot 'dj09.dat' using (($1+$2)/2):($18-$7) title 'QMstd'
+    set xlabel 'jbar';set ylabel '{/Symbol a} (deg)'; set title 'Ar-He: Avg. and Std., dj=9'
+    set output 'diffs09.eps'
+    replot
+    

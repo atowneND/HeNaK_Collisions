@@ -1,0 +1,49 @@
+#!/bin/bash
+
+djlist=(2 3 8 9)
+
+Hedir=../He2Results/Stats
+Ardir=../Ar1Results/Stats
+
+for dj in ${djlist[*]}; do
+    djstr=0$dj
+    infile=stats_dj$djstr.dat
+    outfile=Comp_avg_std_dj$djstr.eps
+
+    echo "
+    set term postscript eps enhanced
+    set samples 10000
+    set xrange [0:50]
+    set yrange [0:100]
+    plot '$Hedir/$infile' using ((\$1+\$2)/2):3 with lines smooth csplines title 'He SCavg'
+    replot '$Hedir/$infile' using ((\$1+\$2)/2):6 title 'He QMavg'
+    replot '$Hedir/$infile' using ((\$1+\$2)/2):4 with lines smooth csplines title 'He SCstd'
+    replot '$Hedir/$infile' using ((\$1+\$2)/2):7 title 'He QMstd'
+    replot '$Ardir/$infile' using ((\$1+\$2)/2):3 with lines smooth csplines title 'Ar SCavg'
+    replot '$Ardir/$infile' using ((\$1+\$2)/2):6 title 'Ar QMavg'
+    replot '$Ardir/$infile' using ((\$1+\$2)/2):4 with lines smooth csplines title 'Ar SCstd'
+    replot '$Ardir/$infile' using ((\$1+\$2)/2):7 title 'Ar QMstd'
+    set xlabel 'jbar';set ylabel '{/Symbol a} (deg)'; set title 'Comparison: Avg. and Std., dj=$dj'
+    set output '$outfile'
+    replot
+    " > plotme
+    gnuplot < plotme >/dev/null 2>&1
+
+    newfile=dj$djstr.dat
+    paste $Hedir/$infile $Ardir/$infile > $newfile
+    outfile=diffs$djstr.eps
+    echo "
+    set term postscript eps enhanced
+    set samples 10000
+    set xrange [0:50]
+    plot '$newfile' using ((\$1+\$2)/2):(\$$((11+3))-\$3) with lines smooth csplines title 'SCavg'
+    replot '$newfile' using ((\$1+\$2)/2):(\$$((11+6))-\$6) title 'QMavg'
+    replot '$newfile' using ((\$1+\$2)/2):(\$$((11+4))-\$4) with lines smooth csplines title 'SCstd'
+    replot '$newfile' using ((\$1+\$2)/2):(\$$((11+7))-\$7) title 'QMstd'
+    set xlabel 'jbar';set ylabel '{/Symbol a} (deg)'; set title 'Ar-He: Avg. and Std., dj=$dj'
+    set output '$outfile'
+    replot
+    " > plotme
+    gnuplot < plotme >/dev/null 2>&1
+    let dj=dj+1
+done

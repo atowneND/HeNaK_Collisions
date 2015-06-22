@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in $(find d*eps); do
+    echo $i
+    gv $i &
+done

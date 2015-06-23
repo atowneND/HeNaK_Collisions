@@ -77,7 +77,7 @@ struct stats expvalsQM(double lambda[],double theta_l[],double B[], int numpoint
     for (i=0;i<numpoints;i++){
         //numeratorvec[i] = theta_l[i]*B[i]*(2*lambda[i]+1);
         numeratorvec[i] = lambda[i]*B[i]*(2*lambda[i]+1);
-        numeratorvec2[i] = numeratorvec[i]*theta_l[i];
+        numeratorvec2[i] = numeratorvec[i]*lambda[i];
         denominatorvec[i] = B[i]*(2*lambda[i]+1);
 
         num = num + numeratorvec[i];

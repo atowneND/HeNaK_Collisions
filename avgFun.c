@@ -216,10 +216,10 @@ int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xalt
     firstchar = indata[ctr];
     switch (firstchar){
         case '#':
-            if (Btype==0){
+            if (Btype==0){ // B(theta)
                 return 1;
             }
-            else if (Btype==1){
+            else if (Btype==1){ // B(lambda)
                 linectr = linectr + 1;
                 if (linectr<=8){
                     return 1;
@@ -230,15 +230,15 @@ int checkdatatype(char indata[BUFSIZE],double *xval, double *B_val, double *xalt
                 }
             }
         default: 
-            // parse data line
             if (Btype==0){ // B(theta)
                 sscanf(indata,"%lf %lf",xval,B_val);
             }
             else if(Btype==1){ // B(lambda)
-                //sscanf(indata,"%lf %lf %lf",xval,B_val,xaltval);
                 return 1;
             }
-            return 0;
+            return 0; // should only do this for B(theta)
     }
+    // return 1 = no data in this line
+    // return 0 = data in this line
 }
 /*********************************************************/

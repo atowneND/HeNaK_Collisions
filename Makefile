@@ -11,7 +11,7 @@ EXECS = dq2theta dqcalc pcc12
 
 #################################
 
-############# BAETOWNE_SCRIPTS  ################
+############# MY SCRIPTS ################
 
 DEPS = main.a dsimp.o avgFun.a
 

@@ -25,15 +25,23 @@ int main(int argc, char *argv[]){
     // get inputs
     char inBtheta[100];
     char inBlambda[100];
+    char workdir[100];
     char *outfiledir;
     int j,jp,dj;
     if (argc<2){
         printf("Enter j and jp\n");
         scanf("%i %i",&j,&jp);
     }
-    else if(argc==3){
+    else if(argc>=3){
         j = atoi(argv[1]);
         jp = atoi(argv[2]);
+        // need to add input validation
+        if(argc==4){
+            sprintf(workdir,"%s",argv[3]);
+        }
+        else{
+            sprintf(workdir,"%s",".");
+        }
     }
     if (j > jp){
         int jtmp = j;
@@ -65,8 +73,8 @@ int main(int argc, char *argv[]){
 
 //    printf("j = %i;\tjp = %i;dj = %i\n",j,jp,dj);
 //    printf("j = %s;\tjp = %s;dj = %s\n",jstr,jpstr,djstr);
-    sprintf(inBtheta,"Ar1Results/Bthetas/Btheta_%s_%s_dj%s.dat",jstr,jpstr,djstr);
-    sprintf(inBlambda,"Ar1Results/Blambdas/Blambda_%s_%s.dat",jstr,jpstr);
+    sprintf(inBtheta,"%s/Bthetas/Btheta_%s_%s_dj%s.dat",workdir,jstr,jpstr,djstr);
+    sprintf(inBlambda,"%s/Blambdas/Blambda_%s_%s.dat",workdir,jstr,jpstr);
 
     /*********************************************************/
     // initialize temporary pointers and flags and head of arrays

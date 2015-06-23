@@ -1,13 +1,28 @@
 #!/bin/bash
+workdir=$1
+if [ "$workdir" = "" ] ; then
+    echo bad input
+    exit
+else
+    runprog=$(find . -name $workdir -nowarn)
+    if [ "$runprog" != "./$workdir" ]; then
+        echo directory not found
+        echo Looking for $workdir in $(pwd)
+        # add input validation for creating a directory and checking for subdirectory existence
+        exit
+    fi
+fi
 
 dj=1
 CTR=1
 MAX=50
-MAXdj=1
+MAXdj=40
 make
-errfile=He_lmax15/errors.log
-rm He_lmax15/Stats/check/check* $errfile
+errfile=$workdir/errors.log
+rm $workdir/Stats/check/check* $errfile
 dm=0
+echo Writing to $workdir
+
 while [ $dj -le $MAXdj ]; do
     if [ $dj -lt 10 ]; then
         djstr=0$dj
@@ -15,10 +30,10 @@ while [ $dj -le $MAXdj ]; do
         djstr=$dj
     fi
 
-    statdir=He_lmax15/Stats
+    statdir=$workdir/Stats
     statfile=stats_dj$djstr\.dat
     echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statdir/$statfile
-    dthdir=He_lmax15/dtheta
+    dthdir=$workdir/dtheta
     dthout=dtheta_dj$djstr\.dat
     echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthdir/$dthout
     echo Running dj = $dj
@@ -41,7 +56,7 @@ while [ $dj -le $MAXdj ]; do
         fi
 
         # dqcalc
-        blamdir=He_lmax15/Blambdas
+        blamdir=$workdir/Blambdas
         blamdat=Blambda_$jstr\_$jpstr.dat
         runprog=$(find $blamdir -name $blamdat -nowarn)
         origfile=Ep002mf5i-5015.blam
@@ -55,19 +70,19 @@ while [ $dj -le $MAXdj ]; do
             echo Error running dqcalc on j=$j,jp=$jp. Proceeding to next dataset >>$errfile
         else
             # dq2theta
-            bthdir=He_lmax15/Bthetas
+            bthdir=$workdir/Bthetas
             bthdat=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
             normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
             read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat)
-            normdir=He_lmax15/Blams
-            mv $normblams $normdir/$normblams
+            normdir=$workdir/Blams
 
             # only proceed if the files were successfully created
             runprog=$(find $bthdir -name $bthdat -nowarn)
-            runprog1=$(find $normdir -name $normblams -nowarn)
-            if [ "$runprog" != "$bthdir/$bthdat" ] || [ "$runprog1" != "$normdir/$normblams" ]; then
+            runprog1=$(find . -name $normblams -nowarn -maxdepth 1)
+            if [ "$runprog" != "$bthdir/$bthdat" ] || [ "$runprog1" != "./$normblams" ]; then
                 echo Error running dq2theta on j=$j,jp=$jp. Proceeding to next dataset >>$errfile
             else
+                mv $normblams $normdir/$normblams
 
                 # get the first angle (for lambda = lambdaMIN)
                 # column 3, line 2
@@ -81,11 +96,11 @@ while [ $dj -le $MAXdj ]; do
                 # write to file
                 appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
                 echo $j $jp $jbar $dtheta $lmindeg $alphamin $Bmaxa $Bmaxl $appalpha>> $dthdir/$dthout
-                outdir=He_lmax15/plots
+                outdir=$workdir/plots
                 outputfile=BPlots_$jstr\_$jpstr\_dj$djstr\.ps
 
                 # stats
-                read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp)
+                read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp $workdir)
                 diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
                 diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
                 diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")

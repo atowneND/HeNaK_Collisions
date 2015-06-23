@@ -21,7 +21,6 @@ if [ "$origfile" = "" ]; then
         exit
     fi
 fi
-echo $origfile
 
 dj=1
 CTR=1
@@ -29,9 +28,11 @@ MAX=50
 MAXdj=40
 make
 errfile=$workdir/errors.log
-rm $workdir/Stats/check/check* $errfile
+metafile=$workdir/metadata.txt
+plotfile=$workdir/deleteme
 dm=0
-echo Writing to $workdir
+
+echo Writing to $workdir using $origfile
 
 while [ $dj -le $MAXdj ]; do
     if [ $dj -lt 10 ]; then
@@ -111,6 +112,7 @@ while [ $dj -le $MAXdj ]; do
 
                 # stats
                 read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp $workdir)
+                echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar >>$errfile
                 diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
                 diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
                 diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
@@ -141,20 +143,23 @@ while [ $dj -le $MAXdj ]; do
                 set output '$outdir/$outputfile'
                 replot
                 quit
-                " > deleteme2
+                " > $plotfile
 
-                #    gnuplot -persistent < deleteme2
-                gnuplot < deleteme2 > /dev/null
+                gnuplot < $plotfile> /dev/null
             fi
         fi
 
-        exit
         let CTR=CTR+1
     done
 
     let dj=dj+1
     CTR=1
 done
-echo number of loops = $dm
+
+echo "Date: $(date)
+Input file: $workdir
+number of loops: $dm
+Max=$MAX; Maxdj=$MAXdj
+">$metafile
 
 exit

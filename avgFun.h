@@ -14,6 +14,7 @@ double fmean(double B[]);
 /*********************************************************/
 // compute new x axis for B(alpha) -> B(lambda)
 void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints);
+double lambda2alpha(double lambda, int j, int jp);
 /*********************************************************/
 
 /*********************************************************/

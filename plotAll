@@ -157,7 +157,7 @@ while [ $dj -le $MAXdj ]; do
 done
 
 echo "Date: $(date)
-Input file: $workdir
+Input file: $origfile
 number of loops: $dm
 Max=$MAX; Maxdj=$MAXdj
 ">$metafile

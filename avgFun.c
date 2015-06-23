@@ -43,6 +43,19 @@ void alpha2lambda(double theta[], double lambda[], int j, int jp, int numpoints)
 /*********************************************************/
 
 /*********************************************************/
+// compute new x axis for B(alpha) -> B(lambda)
+double lambda2alpha(double lambda, int j, int jp){
+    // l*(l+1) = j*(j+1) + jp*(jp+1) -2*sqrt(j*(j+1)*jp*(jp+1))*cos(alpha)
+    // alpha=acos((l*(l+1)-j*(j+1)-jp*(jp+1))/(-2*sqrt(j*(j+1)*jp*(jp+1))))
+
+    double numerator = lambda*(lambda+1) - j*(j+1) - jp*(jp+1);
+    double denominator = -2*sqrt(j*(j+1)*jp*(jp+1));
+    double alpha= numerator/denominator;
+    return alpha;
+}
+/*********************************************************/
+
+/*********************************************************/
 // calculate the mean value
 double fmean(double B[]){
     int npoints = MAXDATA;
@@ -88,6 +101,12 @@ struct stats expvalsQM(double lambda[],double theta_l[],double B[], int numpoint
     thetaStats.avg = num/denom;
     thetaStats.var = num2/denom - pow(thetaStats.avg,2);
     thetaStats.std = sqrt(thetaStats.var);
+
+    // convert to an angle
+    thetaStats.avg = lambda2alpha(thetaStats.avg,j,jp);
+    thetaStats.std = lambda2alpha(thetaStats.std,j,jp);
+    thetaStats.var = pow(thetaStats.std,2);
+
     return thetaStats;
 }
 /*********************************************************/

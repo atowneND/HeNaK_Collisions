@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ "$1" = "" ]; then
+    echo must enter a directory
+    exit
+fi
+
+dir=$1
+rm $1/Blambdas/*dat
+rm $1/Blams/*dat
+rm $1/Bthetas/*dat
+rm $1/dtheta/*ps
+rm $1/dtheta/*dat
+rm $1/plots/*ps
+rm $1/Stats/*ps
+rm $1/Stats/*dat
+rm $1/Stats/check/*dat

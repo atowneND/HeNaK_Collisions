@@ -1,0 +1,10 @@
+#!/bin/bash
+djmax=40
+dj=2
+while [ $dj -le $djmax ]; do
+    for i in $(find *dj0$dj*ps); do
+        echo $i
+        gv $i 
+    done
+    let dj=dj+1
+done

@@ -1,10 +1,10 @@
 #!/usr/local/gnuplot
-        set term postscript
-        set xrange [0:50]
-        plot 'dtheta_dj40.dat' u 3:7
-        replot 'dtheta_dj40.dat' u 3:7 with lines smooth csplines
-        set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dtheta_dj40.dat';
-        replot
-        set output 'Bmax_dj40.ps'
-        replot
-        quit
+    set term postscript
+    set xrange [0:50]
+    plot 'dtheta_dj32.dat' u 3:7
+    replot 'dtheta_dj32.dat' u 3:7 with lines smooth csplines
+    set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dtheta_dj32.dat';
+    replot
+    set output 'Bmax_dj32.ps'
+    replot
+    quit

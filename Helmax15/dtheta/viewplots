@@ -8,7 +8,6 @@ while [ $dj -le $djmax ]; do
         djstr=$dj
     fi
     for i in $(find *dj$djstr*ps); do
-        echo $i
         gv $i 2>/dev/null
     done
     let dj=dj+1

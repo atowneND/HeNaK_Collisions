@@ -1,5 +1,5 @@
 #!/bin/bash
-dj=4
+dj=2
 while [ $dj -lt 10 ]; do
     for i in $(find *dj0$dj.ps); do
         echo $i

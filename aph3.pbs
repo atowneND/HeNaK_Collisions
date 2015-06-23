@@ -1,0 +1,57 @@
+#!/bin/bash
+#
+#-----------------------------------------------------------------------
+#    script to run coupled channel code on stampede
+#-----------------------------------------------------------------------
+# 
+#SBATCH -J  aph            # job name
+#SBATCH -o aph.o%j         # output and error file name (%j expands to jobID)
+#SBATCH -n 128             # total number of mpi tasks requested
+#SBATCH -p normal     # queue (partition) -- normal, development, etc.
+#SBATCH -t 48:00:00        # run time (hh:mm:ss)  
+
+# echo number of nodes  and cpus  $SLURM_NNODES  $SLURM_NTASKS
+
+JOBNAME=Ep002mf5i-5015
+CURDIR=$SLURM_SUBMIT_DIR     # directory from which job was submitted
+POTENTIAL=potmitf.dat
+ 
+SUBDIR=$SLURM_JOB_ID      # first six characters are the job number
+
+cd $SCRATCH
+mkdir $SUBDIR
+cd $SUBDIR
+rm -f *
+SCRATCHSUB=$SCRATCH/$SUBDIR  # subdirectory of $SCRATCH where job will run
+
+cp $CURDIR/adc16          $SCRATCHSUB
+cp $CURDIR/${JOBNAME}.in  $SCRATCHSUB
+cp $CURDIR/${POTENTIAL}   $SCRATCHSUB
+
+for ((i=1 ; i < $SLURM_NTASKS ; i++ )) ; do
+   tag=$(echo $i | awk '{ printf("%03d",$i) }')
+   cp $SCRATCHSUB/${POTENTIAL}  $SCRATCHSUB/${POTENTIAL}-${tag}   
+done
+
+ibrun  ./adc16  ${JOBNAME}.in  ${JOBNAME}.out
+
+for ((i=1 ; i < $SLURM_NTASKS ; i++ )) ; do
+   tag=$(echo $i | awk '{ printf("%03d",$i) }')
+   cat $SCRATCHSUB/${JOBNAME}.out-${tag} >>  $SCRATCHSUB/${JOBNAME}.out
+   cat $SCRATCHSUB/${JOBNAME}.en-${tag}  >>  $SCRATCHSUB/${JOBNAME}.en   
+   cat $SCRATCHSUB/${JOBNAME}.cs-${tag}  >>  $SCRATCHSUB/${JOBNAME}.cs   
+   cat $SCRATCHSUB/${JOBNAME}.jp-${tag}  >>  $SCRATCHSUB/${JOBNAME}.jp   
+done
+
+cp $SCRATCHSUB/${JOBNAME}.out  $CURDIR
+cp $SCRATCHSUB/${JOBNAME}.en   $CURDIR
+cp $SCRATCHSUB/${JOBNAME}.cs   $CURDIR
+cp $SCRATCHSUB/${JOBNAME}.jp   $CURDIR
+cp $SCRATCHSUB/${JOBNAME}.blam $CURDIR
+
+exit
+   
+   
+ 
+   
+

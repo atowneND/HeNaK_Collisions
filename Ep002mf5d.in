@@ -1,0 +1,10 @@
+   0 30   0 127 1               !  jmin, jmax, bigJmin,bigJmax,bigJdel
+   0.002                      ! Eau -- total energy
+3.5  25.0  25.0  4.0  1.d-6  3.013d-7  6854.8305d0 !  r0,ra,rb,rdel,tol,Bau,mu
+    +1  -1                     ! parities 
+   15                          ! TopLambda
+  0                            ! moreout is 0 for less output, 1 for more output
+ potmitf.dat                    ! name of the potential file
+
+
+

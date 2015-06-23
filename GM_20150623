@@ -1,0 +1,32 @@
+multireference ci - accurate to separate atoms
+couple cluster - near the minimum
+- to get the potential surface (for GAMESS)
+
+Exp:
+established quenching term and K rates independent of Ar rates
+ignore Na,K2,NaK,Na2
+also have He rates
+pump (0,29) to (16,30)/(16,29)
+probe to 3pi (6,31)/(6,30)
+|dJ|<=4
+-initial j's (14, 30)
+kdj for K have large error bars
+
+Lyon:
+(6,15) to (0,14)
+collides to (0,13) (also fluoresces)
+fluoresces to (9,13/15),(10,13/15)
+I_col/I_dir=((kNGdj/gamma)*nNG + (kdkdj/gamma)*nalk)/(1+(kNGQ/gamma)*nNG+(kalk/gamma)*nalk)
+-Q=quenching; NG=noble gas; alk=alkali; gamma=rate
+no heat pipe mode (no pure K)
+(0,14) - strong K propensity for dj=even but we don't really know
+    - not for (16,30)
+
+(6,25)->(1,26)
+    fluoresces from (0,2-30)
+    largest dj=+17
+    E(1,26)~E(0,43) -> dj=17
+(0,14)->(1,x)
+    largest dj = 0
+    no energy resonance
+    two lines (dj=0,dv=1; dj=0?,dv=0)

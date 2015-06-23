@@ -4,7 +4,7 @@
 // Ashley Towne
 // 06/09/2015
 // calculates expected value of alpha given B(alpha)
-// TO DO:
+// usage: ./main.out <j> <jp> <working_directory>
 /*********************************************************/
 
 /*********************************************************/

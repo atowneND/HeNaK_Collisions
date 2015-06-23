@@ -50,7 +50,7 @@ double lambda2alpha(double lambda, int j, int jp){
 
     double numerator = lambda*(lambda+1) - j*(j+1) - jp*(jp+1);
     double denominator = -2*sqrt(j*(j+1)*jp*(jp+1));
-    double alpha= numerator/denominator;
+    double alpha = acos(numerator/denominator)*180/PI;
     return alpha;
 }
 /*********************************************************/

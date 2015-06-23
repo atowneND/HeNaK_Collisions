@@ -23,6 +23,7 @@ if [ "$origfile" = "" ]; then
 fi
 
 dj=1
+dj=2
 CTR=1
 MAX=50
 MAXdj=40
@@ -112,7 +113,7 @@ while [ $dj -le $MAXdj ]; do
 
                 # stats
                 read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp $workdir)
-                echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar >>$errfile
+                echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar #>>$errfile
                 diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
                 diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
                 diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
@@ -148,6 +149,7 @@ while [ $dj -le $MAXdj ]; do
                 gnuplot < $plotfile> /dev/null
             fi
         fi
+        exit
 
         let CTR=CTR+1
     done

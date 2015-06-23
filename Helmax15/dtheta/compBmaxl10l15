@@ -1,29 +1,35 @@
 #!/bin/bash
 
-ctr=0
-for i in $(ls dtheta_dj*dat); do
-    rm foo
-    if [ $ctr -lt 9 ]; then
-        foo=$(($ctr+1))
-        djstr=0$foo
+MAX=40
+dj=1
+odir=../../He2Results/dtheta
+while [ $dj -le $MAX ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
     else
-        djstr=$(($ctr+1))
+        djstr=$dj
     fi
-    if [ $ctr -gt 0 ]; then
-        echo "#!/usr/local/gnuplot
-        set term postscript
-        set xrange [0:50]
-        plot '$i' u 3:7
-        replot '$i' u 3:7 with lines smooth csplines
-        set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for $i';
-        replot
-        set output 'Bmax_dj$djstr.ps'
-        replot
-        quit" > foo
-        gnuplot < foo >/dev/null 2>&1
-    elif [ $ctr -gt 30 ]; then
-        exit
-    fi
-        let ctr=ctr+1
-    #    sed '0,/^.*$/d' $i|awk '{print $2-$1 " " $3 " " $7}'>>$outputfile
+
+    i=dtheta_dj$djstr.dat
+    ofile=$odir/$i
+    outfile=compBmax_dj$djstr.ps
+    rm foo
+
+    echo "#!/usr/local/gnuplot
+    set term postscript
+    set xrange [0:50]
+    plot '$i' u 3:7 with lines smooth csplines title 'lmax=15'
+    replot '$ofile' u 3:7 with lines smooth csplines title 'lmax=10'
+    set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for $i';
+    replot
+    set output '$outfile'
+    replot
+    quit" > foo
+    gnuplot < foo >/dev/null 2>&1
+    let dj=dj+1
+
+    echo dj jbar B\(l=15\) B\(l=10\) diff >barfile
+    awk 'NR==FNR{a[NR]=$7;next} {print '$djstr',$3,a[FNR],$7,a[FNR]-$7}' $i $ofile|sed '/j/d'>>barfile
+
+    exit
 done

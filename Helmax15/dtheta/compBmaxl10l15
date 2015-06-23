@@ -26,10 +26,21 @@ while [ $dj -le $MAX ]; do
     replot
     quit" > foo
     gnuplot < foo >/dev/null 2>&1
-    let dj=dj+1
 
     echo dj jbar B\(l=15\) B\(l=10\) diff >barfile
     awk 'NR==FNR{a[NR]=$7;next} {print '$djstr',$3,a[FNR],$7,a[FNR]-$7}' $i $ofile|sed '/j/d'>>barfile
+    rm foo
+    echo "#!/usr/local/gnuplot
+    set term x11 0
+    set xrange [0:50]
+    plot 'barfile' u 2:(200*abs(\$5)/(\$3+\$4))
+    set xlabel 'jbar'; set ylabel '% diff Bmax';set title 'l=15-l=10 Bmax vs. jbar for $i';
+    replot
+    set term postscript
+    set output 'diff$outfile'
+    replot
+    quit" > foo
+    gnuplot < foo >/dev/null 2>&1
 
-    exit
+    let dj=dj+1
 done

@@ -1,10 +1,10 @@
 #!/usr/local/gnuplot
-    set term postscript
+    set term x11 0
     set xrange [0:50]
-    plot 'dtheta_dj01.dat' u 3:7 with lines smooth csplines title 'lmax=15'
-    replot '../../He2Results/dtheta/dtheta_dj01.dat' u 3:7 with lines smooth csplines title 'lmax=10'
-    set xlabel 'jbar'; set ylabel 'Bmax';set title 'Bmax vs. jbar for dtheta_dj01.dat';
+    plot 'barfile' u 2:(200*abs($5)/($3+$4))
+    set xlabel 'jbar'; set ylabel '% diff Bmax';set title 'l=15-l=10 Bmax vs. jbar for dtheta_dj40.dat';
     replot
-    set output 'compBmax_dj01.ps'
+    set term postscript
+    set output 'diffcompBmax_dj40.ps'
     replot
     quit

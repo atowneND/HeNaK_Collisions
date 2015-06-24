@@ -14,4 +14,3 @@ rm $1/dtheta/*dat
 rm $1/plots/*ps
 rm $1/Stats/*ps
 rm $1/Stats/*dat
-rm $1/Stats/check/*dat

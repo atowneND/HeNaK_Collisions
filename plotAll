@@ -23,7 +23,6 @@ if [ "$origfile" = "" ]; then
 fi
 
 dj=1
-dj=2
 CTR=1
 MAX=50
 MAXdj=40
@@ -113,10 +112,13 @@ while [ $dj -le $MAXdj ]; do
 
                 # stats
                 read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp $workdir)
-                echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar #>>$errfile
-                diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
-                diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
-                diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
+                echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar >>$errfile
+                #diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
+                diffavg=$(awk 'function isnum(x){return(x==x+0)} BEGIN{if (isnum("$SCavg")&&isnum("$QMavg")) print "$SCavg"-"$QMavg";else print "0";}')
+                #diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
+                diffstd=$(awk 'function isnum(x){return(x==x+0)} BEGIN{if (isnum("$SCstd")&&isnum("$QMstd")) print "$SCstd"-"$QMstd";else print "0";}')
+                #diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
+                diffvar=$(awk 'function isnum(x){return(x==x+0)} BEGIN{if (isnum("$SCvar")&&isnum("$QMvar")) print "$SCvar"-"$QMvar";else print "0";}')
                 echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statdir/$statfile
 
                 # plot it
@@ -149,7 +151,6 @@ while [ $dj -le $MAXdj ]; do
                 gnuplot < $plotfile> /dev/null
             fi
         fi
-        exit
 
         let CTR=CTR+1
     done

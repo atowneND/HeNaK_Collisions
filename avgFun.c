@@ -101,6 +101,7 @@ struct stats expvalsQM(double lambda[],double theta_l[],double B[], int numpoint
     thetaStats.avg = num/denom;
     thetaStats.var = num2/denom - pow(thetaStats.avg,2);
     thetaStats.std = sqrt(thetaStats.var);
+    //printf("avg=%lf\t<a^2>=%lf\tstd=%lf\tvar=%lf\n",thetaStats.avg,num2/denom,thetaStats.std,thetaStats.var);
 
     // convert to an angle
     thetaStats.avg = lambda2alpha(thetaStats.avg,j,jp);
@@ -121,37 +122,12 @@ struct stats expvals(double theta[],double B[],int numpoints,int j,int jp){
     double numeratorvec2[numpoints];
     double denominatorvec[numpoints];
 
-    // write data to file - redirect stdout to file
-    int bak, new;
-    char datfile[BUFSIZE];
-    sprintf(datfile,"Ar1Results/Stats/check/checkstats_%i_%i.dat",j,jp);
-    fflush(stdout);
-    bak = dup(1);
-    new = open(datfile,O_RDWR|O_CREAT|O_APPEND,0666);
-    dup2(new,1);
-    close(new);
-
-    printf("# alpha\talpha^2\tB*sin(alpha)\n");
-    double sums[3];
-    sums[0] = 0;
-    sums[1] = 0;
-    sums[2] = 0;
-    // calculate integrands and write to file
+    // calculate integrands
     for (i=0;i<numpoints;i++){
         numeratorvec[i] = theta[i]*B[i]*sin(theta[i]*PI/180);
         numeratorvec2[i] = numeratorvec[i]*theta[i];
         denominatorvec[i] = B[i]*sin(theta[i]*PI/180);
-        printf("%lf\t%lf\t%lf\n",theta[i],pow(theta[i],2),denominatorvec[i]);
-        sums[0] = sums[0] + theta[i];
-        sums[1] = sums[1] + pow(theta[i],2);
-        sums[2] = sums[2] + denominatorvec[i];
     }
-    printf("#Sums: %lf\t%lf\t%lf\n",sums[0],sums[1],sums[2]);
-
-    // finish stdout redirection
-    fflush(stdout);
-    dup2(bak,1);
-    close(bak);
 
     // calculate integrals
     double numerator = dsimp_(&numpoints,numeratorvec);

@@ -35,10 +35,14 @@ while [ $dj -lt $max ]; do
         else
             jpstr=$jp
         fi
-        if [ $jbar -lt 10 ]; then
-            jbstr=0$jbar
+        if [ "$jbar" -eq "$jbar" ] 2>/dev/null; then
+            if [ $(echo "$jbar < 10" | bc -l) ]; then
+                jbstr=0$jbar
+            else
+                jbstr=$jbar
+            fi
         else
-            jbstr=$jbar
+            jbstr=$(echo "$jbar"|awk '{printf("%dd%d\n",$1,$2)}')
         fi
 
         blam=Blam_$jstr\_$jpstr\_dj$djstr\.dat
@@ -46,11 +50,11 @@ while [ $dj -lt $max ]; do
         ofile=allplot_jb$jbstr\_dj$djstr\.eps
 
         echo "#!/usr/local/gnuplot
-set term postscript eps enhanced
-#set term x11 0
+        set term postscript eps enhanced
+        #set term x11 0
         set samples 10000
-#        set xrange [0:50]
-#        set yrange [0:100]
+        #        set xrange [0:50]
+        #        set yrange [0:100]
         ">plotme
 
         #loop over calculation
@@ -67,7 +71,7 @@ set term postscript eps enhanced
         done
         echo "set xlabel 'theta'; set ylabel 'B'; set title 'dj=$djstr, jbar=$jbstr'
         replot
-#set term postscript eps enhanced
+        #set term postscript eps enhanced
         set output '$ofile'
         replot" >>plotme
 

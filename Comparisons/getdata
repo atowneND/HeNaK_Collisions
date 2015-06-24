@@ -1,0 +1,48 @@
+#!/bin/bash
+j=1
+dj=1
+max=40
+He10dir=Henew10
+He20dir=He5i5015
+Ardir=Arnew
+dirlist=($He10dir $He20dir $Ardir)
+
+errfile=error.log
+
+#loop over dj
+while [ $dj -lt $max ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+
+    #loop over j
+    while [ $j -lt $(($max-$dj+1)) ]; do
+        jp=$(($j+$dj))
+        if [ $j -lt 10 ]; then
+            jstr=0$j
+        else
+            jstr=$j
+        fi
+        if [ $jp -lt 10 ]; then
+            jpstr=0$jp
+        else
+            jpstr=$jp
+        fi
+
+        #loop over calculation
+        blam=Blam_$jstr\_$jpstr\_dj$djstr\.dat
+        btheta=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
+        filelist=(Blams/$blam Bthetas/$btheta)
+
+        for i in ${dirlist[*]}; do
+            echo ../$i/Blams/$blam $i\_$blam
+#            cp ../$i/Blams/$blam $i\_$blam
+#            cp ../$i/Bthetas/$btheta $i\_$btheta
+exit
+        done
+        let j=j+1
+    done
+    let dj=dj+1
+done

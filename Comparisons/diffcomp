@@ -1,0 +1,68 @@
+#!/bin/bash
+j=1
+dj=1
+max=40
+He10dir=Henew10
+He20dir=He5i5015
+Ardir=Arnew
+dirlist=($He10dir $He20dir $Ardir)
+
+errfile=error.log
+
+#loop over dj
+while [ $dj -lt $max ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+    echo dj=$dj
+
+    #loop over j
+    while [ $j -lt $(($max-$dj+1)) ]; do
+        jp=$(($j+$dj))
+        jbar=$((($j+$dj)/2))
+        if [ $j -lt 10 ]; then
+            jstr=0$j
+        else
+            jstr=$j
+        fi
+        if [ $jp -lt 10 ]; then
+            jpstr=0$jp
+        else
+            jpstr=$jp
+        fi
+        if [ $jbar -lt 10 ]; then
+            jbstr=0$jbar
+        else
+            jbstr=$jbar
+        fi
+
+        blam=Blam_$jstr\_$jpstr\_dj$djstr\.dat
+        btheta=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
+
+        qmofile=qmdiffs_jb$jbstr\_dj$djstr\.dat
+        scofile=scdiffs_jb$jbstr\_dj$djstr\.dat
+        ofile=plot_jb$jbstr\_dj$djstr\.eps
+        echo \#Theta He10 He20 diff > $qmofile
+        echo \#Theta He10 He20 diff > $scofile
+        awk 'NR==FNR{a[NR]=$4;next}{print $3,a[FNR],$4,a[FNR]-$4}' ../$He10dir/Blams/$blam ../$He20dir/Blams/$blam|sed '/angle/d' >>$qmofile
+        sed '/#/d' ../$He10dir/Bthetas/$btheta >tmp1
+        sed '/#/d' ../$He20dir/Bthetas/$btheta >tmp2
+        awk 'NR==FNR{a[NR]=$3;next}{print $1,a[FNR],$3,a[FNR]-$3}' tmp1 tmp2 >>$scofile
+        rm tmp1 tmp2
+
+        echo "set term postscript eps enhanced
+        set samples 10000
+        set xrange [0:180]
+        plot '$scofile' using 1:4 with lines smooth csplines title 'SC diffs'
+        replot '$qmofile' using 1:4 with impulse title 'QM diffs'
+        set xlabel 'theta'; set ylabel 'B(lmax=10)-B(lmax=20)'; set title 'jbar=$jbar, dj=$dj'
+        set output '$ofile'
+        replot">plotme
+        gnuplot <plotme >/dev/null 2>&1
+        let j=j+1
+    done
+    let j=1
+    let dj=dj+1
+done

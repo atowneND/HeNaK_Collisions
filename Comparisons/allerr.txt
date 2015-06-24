@@ -1,0 +1,1042 @@
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedMaximum number of clients reachedgv: Unable to open the display.
+gv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Maximum number of clients reachedgv: Unable to open the display.
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-140-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb09_dj07.eps (No data available)
+gv: Cannot open file allplot_jb14_dj13.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb15_dj26.eps (No data available)
+gv: Cannot open file allplot_jb13_dj25.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb11_dj12.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb15_dj30.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb17_dj25.eps (No data available)
+gv: Cannot open file allplot_jb11_dj13.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb17_dj32.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb17_dj21.eps (No data available)
+gv: Cannot open file allplot_jb14_dj16.eps (No data available)
+gv: Cannot open file allplot_jb14_dj28.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb09_dj09.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb04_dj08.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb14_dj15.eps (No data available)
+gv: Cannot open file allplot_jb13_dj08.eps (No data available)
+gv: Cannot open file allplot_jb14_dj14.eps (No data available)
+gv: Cannot open file allplot_jb08_dj12.eps (No data available)
+gv: Cannot open file allplot_jb13_dj24.eps (No data available)
+gv: Cannot open file allplot_jb15_dj18.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb13_dj18.eps (No data available)
+gv: Cannot open file allplot_jb07_dj07.eps (No data available)
+gv: Cannot open file allplot_jb15_dj25.eps (No data available)
+gv: Cannot open file allplot_jb15_dj16.eps (No data available)
+gv: Cannot open file allplot_jb06_dj10.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb11_dj21.eps (No data available)
+gv: Cannot open file allplot_jb10_dj20.eps (No data available)
+gv: Cannot open file allplot_jb15_dj13.eps (No data available)
+gv: Cannot open file allplot_jb10_dj08.eps (No data available)
+gv: Cannot open file allplot_jb17_dj29.eps (No data available)
+gv: Cannot open file allplot_jb11_dj18.eps (No data available)
+gv: Cannot open file allplot_jb14_dj12.eps (No data available)
+gv: Cannot open file allplot_jb14_dj17.eps (No data available)
+gv: Cannot open file allplot_jb14_dj21.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb13_dj07.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb11_dj11.eps (No data available)
+gv: Cannot open file allplot_jb15_dj08.eps (No data available)
+gv: Cannot open file allplot_jb18_dj09.eps (No data available)
+gv: Cannot open file allplot_jb10_dj18.eps (No data available)
+gv: Cannot open file allplot_jb13_dj22.eps (No data available)
+gv: Cannot open file allplot_jb17_dj28.eps (No data available)
+gv: Cannot open file allplot_jb12_dj13.eps (No data available)
+gv: Cannot open file allplot_jb07_dj14.eps (No data available)
+gv: Cannot open file allplot_jb04_dj07.eps (No data available)
+gv: Cannot open file allplot_jb17_dj22.eps (No data available)
+gv: Cannot open file allplot_jb15_dj23.eps (No data available)
+gv: Cannot open file allplot_jb08_dj08.eps (No data available)
+gv: Cannot open file allplot_jb08_dj13.eps (No data available)
+gv: Cannot open file allplot_jb08_dj09.eps (No data available)
+gv: Cannot open file allplot_jb05_dj07.eps (No data available)
+gv: Cannot open file allplot_jb15_dj29.eps (No data available)
+gv: Cannot open file allplot_jb07_dj13.eps (No data available)
+gv: Cannot open file allplot_jb05_dj10.eps (No data available)
+gv: Cannot open file allplot_jb14_dj25.eps (No data available)
+gv: Cannot open file allplot_jb09_dj14.eps (No data available)
+gv: Cannot open file allplot_jb13_dj14.eps (No data available)
+gv: Cannot open file allplot_jb13_dj16.eps (No data available)
+gv: Cannot open file allplot_jb07_dj11.eps (No data available)
+gv: Cannot open file allplot_jb07_dj10.eps (No data available)
+gv: Cannot open file allplot_jb17_dj19.eps (No data available)
+gv: Cannot open file allplot_jb12_dj16.eps (No data available)
+gv: Cannot open file allplot_jb15_dj06.eps (No data available)
+gv: Cannot open file allplot_jb13_dj09.eps (No data available)
+gv: Cannot open file allplot_jb08_dj11.eps (No data available)
+gv: Cannot open file allplot_jb09_dj10.eps (No data available)
+gv: Cannot open file allplot_jb09_dj08.eps (No data available)
+gv: Cannot open file allplot_jb07_dj08.eps (No data available)
+gv: Cannot open file allplot_jb06_dj09.eps (No data available)
+gv: Cannot open file allplot_jb06_dj07.eps (No data available)
+gv: Cannot open file allplot_jb15_dj14.eps (No data available)
+gv: Cannot open file allplot_jb08_dj15.eps (No data available)
+gv: Cannot open file allplot_jb17_dj30.eps (No data available)
+gv: Cannot open file allplot_jb11_dj20.eps (No data available)
+gv: Cannot open file allplot_jb09_dj12.eps (No data available)
+gv: Cannot open file allplot_jb08_dj14.eps (No data available)
+gv: Cannot open file allplot_jb07_dj12.eps (No data available)
+gv: Cannot open file allplot_jb06_dj11.eps (No data available)
+gv: Cannot open file allplot_jb05_dj08.eps (No data available)
+gv: Cannot open file allplot_jb17_dj31.eps (No data available)
+gv: Cannot open file allplot_jb11_dj17.eps (No data available)
+gv: Cannot open file allplot_jb12_dj08.eps (No data available)
+gv: Cannot open file allplot_jb08_dj16.eps (No data available)
+gv: Cannot open file allplot_jb08_dj07.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb06_dj12.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb15_dj21.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Courier-Medium-R-Normal--*-100-*-*-M-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Courier-Medium-R-Normal--*-100-*-*-M-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb12_dj15.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb14_dj11.eps (No data available)
+gv: Cannot open file allplot_jb17_dj16.eps (No data available)
+gv: Cannot open file allplot_jb10_dj11.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb13_dj10.eps (No data available)
+gv: Cannot open file allplot_jb13_dj12.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb15_dj19.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb14_dj18.eps (No data available)
+gv: Cannot open file allplot_jb08_dj10.eps (No data available)
+gv: Cannot open file allplot_jb15_dj07.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb10_dj09.eps (No data available)
+gv: Cannot open file allplot_jb15_dj15.eps (No data available)
+gv: Cannot open file allplot_jb15_dj12.eps (No data available)
+gv: Cannot open file allplot_jb13_dj26.eps (No data available)
+gv: Cannot open file allplot_jb16_dj06.eps (No data available)
+gv: Cannot open file allplot_jb17_dj27.eps (No data available)
+gv: Cannot open file allplot_jb13_dj20.eps (No data available)
+gv: Cannot open file allplot_jb17_dj26.eps (No data available)
+gv: Cannot open file allplot_jb13_dj19.eps (No data available)
+gv: Cannot open file allplot_jb12_dj14.eps (No data available)
+gv: Cannot open file allplot_jb11_dj10.eps (No data available)
+gv: Cannot open file allplot_jb09_dj11.eps (No data available)
+gv: Cannot open file allplot_jb11_dj22.eps (No data available)
+gv: Cannot open file allplot_jb06_dj08.eps (No data available)
+gv: Cannot open file allplot_jb15_dj11.eps (No data available)
+gv: Cannot open file allplot_jb11_dj19.eps (No data available)
+gv: Cannot open file allplot_jb15_dj24.eps (No data available)
+gv: Cannot open file allplot_jb15_dj09.eps (No data available)
+gv: Cannot open file allplot_jb10_dj10.eps (No data available)
+gv: Cannot open file allplot_jb17_dj18.eps (No data available)
+gv: Cannot open file allplot_jb11_dj07.eps (No data available)
+gv: Cannot open file allplot_jb13_dj11.eps (No data available)
+gv: Cannot open file allplot_jb15_dj22.eps (No data available)
+gv: Cannot open file allplot_jb15_dj27.eps (No data available)
+gv: Cannot open file allplot_jb14_dj07.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb07_dj09.eps (No data available)
+gv: Cannot open file allplot_jb13_dj13.eps (No data available)
+gv: Cannot open file allplot_jb05_dj09.eps (No data available)
+gv: Cannot open file allplot_jb09_dj13.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb15_dj10.eps (No data available)
+gv: Cannot open file allplot_jb13_dj15.eps (No data available)
+gv: Cannot open file allplot_jb10_dj19.eps (No data available)
+gv: Cannot open file allplot_jb11_dj16.eps (No data available)
+gv: Cannot open file allplot_jb14_dj10.eps (No data available)
+gv: Cannot open file allplot_jb12_dj10.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Medium-R-Normal--*-100-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+gv: Cannot open file allplot_jb09_dj15.eps (No data available)
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct
+Warning: Cannot convert string "-*-Helvetica-Bold-R-Normal--*-120-*-*-P-*-ISO8859-1" to type FontStruct

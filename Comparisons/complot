@@ -1,0 +1,88 @@
+#!/bin/bash
+j=1
+dj=1
+max=40
+He10dir=Henew10
+He20dir=He5i5015
+Ardir=Arnew
+dirlist=($He10dir $He20dir $Ardir)
+dirlist=($He10dir $He20dir)
+rm plotme
+
+errfile=error.log
+plotflag=0
+
+#loop over dj
+while [ $dj -lt $max ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+
+    #loop over j
+    while [ $j -lt $(($max-$dj+1)) ]; do
+        jp=$(($j+$dj))
+        jbar=$((($j+$dj)/2))
+        if [ $j -lt 10 ]; then
+            jstr=0$j
+        else
+            jstr=$j
+        fi
+        if [ $jp -lt 10 ]; then
+            jpstr=0$jp
+        else
+            jpstr=$jp
+        fi
+        if [ $jbar -lt 10 ]; then
+            jbstr=0$jbar
+        else
+            jbstr=$jbar
+        fi
+
+        blam=Blam_$jstr\_$jpstr\_dj$djstr\.dat
+        btheta=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
+        ofile=allplot_jb$jbstr\_dj$djstr\.eps
+
+        echo "#!/usr/local/gnuplot
+set term postscript eps enhanced
+#set term x11 0
+        set samples 10000
+#        set xrange [0:50]
+#        set yrange [0:100]
+        ">plotme
+
+        #loop over calculation
+        for i in ${dirlist[*]}; do
+            f1=../$i/Blams/$blam
+            f2=../$i/Bthetas/$btheta
+            if [ $plotflag -eq 0 ]; then
+                echo "plot '$f1' u 3:4 with impulse title '$i QM'" >> plotme
+            else
+                echo "replot '$f1' u 3:4 with impulse title '$i QM'" >> plotme
+            fi
+            echo "replot '$f2' u 1:3 with lines smooth csplines title '$i SC'" >> plotme
+            plotflag=1
+        done
+        echo "set xlabel 'theta'; set ylabel 'B'; set title 'dj=$djstr, jbar=$jbstr'
+        replot
+#set term postscript eps enhanced
+        set output '$ofile'
+        replot" >>plotme
+
+        #gnuplot <plotme>/dev/null 2>&1
+        gnuplot -persistent < plotme >/dev/null
+        rm plotme
+        plotflag=0
+        let j=j+1
+    done
+    echo Enter 1 to continue
+    read ones
+    if [ $ones = "1" ]; then
+        echo next dj
+    else
+        exit
+    fi
+    j=1
+    let dj=dj+1
+done

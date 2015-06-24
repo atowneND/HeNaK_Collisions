@@ -3,10 +3,10 @@ j=1
 dj=1
 max=40
 He10dir=Henew10
-He20dir=He5i5015
+He15dir=He5i5015
 Ardir=Arnew
-dirlist=($He10dir $He20dir $Ardir)
-dirlist=($He10dir $He20dir)
+dirlist=($He10dir $He15dir $Ardir)
+dirlist=($He10dir $He15dir)
 rm plotme
 
 errfile=error.log
@@ -23,7 +23,8 @@ while [ $dj -lt $max ]; do
     #loop over j
     while [ $j -lt $(($max-$dj+1)) ]; do
         jp=$(($j+$dj))
-        jbar=$((($j+$dj)/2))
+        jbar=$(awk 'BEGIN {print (('$j'+'$jp')/2)}')
+        echo $j $jp $jbar
         if [ $j -lt 10 ]; then
             jstr=0$j
         else

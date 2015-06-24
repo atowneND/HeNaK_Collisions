@@ -3,6 +3,13 @@ dj=1
 djmax=15
 jb=1
 jbmax=20
+
+#for i in $(find diff*jb*dj*ps); do
+for i in $(find all*jb*dj*ps); do
+    gv $i -scale 3 >/dev/null 2>>errfile.foo
+done
+
+exit
 #for i in $(find allplot*eps); do
 #while [ $dj -lt $djmax ]; do
 #    while [ $jb -lt $((($jbmax+$dj)/2)) ]; do

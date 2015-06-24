@@ -3,9 +3,9 @@ j=1
 dj=1
 max=40
 He10dir=Henew10
-He20dir=He5i5015
+He15dir=He5i5015
 Ardir=Arnew
-dirlist=($He10dir $He20dir $Ardir)
+dirlist=($He10dir $He15dir $Ardir)
 
 errfile=error.log
 
@@ -43,12 +43,12 @@ while [ $dj -lt $max ]; do
 
         qmofile=qmdiffs_jb$jbstr\_dj$djstr\.dat
         scofile=scdiffs_jb$jbstr\_dj$djstr\.dat
-        ofile=plot_jb$jbstr\_dj$djstr\.eps
-        echo \#Theta He10 He20 diff > $qmofile
-        echo \#Theta He10 He20 diff > $scofile
-        awk 'NR==FNR{a[NR]=$4;next}{print $3,a[FNR],$4,a[FNR]-$4}' ../$He10dir/Blams/$blam ../$He20dir/Blams/$blam|sed '/angle/d' >>$qmofile
+        ofile=diff_jb$jbstr\_dj$djstr\.eps
+        echo \#Theta He10 He15 diff > $qmofile
+        echo \#Theta He10 He15 diff > $scofile
+        awk 'NR==FNR{a[NR]=$4;next}{print $3,a[FNR],$4,a[FNR]-$4}' ../$He10dir/Blams/$blam ../$He15dir/Blams/$blam|sed '/angle/d' >>$qmofile
         sed '/#/d' ../$He10dir/Bthetas/$btheta >tmp1
-        sed '/#/d' ../$He20dir/Bthetas/$btheta >tmp2
+        sed '/#/d' ../$He15dir/Bthetas/$btheta >tmp2
         awk 'NR==FNR{a[NR]=$3;next}{print $1,a[FNR],$3,a[FNR]-$3}' tmp1 tmp2 >>$scofile
         rm tmp1 tmp2
 
@@ -57,7 +57,7 @@ while [ $dj -lt $max ]; do
         set xrange [0:180]
         plot '$scofile' using 1:4 with lines smooth csplines title 'SC diffs'
         replot '$qmofile' using 1:4 with impulse title 'QM diffs'
-        set xlabel 'theta'; set ylabel 'B(lmax=10)-B(lmax=20)'; set title 'jbar=$jbar, dj=$dj'
+        set xlabel 'theta'; set ylabel 'B(lmax=10)-B(lmax=15)'; set title 'jbar=$jbar, dj=$dj'
         set output '$ofile'
         replot">plotme
         gnuplot <plotme >/dev/null 2>&1

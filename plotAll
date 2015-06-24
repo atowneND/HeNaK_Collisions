@@ -19,60 +19,59 @@ if [ "$origfile" = "" ]; then
     if [ "$origfile" = "" ]; then
         echo File must not be null. Exiting.
         exit
-    fi
-fi
-
-dj=1
-CTR=1
-MAX=50
-MAXdj=40
-make
-errfile=$workdir/errors.log
-metafile=$workdir/metadata.txt
-plotfile=$workdir/deleteme
-dm=0
-
-echo Writing to $workdir using $origfile
-
-while [ $dj -le $MAXdj ]; do
-    if [ $dj -lt 10 ]; then
-        djstr=0$dj
-    else
-        djstr=$dj
+        fi
     fi
 
-    statdir=$workdir/Stats
-    statfile=stats_dj$djstr\.dat
-    echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statdir/$statfile
-    dthdir=$workdir/dtheta
-    dthout=dtheta_dj$djstr\.dat
-    echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthdir/$dthout
-    echo Running dj = $dj
+    dj=1
+    CTR=1
+    MAX=40
+    MAXdj=30
+    make
+    errfile=$workdir/errors.log
+    metafile=$workdir/metadata.txt
+    plotfile=$workdir/deleteme
+    dm=0
 
-    while [ $CTR -lt $(($MAX-$dj+1)) ]; do
-        let dm=dm+1
-        j=$CTR
-        jp=$((CTR+$dj))
+    echo Writing to $workdir using $origfile
 
-        # change so zeros are appended
-        if [ $jp -lt 10 ]; then
-            jpstr=0$jp
+    while [ $dj -le $MAXdj ]; do
+        if [ $dj -lt 10 ]; then
+            djstr=0$dj
         else
-            jpstr=$jp
-        fi
-        if [ $j -lt 10 ]; then
-            jstr=0$j
-        else
-            jstr=$j
+            djstr=$dj
         fi
 
-        # dqcalc
-        blamdir=$workdir/Blambdas
-        blamdat=Blambda_$jstr\_$jpstr.dat
-        runprog=$(find $blamdir -name $blamdat -nowarn)
-        origfile=Ep002mf5i-5015.blam
-        if [ "$runprog" != "$blamdir/$blamdat" ]; then
-            ./dqcalc newdata/$origfile $blamdir/$blamdat $j $jp 2>>$errfile
+        statdir=$workdir/Stats
+        statfile=stats_dj$djstr\.dat
+        echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statdir/$statfile
+        dthdir=$workdir/dtheta
+        dthout=dtheta_dj$djstr\.dat
+        echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthdir/$dthout
+        echo Running dj = $dj
+
+        while [ $CTR -lt $(($MAX-$dj+1)) ]; do
+            let dm=dm+1
+            j=$CTR
+            jp=$((CTR+$dj))
+
+            # change so zeros are appended
+            if [ $jp -lt 10 ]; then
+                jpstr=0$jp
+            else
+                jpstr=$jp
+            fi
+            if [ $j -lt 10 ]; then
+                jstr=0$j
+            else
+                jstr=$j
+            fi
+
+            # dqcalc
+            blamdir=$workdir/Blambdas
+            blamdat=Blambda_$jstr\_$jpstr.dat
+            runprog=$(find $blamdir -name $blamdat -nowarn)
+            if [ "$runprog" != "$blamdir/$blamdat" ]; then
+                ./dqcalc $origfile $blamdir/$blamdat $j $jp
         fi
 
         # only proceed if the files were successfully created
@@ -84,7 +83,7 @@ while [ $dj -le $MAXdj ]; do
             bthdir=$workdir/Bthetas
             bthdat=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
             normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
-            read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat 2>>$errfile)
+            read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat)
             normdir=$workdir/Blams
 
             # only proceed if the files were successfully created
@@ -164,5 +163,3 @@ Input file: $origfile
 number of loops: $dm
 Max=$MAX; Maxdj=$MAXdj
 ">$metafile
-
-exit

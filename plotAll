@@ -72,7 +72,7 @@ while [ $dj -le $MAXdj ]; do
         runprog=$(find $blamdir -name $blamdat -nowarn)
         origfile=Ep002mf5i-5015.blam
         if [ "$runprog" != "$blamdir/$blamdat" ]; then
-            ./dqcalc newdata/$origfile $blamdir/$blamdat $j $jp
+            ./dqcalc newdata/$origfile $blamdir/$blamdat $j $jp 2>>$errfile
         fi
 
         # only proceed if the files were successfully created
@@ -84,7 +84,7 @@ while [ $dj -le $MAXdj ]; do
             bthdir=$workdir/Bthetas
             bthdat=Btheta_$jstr\_$jpstr\_dj$djstr\.dat
             normblams=Blam_$jstr\_$jpstr\_dj$djstr\.dat
-            read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat)
+            read alphamin Bmaxa <<<$(./dq2theta $blamdir/$blamdat $bthdir/$bthdat 2>>$errfile)
             normdir=$workdir/Blams
 
             # only proceed if the files were successfully created

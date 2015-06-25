@@ -7,7 +7,7 @@ udat10=u10Ep002mf5i_50b.dat
 udat15=u15Ep002mf5i_5015.dat
 ofile=diffs10_15.dat
 
-#echo \#jbar dj cs10-cs15 >$ofile
+#echo \#jbar dj cs10 cs15 cs10-cs15 >$ofile
 #
 #while [ $(($row-2)) -lt $max ]; do
 #    jp=$(sed -n $row'p' $udat10|awk '{print $1}')
@@ -21,7 +21,7 @@ ofile=diffs10_15.dat
 #        cs15=$(sed -n $row'p' $udat15|awk '{print $'$col'}')
 #        
 #        dcs=$(awk "BEGIN {print "$cs10"-"$cs15"}")
-#        echo $jbar $dj $dcs >>$ofile
+#        echo $jbar $dj $cs10 $cs15 $dcs >>$ofile
 #
 #        let col=col+1
 #    done
@@ -31,19 +31,34 @@ ofile=diffs10_15.dat
 #done
 
 i=0
-
 while [ $i -lt $max ]; do
     oplot=fcsdiff_dj$i\.eps
     echo "#!/usr/local/gnuplot
     set samples 10000
     set term postscript eps enhanced
-    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? \$3:1/0) title '~j{.7-}evens'
-    replot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? \$3:1/0) title '~j{.7-}odds'
-    ymax=GPVAL_DATA_Y_MAX
-    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? (\$3/ymax):1/0) title '~j{.7-}evens'
-    replot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? (\$3/ymax):1/0) title '~j{.7-}odds'
-    set xlabel '~j'; set ylabel '{/Symbol D}{/Symbol s} (10-15)'
-    set title 'Normalized change in cross section, {/Symbol D}j=$i'
+    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? \$3:1/0)
+    ymax1=GPVAL_DATA_Y_MAX
+    plot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? \$4:1/0)
+    ymax2=GPVAL_DATA_Y_MAX
+    ymax=(ymax1+ymax2)/2
+    print ymax1,ymax2,ymax
+    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? (100*\$5/ymax):1/0) title '~j{.7-}evens'
+    replot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? (100*\$5/ymax):1/0) title '~j{.7-}odds'
+    set xlabel '~j{.7-}'; set ylabel '%{/Symbol D}{/Symbol s} (10-15)'
+    set title 'Fractional change in cross section, {/Symbol D}j=$i'
+    set output '$oplot'
+    replot
+    " > plotme
+    gnuplot < plotme >/dev/null 2>&1
+    rm plotme
+
+    oplot=csdiff_dj$i\.eps
+    echo "#!/usr/local/gnuplot
+    set term postscript eps enhanced
+    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? \$5:1/0) with linespoints title '~j{.7-}evens'
+    replot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? \$5:1/0) with linespoints title '~j{.7-}odds'
+    set xlabel '~j{.7-}'; set ylabel '{/Symbol D}{/Symbol s} (10-15)'
+    set title 'Change in cross section, {/Symbol D}j=$i'
     set output '$oplot'
     replot
     " > plotme

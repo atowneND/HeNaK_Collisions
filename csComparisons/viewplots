@@ -1,0 +1,40 @@
+#!/bin/bash
+dj=1
+djmax=15
+jb=1
+jbmax=20
+
+#for i in $(find diff*jb*dj*ps); do
+for i in $(find f*eps); do
+    gv $i -scale 3 >/dev/null 2>>errfile.foo
+done
+
+exit
+#for i in $(find allplot*eps); do
+#while [ $dj -lt $djmax ]; do
+#    while [ $jb -lt $((($jbmax+$dj)/2)) ]; do
+while [ $jb -lt $jbmax ]; do
+    echo $jb
+    while [ $dj -lt $djmax ]; do
+        echo $jb $dj
+        if [ $jb -lt 10 ]; then
+            jbstr=0$jb
+        else
+            jbstr=$jb
+        fi
+        if [ $dj -lt 10 ]; then
+            djstr=0$dj
+        else
+            djstr=$dj
+        fi
+#        for i in $(find all*jb$jbstr*dj$djstr*ps); do
+#            echo $i
+            #            gv $i >/dev/null 2>>errfile.foo
+#        done
+        let dj=dj+1
+    done
+    let dj=1
+    let jb=jb+1
+    #    pid=$(ps aux | grep "gv allplot" | sed '/grep/d' | awk '{print $2}')
+    #    kill $pid
+done

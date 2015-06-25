@@ -1,0 +1,53 @@
+#!/bin/bash
+
+row=2
+col=2
+max=50
+udat10=u10Ep002mf5i_50b.dat
+udat15=u15Ep002mf5i_5015.dat
+ofile=diffs10_15.dat
+
+#echo \#jbar dj cs10-cs15 >$ofile
+#
+#while [ $(($row-2)) -lt $max ]; do
+#    jp=$(sed -n $row'p' $udat10|awk '{print $1}')
+#
+#    while [ $(($col-2)) -lt $max ]; do
+#        j=$(sed -n '1p' $udat10|awk '{print $'$col'}')
+#        jbar=$(awk "BEGIN {print ("$j"+"$jp")/2}")
+#        dj=$(awk "BEGIN {print "$jp"-"j"}")
+#
+#        cs10=$(sed -n $row'p' $udat10|awk '{print $'$col'}')
+#        cs15=$(sed -n $row'p' $udat15|awk '{print $'$col'}')
+#        
+#        dcs=$(awk "BEGIN {print "$cs10"-"$cs15"}")
+#        echo $jbar $dj $dcs >>$ofile
+#
+#        let col=col+1
+#    done
+#
+#    let col=2
+#    let row=row+1
+#done
+
+i=0
+
+while [ $i -lt $max ]; do
+    oplot=fcsdiff_dj$i\.eps
+    echo "#!/usr/local/gnuplot
+    set samples 10000
+    set term postscript eps enhanced
+    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? \$3:1/0) title '~j{.7-}evens'
+    replot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? \$3:1/0) title '~j{.7-}odds'
+    ymax=GPVAL_DATA_Y_MAX
+    plot '$ofile' u 1:(\$2==$i&&floor(\$1)==\$1 ? (\$3/ymax):1/0) title '~j{.7-}evens'
+    replot '$ofile' u 1:(\$2==$i&&floor(\$1)!=\$1 ? (\$3/ymax):1/0) title '~j{.7-}odds'
+    set xlabel '~j'; set ylabel '{/Symbol D}{/Symbol s} (10-15)'
+    set title 'Normalized change in cross section, {/Symbol D}j=$i'
+    set output '$oplot'
+    replot
+    " > plotme
+    gnuplot < plotme >/dev/null 2>&1
+    rm plotme
+    let i=i+1
+done

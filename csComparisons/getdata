@@ -1,0 +1,10 @@
+#!/bin/bash
+
+datadir=../newdata
+datfile10=Ep002mf5i-50b.cs
+datfile15=Ep002mf5i-5015.cs
+udat10=u10Ep002mf5i_50b.dat
+udat15=u15Ep002mf5i_5015.dat
+
+sed '/#/d' $datadir/$datfile10 >$udat10
+sed '/#/d' $datadir/$datfile15 >$udat15

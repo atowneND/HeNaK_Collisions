@@ -8,7 +8,7 @@ dq2theta: ./dq2theta <dq.dat> <B.dat>
     ->Bnorm.dat
     STDOUT: <alphamin>
     STDOUT: <Bmax(alpha)>
-calcmm: <Bfile?> <j?> <jp?>
+calcmm: <Bfile?> <output file>
 
 C:
 main.out: ./main.out <j> <jp> <workingdirectory>

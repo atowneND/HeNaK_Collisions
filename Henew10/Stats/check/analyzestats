@@ -1,0 +1,131 @@
+#!/bin/bash
+
+PI=3.14159266
+
+dj=1
+ctr=1
+max=50
+
+avgfile=allavg.dat
+stdfile=allstd.dat
+varfile=allvar.dat
+foofile=foo
+
+echo \#abar\(disc\) = discrete/summation expectation value of a >$avgfile
+echo \#abar\(dsimp\) = expecation value of a computed by dsimp >>$avgfile
+echo \#d\(abar\) = abar\(disc\) - abar\(dsimp\) >>$avgfile
+echo \# >>$avgfile
+echo \#dj jbar abar\(disc\) abar\(dsimp\) d\(abar\) >>$avgfile
+
+echo \#dalpha  = standard deviation, sqrt\(\<a^2\>-\<a\>^2\) >$stdfile
+echo \#d\(dalpha\) = dalpha\(disc\) - dalpha\(dsimp\) >>$stdfile
+echo \# >>$stdfile
+echo \#dj jbar dalpha dalpha\(dsimp\) d\(dalpha\) >>$stdfile
+
+echo \#var = variance, \<a^2\>-\<a\>^2 >$varfile
+echo \#d\(var\) = var\(disc\) - var\(dsimp\) >>$varfile
+echo \# >>$varfile
+echo \#dj jbar var var\(dsimp\) d\(var\) >>$varfile
+
+while [ $dj -le $(($max-1)) ]; do
+    echo analyzing dj = $dj
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+    infile=../stats_dj$djstr\.dat
+
+    while [ $ctr -lt $(($max-$dj+1)) ]; do
+        jp=$(($ctr+$dj))
+        checkfile=checkstats_$ctr\_$jp\.dat
+
+        line=$(($ctr+1)) # line of continuous function file
+
+        # selects the j+1 line, 3rd column of the dsimp average
+        abarc=$(sed -n "$line"'p' $infile|awk '{print $3}')
+        astdc=$(sed -n "$line"'p' $infile|awk '{print $4}')
+        avarc=$(sed -n "$line"'p' $infile|awk '{print $5}')
+
+        # computes the discrete average
+        abardrad=$(sed '/#/d' $checkfile|awk '{sum+=$1*$3; sum2+=$3} END {print sum/sum2}')
+        abarddeg=$(awk "BEGIN {print "$abardrad"*180/"$PI"}")
+
+        # compute discrete delta(alpha) = dalph
+        a2bardrad=$(sed '/#/d' $checkfile|awk '{sum+=$2*$3; sum2+=$3} END {print sum/sum2}')
+        a2barddeg=$(awk "BEGIN {print "$a2bardrad"*180/"$PI"}")
+        dalphrad=$(awk "BEGIN {print sqrt("$a2bardrad"-"$abardrad"*"$abardrad")}")
+        dalphdeg=$(awk "BEGIN {print "$dalphrad"*180/"$PI"}")
+
+        # compute discrete variance
+        avard=$(awk "BEGIN {print ("$a2bardrad"-"$abardrad"*"$abardrad")*180/"$PI"}")
+
+        jbar=$((($jp+$ctr)/2))
+        diff=$(awk "BEGIN {print "$abarc"-"$abarddeg"}")
+        echo $dj $jbar $abarc $abarddeg $diff >>$avgfile
+
+        diff=$(awk "BEGIN {print "$astdc"-"$dalphdeg"}")
+        echo $dj $jbar $astdc $dalphdeg $diff >>$stdfile
+
+        diff=$(awk "BEGIN {print "$avarc"-"$avard"}")
+        echo $dj $jbar $avarc $avard $diff >>$varfile
+
+        let ctr=ctr+1
+    done
+
+    echo "
+    set term postscript
+    plot '$avgfile' using 2:5
+    set xlabel 'dj';set ylabel 'diff in alphabar (deg)';set title 'dj=$dj'
+    replot
+    set output 'avg_diffs_$dj.ps'
+    replot
+    set term postscript
+    plot '$avgfile' using 2:3 title 'dsimp'
+    replot '$avgfile' using 2:4 title 'discrete'
+    set xlabel 'dj';set ylabel 'alphabar (deg)';set title 'dj=$dj'
+    replot
+    set output 'avg_vals_$dj.ps'
+    replot
+
+    set term postscript
+    plot '$stdfile' using 2:5
+    set xlabel 'dj';set ylabel 'diff in alphabar (deg)';set title 'dj=$dj'
+    replot
+    set output 'std_diffs_$dj.ps'
+    replot
+    set term postscript
+    plot '$stdfile' using 2:3 title 'dsimp'
+    replot '$stdfile' using 2:4 title 'discrete'
+    set xlabel 'dj';set ylabel 'alphabar (deg)';set title 'dj=$dj'
+    replot
+    set output 'std_vals_$dj.ps'
+    replot
+
+    set term postscript
+    plot '$varfile' using 2:5
+    set xlabel 'dj';set ylabel 'diff in alphabar (deg)';set title 'dj=$dj'
+    replot
+    set output 'var_diffs_$dj.ps'
+    replot
+    set term postscript
+    plot '$varfile' using 2:3 title 'dsimp'
+    replot '$varfile' using 2:4 title 'discrete'
+    set xlabel 'dj';set ylabel 'alphabar (deg)';set title 'dj=$dj'
+    replot
+    set output 'var_vals_$dj.ps'
+    replot
+    " > foofile
+
+    gnuplot -persistent < foofile
+    rm foofile
+
+    let ctr=1
+    let dj=dj+1
+done
+
+
+#for i in $(ls checkstats_*); do
+#    abar=$(sed '/#/d' $i|awk '{sum+=$1*$3; sum2+=$3} END {print (180/$PI)*sum/sum2}')
+#    echo $abar >>$avgfile
+#done

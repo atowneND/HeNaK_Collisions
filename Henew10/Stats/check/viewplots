@@ -1,0 +1,10 @@
+#!/bin/bash
+dj=4
+while [ $dj -lt 10 ]; do
+    for i in $(ls *ps); do
+        gv $i
+    done
+    let dj=dj+1
+done
+
+

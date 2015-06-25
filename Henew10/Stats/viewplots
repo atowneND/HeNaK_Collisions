@@ -1,0 +1,11 @@
+#!/bin/bash
+dj=10
+while [ $dj -lt 40 ]; do
+    for i in $(find avg_*dj$dj.eps); do
+        echo $i
+        gv $i
+    done
+    let dj=dj+1
+done
+
+

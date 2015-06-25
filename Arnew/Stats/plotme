@@ -1,0 +1,21 @@
+
+    set term postscript eps enhanced
+    set samples 10000
+    set xrange [0:50]
+    set yrange [0:100]
+    plot 'stats_dj15.dat' using (($1+$2)/2):3 with lines smooth csplines title 'SCavg'
+    replot 'stats_dj15.dat' using (($1+$2)/2):6 title 'QMavg'
+    set xlabel 'jbar';set ylabel '{/Symbol a} (deg)'; set title 'Ar: <{/Symbol a}>, dj=15'
+    set output 'avg_dj15.eps'
+    replot
+
+    set term postscript eps enhanced
+    set samples 10000
+    set xrange [0:50]
+    set yrange [-3:3]
+    plot 'stats_dj15.dat' using (($1+$2)/2):9 with lines smooth csplines title 'diffs'
+    replot 'stats_dj15.dat' using (($1+$2)/2):9 title ''
+    set xlabel 'jbar';set ylabel '{/Symbol D}{/Symbol a} (deg)'; set title 'Ar: <{/Symbol a}> diffs, dj=15'
+    set output 'avgdiffs_dj15.eps'
+    replot
+    

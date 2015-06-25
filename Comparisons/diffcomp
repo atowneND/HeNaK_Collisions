@@ -20,7 +20,7 @@ while [ $dj -lt $max ]; do
     #loop over j
     while [ $j -lt $(($max-$dj+1)) ]; do
         jp=$(($j+$dj))
-        jbar=$((($j+$dj)/2))
+        jbar=$(awk 'BEGIN {print (('$j'+'$jp')/2)}')
         if [ $j -lt 10 ]; then
             jstr=0$j
         else
@@ -32,11 +32,7 @@ while [ $dj -lt $max ]; do
             jpstr=$jp
         fi
         if [ "$jbar" -eq "$jbar" ] 2>/dev/null; then
-            if [ $(echo "$jbar < 10" | bc -l) ]; then
-                jbstr=1$jbar
-            else
-                jbstr=$jbar
-            fi
+            jbstr=$jbar
         else
             jbstr=$(echo "$jbar"|sed 's/\./d/g')
         fi
@@ -46,6 +42,7 @@ while [ $dj -lt $max ]; do
 
         qmofile=qmdiffs_jb$jbstr\_dj$djstr\.dat
         scofile=scdiffs_jb$jbstr\_dj$djstr\.dat
+        ofile=pdiff_jb$jbstr\_dj$djstr\.eps
         ofile=diff_jb$jbstr\_dj$djstr\.eps
         echo \#Theta He10 He15 diff > $qmofile
         echo \#Theta He10 He15 diff > $scofile
@@ -53,17 +50,24 @@ while [ $dj -lt $max ]; do
         sed '/#/d' ../$He10dir/Bthetas/$btheta >tmp1
         sed '/#/d' ../$He15dir/Bthetas/$btheta >tmp2
         awk 'NR==FNR{a[NR]=$3;next}{print $1,a[FNR],$3,a[FNR]-$3}' tmp1 tmp2 >>$scofile
+
+        dtheta=dtheta_dj$djstr\.dat
+        bmax10=$(cat ../$He10dir/dtheta/$dtheta | sed '/j/d' | sed -n '/[0-9]* [0-9]* '$jbar' /p'|awk '{print $7}')
+        bmax15=$(cat ../$He15dir/dtheta/$dtheta | sed '/j/d' | sed -n '/[0-9]* [0-9]* '$jbar' /p'|awk '{print $7}')
+        bmaxavg=$(awk "BEGIN {print ($bmax10+$bmax15)/2}")
         rm tmp1 tmp2
 
         echo "set term postscript eps enhanced
         set samples 10000
         set xrange [0:180]
+        #plot '$scofile' using 1:(100*abs(\$4/$bmaxavg)) with lines smooth csplines title 'SC diffs'
+        #replot '$qmofile' using 1:(100*abs(\$4/$bmaxavg)) with impulse title 'QM diffs'
         plot '$scofile' using 1:4 with lines smooth csplines title 'SC diffs'
         replot '$qmofile' using 1:4 with impulse title 'QM diffs'
-        set xlabel '{/Symbol t}'; set ylabel 'B({/Symbol l}max=10)-B({/Symbol l}max=15)'; set title 'jbar=$jbar, dj=$dj'
+        set xlabel '{/Symbol a} (deg)'; set ylabel 'B({/Symbol l}_m_a_x=10)-B({/Symbol l}_m_a_x=15)'; set title '{/Symbol D}j=$djstr, ~j{.7-}=$jbar'
         set output '$ofile'
         replot">plotme
-        gnuplot <plotme >/dev/null 2>&1
+        gnuplot -persistent <plotme >/dev/null 2>&1
         rm plotme $qmofile $scofile
         let j=j+1
     done

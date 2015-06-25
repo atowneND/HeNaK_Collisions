@@ -5,7 +5,7 @@ jb=1
 jbmax=20
 
 #for i in $(find diff*jb*dj*ps); do
-for i in $(find all*jb*dj*ps); do
+for i in $(find *jb21*dj*ps); do
     gv $i -scale 3 >/dev/null 2>>errfile.foo
 done
 

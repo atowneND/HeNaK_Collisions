@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for i in $(ls *ps); do
-gv $i
-done

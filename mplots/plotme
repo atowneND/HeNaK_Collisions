@@ -2,3 +2,9 @@
 set term x11 0
 set samples 10000
 
+filename='jmp_jb12_dj8.dat'
+j=1
+m=-16
+lmax=2*j+1
+
+plot filename u 2:($1==m?$3:1/0)

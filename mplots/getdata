@@ -5,6 +5,7 @@ max=50
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
 
 while [ $dj -lt $(($max-1)) ]; do
+    echo running dj=$dj
     while [ $j -lt $(($max-$dj+1)) ]; do
         jp=$(($j+$dj))
         jbar=$(awk "BEGIN {print ("$j"+"$jp")/2}")
@@ -18,6 +19,6 @@ while [ $dj -lt $(($max-1)) ]; do
         echo $j $jp|../calcmm $srcdir $ofile>/dev/null
         let j=j+1
     done
-    j=0
+    j=1
     let dj=dj+1
 done

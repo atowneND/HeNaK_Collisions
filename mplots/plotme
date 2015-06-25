@@ -1,0 +1,4 @@
+#!/usr/local/gnuplot
+set term x11 0
+set samples 10000
+

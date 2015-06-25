@@ -1,0 +1,60 @@
+#!/bin/bash
+
+dj=1
+rm dtheta.dat
+CTR=1
+MAX=50
+
+while [ $dj -le $MAX ]; do
+    if [ $dj -lt 10 ]; then
+        djstr=0$dj
+    else
+        djstr=$dj
+    fi
+	dthOut=dtheta_dj$djstr\.dat
+	echo j jp jbar amin1 amin2 Bmax\(a\) Bmax\(l\) appalpha> $dthOut
+
+	while [ $CTR -lt $(($MAX-$dj+1)) ]; do
+	    j=$CTR
+	    jp=$((CTR+$dj))
+	
+	    # change so zeros are appended
+	    if [ $jp -lt 10 ]; then
+	        jp=0$jp
+	    fi
+	    if [ $j -lt 10 ]; then
+	        j=0$j
+	    fi
+	    echo $j $jp
+	
+	    # dqcalc
+	    blamdat=Blambda_$j\_$jp.dat
+	    ./dqcalc newdata/Ep002mf5i-50b.blam $blamdat $j $jp
+	
+	    # dq2theta
+	    bthdat=Btheta_$j\_$jp\_dj$djstr\.dat
+	    normblams=Blam_$j\_$jp\_dj$djstr\.dat
+	    read alphamin Bmaxa <<<$(./dq2theta $blamdat $bthdat)
+	
+	    # get the first angle (for lambda = lambdaMIN)
+	    # column 3, line 2
+	    lmindeg=$(cat $normblams|sed -n '2p'|awk '{print $3}')
+	    Bmaxl=$(cat $normblams|sed -n '2p'|awk '{print $4}') # normalized
+	
+	    # calculate difference in theta
+	    dtheta=$(awk "BEGIN {print $lmindeg-$alphamin}")
+	    jbar=$(awk "BEGIN {print ($j+$jp)/2}")
+	
+	    # write to file
+	    appalpha=$(awk "BEGIN {print (180/3.1415926)*(sqrt($jp-$j)/($jbar+1/2))}")
+	    echo $j $jp $jbar $alphamin $Bmaxa $Bmaxl $appalpha>> $dthOut
+	    outputfile=BPlots_$j\_$jp\_dj$djstr\.ps
+	
+	    let CTR=CTR+1
+	done
+
+    let dj=dj+1
+    CTR=1
+done
+
+exit

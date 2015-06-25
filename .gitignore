@@ -4,9 +4,6 @@
 *.out
 *.aph
 *.pcc12
-*.dat
-*.ps
-*.eps
 dq2theta
 dqcalc
 pcc12

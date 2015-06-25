@@ -16,7 +16,6 @@ while [ $dj -lt $max ]; do
     else
         djstr=$dj
     fi
-    echo dj=$dj
 
     #loop over j
     while [ $j -lt $(($max-$dj+1)) ]; do
@@ -32,10 +31,14 @@ while [ $dj -lt $max ]; do
         else
             jpstr=$jp
         fi
-        if [ $jbar -lt 10 ]; then
-            jbstr=0$jbar
+        if [ "$jbar" -eq "$jbar" ] 2>/dev/null; then
+            if [ $(echo "$jbar < 10" | bc -l) ]; then
+                jbstr=1$jbar
+            else
+                jbstr=$jbar
+            fi
         else
-            jbstr=$jbar
+            jbstr=$(echo "$jbar"|sed 's/\./d/g')
         fi
 
         blam=Blam_$jstr\_$jpstr\_dj$djstr\.dat
@@ -57,10 +60,11 @@ while [ $dj -lt $max ]; do
         set xrange [0:180]
         plot '$scofile' using 1:4 with lines smooth csplines title 'SC diffs'
         replot '$qmofile' using 1:4 with impulse title 'QM diffs'
-        set xlabel 'theta'; set ylabel 'B(lmax=10)-B(lmax=15)'; set title 'jbar=$jbar, dj=$dj'
+        set xlabel '{/Symbol t}'; set ylabel 'B({/Symbol l}max=10)-B({/Symbol l}max=15)'; set title 'jbar=$jbar, dj=$dj'
         set output '$ofile'
         replot">plotme
         gnuplot <plotme >/dev/null 2>&1
+        rm plotme $qmofile $scofile
         let j=j+1
     done
     let j=1

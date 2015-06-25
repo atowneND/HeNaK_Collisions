@@ -1,0 +1,22 @@
+DOCUMENTATION
+
+FORTRAN:
+dqcalc: ./dqcalc <blam file> <dq.dat> <j> <jp>
+    ->dq.dat
+dq2theta: ./dq2theta <dq.dat> <B.dat>
+    ->B.dat
+    ->Bnorm.dat
+    STDOUT: <alphamin>
+    STDOUT: <Bmax(alpha)>
+calcmm: <Bfile?> <j?> <jp?>
+
+C:
+main.out: ./main.out <j> <jp> <workingdirectory>
+    STDOUT: <SCavg> <SCstd> <SCvar>
+    STDOUT: <QMavg> <QMstd> <QMvar>
+
+BASH:
+plotAll: ./plotAll <workingdirectory> <blam file>
+rmAll: ./rmAll <workingdirectory>
+
+->: creates file

@@ -22,6 +22,103 @@ origplot(){
     done
     echo "set xlabel 'mprime'; set ylabel 'magnitude'
     set title 'propensity for m to transition to mprime'
+    replot
+    set term postscript
+    set output 'origplot.ps'
+    replot">>$pfile
+
+    gnuplot -persistent <$pfile 2>/dev/null
+}
+###############
+
+###############
+allplot(){
+    echo "#!/usr/local/gnuplot
+    set term x11 0
+    set samples 10000
+    set pointsize 4">$pfile
+
+    echo "plot '$filename' u 2:(\$1==$mmin?\$3:1/0) with lines title 'm=$m'
+    replot '$filename' u 2:(\$1==$mmin&&\$2==$mmin?\$3:1/0) pt 6 ps 3 lt rgb 'black' title ''">>$pfile
+    m=$(($mmin+1))
+    mmax=$(($j+$jp))
+    while [ $m -le $mmax ]; do
+        echo "replot '$filename' u 2:(\$1==$m?\$3:1/0) with lines title 'm=$m'
+        replot '$filename' u 2:(\$1==$m&&\$2==$m?\$3:1/0) pt 6 ps 3 lt rgb 'black' title ''">>$pfile
+        let m=m+1
+    done
+    echo "set xlabel 'mprime'; set ylabel 'magnitude'
+    set title 'propensity for m to transition to mprime'
+    replot
+    set term postscript
+    set output 'allplot.ps'
+    replot">>$pfile
+
+    gnuplot -persistent <$pfile 2>/dev/null
+}
+###############
+
+###############
+diff_dm0_plot(){
+    echo "#!/usr/local/gnuplot
+    set term x11 0
+    set samples 10000
+    set pointsize 4">$pfile
+
+    m=$((-j))
+    echo m max dm0 >dm10
+    maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
+    foo=$(awk 'BEGIN{s=0}{if(($1==$2)&&($2=='$m'))s=$3}END{print s}' $filename)
+    echo $m $maxnum $foo #>>dm10
+    exit
+    
+    let m=m+1
+    mmax=$j
+    while [ $m -le $mmax ]; do
+        maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
+        foo=$(awk 'BEGIN{s=0}{if(($1==$2)&&($2=='$m'))s=$3}END{print s}' $filename)
+        echo $m $maxnum $foo>>dm10
+        let m=m+1
+    done
+    echo "plot 'dm10' u 1:(\$2-\$3) with lines
+    set xlabel 'm'; set ylabel '{/Symbol D}propensity'
+    set title 'propensity for {/Symbol D}m=0'
+    replot
+    set term postscript eps enhanced
+    set output 'diff_dm0_plot.ps'
+    replot">>$pfile
+
+    gnuplot -persistent <$pfile 2>/dev/null
+}
+###############
+
+###############
+maxdmplot(){
+    echo "#!/usr/local/gnuplot
+    set term x11 0
+    set samples 10000
+    set pointsize 4">$pfile
+
+    m=$((-j))
+    echo m max dm0 >dm10
+    maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
+    mdm=$(awk 'BEGIN{dm=0}{if($3=='$maxnum')dm=$2-$1}END{print dm}')
+    echo $m $maxnum $mdm
+    exit
+    let m=m+1
+    mmax=$j
+    while [ $m -le $mmax ]; do
+        maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
+        foo=$(awk 'BEGIN{s=0}{if(($1==$2)&&($2=='$m'))s=$3}END{print s}' $filename)
+        echo $m $maxnum $foo>>dm10
+        let m=m+1
+    done
+    echo "plot 'dm10' u 1:(\$2-\$3) with lines
+    set xlabel 'm'; set ylabel '{/Symbol D}propensity'
+    set title 'propensity for {/Symbol D}m=0'
+    replot
+    set term postscript eps enhanced
+    set output 'maxdm.ps'
     replot">>$pfile
 
     gnuplot -persistent <$pfile 2>/dev/null
@@ -59,5 +156,3 @@ mmin=$((-$jp))
 mmax=$jp
 mmax=0
 filename=jmp_j$j\_jp$jp\_dj$dj\.dat
-
-origplot

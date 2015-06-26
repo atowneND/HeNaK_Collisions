@@ -58,5 +58,7 @@ if [ $myflag ]; then
 else
     echo 1
 fi
-
+#https://sites.google.com/site/antialamas/awkoneliners
 cat deleteme | awk '{sum+=#1} END {print sum}'
+awk '{sum=sum+$1}END{print sum}' deleteme
+awk 'BEGIN{max=0}{if($1>max)max=$1}END{print max}' deleteme

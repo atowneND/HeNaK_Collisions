@@ -9,7 +9,10 @@ while [ $dj -lt $(($max-1)) ]; do
     while [ $j -lt $(($max-$dj+1)) ]; do
         jp=$(($j+$dj))
         ofile=jmp_j$j\_jp$jp\_dj$dj\.dat
+        o2file=cp$ofile
         echo $j $jp|../calcmm $srcdir $ofile>/dev/null
+        echo \#x y z>$o2file
+        sed '/# [0-9]*/d' $ofile | sed 's/#/ /g' | awk '{print $1,$2,$3}'>>$o2file
         let j=j+1
     done
     j=1

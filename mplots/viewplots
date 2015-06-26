@@ -1,0 +1,20 @@
+#!/bin/bash
+
+j=1
+dj=2
+maxdj=40
+maxdj=10
+maxdj=6
+rm errfile.foo
+
+while [ $dj -lt $maxdj ]; do
+    while [ $j -lt $((50-$dj+1)) ]; do
+        jp=$(($j+$dj))
+        filename=hist_maxdm_j$j\_jp$jp\_dj$dj\.ps
+        gv $filename 2>errfile.foo
+        let j=j+1
+    done
+    j=1
+    let dj=dj+1
+done
+exit

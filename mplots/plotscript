@@ -70,7 +70,7 @@ diff_dm0_plot(){
     maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
     foo=$(awk 'BEGIN{s=0}{if(($1==$2)&&($2=='$m'))s=$3}END{print s}' $filename)
     echo $m $maxnum $foo >>dm10
-    
+
     let m=m+1
     mmax=$j
     while [ $m -le $mmax ]; do
@@ -133,25 +133,34 @@ hist_maxdm(){
     set samples 10000">$pfile
 
     m=$((-j))
-    echo \#m max dm0 >$dmfile
-    echo \#$filename >>$dmfile
+    echo \#m max dm0 >deleteme
+    echo \#$filename >>deleteme
     maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
     maxdm=$(awk 'BEGIN{}{if(($3=='$maxnum')&&($1=='$m'))print $2-$1}' $filename)
-    echo $m $maxnum $maxdm >>$dmfile
+    echo $m $maxnum $maxdm >>deleteme
 
     let m=m+1
     mmax=$j
     while [ $m -le $mmax ]; do
         maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
         maxdm=$(awk 'BEGIN{}{if(($3=='$maxnum')&&($1=='$m'))print $2-$1}' $filename)
-        echo $m $maxnum $maxdm >>$dmfile
+        echo $m $maxnum $maxdm >>deleteme
         let m=m+1
     done
-    echo "binwidth=5
-    bin(x,width)=width*floor(x/width)
-    plot '$dmfile' u (bin(\$3,binwidth)):(1.0) smooth freq with boxes
-    set xlabel '{/Symbol D}m'; set ylabel 'count'
-    set title 'Histogram: cross section for {/Symbol D}m=0 {j,jp,dj}={"$j","$jp","$dj"}'
+    cat deleteme | sed '/#/d' | awk 'NF>0{counts[$3]=counts[$3]+1;}END{for(word in counts)print word,counts[word];}'>>$dmfile
+    ymax=$(awk 'BEGIN{max=0}{if($2>max)max=$2}END{print max+1}' $dmfile)
+
+    xmin=$((-$dj-1))
+    xmax=$(($dj+1))
+    echo "#!/usr/local/gnuplot
+    set term postscript eps enhanced
+    set samples 10000
+    set yrange [0:$ymax]
+    set xrange [$xmin:$xmax]
+    plot '$dmfile' u 1:2 with impulse
+    replot '$dmfile' u 1:2 pt 6
+    set xlabel '{/Symbol D}m'; set ylabel 'Count of {/Symbol D}m'
+    set title 'Histogram of cross section for {/Symbol D}m=0 {j,jp,dj}={"$j","$jp","$dj"}'
     replot
     set output '$ofile'
     replot">>$pfile
@@ -162,7 +171,7 @@ hist_maxdm(){
 
 ###############
 plotsums(){
-# ALL DM'S ARE EQAULLY LIKELY AVERAGED OVER ALL M VALUES
+    # ALL DM'S ARE EQAULLY LIKELY AVERAGED OVER ALL M VALUES
     ofile=dm_sum.dat
     sed '/#/d' $filename|awk '{print $1,$2,$3}'>foofile
     lmax=$(($j+$jp))
@@ -177,6 +186,14 @@ plotsums(){
         let dm=dm+1
     done
     rm foofile
+}
+###############
+
+###############
+dthetavsigma(){
+    # ALL DM'S ARE EQAULLY LIKELY AVERAGED OVER ALL M VALUES
+    datadir=jmp_j$j\_jp$jp\_dj$dj\.dat
+    sed '/#/d' $datadir|awk '{function acos(x){atan2(sqrt(1-x^2)/x)}}{x=1}{print acos(x)}'>>deleteme
 }
 ###############
 
@@ -202,8 +219,7 @@ while [ $dj -lt $maxdj ]; do
         jp=$(($j+$dj))
         filename=jmp_j$j\_jp$jp\_dj$dj\.dat
         jp=$(($j+$dj))
-        maxdmplot
-        hist_maxdm
+        dthetavsigma
         let j=j+1
     done
     j=1

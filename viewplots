@@ -1,0 +1,4 @@
+#!/bin/bash
+for i in $(*ps); do
+    gv $i -scale 3 >/dev/null 2>>errfile.foo
+done

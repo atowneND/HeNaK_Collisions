@@ -58,3 +58,5 @@ if [ $myflag ]; then
 else
     echo 1
 fi
+
+cat deleteme | awk '{sum+=#1} END {print sum}'

@@ -1,0 +1,63 @@
+#!/bin/bash
+
+###############
+#FUNCTION DEFS#
+###############
+
+###############
+origplot(){
+    echo "#!/usr/local/gnuplot
+    set term x11 0
+    set samples 10000
+    set pointsize 4">$pfile
+
+    k=10
+    echo "plot '$filename' u 2:(\$1==$mmin?(\$3+$k*$mmin):1/0) with lines lt rgb 'red' title ''
+    replot '$filename' u 2:(\$1==$mmin&&\$2==$mmin?(\$3+$k*$mmin):1/0) pt 6 ps 3 lt rgb 'red' title ''">>$pfile
+    m=$(($mmin+1))
+    while [ $m -le $mmax ]; do
+        echo "replot '$filename' u 2:(\$1==$m?(\$3+$k*$m):1/0) with lines lt rgb 'red' title ''
+        replot '$filename' u 2:(\$1==$m&&\$2==$m?(\$3+$k*$m):1/0) pt 6 ps 3 lt rgb 'red' title ''">>$pfile
+        let m=m+1
+    done
+    echo "set xlabel 'mprime'; set ylabel 'magnitude'
+    set title 'propensity for m to transition to mprime'
+    replot">>$pfile
+
+    gnuplot -persistent <$pfile 2>/dev/null
+}
+###############
+
+###############
+plotsums(){
+# ALL DM'S ARE EQAULLY LIKELY AVERAGED OVER ALL M VALUES
+    ofile=dm_sum.dat
+    sed '/#/d' $filename|awk '{print $1,$2,$3}'>foofile
+    lmax=$(($j+$jp))
+    ndm=$((2*lmax+1))
+    dm=$((-j))
+    echo \# dm total>$ofile
+    while [ $dm -le $j ]; do
+        awk '{if($2=='$dm') print $1,$2,$3;}' foofile>deleteme
+        dmsum=$(cat deleteme | awk '{sum+=$3} END {print sum}')
+        echo $dm $dmsum >>$ofile
+        rm deleteme
+        let dm=dm+1
+    done
+    rm foofile
+}
+###############
+
+###############
+#  MY SCRIPT  #
+###############
+pfile=in2gnu
+j=8
+jp=12
+dj=$(($jp-$j))
+mmin=$((-$jp))
+mmax=$jp
+mmax=0
+filename=jmp_j$j\_jp$jp\_dj$dj\.dat
+
+origplot

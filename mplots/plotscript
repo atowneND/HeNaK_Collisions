@@ -133,21 +133,21 @@ hist_maxdm(){
     set samples 10000">$pfile
 
     m=$((-j))
-    echo \#m max dm0 >deleteme
-    echo \#$filename >>deleteme
+    echo \#m max dm0 >alldata.dat
+    echo \#$filename >>alldata.dat
     maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
     maxdm=$(awk 'BEGIN{}{if(($3=='$maxnum')&&($1=='$m'))print $2-$1}' $filename)
-    echo $m $maxnum $maxdm >>deleteme
+    echo $m $maxnum $maxdm >>alldata.dat
 
     let m=m+1
     mmax=$j
     while [ $m -le $mmax ]; do
         maxnum=$(awk 'BEGIN{max=0}{if(($3>max)&&($1=='$m'))max=$3}END{print max}' $filename)
         maxdm=$(awk 'BEGIN{}{if(($3=='$maxnum')&&($1=='$m'))print $2-$1}' $filename)
-        echo $m $maxnum $maxdm >>deleteme
+        echo $m $maxnum $maxdm >>alldata.dat
         let m=m+1
     done
-    cat deleteme | sed '/#/d' | awk 'NF>0{counts[$3]=counts[$3]+1;}END{for(word in counts)print word,counts[word];}'>>$dmfile
+    cat alldata.dat | sed '/#/d' | awk 'NF>0{counts[$3]=counts[$3]+1;}END{for(word in counts)print word,counts[word];}'>>$dmfile
     ymax=$(awk 'BEGIN{max=0}{if($2>max)max=$2}END{print max+1}' $dmfile)
 
     xmin=$((-$dj-1))
@@ -179,10 +179,10 @@ plotsums(){
     dm=$((-j))
     echo \# dm total>$ofile
     while [ $dm -le $j ]; do
-        awk '{if($2=='$dm') print $1,$2,$3;}' foofile>deleteme
-        dmsum=$(cat deleteme | awk '{sum+=$3} END {print sum}')
+        awk '{if($2=='$dm') print $1,$2,$3;}' foofile>alldata.dat
+        dmsum=$(cat alldata.dat | awk '{sum+=$3} END {print sum}')
         echo $dm $dmsum >>$ofile
-        rm deleteme
+        rm alldata.dat
         let dm=dm+1
     done
     rm foofile
@@ -193,7 +193,9 @@ plotsums(){
 dthetavsigma(){
     # ALL DM'S ARE EQAULLY LIKELY AVERAGED OVER ALL M VALUES
     datadir=jmp_j$j\_jp$jp\_dj$dj\.dat
-    sed '/#/d' $datadir|awk '{function acos(x){atan2(sqrt(1-x^2)/x)}}{x=1}{print acos(x)}'>>deleteme
+    sed '/#/d' $datadir|awk '{t=$1/sqrt('$j'*('$j'+1))
+    tp=$2/sqrt('$jp'*('$jp'+1))
+    print $1,'$j',$2,'$jp','$(($jp-$j))',(atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t))*180/3.141592654,$3}'|sed '/nan/d'>>alldata.dat
 }
 ###############
 
@@ -213,8 +215,9 @@ j=1
 dj=1
 max=50
 maxdj=$(($max-10))
+echo \#m j mp jp dj dtheta sigma > alldata.dat
 while [ $dj -lt $maxdj ]; do
-    echo running dj=$dj
+#    echo running dj=$dj
     while [ $j -lt $(($max-$dj+1)) ]; do
         jp=$(($j+$dj))
         filename=jmp_j$j\_jp$jp\_dj$dj\.dat

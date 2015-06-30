@@ -7,6 +7,11 @@ maxdj=10
 maxdj=6
 rm errfile.foo
 
+for i in $(find m*.ps); do
+    gv $i -scale 3 &
+done
+exit
+
 while [ $dj -lt $maxdj ]; do
     while [ $j -lt $((50-$dj+1)) ]; do
         jp=$(($j+$dj))

@@ -86,7 +86,7 @@ anglebins(){
     djmax=4
     infile=tmp1
     tmpfile=tmp3
-    nbins=10
+    nbins=21
     scale=1
     N=0
     while [ $dj -le $djmax ];do
@@ -111,10 +111,39 @@ anglebins(){
 ###############
 
 ###############
+allangles(){
+    j=8
+    jp=10
+    infile=jmp_j8_jp10_dj2.dat
+    ofile=foofile
+    sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
+
+    nbins=30
+    t=-180
+    scale=$((360/$nbins))
+    N=0
+    while [ $t -lt 180 ]; do
+        lbin=$t
+        ubin=$(($t+$scale))
+
+        if [ $N -eq 0 ]; then
+            foo=$(awk '($1<='$ubin') {count++} END {print count}' $ofile)
+        else
+            foo=$(awk '($1<='$ubin')&&($1>'$lbin') {count++} END {print count}' $ofile)
+        fi
+
+        t=$ubin
+        let N=N+1
+        echo $lbin\_to_$ubin $foo>>$plotfile
+    done
+}
+###############
+
+###############
 #  MY SCRIPT  #
 ###############
 fd=alldata.dat
 
-plotfile=plotme2
-rm bindata tmp2
-anglebins
+plotfile=plotme3
+rm $plotfile
+allangles

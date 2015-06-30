@@ -1,0 +1,120 @@
+#!/bin/bash
+
+
+###############
+#FUNCTION DEFS#
+###############
+
+###############
+dj_singlem_plot(){
+    dj=1
+    djmax=4
+    while [ $dj -le $djmax ]; do
+        echo "#!/usr/local/gnuplot
+        set term postscript eps enhanced
+        fd='alldata.dat'
+        " >$plotfile
+
+        cat $fd | awk '$5=='$dj' {print $1,$2,$3,$4,$5,$6,$7}'>tmp1
+
+        m=$((-$dj))
+        while [ $m -le $dj ]; do
+            ofile=m$m\_dj$dj\_dthetavsigma.ps
+            echo "
+            set xlabel '{/Symbol s}'
+            set ylabel '{/Symbol D}{/Symbol q}'
+            set title 'dj=$dj,m=$m'
+            plot 'tmp1' u 7:(\$1==$m?\$6:0/1)
+
+            set output '$ofile'
+            replot
+            ">>$plotfile
+            let m=m+1
+        done
+        gnuplot <$plotfile >/dev/null
+        let dj=dj+1
+    done
+}
+###############
+
+###############
+tmp1_for_djdmplotfun(){
+    rm tmp1
+    dj=1
+    djmax=4
+    while [ $dj -le $djmax ]; do
+        echo dj=$dj
+        cat $fd | awk '$5=='$dj' {print $3-$1,$5,$6,$7}'>>tmp1
+        # tmp1 fields: dm, dj, dtheta, sigma
+        let dj=dj+1
+    done
+}
+###############
+
+###############
+dj_dm_plot(){
+    dj=1
+    djmax=4
+    while [ $dj -le $djmax ]; do
+        echo dj=$dj
+
+        for dm in $(awk '{print $1}' tmp1|awk '!seen[$0]++'); do
+            echo dm=$dm
+            ofile=dm$dm\_dj$dj\_dthetavsigma.ps
+            echo "#!/usr/local/gnuplot
+            set term postscript eps enhanced
+            fd='alldata.dat'
+
+            set xlabel '{/Symbol s}'
+            set ylabel '{/Symbol D}{/Symbol q}'
+            set title 'dj=$dj,dm=$dm'
+            plot 'tmp1' u 4:(\$1==$dm&&\$2==$dj?\$3:0/1)
+
+            set output '$ofile'
+            replot
+            ">$plotfile
+            gnuplot <$plotfile >/dev/null
+        done
+        let dj=dj+1
+    done
+}
+###############
+
+###############
+anglebins(){
+    dj=1
+    djmax=4
+    infile=tmp1
+    tmpfile=tmp3
+    nbins=10
+    scale=1
+    N=0
+    while [ $dj -le $djmax ];do
+        echo dj=$dj
+        while [ $N -le $nbins ]; do
+            lbin=$(($scale*$N))
+            ubin=$(($lbin+$scale))
+            if [ $N -eq 0 ]; then
+                foo[N]=$(awk '$2=='$dj'&&($3<'$ubin'&&$3>'$((-$ubin))') {sum=sum+$4} END {print sum}' $infile)
+            else
+                foo[N]=$(awk '$2=='$dj'&&($3<'$ubin'&&$3>'$((-$ubin))')&&($3>'$lbin'||$3<'$((-lbin))') {sum=sum+$4} END {print sum}' $infile)
+            fi
+            let N=N+1
+        done
+        foo[N]=$(awk '$2=='$dj'&&($3>'$ubin'||$3<'$((-ubin))') {sum=sum+$4} END {print sum}' $infile)
+        echo $dj ${foo[*]} >>$tmpfile
+        let dj=dj+1
+        N=0
+    done
+    awk '{for(c=1;c<=NF;c++){a[c,NR]=$c};if(max_nf<NF){max_nf=NF};}END{for(c=1;c<=max_nf;c++){for(r=1;r<=NR;r++){if(r==1){printf("%i %s ",1*(c-1),a[c,r]);}else{printf("%s ",a[c,r]);}}print ""}}' $tmpfile >>normbindata
+}
+###############
+
+###############
+#  MY SCRIPT  #
+###############
+fd=alldata.dat
+
+plotfile=plotme2
+rm bindata tmp2
+anglebins

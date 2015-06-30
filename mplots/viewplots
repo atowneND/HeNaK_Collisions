@@ -7,8 +7,8 @@ maxdj=10
 maxdj=6
 rm errfile.foo
 
-for i in $(find m*.ps); do
-    gv $i -scale 3 &
+for i in $(find dm*.ps); do
+    gv $i -scale 3 2>/dev/null
 done
 exit
 

@@ -125,7 +125,7 @@ anglehist(){
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
     while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
-        read lbin ubin <<<$(getbins $wbin $t $divfac)
+        read lbin ubin <<<$(getbins2 $wbin $t $divfac)
 
         if [ $N -eq 0 ]; then
             foo=$(awk '($1<='$ubin') {count++} END {print count}' $ofile)
@@ -138,7 +138,7 @@ anglehist(){
         echo $lbin\to$ubin $foo>>$pfile
     done
 
-    opfile=hist_th_j$j\jp$jp\_dj$dj\.ps
+    opfile=test_hist_th_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set style data histogram
     set xtic rotate -90
@@ -169,7 +169,7 @@ dmhist(){
         echo $dm $ndm >>$pfile
     done
 
-    opfile=hist_dm_j$j\jp$jp\_dj$dj\.ps
+    opfile=test_hist_dm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'count'
@@ -198,7 +198,7 @@ weightedanglehist(){
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
     while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
-        read lbin ubin <<<$(getbins $wbin $t $divfac)
+        read lbin ubin <<<$(getbins2 $wbin $t $divfac)
 
         if [ $N -eq 0 ]; then
             foo=$(awk '($1<='$ubin') {sum=sum+$2} END {print sum}' $ofile)
@@ -212,7 +212,7 @@ weightedanglehist(){
         let N=N+1
     done
 
-    opfile=hist_wth_j$j\jp$jp\_dj$dj\.ps
+    opfile=test_hist_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set style data histogram
     set xtic rotate -90
@@ -245,7 +245,7 @@ weighteddmhist(){
         echo $dm $ndm >>$savedmdata
     done
 
-    opfile=hist_wdm_j$j\jp$jp\_dj$dj\.ps
+    opfile=test_hist_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
@@ -326,9 +326,9 @@ savedmdata=dmplottedvalues.dat
 rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
 
-wbin=8
-djlist=(1 2 3 4)
-jblist=(3 4 10 15 20 25 30 35 40)
+wbin=1
+djlist=(4)
+jblist=(30)
 
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do

@@ -1,0 +1,14 @@
+#!/usr/local/gnuplot
+set term postscript eps enhanced
+plot 'meantheta_sumsigma_j28jp32_dtheta2.dat' with impulse
+set xlabel '{/Symbol D}{/Symbol q}^o'; set ylabel '{/Symbol S}{/Symbol s}'; set title 'jbar=30, dj=4, binsize=2 degrees'
+Terminal type set to 'postscript'
+set output 'meantheta_sumsgma_sccomp_dtheta2.ps'
+replot
+
+set term postscript eps enhanced
+plot 'meantheta_sumsigma_j28jp32_dtheta1.dat' with impulse
+set xlabel '{/Symbol D}{/Symbol q}^o'; set ylabel '{/Symbol S}{/Symbol s}'; set title 'jbar=30, dj=4, binsize=1 degrees'
+Terminal type set to 'postscript'
+set output 'meantheta_sumsgma_sccomp_dtheta1.ps'
+replot

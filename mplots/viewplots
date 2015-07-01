@@ -7,9 +7,9 @@ maxdj=10
 maxdj=6
 rm errfile.foo
 
-for i in $(find hist_*.ps); do
+for i in $(find hist_w*.ps); do
     #gv $i -scale 3 2>/dev/null
-    gv $i 2>/dev/null
+    gv $i & #2>/dev/null
 done
 exit
 

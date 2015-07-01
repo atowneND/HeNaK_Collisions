@@ -168,7 +168,7 @@ anglehist(){
         echo $lbin\to$ubin $foo>>$pfile
     done
 
-    opfile=hist_th_j$j\jp$jp\.ps
+    opfile=hist_th_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set style data histogram
     set xtic rotate -90
@@ -199,7 +199,7 @@ dmhist(){
         echo $dm $ndm >>$pfile
     done
 
-    opfile=hist_dm_j$j\jp$jp\.ps
+    opfile=hist_dm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'count'
@@ -242,7 +242,7 @@ weightedanglehist(){
         let N=N+1
     done
 
-    opfile=hist_wth_j$j\jp$jp\.ps
+    opfile=hist_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set style data histogram
     set xtic rotate -90
@@ -275,7 +275,7 @@ weighteddmhist(){
         echo $dm $ndm >>$savedmdata
     done
 
-    opfile=hist_wdm_j$j\jp$jp\.ps
+    opfile=hist_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
@@ -299,16 +299,24 @@ tmp1file=tmp1
 plotfile=plotme
 savethdata=thplottedvalues.dat
 savedmdata=dmplottedvalues.dat
-rm $savethdata $savedmdata
+rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
 
 wbin=8
-jlist=(8 20 35)
-djlist=(2 3)
-for jval in ${jlist[*]}; do
+djlist=(1 2 3 4)
+jblist=(3 4 10 15 20 25 30 35 40)
+for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
-        j=$jval
-        jp=$(($jval+$dj))
+        if [ $(($dj%2)) -eq 0 ]; then #even
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff))
+        else
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff+1))
+        fi
+
         echo running \{$j,$jp\}
         echo \#j=$j jp=$jp wbin=$wbin>>$savethdata
         echo \#j=$j jp=$jp >>$savedmdata

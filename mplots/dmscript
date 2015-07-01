@@ -15,7 +15,9 @@ dj_singlem_plot(){
         fd='alldata.dat'
         " >$plotfile
 
-        cat $fd | awk '$5=='$dj' {print $1,$2,$3,$4,$5,$6,$7}'>tmp1
+        cat $fd | awk '$5=='$dj' {print $1,$2,$3,$4,$5,$6,$7}'>$tmp1file
+        # $tmp1file fileds: same as alldata.dat
+        # m, j, mp, jp, dj, dtheta, sigma
 
         m=$((-$dj))
         while [ $m -le $dj ]; do
@@ -24,7 +26,7 @@ dj_singlem_plot(){
             set xlabel '{/Symbol s}'
             set ylabel '{/Symbol D}{/Symbol q}'
             set title 'dj=$dj,m=$m'
-            plot 'tmp1' u 7:(\$1==$m?\$6:0/1)
+            plot '$tmp1file' u 7:(\$1==$m?\$6:0/1)
 
             set output '$ofile'
             replot
@@ -39,13 +41,13 @@ dj_singlem_plot(){
 
 ###############
 tmp1_for_djdmplotfun(){
-    rm tmp1
+    rm $tmp1file
     dj=1
     djmax=4
     while [ $dj -le $djmax ]; do
         echo dj=$dj
-        cat $fd | awk '$5=='$dj' {print $3-$1,$5,$6,$7}'>>tmp1
-        # tmp1 fields: dm, dj, dtheta, sigma
+        cat $fd | awk '$5=='$dj' {print $3-$1,$5,$6,$7}'>>$tmp1file
+        # $tmp1file fields: dm, dj, dtheta, sigma
         let dj=dj+1
     done
 }
@@ -58,7 +60,7 @@ dj_dm_plot(){
     while [ $dj -le $djmax ]; do
         echo dj=$dj
 
-        for dm in $(awk '{print $1}' tmp1|awk '!seen[$0]++'); do
+        for dm in $(awk '{print $1}' $tmp1file|awk '!seen[$0]++'); do
             echo dm=$dm
             ofile=dm$dm\_dj$dj\_dthetavsigma.ps
             echo "#!/usr/local/gnuplot
@@ -68,7 +70,7 @@ dj_dm_plot(){
             set xlabel '{/Symbol s}'
             set ylabel '{/Symbol D}{/Symbol q}'
             set title 'dj=$dj,dm=$dm'
-            plot 'tmp1' u 4:(\$1==$dm&&\$2==$dj?\$3:0/1)
+            plot '$tmp1file' u 4:(\$1==$dm&&\$2==$dj?\$3:0/1)
 
             set output '$ofile'
             replot
@@ -84,8 +86,8 @@ dj_dm_plot(){
 anglebins(){
     dj=1
     djmax=4
-    infile=tmp1
-    tmpfile=tmp3
+    infile=$tmp1file
+    tmpfile=deleteme
     nbins=27
     scale=1
     N=0
@@ -177,7 +179,8 @@ weightedangles(){
     dj=$(($jp-$j))
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=foofile
-    rm $plotfile
+    pfile=thplotfile
+    rm $pfile $ofile $plotfile
     sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
 
     nbins=45
@@ -196,8 +199,21 @@ weightedangles(){
 
         t=$ubin
         let N=N+1
-        echo $lbin\to$ubin $foo>>$plotfile
+        echo $lbin\to$ubin $foo>>$pfile
     done
+
+    opfile=hist_wth_j$j\jp$jp\.ps
+    echo "set terminal postscript eps enhanced
+    set style data histogram
+    set xtic rotate -90
+    set xlabel '{/Symbol D}{/Symbol q}'
+    set ylabel 'sum of {/Symbol s}s'
+    set title 'j=$j, jp=$jp'
+    plot '$pfile' u 2:xtic(1)
+    set output '$opfile'
+    replot">>$plotfile
+
+    gnuplot <$plotfile >deleteme1
 }
 ###############
 
@@ -207,7 +223,7 @@ weighteddm(){
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
-    rm $pfile $ofile
+    rm $pfile $ofile $plotfile
     echo \#dm num_dm >$pfile
     sed '/#/d' $infile|awk '{print $2-$1,$3}'>$ofile
 
@@ -221,23 +237,43 @@ weighteddm(){
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
-    plot '$pfile' with impulse
-    replot '$pfile' title ''
+    plot '$pfile' u 1:2 with impulse
+    replot '$pfile' u 1:2 title ''
     set output '$opfile'
     replot">>$plotfile
 
     gnuplot <$plotfile >/dev/null 2>&1
-    
-    rm $ofile $pfile
 }
 ###############
+
 ###############
 #  MY SCRIPT  #
 ###############
 fd=alldata.dat
+tmp1file=tmp1
 
 plotfile=plotme3
 rm $plotfile
+j=8
+jp=10
+weightedangles
+weighteddm
+j=8
+jp=11
+weightedangles
+weighteddm
+j=20
+jp=22
+weightedangles
+weighteddm
+j=20
+jp=23
+weightedangles
+weighteddm
+j=35
+jp=37
+weightedangles
+weighteddm
 j=35
 jp=38
 weightedangles

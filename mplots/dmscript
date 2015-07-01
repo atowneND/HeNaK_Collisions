@@ -113,36 +113,6 @@ anglebins(){
 ###############
 
 ###############
-getbins(){
-    #usage: read lbin ubin <<<$(getbins $wbin $t $divfac)
-    wbin=$1
-    t=$2
-    divfac=$3
-
-    if [ "$divfac" -eq "$divfac" ] 2>/dev/null ; then
-        #bin width goes into 180 an integer number of times (two bins centered at 0)
-        lbin=$t
-        ubin=$(awk 'BEGIN {print '$t'+'$wbin'}')
-    else
-        #bin width goes into 180 half integer number of times (one bin centered at 0)
-        nbins=$(awk 'BEGIN {printf("%d\n",(1/2)*(360/'$wbin'-1))}')
-        if [ $(awk 'BEGIN {print '$t'==-180}') -eq 1 ]; then
-            lbin=$t
-            ubin=$(awk 'BEGIN {print -('$wbin'*'$nbins')}')
-            #ubin=$(awk 'BEGIN {print '$t'+'$wbin'/2}')
-        elif [ $(awk 'BEGIN {print (180<('$t'+'$wbin'))}') -eq 1 ]; then
-            lbin=$t
-            ubin=180
-        else
-            lbin=$t
-            ubin=$(awk 'BEGIN {print '$t'+'$wbin'}')
-        fi
-    fi
-    echo $lbin $ubin
-}
-###############
-
-###############
 anglehist(){
     dj=$(($jp-$j))
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
@@ -154,7 +124,7 @@ anglehist(){
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
-    while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ]; do
+    while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
         read lbin ubin <<<$(getbins $wbin $t $divfac)
 
         if [ $N -eq 0 ]; then
@@ -227,7 +197,7 @@ weightedanglehist(){
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
-    while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ]; do
+    while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
         read lbin ubin <<<$(getbins $wbin $t $divfac)
 
         if [ $N -eq 0 ]; then
@@ -286,7 +256,61 @@ weighteddmhist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >/dev/null 2>&1
-#    rm $pfile $ofile $plotfile 2>/dev/null
+    #    rm $pfile $ofile $plotfile 2>/dev/null
+}
+###############
+
+###############
+getbins(){
+    #usage: read lbin ubin <<<$(getbins $wbin $t $divfac)
+    wbin=$1
+    t=$2
+    divfac=$3
+
+    if [ "$divfac" -eq "$divfac" ] 2>/dev/null ; then
+        #bin width goes into 180 an integer number of times (two bins centered at 0)
+        lbin=$t
+        ubin=$(awk 'BEGIN {print '$t'+'$wbin'}')
+    else
+        #bin width goes into 180 half integer number of times (one bin centered at 0)
+        nbins=$(awk 'BEGIN {printf("%d\n",(1/2)*(360/'$wbin'-1))}')
+        if [ $(awk 'BEGIN {print '$t'==-180}') -eq 1 ]; then
+            lbin=$t
+            ubin=$(awk 'BEGIN {print -('$wbin'*'$nbins')}')
+            #ubin=$(awk 'BEGIN {print '$t'+'$wbin'/2}')
+        elif [ $(awk 'BEGIN {print (180<('$t'+'$wbin'))}') -eq 1 ]; then
+            lbin=$t
+            ubin=180
+        else
+            lbin=$t
+            ubin=$(awk 'BEGIN {print '$t'+'$wbin'}')
+        fi
+    fi
+    echo $lbin $ubin
+}
+###############
+
+###############
+getbins2(){
+    #usage: read lbin ubin <<<$(getbins $wbin $t $divfac)
+    wbin=$1
+    t=$2
+    divfac=$3
+
+    read fn dn <<<$(awk 'BEGIN {printf("%f %d\n",180/'$wbin',180/'$wbin')}')
+    isodd=$(awk 'BEGIN {print '$wbin'%2}')
+    if [ $isodd -eq 1 ]; then
+        n=$(awk 'BEGIN {if ('$fn'=='$dn') {print '$dn'} else {print '$dn'+1}}')
+    else
+        n=$dn
+    fi
+    if [ $t -eq -180 ] 2>/dev/null ; then
+        lbin=$(awk 'BEGIN {print -'$wbin'*'$n'-'$wbin'/2}')
+    else
+        lbin=$t
+    fi
+    ubin=$(awk 'BEGIN {print '$lbin'+'$wbin'}')
+    echo $lbin $ubin
 }
 ###############
 
@@ -305,6 +329,7 @@ rm $plotfile 2>/dev/null
 wbin=8
 djlist=(1 2 3 4)
 jblist=(3 4 10 15 20 25 30 35 40)
+
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
         if [ $(($dj%2)) -eq 0 ]; then #even

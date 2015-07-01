@@ -128,7 +128,8 @@ getbins(){
         nbins=$(awk 'BEGIN {printf("%d\n",(1/2)*(360/'$wbin'-1))}')
         if [ $(awk 'BEGIN {print '$t'==-180}') -eq 1 ]; then
             lbin=$t
-            ubin=$(awk 'BEGIN {print -('$wbin'/2+'$wbin'*'$nbins')}')
+            ubin=$(awk 'BEGIN {print -('$wbin'*'$nbins')}')
+            #ubin=$(awk 'BEGIN {print '$t'+'$wbin'/2}')
         elif [ $(awk 'BEGIN {print (180<('$t'+'$wbin'))}') -eq 1 ]; then
             lbin=$t
             ubin=180
@@ -142,7 +143,7 @@ getbins(){
 ###############
 
 ###############
-allangles(){
+anglehist(){
     dj=$(($jp-$j))
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=foofile
@@ -150,9 +151,8 @@ allangles(){
     rm $ofile $pfile $plotfile 2>/dev/null
     sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
 
-    wbin=16
     t=-180
-    divfac=$(awk 'BEGIN {print '$t'/'$wbin'}')
+    divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
     while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ]; do
         read lbin ubin <<<$(getbins $wbin $t $divfac)
@@ -185,7 +185,7 @@ allangles(){
 ###############
 
 ###############
-alldm(){
+dmhist(){
     dj=$(($jp-$j))
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
@@ -215,17 +215,17 @@ alldm(){
 ###############
 
 ###############
-weightedangles(){
+weightedanglehist(){
     dj=$(($jp-$j))
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=thdatfile
     pfile=thplotfile
     rm $pfile $ofile $plotfile 2>/dev/null
     sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
+    echo \#mean_theta cs_sum >>$savethdata
 
-    wbin=16
     t=-180
-    divfac=$(awk 'BEGIN {print '$t'/'$wbin'}')
+    divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
     while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ]; do
         read lbin ubin <<<$(getbins $wbin $t $divfac)
@@ -237,8 +237,9 @@ weightedangles(){
         fi
 
         t=$ubin
-        let N=N+1
         echo $lbin\to$ubin $foo>>$pfile
+        echo $foo | awk '$1==0||$1 {print ('$lbin'+'$ubin')/2,$1}' >>$savethdata
+        let N=N+1
     done
 
     opfile=hist_wth_j$j\jp$jp\.ps
@@ -258,18 +259,20 @@ weightedangles(){
 ###############
 
 ###############
-weighteddm(){
+weighteddmhist(){
     dj=$(($jp-$j))
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
     rm $pfile $ofile $plotfile 2>/dev/null
     echo \#dm num_dm >$pfile
+    echo \#dm num_dm >>$savedmdata
     sed '/#/d' $infile|awk '{print $2-$1,$3}'>$ofile
 
     for dm in $(awk '{print $1}' $ofile|awk '!seen[$0]++'); do
         ndm=$(awk '$1=='$dm' {sum=sum+$2} END {print sum}' $ofile)
         echo $dm $ndm >>$pfile
+        echo $dm $ndm >>$savedmdata
     done
 
     opfile=hist_wdm_j$j\jp$jp\.ps
@@ -283,7 +286,7 @@ weighteddm(){
     replot">>$plotfile
 
     gnuplot <$plotfile >/dev/null 2>&1
-    rm $pfile $ofile $plotfile 2>/dev/null
+#    rm $pfile $ofile $plotfile 2>/dev/null
 }
 ###############
 
@@ -294,22 +297,26 @@ fd=alldata.dat
 tmp1file=tmp1
 
 plotfile=plotme
+savethdata=thplottedvalues.dat
+savedmdata=dmplottedvalues.dat
+rm $savethdata $savedmdata
 rm $plotfile 2>/dev/null
-j=8
-jp=10
-allangles
-j=8
-jp=11
-allangles
-j=20
-jp=22
-allangles
-j=20
-jp=23
-allangles
-j=35
-jp=37
-allangles
-j=35
-jp=38
-allangles
+
+wbin=8
+jlist=(8 20 35)
+djlist=(2 3)
+for jval in ${jlist[*]}; do
+    for dj in ${djlist[*]}; do
+        j=$jval
+        jp=$(($jval+$dj))
+        echo running \{$j,$jp\}
+        echo \#j=$j jp=$jp wbin=$wbin>>$savethdata
+        echo \#j=$j jp=$jp >>$savedmdata
+        anglehist
+        dmhist
+        weightedanglehist
+        weighteddmhist
+        echo '' >>$savethdata
+        echo '' >>$savedmdata
+    done
+done

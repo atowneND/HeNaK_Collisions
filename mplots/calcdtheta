@@ -1,0 +1,18 @@
+#!/bin/bash
+
+jp=28
+j=32
+dj=$(($j-$jp))
+datadir=datfiles/jmp_j$jp\_jp$j\_dj$dj\.dat
+outfile=compto2832.dat
+
+echo "#mp = m prime      thetap=theta prime        delth=thetap-theta
+#  m   mp  theta-rad thetap-rad delth-rad delth-deg bin #" >$outfile
+
+#cat $datadir | sed '/#/d' | awk '{t=$1/sqrt('$jp'*('$jp'+1)); print $1,$2,atan2(sqrt(1-t*t),t)}' >>$outfile
+#cat $datadir | sed '/#/d' | awk '{x1=$1/(sqrt('$j'*('$j'+1))); x2=$2/(sqrt('$j'*('$j'+1)));\
+#    t1=atan2(sqrt(1-x1*x1),x1); t2=atan2(sqrt(1-x2*x2),x2);\
+#    printf("%d %d %.5f %.5f %.5f %.2f %.0f\n",$1,$2,t1,t2,t2-t1,(t2-t1)*180/3.141592654,(t2-t1)*180/3.141592654)}' >>$outfile
+cat $datadir | sed '/#/d' | awk '{x1=$1/('$j'+1/2); x2=$2/('$jp'+1/2);\
+    t1=atan2(sqrt(1-x1*x1),x1); t2=atan2(sqrt(1-x2*x2),x2);\
+    printf("%d %d %.5f %.5f %.5f %.2f %.0f\n",$1,$2,t1,t2,t2-t1,(t2-t1)*180/3.141592654,(t2-t1)*180/3.141592654)}' >>$outfile

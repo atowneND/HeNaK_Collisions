@@ -360,7 +360,7 @@ savedmdata=dmplottedvalues.dat
 rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
 
-wbin=1
+wbin=2
 djlist=(4)
 jblist=(30)
 

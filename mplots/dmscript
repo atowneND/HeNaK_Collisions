@@ -321,17 +321,25 @@ eststd(){
     j=28;jp=32;dj=4
     tmpfile=j$j\jp$jp\.dat
     ofile=j$j\jp$jp\sorted.dat
+    
+    # compute dtheta
     awk '{t=$1/sqrt('$j'*('$j'+1)); tp=$2/sqrt('$jp'*('$jp'+1));\
         dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);\
         print $1,$2,dt*180/3.141592654,$3}' $infile | sed '/nan/d'>$tmpfile
     sed -n '1p' $tmpfile>$ofile
+
+    # sort data
+    #cat $tmpfile | sed '/#/d' | sort -k 3 -rn >>$ofile
     cat $tmpfile | sed '/#/d' | sort -k 3 -n >>$ofile
     rm $tmpfile
 
-    # prints out parts to sum - this only works with symmetry
-    awk '$3>=0 {print $1,$2,$3,$4}' $ofile >$tmpfile
+    # print out all angles greater than or equal to 0
+    awk '$3==0 {print $1,$2,$3,$4/2}' $ofile >$tmpfile
+    awk '$3>0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
+    #awk '$3<0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
     totsum=$(awk '{sum=sum+$4}END{print sum}' $tmpfile) # sum of all cross sections
-    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3){sum=sum+$4;thispoint=$3}} END {print thispoint}' $tmpfile)
+    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3){sum=sum+$4;thispoint=$3}}\
+        END {print thispoint}' $tmpfile)
     echo standard deviation = $std
 }
 ###############

@@ -33,6 +33,7 @@ singlem_plot(){
         awk '$1==0 {print $1,$2/2}' $pfile >> $pfile2
         awk '$1>0 {print $1,$2}' $pfile >> $pfile2
         totsum=$(awk '{sum=sum+$2}END{print sum}' $pfile2)
+        ymax=$(awk 'BEGIN {max=0} {if(max<$2){max=$2}} END {print max}' $pfile)
         std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3)\
             {sum=sum+$2;thispoint=$1}}\
                 END{print thispoint}' $pfile2)
@@ -43,9 +44,8 @@ singlem_plot(){
         set xlabel 'dm'
         set title 'dj=$dj,m=$m'
         plot fd with impulse
-        ymax=GPVAL_DATA_Y_MAX
-        replot '<echo $std ymax' with impulse title ''
-        replot '<echo -$std ymax' with impulse title ''
+        replot '<echo $std $ymax' with impulse title 'std=$std'
+        replot '<echo -$std $ymax' with impulse title ''
         set output '$ofile'
         replot
         ">>$plotfile
@@ -93,13 +93,14 @@ singlem_plot_thetabins(){
                 printf "%s%s", a[x,y],(y==NF?ORS:FS)}\
             }' | sort -k 1 -n >$pfile2
 
-        rm $pfile
-        awk '$1==0 {print $1,$2/2}' $pfile2 >> $pfile
-        awk '$1>0 {print $1,$2}' $pfile2 >> $pfile
-        totsum=$(awk '{sum=sum+$2}END{print sum}' $pfile)
+        rm stdfile
+        awk '$1==0 {print $1,$2/2}' $pfile2 >stdfile
+        awk '$1>0 {print $1,$2}' $pfile2 >>stdfile 
+        totsum=$(awk '{sum=sum+$2}END{print sum}' stdfile)
+        ymax=$(awk 'BEGIN {max=0} {if(max<$2){max=$2}} END {print max}' $pfile2)
         std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3)\
             {sum=sum+$2;thispoint=$1}}\
-                END{print thispoint}' $pfile)
+                END{print thispoint}' stdfile)
 
         ofile=m$m\_dj$dj\_dthetavsigma.ps
         echo "#!/usr/local/gnuplot
@@ -109,9 +110,8 @@ singlem_plot_thetabins(){
         set xlabel '{/Symbol D}{/Symbol q}'
         set title 'dj=$dj,m=$m'
         plot fd u 1:2 with impulse
-        ymax=GPVAL_DATA_Y_MAX
-        replot '<echo $std ymax' with impulse title ''
-        replot '<echo -$std ymax' with impulse title ''
+        replot '<echo $std $ymax' with impulse title 'std=$std'
+        replot '<echo -$std $ymax' with impulse title ''
         set output '$ofile'
         replot
         ">>$plotfile
@@ -330,6 +330,7 @@ weightedanglehist(){
         echo $foo | awk '$1==0||$1 {print ('$lbin'+'$ubin')/2,$1}' >>$savethdata
         let N=N+1
     done
+    exit
 
     opfile=test_hist_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
@@ -343,7 +344,8 @@ weightedanglehist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    rm $pfile $ofile $plotfile 2>/dev/null
+#    rm $pfile $ofile $plotfile 2>/dev/null
+    exit
 }
 ###############
 
@@ -470,7 +472,15 @@ eststd(){
 fd=alldata.dat
 plotfile=plotme
 tmp1file=tmp1
-wbin=2
+wbin=1
+savethdata=thplottedvalues.dat
+savedmdata=dmplottedvalues.dat
+rm $savethdata $savedmdata 2>/dev/null
+rm $plotfile 2>/dev/null
+j=28;jp=31;dj=4
+weightedanglehist
+exit
+
 singlem_plot
 singlem_plot_thetabins
 

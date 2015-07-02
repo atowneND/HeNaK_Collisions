@@ -6,10 +6,129 @@
 ###############
 
 ###############
+singlem_plot(){
+    j=28
+    jp=32
+    cat $fd | awk '$2=='$j'&&$4=='$jp' {print $1,$3,$6,$7}' >$tmp1file
+
+    dj=$(awk 'BEGIN {print '$jp'-'$j'}')
+    m=1
+    pfile=tmp2
+    pfile2=tmp3
+    while [ $m -le $j ]; do
+        rm $pfile $pfile2
+
+        echo "#!/usr/local/gnuplot
+        set term postscript eps enhanced
+        fd='$pfile'
+        " >$plotfile
+        echo running m=$m
+
+        cat $tmp1file | awk '$1=='$m'||$1==-'$m' {print ($2-$1), $4}' | awk '{n[$1]; \
+            for(i=2;i<=NF;i++) a[$1,i]+=$i} END\
+            {for(x in n){ printf "%s ",x; for(y=2;y<=NF;y++) \
+                printf "%s%s", a[x,y],(y==NF?ORS:FS)}\
+            }' | sort -k 1 -n >$pfile
+
+        awk '$1==0 {print $1,$2/2}' $pfile >> $pfile2
+        awk '$1>0 {print $1,$2}' $pfile >> $pfile2
+        totsum=$(awk '{sum=sum+$2}END{print sum}' $pfile2)
+        std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3)\
+            {sum=sum+$2;thispoint=$1}}\
+                END{print thispoint}' $pfile2)
+
+        ofile=bym$m\_dj$dj\_dthetavsigma.ps
+        echo "
+        set ylabel '{/Symbol s}'
+        set xlabel 'dm'
+        set title 'dj=$dj,m=$m'
+        plot fd with impulse
+        ymax=GPVAL_DATA_Y_MAX
+        replot '<echo $std ymax' with impulse title ''
+        replot '<echo -$std ymax' with impulse title ''
+        set output '$ofile'
+        replot
+        ">>$plotfile
+        gnuplot <$plotfile >/dev/null
+
+        let m=m+1
+        rm $plotfile
+    done
+}
+###############
+
+###############
+singlem_plot_thetabins(){
+    j=28
+    jp=32
+    cat $fd | awk '$2=='$j'&&$4=='$jp' {print $1,$3,$6,$7}' >$tmp1file
+
+    dj=$(awk 'BEGIN {print '$jp'-'$j'}')
+    m=0
+    pfile=tmp2
+    pfile2=tmp3
+    rm $pfile $pfile2
+    while [ $m -le $j ]; do
+        echo running m=$m
+
+        t=-180
+        divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
+        N=0
+        while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
+            read lbin ubin <<<$(getbins2 $wbin $t $divfac)
+
+            if [ $N -eq 0 ] ; then
+                foo=$(awk '($1=='$m'||$1==-'$m')&&($3<='$ubin') {sum=sum+$4} END {print sum}' $tmp1file)
+            else
+                foo=$(awk '($1=='$m'||$1==-'$m')&&($3<='$ubin')&&($3>'$lbin') {sum=sum+$4} END {print sum}' $tmp1file)
+            fi
+
+            echo $foo | awk '$1==0||$1 {print ('$lbin'+'$ubin')/2,$1}' >>$pfile
+
+            t=$ubin
+            let N=N+1
+        done
+        cat $pfile | awk '{n[$1]; for(i=2;i<=NF;i++) a[$1,i]+=$i} END\
+            {for(x in n){ printf "%s ",x; for(y=2;y<=NF;y++) \
+                printf "%s%s", a[x,y],(y==NF?ORS:FS)}\
+            }' | sort -k 1 -n >$pfile2
+
+        rm $pfile
+        awk '$1==0 {print $1,$2/2}' $pfile2 >> $pfile
+        awk '$1>0 {print $1,$2}' $pfile2 >> $pfile
+        totsum=$(awk '{sum=sum+$2}END{print sum}' $pfile)
+        std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3)\
+            {sum=sum+$2;thispoint=$1}}\
+                END{print thispoint}' $pfile)
+
+        ofile=m$m\_dj$dj\_dthetavsigma.ps
+        echo "#!/usr/local/gnuplot
+        set term postscript eps enhanced
+        fd='$pfile2'
+        set ylabel '{/Symbol s}'
+        set xlabel '{/Symbol D}{/Symbol q}'
+        set title 'dj=$dj,m=$m'
+        plot fd u 1:2 with impulse
+        ymax=GPVAL_DATA_Y_MAX
+        replot '<echo $std ymax' with impulse title ''
+        replot '<echo -$std ymax' with impulse title ''
+        set output '$ofile'
+        replot
+        ">>$plotfile
+
+        gnuplot <$plotfile >/dev/null
+        rm $plotfile
+        let m=m+1
+    done
+}
+###############
+
+###############
 dj_singlem_plot(){
     dj=1
     djmax=4
     while [ $dj -le $djmax ]; do
+        echo running dj=$dj
         echo "#!/usr/local/gnuplot
         set term postscript eps enhanced
         fd='alldata.dat'
@@ -317,8 +436,7 @@ getbins2(){
 ###############
 eststd(){
     # get datafile
-    infile=datfiles/jmp_j28_jp32_dj4.dat
-    j=28;jp=32;dj=4
+    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     tmpfile=j$j\jp$jp\.dat
     ofile=j$j\jp$jp\sorted.dat
     
@@ -348,13 +466,17 @@ eststd(){
 #  MY SCRIPT  #
 ###############
 
-eststd
-exit
 
 fd=alldata.dat
-tmp1file=tmp1
-
 plotfile=plotme
+tmp1file=tmp1
+wbin=2
+singlem_plot
+singlem_plot_thetabins
+
+exit
+
+
 savethdata=thplottedvalues.dat
 savedmdata=dmplottedvalues.dat
 rm $savethdata $savedmdata 2>/dev/null
@@ -362,7 +484,7 @@ rm $plotfile 2>/dev/null
 
 wbin=2
 djlist=(4)
-jblist=(30)
+jblist=(40)
 
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
@@ -383,6 +505,8 @@ for jb in ${jblist[*]}; do
         dmhist
         weightedanglehist
         weighteddmhist
+    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+eststd
         echo '' >>$savethdata
         echo '' >>$savedmdata
     done

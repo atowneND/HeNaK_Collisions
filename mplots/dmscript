@@ -23,7 +23,17 @@
 # CONSTANT
 # getbins2
 ###############
-# DELETE
+# NEEDS WORK
+# normalize_dtheta
+###############
+
+###############
+#    NOTES    #
+###############
+# raw data is in datfiles/jmp_j#_jp#_dj#.dat
+# semiclassical data is in scthetas/th_j#_jp#_dj#.dat
+# temporary file for plotting: $plotfile = plotme
+#   - deleted at beginning of script and at the end of functions that use it
 ###############
 
 ############### 
@@ -278,7 +288,7 @@ eststd(){
 ###############
 weightedanglehist(){
     dj=$(($jp-$j))
-    infile=dtdat_j$j\_jp$jp\_dj$dj\.dat
+    infile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
     pfile=thplotfile
     rm $pfile $plotfile 2>/dev/null
 
@@ -297,9 +307,11 @@ weightedanglehist(){
         t=$ubin
         tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
         echo $tmean $foo>>$pfile
-        echo $foo | awk '$1==0||$1 {print ('$lbin'+'$ubin')/2,$1}' >>$savethdata
         let N=N+1
     done
+
+    normalize_dtheta $pfile
+    exit
 
     opfile=rev_hist_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
@@ -318,7 +330,7 @@ weightedanglehist(){
 ###############
 weighteddmhist(){
     dj=$(($jp-$j))
-    infile=dtdat_j$j\_jp$jp\_dj$dj\.dat
+    infile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
     rm $pfile $ofile $plotfile 2>/dev/null
@@ -326,7 +338,6 @@ weighteddmhist(){
     for dm in $(awk '{print $2-$1}' $infile|awk '!seen[$0]++'); do
         ndm=$(awk '($2-$1)=='$dm' {sum=sum+$4} END {print sum}' $infile)
         echo $dm $ndm >>$pfile
-        echo $dm $ndm >>$savedmdata
     done
 
     opfile=rev_hist_wdm_j$j\jp$jp\_dj$dj\.ps
@@ -340,7 +351,7 @@ weighteddmhist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >/dev/null 2>&1
-    #    rm $pfile $ofile $plotfile 2>/dev/null
+    rm $pfile $ofile $plotfile 2>/dev/null
 }
 ###############
 
@@ -372,7 +383,7 @@ getbins2(){
 calcdtheta(){
     dj=$(($jp-$j))
     datadir=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-    datoutfile=dtdat_j$j\_jp$jp\_dj$dj\.dat
+    datoutfile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
     # check rad2deg placement
     echo "#m mp dtheta sigma">$datoutfile
 
@@ -384,13 +395,16 @@ calcdtheta(){
 ###############
 
 ###############
+normalize_dtheta(){
+    infile=$1
+    echo $infile
+}
+###############
+
+###############
 #  MY SCRIPT  #
 ###############
 plotfile=plotme
-savethdata=thplottedvalues.dat
-savedmdata=dmplottedvalues.dat
-
-rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
 
 wbin=1

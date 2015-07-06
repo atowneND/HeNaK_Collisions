@@ -7,10 +7,6 @@
 ###############
 # LIST OF FUN #
 ###############
-# UPDATED
-# weightedanglehist - updated
-# weighteddmhist - updated
-###############
 # OLD
 # singlem_plot
 # singlem_plot_thetabins
@@ -19,11 +15,15 @@
 # dmhist
 # eststd
 ###############
+# UPDATED
+# weightedanglehist
+# weighteddmhist
+# calcdtheta
+###############
 # CONSTANT
 # getbins2
 ###############
 # DELETE
-# getbins
 ###############
 
 ############### 
@@ -248,6 +248,35 @@ dmhist(){
 ###############
 
 ###############
+eststd(){
+    # get datafile
+    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+    tmpfile=j$j\jp$jp\.dat
+    ofile=j$j\jp$jp\sorted.dat
+    
+    # compute dtheta
+    awk '{t=$1/sqrt('$j'*('$j'+1)); tp=$2/sqrt('$jp'*('$jp'+1));\
+        dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);\
+        print $1,$2,dt*180/3.141592654,$3}' $infile | sed '/nan/d'>$tmpfile
+    sed -n '1p' $tmpfile>$ofile
+
+    # sort data
+    #cat $tmpfile | sed '/#/d' | sort -k 3 -rn >>$ofile
+    cat $tmpfile | sed '/#/d' | sort -k 3 -n >>$ofile
+    rm $tmpfile
+
+    # print out all angles greater than or equal to 0
+    awk '$3==0 {print $1,$2,$3,$4/2}' $ofile >$tmpfile
+    awk '$3>0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
+    #awk '$3<0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
+    totsum=$(awk '{sum=sum+$4}END{print sum}' $tmpfile) # sum of all cross sections
+    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3){sum=sum+$4;thispoint=$3}}\
+        END {print thispoint}' $tmpfile)
+    echo standard deviation = $std
+}
+###############
+
+###############
 weightedanglehist(){
     dj=$(($jp-$j))
     infile=dtdat_j$j\_jp$jp\_dj$dj\.dat
@@ -318,36 +347,6 @@ weighteddmhist(){
 ###############
 
 ###############
-getbins(){
-    #usage: read lbin ubin <<<$(getbins $wbin $t $divfac)
-    wbin=$1
-    t=$2
-    divfac=$3
-
-    if [ "$divfac" -eq "$divfac" ] 2>/dev/null ; then
-        #bin width goes into 180 an integer number of times (two bins centered at 0)
-        lbin=$t
-        ubin=$(awk 'BEGIN {print '$t'+'$wbin'}')
-    else
-        #bin width goes into 180 half integer number of times (one bin centered at 0)
-        nbins=$(awk 'BEGIN {printf("%d\n",(1/2)*(360/'$wbin'-1))}')
-        if [ $(awk 'BEGIN {print '$t'==-180}') -eq 1 ]; then
-            lbin=$t
-            ubin=$(awk 'BEGIN {print -('$wbin'*'$nbins')}')
-            #ubin=$(awk 'BEGIN {print '$t'+'$wbin'/2}')
-        elif [ $(awk 'BEGIN {print (180<('$t'+'$wbin'))}') -eq 1 ]; then
-            lbin=$t
-            ubin=180
-        else
-            lbin=$t
-            ubin=$(awk 'BEGIN {print '$t'+'$wbin'}')
-        fi
-    fi
-    echo $lbin $ubin
-}
-###############
-
-###############
 getbins2(){
     #usage: read lbin ubin <<<$(getbins2 $wbin $t $divfac)
     wbin=$1
@@ -372,89 +371,78 @@ getbins2(){
 ###############
 
 ###############
-eststd(){
-    # get datafile
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-    tmpfile=j$j\jp$jp\.dat
-    ofile=j$j\jp$jp\sorted.dat
-    
-    # compute dtheta
-    awk '{t=$1/sqrt('$j'*('$j'+1)); tp=$2/sqrt('$jp'*('$jp'+1));\
-        dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);\
-        print $1,$2,dt*180/3.141592654,$3}' $infile | sed '/nan/d'>$tmpfile
-    sed -n '1p' $tmpfile>$ofile
+calcdtheta(){
+    dj=$(($jp-$j))
+    datadir=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+    datoutfile=dtdat_j$j\_jp$jp\_dj$dj\.dat
+    # check rad2deg placement
+    echo "#m mp dtheta sigma">$datoutfile
 
-    # sort data
-    #cat $tmpfile | sed '/#/d' | sort -k 3 -rn >>$ofile
-    cat $tmpfile | sed '/#/d' | sort -k 3 -n >>$ofile
-    rm $tmpfile
-
-    # print out all angles greater than or equal to 0
-    awk '$3==0 {print $1,$2,$3,$4/2}' $ofile >$tmpfile
-    awk '$3>0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
-    #awk '$3<0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
-    totsum=$(awk '{sum=sum+$4}END{print sum}' $tmpfile) # sum of all cross sections
-    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3){sum=sum+$4;thispoint=$3}}\
-        END {print thispoint}' $tmpfile)
-    echo standard deviation = $std
+    cat $datadir | sed '/#/d' | awk '{jex=$1/sqrt('$jp'*('$jp'+1)); jpex=$2/sqrt('$j'*('$j'+1));\
+        t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
+        t1appdeg=t1app*180/3.141592654;t2appdeg=t2app*180/3.141592654;t1exdeg=t1ex*180/3.141592654;t2exdeg=t2ex*180/3.141592654;\
+        print $1,$2,t2exdeg-t1exdeg,$3}' >>$datoutfile
 }
 ###############
 
 ###############
 #  MY SCRIPT  #
 ###############
-
-
-fd=alldata.dat
 plotfile=plotme
-tmp1file=tmp1
 wbin=1
 savethdata=thplottedvalues.dat
 savedmdata=dmplottedvalues.dat
 rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
 j=28;jp=32;dj=4
+echo calculating dtheta...
+calcdtheta
+
+echo plotting by angle...
 weightedanglehist
+echo plotting by dm...
 weighteddmhist
+
 exit
 
-#singlem_plot
-#singlem_plot_thetabins
-
-#exit
-
-
-savethdata=thplottedvalues.dat
-savedmdata=dmplottedvalues.dat
-rm $savethdata $savedmdata 2>/dev/null
-rm $plotfile 2>/dev/null
-
-wbin=2
-djlist=(4)
-jblist=(40)
-
-for jb in ${jblist[*]}; do
-    for dj in ${djlist[*]}; do
-        if [ $(($dj%2)) -eq 0 ]; then #even
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff))
-        else
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff+1))
-        fi
-
-        echo running \{$j,$jp\}
-        echo \#j=$j jp=$jp wbin=$wbin>>$savethdata
-        echo \#j=$j jp=$jp >>$savedmdata
-        anglehist
-        dmhist
-        weightedanglehist
-        weighteddmhist
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-eststd
-        echo '' >>$savethdata
-        echo '' >>$savedmdata
-    done
-done
+################
+##singlem_plot
+##singlem_plot_thetabins
+#
+##exit
+#
+#
+#savethdata=thplottedvalues.dat
+#savedmdata=dmplottedvalues.dat
+#rm $savethdata $savedmdata 2>/dev/null
+#rm $plotfile 2>/dev/null
+#
+#wbin=2
+#djlist=(4)
+#jblist=(40)
+#
+#for jb in ${jblist[*]}; do
+#    for dj in ${djlist[*]}; do
+#        if [ $(($dj%2)) -eq 0 ]; then #even
+#            jdiff=$(($dj/2))
+#            j=$(($jb-$jdiff))
+#            jp=$(($jb+$jdiff))
+#        else
+#            jdiff=$(($dj/2))
+#            j=$(($jb-$jdiff))
+#            jp=$(($jb+$jdiff+1))
+#        fi
+#
+#        echo running \{$j,$jp\}
+#        echo \#j=$j jp=$jp wbin=$wbin>>$savethdata
+#        echo \#j=$j jp=$jp >>$savedmdata
+#        anglehist
+#        dmhist
+#        weightedanglehist
+#        weighteddmhist
+#    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+#eststd
+#        echo '' >>$savethdata
+#        echo '' >>$savedmdata
+#    done
+#done

@@ -23,8 +23,9 @@
 # CONSTANT
 # getbins2
 ###############
-# NEEDS WORK
+# UPDATED
 # normalize_dtheta
+# m0to0
 ###############
 
 ###############
@@ -408,8 +409,36 @@ normalize_dtheta(){
 ###############
 
 ###############
+m0to0(){
+    j=1
+    dj=1
+    jmax=50
+    djmax=39
+    outfile=m0to0.dat
+    echo "#jbar dj sigma" >$outfile
+
+    while [ $dj -lt $djmax ]; do
+        while [ $j -lt $(($jmax-$dj)) ]; do
+            jp=$(($j+$dj))
+            datfile=archiveHe/qmthetasHe/qmth_j$j\_jp$jp\_dj$dj\.dat
+            echo j=$j, jp=$jp, dj=$dj
+            echo $datfile
+            awk '$1==0&&$2==0 {print '$jbar','$dj',$4}' $datfile
+            exit
+            let j=j+1
+        done
+        let dj=dj+1
+        j=1
+    done
+}
+###############
+
+###############
 #  MY SCRIPT  #
 ###############
+m0to0
+exit
+
 plotfile=plotme
 tmpfile=tmp1
 rm $tmpfile $plotfile 2>/dev/null

@@ -4,15 +4,59 @@ jp=28
 j=32
 dj=$(($j-$jp))
 datadir=datfiles/jmp_j$jp\_jp$j\_dj$dj\.dat
-outfile=compto2832.dat
+datoutfile=dtdat_j$jp\_jp$j\_dj$dj\.dat
 
-echo "#mp = m prime      thetap=theta prime        delth=thetap-theta
-#  m   mp  theta-rad thetap-rad delth-rad delth-deg bin #" >$outfile
+# check rad2deg placement
+echo "#m mp dtheta sigma">$datoutfile
 
-#cat $datadir | sed '/#/d' | awk '{t=$1/sqrt('$jp'*('$jp'+1)); print $1,$2,atan2(sqrt(1-t*t),t)}' >>$outfile
-#cat $datadir | sed '/#/d' | awk '{x1=$1/(sqrt('$j'*('$j'+1))); x2=$2/(sqrt('$j'*('$j'+1)));\
+#cat $datadir | sed '/#/d' | awk '{japp=$1/('$j'+1/2); jpapp=$2/('$jp'+1/2); jex=$1/sqrt('$j'*('$j'+1)); jpex=$2/sqrt('$jp'*('$jp'+1));\
+cat $datadir | sed '/#/d' | awk '{jex=$1/sqrt('$j'*('$j'+1)); jpex=$2/sqrt('$jp'*('$jp'+1));\
+    t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
+    t1appdeg=t1app*180/3.141592654;t2appdeg=t2app*180/3.141592654;t1exdeg=t1ex*180/3.141592654;t2exdeg=t2ex*180/3.141592654;\
+    print $1,$2,t2exdeg-t1exdeg,$3}' >>$datoutfile
+
+#outfile=sqrtapprox.dat
+#out2=sqrtexact.dat
+#out3=compall.dat
+#out4=acosargcheck.dat
+#out6=fprintcheck.dat
+#echo "#mp = m prime      thetap=theta prime        delth=thetap-theta
+##  m   mp  theta-rad thetap-rad delth-rad delth-deg bin #" >$outfile
+#
+#echo "#mp = m prime      thetap=theta prime        delth=thetap-theta
+##  m   mp  theta-rad thetap-rad delth-rad delth-deg bin #" >$out2
+#
+## check dtheta
+#cat $datadir | sed '/#/d' | awk '{x1=$1/('$j'+1/2); x2=$2/('$jp'+1/2);\
 #    t1=atan2(sqrt(1-x1*x1),x1); t2=atan2(sqrt(1-x2*x2),x2);\
 #    printf("%d %d %.5f %.5f %.5f %.2f %.0f\n",$1,$2,t1,t2,t2-t1,(t2-t1)*180/3.141592654,(t2-t1)*180/3.141592654)}' >>$outfile
-cat $datadir | sed '/#/d' | awk '{x1=$1/('$j'+1/2); x2=$2/('$jp'+1/2);\
-    t1=atan2(sqrt(1-x1*x1),x1); t2=atan2(sqrt(1-x2*x2),x2);\
-    printf("%d %d %.5f %.5f %.5f %.2f %.0f\n",$1,$2,t1,t2,t2-t1,(t2-t1)*180/3.141592654,(t2-t1)*180/3.141592654)}' >>$outfile
+#
+#cat $datadir | sed '/#/d' | awk '{x1=$1/(sqrt('$j'*('$j'+1))); x2=$2/(sqrt('$j'*('$j'+1)));\
+#    t1=atan2(sqrt(1-x1*x1),x1); t2=atan2(sqrt(1-x2*x2),x2);\
+#    printf("%d %d %.5f %.5f %.5f %.2f %.0f\n",$1,$2,t1,t2,t2-t1,(t2-t1)*180/3.141592654,(t2-t1)*180/3.141592654)}' >>$out2
+#
+## compare dtheta values
+#echo "# m mp approxTheta exactTheta exact-approx" >$out3
+#paste <(sed '/#/d' $outfile | awk '{print $1,$2,$6}')\
+#    <(sed '/#/d' $out2 | awk '{print $6}') \
+#    | awk '{print $1,$2,$3,$4,$4-$3}'  >>$out3
+#
+## check jvals
+#echo jexact  = $(awk 'BEGIN {print sqrt('$j'*('$j'+1))}')\; japprox = $(awk 'BEGIN {print '$j'+1/2}')
+#echo jpexact  = $(awk 'BEGIN {print sqrt('$jp'*('$jp'+1))}')\; jpapprox = $(awk 'BEGIN {print '$jp'+1/2}')
+#echo "#japprox jpapprox jexact jpexact acosjapp acosjpapp acosjex acosjpex diffapp diffex">$out4
+#
+#cat $datadir | sed '/#/d' | awk '{japp=$1/('$j'+1/2); jpapp=$2/('$jp'+1/2); jex=$1/sqrt('$j'*('$j'+1)); jpex=$2/sqrt('$jp'*('$jp'+1));\
+#    t1app=atan2(sqrt(1-japp*japp),japp)*180/3.141592654; t2app=atan2(sqrt(1-jpapp*jpapp),jpapp)*180/3.141592654;\
+#    t1ex=atan2(sqrt(1-jex*jex),jex)*180/3.141592654; t2ex=atan2(sqrt(1-jpex*jpex),jpex)*180/3.141592654;\
+#    print japp,jpapp,jex,jpex,t1app,t2app,t1ex,t2ex,t2app-t1app,t2ex-t1ex,t2app-t1app-(t2ex-t1ex)}' >>$out4
+
+## check rad2deg placement
+#echo "#acosjapp acosjpapp acosjex acosjpex degjapp degjpapp degjex degjpex diffapp diffex">$out6
+#
+#cat $datadir | sed '/#/d' | awk '{japp=$1/('$j'+1/2); jpapp=$2/('$jp'+1/2); jex=$1/sqrt('$j'*('$j'+1)); jpex=$2/sqrt('$jp'*('$jp'+1));\
+#    t1app=atan2(sqrt(1-japp*japp),japp); t2app=atan2(sqrt(1-jpapp*jpapp),jpapp);\
+#    t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
+#    t1appdeg=t1app*180/3.141592654;t2appdeg=t2app*180/3.141592654;t1exdeg=t1ex*180/3.141592654;t2exdeg=t2ex*180/3.141592654;\
+#    printf("%.3f %.3f %.3f %.3f %f %f %.7f\n",t1appdeg,t2appdeg,t1exdeg,t2exdeg,t2appdeg-t1appdeg,t2exdeg-t1exdeg,t2appdeg-t1appdeg-(t2exdeg-t1exdeg))}' >>$out6
+#

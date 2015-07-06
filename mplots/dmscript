@@ -229,6 +229,7 @@ dmhist(){
 ###############
 weightedanglehist(){
     dj=$(($jp-$j))
+    infile=dtdat_j$j\_jp$jp\_dj$dj\.dat
     infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=thdatfile
     pfile=thplotfile
@@ -404,10 +405,10 @@ j=28;jp=31;dj=4
 weightedanglehist
 exit
 
-singlem_plot
-singlem_plot_thetabins
+#singlem_plot
+#singlem_plot_thetabins
 
-exit
+#exit
 
 
 savethdata=thplottedvalues.dat

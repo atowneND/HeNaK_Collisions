@@ -13,6 +13,28 @@ for i in $(find rev*wth*.ps); do
 done
 exit
 
+jb=4
+djlist=(1 2 3 4)
+for dj in ${djlist[*]}; do
+    if [ $(($dj%2)) -eq 0 ]; then #even
+        jdiff=$(($dj/2))
+        j=$(($jb-$jdiff))
+        jp=$(($jb+$jdiff))
+    else
+        jdiff=$(($dj/2))
+        j=$(($jb-$jdiff))
+        jp=$(($jb+$jdiff+1))
+    fi
+    #thname=hist_wth_j$j\jp$jp\_dj$dj\.ps
+    #dmname=hist_wdm_j$j\jp$jp\_dj$dj\.ps
+    thname=hist_smallbins_wth_j*dj$dj\.ps
+    dmname=hist_smallbins_wdm_j*dj$dj\.ps
+    for i in $(find $thname); do
+        gv $i 2>/dev/null
+    done
+done
+exit
+
 while [ $dj -lt $maxdj ]; do
     while [ $j -lt $((50-$dj+1)) ]; do
         jp=$(($j+$dj))

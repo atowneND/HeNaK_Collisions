@@ -31,7 +31,7 @@ for jb in ${jblist[*]}; do
         fi
         #thname=hist_wth_j$j\jp$jp\_dj$dj\.ps
         #dmname=hist_wdm_j$j\jp$jp\_dj$dj\.ps
-        thname=rev*wth_j$j*dj$dj\.ps
+        thname=*wth_j$j*dj$dj\.ps
         #thname=rev*wth_j*dj$dj\.ps
         #    dmname=hist_smallbins_wdm_j*dj$dj\.ps
         for i in $(find $thname); do

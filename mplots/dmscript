@@ -30,8 +30,8 @@
 ###############
 #    NOTES    #
 ###############
-# raw data is in datfiles/jmp_j#_jp#_dj#.dat
-# semiclassical data is in scthetas/th_j#_jp#_dj#.dat
+# raw data is in $datadir/jmp_j#_jp#_dj#.dat
+# semiclassical data is in $scdatadir/th_j#_jp#_dj#.dat
 # temporary file for plotting: $plotfile = plotme
 #   - deleted at beginning of script and at the end of functions that use it
 # temporary data file = $tmpfile tmp1
@@ -188,7 +188,7 @@ anglebins(){
 ###############
 anglehist(){
     dj=$(($jp-$j))
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+    infile=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=foofile
     pfile=thplotfile
     rm $ofile $pfile $plotfile 2>/dev/null
@@ -230,7 +230,7 @@ anglehist(){
 ###############
 dmhist(){
     dj=$(($jp-$j))
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+    infile=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
     rm $pfile $ofile $plotfile 2>/dev/null
@@ -281,9 +281,9 @@ eststd(){
 ###############
 weightedanglehist(){
     dj=$(($jp-$j))
-    infile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
+    infile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
     pfile=thplotfile
-    scfile=scthetas/th_j$j\_jp$jp\_dj$dj\.dat
+    scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj\.dat
     rm $tmpfile $pfile $plotfile 2>/dev/null
 
     t=-180
@@ -306,23 +306,24 @@ weightedanglehist(){
 
     normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
-    ymax=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
-    echo $std, $ymax
+    ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
+    ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
+    ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
-    opfile=rev_hist_wth_j$j\jp$jp\_dj$dj\.ps
+    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
+    set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
-    plot '$scfile' w lines title ''
+    plot '$scfile' w lines smooth csplines title ''
     replot '$pfile' u 1:2 with impulse title '' linetype 1
-    replot '<echo \"$std $ymax\"' with impulse title '' linetype 2
-    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
+#    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
+#    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    exit
     rm $pfile $tmpfile $ofile $plotfile 2>/dev/null
 }
 ###############
@@ -330,7 +331,7 @@ weightedanglehist(){
 ###############
 weighteddmhist(){
     dj=$(($jp-$j))
-    infile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
+    infile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
     rm $tmpfile $pfile $ofile $plotfile 2>/dev/null
@@ -342,7 +343,7 @@ weighteddmhist(){
 
     normalize_dtheta $tmpfile $pfile
 
-    opfile=rev_hist_wdm_j$j\jp$jp\_dj$dj\.ps
+    opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
@@ -384,12 +385,12 @@ getbins2(){
 ###############
 calcdtheta(){
     dj=$(($jp-$j))
-    datadir=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-    datoutfile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
+    indata=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
+    datoutfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
     # check rad2deg placement
     echo "#m mp dtheta sigma">$datoutfile
 
-    cat $datadir | sed '/#/d' | awk '{jex=$1/sqrt('$jp'*('$jp'+1)); jpex=$2/sqrt('$j'*('$j'+1));\
+    cat $indata | sed '/#/d' | awk '{jex=$1/sqrt('$jp'*('$jp'+1)); jpex=$2/sqrt('$j'*('$j'+1));\
         t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
         t1appdeg=t1app*180/3.141592654;t2appdeg=t2app*180/3.141592654;t1exdeg=t1ex*180/3.141592654;t2exdeg=t2ex*180/3.141592654;\
         print $1,$2,t2exdeg-t1exdeg,$3}' >>$datoutfile
@@ -409,16 +410,20 @@ normalize_dtheta(){
 #  MY SCRIPT  #
 ###############
 plotfile=plotme
+datadir=datfilesHe
+qmdatadir=archiveHe/qmthetasHe
+scdatadir=archiveHe/scthetasHe
+datadir=datfilesAr
+qmdatadir=qmthetasAr
+scdatadir=scthetasAr
+
 tmpfile=tmp1
 rm $plotfile 2>/dev/null
 
 wbin=1
 j=28;jp=32;dj=4
 djlist=(1 2 3 4)
-jblist=(5 10 30 38)
-
-weightedanglehist
-exit
+jblist=(5 10 20 30 38)
 
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
@@ -462,7 +467,7 @@ exit
 #        dmhist
 #        weightedanglehist
 #        weighteddmhist
-#    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+#    infile=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
 #eststd
 #        echo '' >>$savethdata
 #        echo '' >>$savedmdata

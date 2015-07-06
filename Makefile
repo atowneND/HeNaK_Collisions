@@ -7,7 +7,7 @@
 LIBS = datetime.o utility.o stdio.o dpackb.o
 
 # Executables
-EXECS = dq2theta dqcalc pcc12 calcmm
+EXECS = dq2theta dqcalc pcc12 calcmm dthetabar
 
 #################################
 

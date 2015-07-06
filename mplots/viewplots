@@ -7,7 +7,7 @@ maxdj=10
 maxdj=6
 rm errfile.foo
 
-for i in $(find rev*wth*.ps); do
+for i in $(find rev*w*.ps); do
     echo $i
     gv $i 2>/dev/null
 done

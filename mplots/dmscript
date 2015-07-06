@@ -13,9 +13,9 @@
 # anglebins
 # anglehist
 # dmhist
-# eststd
 ###############
 # UPDATED
+# eststd
 # weightedanglehist
 # weighteddmhist
 # calcdtheta
@@ -34,6 +34,7 @@
 # semiclassical data is in scthetas/th_j#_jp#_dj#.dat
 # temporary file for plotting: $plotfile = plotme
 #   - deleted at beginning of script and at the end of functions that use it
+# temporary data file = $tmpfile tmp1
 ###############
 
 ############### 
@@ -259,29 +260,21 @@ dmhist(){
 ###############
 eststd(){
     # get datafile
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-    tmpfile=j$j\jp$jp\.dat
+    infile=$1
+    tmp2file=tmp_j$j\jp$jp\.dat
     ofile=j$j\jp$jp\sorted.dat
     
-    # compute dtheta
-    awk '{t=$1/sqrt('$j'*('$j'+1)); tp=$2/sqrt('$jp'*('$jp'+1));\
-        dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);\
-        print $1,$2,dt*180/3.141592654,$3}' $infile | sed '/nan/d'>$tmpfile
-    sed -n '1p' $tmpfile>$ofile
-
     # sort data
-    #cat $tmpfile | sed '/#/d' | sort -k 3 -rn >>$ofile
-    cat $tmpfile | sed '/#/d' | sort -k 3 -n >>$ofile
-    rm $tmpfile
+    cat $infile | sed '/#/d' >$tmp2file
 
     # print out all angles greater than or equal to 0
-    awk '$3==0 {print $1,$2,$3,$4/2}' $ofile >$tmpfile
-    awk '$3>0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
-    #awk '$3<0 {print $1,$2,$3,$4}' $ofile >>$tmpfile
-    totsum=$(awk '{sum=sum+$4}END{print sum}' $tmpfile) # sum of all cross sections
-    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<2/3){sum=sum+$4;thispoint=$3}}\
-        END {print thispoint}' $tmpfile)
-    echo standard deviation = $std
+    awk '$1==0 {print $1,$2/2}' $tmp2file >$ofile
+    awk '$1>0 {print $1,$2}' $tmp2file >>$ofile
+    totsum=$(awk '{sum=sum+$2}END{print sum}' $tmp2file) # sum of all cross sections
+    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<1/3){sum=sum+$2;thispoint=$1}}\
+        END {print thispoint}' $ofile)
+    rm $tmp2file $ofile 2>/dev/null
+    echo $std
 }
 ###############
 
@@ -290,7 +283,8 @@ weightedanglehist(){
     dj=$(($jp-$j))
     infile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
     pfile=thplotfile
-    rm $pfile $plotfile 2>/dev/null
+    scfile=scthetas/th_j$j\_jp$jp\_dj$dj\.dat
+    rm $tmpfile $pfile $plotfile 2>/dev/null
 
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
@@ -306,25 +300,30 @@ weightedanglehist(){
 
         t=$ubin
         tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
-#        echo $tmean $foo>>$pfile
-        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$pfile
+        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
         let N=N+1
     done
 
-    normalize_dtheta $pfile
-    exit
+    normalize_dtheta $tmpfile $pfile
+    std=$(eststd $tmpfile)
+    ymax=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
+    echo $std, $ymax
 
     opfile=rev_hist_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}{/Symbol q}'
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
-    plot '$pfile' u 1:2 with impulse
+    plot '$scfile' w lines title ''
+    replot '$pfile' u 1:2 with impulse title '' linetype 1
+    replot '<echo \"$std $ymax\"' with impulse title '' linetype 2
+    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    rm $pfile $ofile $plotfile 2>/dev/null
+    exit
+    rm $pfile $tmpfile $ofile $plotfile 2>/dev/null
 }
 ###############
 
@@ -334,12 +333,14 @@ weighteddmhist(){
     infile=qmthetas/qmth_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
-    rm $pfile $ofile $plotfile 2>/dev/null
+    rm $tmpfile $pfile $ofile $plotfile 2>/dev/null
 
     for dm in $(awk '{print $2-$1}' $infile|awk '!seen[$0]++'); do
         ndm=$(awk '($2-$1)=='$dm' {sum=sum+$4} END {print sum}' $infile)
-        echo $dm $ndm >>$pfile
+        echo $dm $ndm >>$tmpfile
     done
+
+    normalize_dtheta $tmpfile $pfile
 
     opfile=rev_hist_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
@@ -400,8 +401,7 @@ normalize_dtheta(){
     infile=$1
     ofile=$2
     totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
-    echo $totsum
-    awk '{print $1,$2,$2/'$totsum'}' $infile >$ofile
+    awk '{print $1,$2/'$totsum'}' $infile >$ofile
 }
 ###############
 
@@ -409,6 +409,7 @@ normalize_dtheta(){
 #  MY SCRIPT  #
 ###############
 plotfile=plotme
+tmpfile=tmp1
 rm $plotfile 2>/dev/null
 
 wbin=1
@@ -416,8 +417,7 @@ j=28;jp=32;dj=4
 djlist=(1 2 3 4)
 jblist=(5 10 30 38)
 
-echo "running normalization"
-normalize_dtheta thplotfile deleteme
+weightedanglehist
 exit
 
 for jb in ${jblist[*]}; do

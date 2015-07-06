@@ -1,16 +1,18 @@
 #!/bin/bash
 j=1
 dj=1
-max=50
+max=40
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
+echo $srcdir
 
 while [ $dj -lt $(($max-1)) ]; do
     echo running dj=$dj
     while [ $j -lt $(($max-$dj+1)) ]; do
         # initialize parameters
         jp=$(($j+$dj))
-        rawfile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-        scfile=scthetas/th_j$j\_jp$jp\_dj$dj\.dat
+        rawfile=datfilesAr/jmp_j$j\_jp$jp\_dj$dj\.dat
+        scfile=scthetasAr/th_j$j\_jp$jp\_dj$dj\.dat
 #        o2file=cp$rawfile
 
         # calculate datfile/jmp*

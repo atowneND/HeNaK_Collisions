@@ -306,11 +306,12 @@ weightedanglehist(){
 
     normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
+    echo $jb $dj $std >>$stdfile
     ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
-    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+#    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
@@ -343,7 +344,7 @@ weighteddmhist(){
 
     normalize_dtheta $tmpfile $pfile
 
-    opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
+#    opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
@@ -410,21 +411,21 @@ normalize_dtheta(){
 #  MY SCRIPT  #
 ###############
 plotfile=plotme
+tmpfile=tmp1
+rm $tmpfile $plotfile 2>/dev/null
+
 datadir=datfilesHe
 qmdatadir=archiveHe/qmthetasHe
 scdatadir=archiveHe/scthetasHe
-datadir=datfilesAr
-qmdatadir=qmthetasAr
-scdatadir=scthetasAr
-
-tmpfile=tmp1
-rm $plotfile 2>/dev/null
+stdfile=stdHestats
+echo "#jbar dj std">$stdfile
 
 wbin=1
-j=28;jp=32;dj=4
+#j=28;jp=32;dj=4
 djlist=(1 2 3 4)
-jblist=(5 10 20 30 38)
+jblist=(5 10 20 30 35)
 
+echo Helium:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
         if [ $(($dj%2)) -eq 0 ]; then #even
@@ -437,10 +438,46 @@ for jb in ${jblist[*]}; do
             jp=$(($jb+$jdiff+1))
         fi
         echo calculating for jbar=$jb, dj=$dj...
+opfile=HeHists/He_wth_j$j\jp$jp\_dj$dj\.ps
 
         calcdtheta
 
         weightedanglehist
+opfile=HeHists/He_wdm_j$j\jp$jp\_dj$dj\.ps
+        weighteddmhist
+    done
+done
+
+datadir=datfilesAr
+qmdatadir=qmthetasAr
+scdatadir=scthetasAr
+stdfile=stdArstats
+echo "#jbar dj std">$stdfile
+
+wbin=1
+#j=28;jp=32;dj=4
+djlist=(1 2 3 4)
+jblist=(5 10 20 30 35)
+
+echo Argon:
+for jb in ${jblist[*]}; do
+    for dj in ${djlist[*]}; do
+        if [ $(($dj%2)) -eq 0 ]; then #even
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff))
+        else
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff+1))
+        fi
+        echo calculating for jbar=$jb, dj=$dj...
+opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+
+        calcdtheta
+
+        weightedanglehist
+opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
         weighteddmhist
     done
 done

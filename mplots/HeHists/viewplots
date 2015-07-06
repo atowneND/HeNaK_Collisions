@@ -18,7 +18,7 @@ jb=4
 djlist=(1 2 3 4)
 jblist=(5 10 20 30 38)
 
-for jb in ${jblist[*]}; do
+#for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
         if [ $(($dj%2)) -eq 0 ]; then #even
             jdiff=$(($dj/2))
@@ -31,16 +31,16 @@ for jb in ${jblist[*]}; do
         fi
         #thname=hist_wth_j$j\jp$jp\_dj$dj\.ps
         #dmname=hist_wdm_j$j\jp$jp\_dj$dj\.ps
-        thname=*wth_j$j*dj$dj\.ps
+        thname=*wth_j*dj$dj\.ps
         #thname=rev*wth_j*dj$dj\.ps
         #    dmname=hist_smallbins_wdm_j*dj$dj\.ps
         for i in $(find $thname); do
-            #gv $i 2>/dev/null
-            gv $i &
+            gv $i 2>/dev/null
+            ##gv $i &
         done
-    done
     read goahead
-done
+    done
+#done
 exit
 
 while [ $dj -lt $maxdj ]; do

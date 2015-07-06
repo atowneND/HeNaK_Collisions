@@ -7,8 +7,8 @@ maxdj=10
 maxdj=6
 rm errfile.foo
 
-for i in $(find *m*dthetavsigma*.ps); do
-    #gv $i -scale 3 2>/dev/null
+for i in $(find rev*wth*.ps); do
+    echo $i
     gv $i 2>/dev/null
 done
 exit

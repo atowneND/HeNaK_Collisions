@@ -182,7 +182,6 @@ anglehist(){
     pfile=thplotfile
     rm $ofile $pfile $plotfile 2>/dev/null
     sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
-    exit
 
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
@@ -342,7 +341,6 @@ weighteddmhist(){
 
     gnuplot <$plotfile >/dev/null 2>&1
     #    rm $pfile $ofile $plotfile 2>/dev/null
-    exit
 }
 ###############
 
@@ -389,38 +387,40 @@ calcdtheta(){
 #  MY SCRIPT  #
 ###############
 plotfile=plotme
-wbin=1
 savethdata=thplottedvalues.dat
 savedmdata=dmplottedvalues.dat
+
 rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
-j=28;jp=32;dj=4
-echo calculating dtheta...
-calcdtheta
 
-echo plotting by angle...
-weightedanglehist
-echo plotting by dm...
-weighteddmhist
+wbin=1
+j=28;jp=32;dj=4
+djlist=(1 2 3 4)
+jblist=(5 10 30 38)
+
+for jb in ${jblist[*]}; do
+    for dj in ${djlist[*]}; do
+        if [ $(($dj%2)) -eq 0 ]; then #even
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff))
+        else
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff+1))
+        fi
+        echo calculating for jbar=$jb, dj=$dj...
+
+        calcdtheta
+
+        weightedanglehist
+        weighteddmhist
+    done
+done
 
 exit
 
 ################
-##singlem_plot
-##singlem_plot_thetabins
-#
-##exit
-#
-#
-#savethdata=thplottedvalues.dat
-#savedmdata=dmplottedvalues.dat
-#rm $savethdata $savedmdata 2>/dev/null
-#rm $plotfile 2>/dev/null
-#
-#wbin=2
-#djlist=(4)
-#jblist=(40)
-#
 #for jb in ${jblist[*]}; do
 #    for dj in ${djlist[*]}; do
 #        if [ $(($dj%2)) -eq 0 ]; then #even

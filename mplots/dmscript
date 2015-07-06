@@ -306,7 +306,8 @@ weightedanglehist(){
 
         t=$ubin
         tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
-        echo $tmean $foo>>$pfile
+#        echo $tmean $foo>>$pfile
+        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$pfile
         let N=N+1
     done
 
@@ -397,7 +398,10 @@ calcdtheta(){
 ###############
 normalize_dtheta(){
     infile=$1
-    echo $infile
+    ofile=$2
+    totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
+    echo $totsum
+    awk '{print $1,$2,$2/'$totsum'}' $infile >$ofile
 }
 ###############
 
@@ -411,6 +415,10 @@ wbin=1
 j=28;jp=32;dj=4
 djlist=(1 2 3 4)
 jblist=(5 10 30 38)
+
+echo "running normalization"
+normalize_dtheta thplotfile deleteme
+exit
 
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do

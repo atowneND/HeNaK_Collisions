@@ -1,11 +1,32 @@
-#!/bin/bash
-
+#!/bin/bash 
 
 ###############
 #FUNCTION DEFS#
 ###############
 
 ###############
+# LIST OF FUN #
+###############
+# UPDATED
+# weightedanglehist - updated
+# weighteddmhist - updated
+###############
+# OLD
+# singlem_plot
+# singlem_plot_thetabins
+# anglebins
+# anglehist
+# dmhist
+# eststd
+###############
+# CONSTANT
+# getbins2
+###############
+# DELETE
+# getbins
+###############
+
+############### 
 singlem_plot(){
     j=28
     jp=32
@@ -230,12 +251,8 @@ dmhist(){
 weightedanglehist(){
     dj=$(($jp-$j))
     infile=dtdat_j$j\_jp$jp\_dj$dj\.dat
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
-    ofile=thdatfile
     pfile=thplotfile
-    rm $pfile $ofile $plotfile 2>/dev/null
-    sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
-    echo \#mean_theta cs_sum >>$savethdata
+    rm $pfile $plotfile 2>/dev/null
 
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
@@ -244,53 +261,47 @@ weightedanglehist(){
         read lbin ubin <<<$(getbins2 $wbin $t $divfac)
 
         if [ $N -eq 0 ]; then
-            foo=$(awk '($1<='$ubin') {sum=sum+$2} END {print sum}' $ofile)
+            foo=$(awk '($3<='$ubin') {sum=sum+$4} END {print sum}' $infile)
         else
-            foo=$(awk '($1<='$ubin')&&($1>'$lbin') {sum=sum+$2} END {print sum}' $ofile)
+            foo=$(awk '($3<='$ubin')&&($3>'$lbin') {sum=sum+$4} END {print sum}' $infile)
         fi
 
         t=$ubin
-        echo $lbin\to$ubin $foo>>$pfile
+        tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
+        echo $tmean $foo>>$pfile
         echo $foo | awk '$1==0||$1 {print ('$lbin'+'$ubin')/2,$1}' >>$savethdata
         let N=N+1
     done
-    exit
 
-    opfile=test_hist_wth_j$j\jp$jp\_dj$dj\.ps
+    opfile=rev_hist_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
-    set style data histogram
-    set xtic rotate -90
     set xlabel '{/Symbol D}{/Symbol q}'
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
-    plot '$pfile' u 2:xtic(1)
+    plot '$pfile' u 1:2 with impulse
     set output '$opfile'
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-#    rm $pfile $ofile $plotfile 2>/dev/null
-    exit
+    rm $pfile $ofile $plotfile 2>/dev/null
 }
 ###############
 
 ###############
 weighteddmhist(){
     dj=$(($jp-$j))
-    infile=datfiles/jmp_j$j\_jp$jp\_dj$dj\.dat
+    infile=dtdat_j$j\_jp$jp\_dj$dj\.dat
     ofile=dmdatfile
     pfile=dmplotfile
     rm $pfile $ofile $plotfile 2>/dev/null
-    echo \#dm num_dm >$pfile
-    echo \#dm num_dm >>$savedmdata
-    sed '/#/d' $infile|awk '{print $2-$1,$3}'>$ofile
 
-    for dm in $(awk '{print $1}' $ofile|awk '!seen[$0]++'); do
-        ndm=$(awk '$1=='$dm' {sum=sum+$2} END {print sum}' $ofile)
+    for dm in $(awk '{print $2-$1}' $infile|awk '!seen[$0]++'); do
+        ndm=$(awk '($2-$1)=='$dm' {sum=sum+$4} END {print sum}' $infile)
         echo $dm $ndm >>$pfile
         echo $dm $ndm >>$savedmdata
     done
 
-    opfile=test_hist_wdm_j$j\jp$jp\_dj$dj\.ps
+    opfile=rev_hist_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
@@ -302,6 +313,7 @@ weighteddmhist(){
 
     gnuplot <$plotfile >/dev/null 2>&1
     #    rm $pfile $ofile $plotfile 2>/dev/null
+    exit
 }
 ###############
 
@@ -337,7 +349,7 @@ getbins(){
 
 ###############
 getbins2(){
-    #usage: read lbin ubin <<<$(getbins $wbin $t $divfac)
+    #usage: read lbin ubin <<<$(getbins2 $wbin $t $divfac)
     wbin=$1
     t=$2
     divfac=$3
@@ -401,8 +413,9 @@ savethdata=thplottedvalues.dat
 savedmdata=dmplottedvalues.dat
 rm $savethdata $savedmdata 2>/dev/null
 rm $plotfile 2>/dev/null
-j=28;jp=31;dj=4
+j=28;jp=32;dj=4
 weightedanglehist
+weighteddmhist
 exit
 
 #singlem_plot

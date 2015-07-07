@@ -1,4 +1,4 @@
-***** C:\wkarea\adcode\blam\dqcalc2.for created Monday, June 15, 2015 at 16:43
+***** C:\wkarea\adcode\blam\dthetqm.for created July 7, 2015
 ***** Peet Hickman
 
 *     this version reads j and jp from the command line, which must be
@@ -16,11 +16,12 @@
      -             angle(0:MAXLAMBMAX),clist(CSIZE),sum,sig,sumnorm,
      -             pfac, phase, xjmin,xjmax,x,PI,jph,tmp,dq,dsave,sum2
       double precision dqbyd0(0:2*MAXNOJ),approx(0:10),averagelam,
-     -             averageangle,altangle,hist(-200:200)
+     -             averageangle,altangle,hist(-18000:18000)
       parameter    (PI=4.d0*atan(1.0d0) )
-      double precision P(0:200),Balpha(180),ftheta,alpha,theta,phi,
-     -              thprime,costh,sinth,cosal,sinal,bar
-      integer      itheta,iphi
+      double precision P(0:200),Balpha(18000),ftheta,alpha,theta,phi,
+     -              thprime,costh,sinth,cosal,sinal,bar,
+     -              thbindeg,albindeg,phibindeg,  thbinrad
+      integer       nthbin,  nalbin,  nphibin,  itheta,iphi
 
       integer, parameter :: KMAX=201
       double precision bb(0:KMAX),z
@@ -35,6 +36,29 @@
       character    argv(10)*(10)
 
       call stdio (in,out)
+
+
+      write (*,*) 'enter theta-bin, alpha-bin, and phi-bin in degrees'
+      read  (*,*) thbindeg,albindeg,phibindeg
+
+!      thbindeg = 1.0d0
+      nthbin = nint(180.d0/thbindeg)
+      thbindeg = 180.d0/dble(nthbin)
+      
+!      albindeg = 1.0d0
+      nalbin = nint(180.d0/albindeg)
+      albindeg = 180.d0/dble(nalbin)
+      
+!      phibindeg = 1.0d0
+      nphibin = nint(180.d0/phibindeg)
+      phibindeg = 180.d0/dble(nphibin)
+
+      thbinrad = thbindeg*PI/180.d0
+
+      DO k = -nalbin,nalbin
+         hist(k) = 0.d0
+      END DO
+
 
       argc = iargc()
       IF (argc.eq.4) THEN
@@ -82,9 +106,6 @@
         read (in,*) (B(lam,k),k=1,count)
       END DO
 
-!      write(*,*) 'Enter j and jp'
-!      read (*,*) j,jp
-
       write (out,*) '# j and jp are', j, jp
       IF (j.lt.jmin .or. j.gt.jmax .or. jp.lt.jmin .or. jp.gt.jmax) THEN
          call abort ('check the j and jp values in input')
@@ -110,30 +131,6 @@
          END IF
       END DO
 
-$comment
-*     write out table of B-lambda and corresponding angle
-
-      write (out,*) '# lam  B-lambda(j,jp)  angle'
-      write (out,'(1h#,i5,2f12.4)') (lam,Blambda(lam),
-     -                  angle(lam)*180.d0/PI,lam=abs(j-jp),j+jp)
- 
-*     calculate average value of lambda
-      sum = 0.d0
-      sum2 = 0.d0
-      sumnorm = 0.d0
-      DO lam = abs(j-jp),j+jp
-         tmp = dble( j*(j+1) + jp*(jp+1) - dble(lam)*dble(lam+1) ) /
-     -     (2.d0 *  sqrt(   dble(j*(j+1)*jp*(jp+1) ) ) )
-         sum  = sum  + dble(lam)*dble(2*lam+1)*Blambda(lam)
-         sum2 = sum2 + acos(tmp)*dble(2*lam+1)*Blambda(lam)
-         sumnorm = sumnorm + dble(2*lam+1)*Blambda(lam)
-      END DO
-      averagelam = sum/sumnorm
-      tmp = dble( j*(j+1) + jp*(jp+1) - averagelam*(averagelam+1) ) /
-     -     (2.d0 *  sqrt(   dble(j*(j+1)*jp*(jp+1) ) ) )
-      averageangle = acos(tmp) * 180.d0/PI   ! angle now in degrees
-      altangle = sum2/sumnorm * 180.d0/PI
-$end comment
 
 *     now calculate the dq coefficients for q = iq = 1,...,2*min(j,jp)
       DO iq=0,2*min(j,jp)
@@ -174,42 +171,14 @@ $end comment
       END DO
       z = z * PI/dble(2)
 
-$comment
-      approx(0) = 1.d0 - bb(0)*dqbyd0(1)
-      approx(1) =        approx(0) - bb(1)*dqbyd0(3)
-      approx(2) =                     approx(1) - bb(2)*dqbyd0(5)
-      write (*,*) (approx(k)*90.d0,k=0,2)
- 
-
-      write (*,*) 'approximate results for mean alpha (degrees)'
-      approx(0) = 1.0d0 - bb(0)*dqbyd0(1)
-      write (*,*) 0, approx(0) * 90.d0   ! (pi/2) * (180/pi)
-      DO k = 1, min(10,2*min(j,jp))  ! convert to dgreees
-         approx(k) = approx(k-1) - bb(k)*dqbyd0(2*k+1)
-         write (*,*) k,approx(k)*90.d0
-      END DO
-      write (out,*) ' '
-
-      write (out,'(''mean alpha (rad, deg) = '',2f10.4)') z, z*180.d0/PI
-      write (out,'(''mean lambda = '',f10.4,'' --> '',f10.4,'' deg'' )')
-     -   averagelam,  averageangle
-         
-      write (*,'(''mean alpha (rad, deg) = '',2f10.4)') z, z*180.d0/PI
-      write (*,'(''mean lambda = '',f10.4,'' --> '',f10.4,'' deg'' )')
-     -   averagelam,  averageangle
-     
-      write (*,'(''alt average angle (deg) = '',2f10.4)') altangle
-$end comment
-
-
       write (out,*) '############################'
 
 *     now calculate B(cos alpha)
       
       P(0)=1.d0
       qend = 2*min(j,jp)
-      DO ialpha=1,180
-         alpha = (dble(ialpha) - 0.5d0)*PI/180.d0  ! in radians
+      DO ialpha=1,nalbin
+         alpha = (dble(ialpha) - 0.5d0)*albindeg*PI/180.d0  ! in radians
          ! calculate B(cos alpha)
          x = cos(alpha)
          P(1) = x
@@ -225,51 +194,52 @@ $end comment
          Balpha(ialpha) = Balpha(ialpha)*sin(alpha)
       END DO
 
-      DO k = -200,200
-         hist(k) = 0.d0
-      END DO
-
-
-      DO itheta = 1,180
-         theta = (dble(itheta) - 0.5d0)*PI/180.d0  ! in radians
+      DO itheta = 1,nthbin
+         theta = (dble(itheta) - 0.5d0)*thbindeg*PI/180.d0  ! in radians
          sinth = sin(theta)
          costh = cos(theta)
-         DO ialpha=1,180
-            alpha = (dble(ialpha) - 0.5d0)*PI/180.d0  ! in radians
+         DO ialpha=1,nalbin
+            alpha = (dble(ialpha) - 0.5d0)*albindeg*PI/180.d0  ! in radians
             sinal = sin(alpha)
             cosal = cos(alpha)
-            DO iphi=91,270   ! use symmetry, but iphi=1,180 is wrong
-               phi = (dble(iphi) - 0.5d0)*PI/180.d0  ! in radians
+            DO iphi=1,nphibin  ! use symmetry -- careful to get correct range
+               phi = (dble(iphi) - 0.5d0)*phibindeg*PI/180.d0  ! in radians
                thprime = acos(
-     -         costh*cosal + sinth*sinal*sin(phi) )
-               k = nint( (thprime-theta)*180.d0/PI )
+     -         costh*cosal + sinth*sinal*cos(phi) )
+               k = nint( (thprime-theta)/thbinrad )
                hist(k) = hist(k)+sinth*Balpha(ialpha) ! sinal factor is in Balpha
             END DO
          END DO
       END DO
 
       tmp = 0.d0
-      DO k = -180,180
+      DO k = -nthbin,nthbin
          tmp = tmp + hist(k)
       END DO
+      tmp = tmp*thbindeg
       
       bar = 0.d0
       sig = 0.d0
-      DO k=-180,180
+      DO k=-nthbin,nthbin
          hist(k) = hist(k)/tmp
-         bar = bar+dble(k)*hist(k)
+         bar = bar+dble(k)*hist(k)        ! theta (deg) = k*thbindeg
          sig = sig + dble(k*k)*hist(k)
       END DO
-      sig = sqrt(sig)
+      bar = bar*thbindeg
+      sig = sqrt(sig*thbindeg)*thbindeg
+
+      write (out,'(''#bin size (deg) for theta,alpha,phi: '',3f10.5)')
+     -  thbindeg,albindeg,phibindeg
+
       write (out,'(''# mean and rms of thprime are '',es15.4,f10.4)')
      -  bar,sig
       write (*,'(''# mean and rms of thprime are '',es15.4,f10.4)')
      -  bar,sig
       
       write(out,*) '# normalized histogram'
-      DO k = -180,180
+      DO k = -nthbin,nthbin
          hist(k) = hist(k)
-         write (out,'(i5,f20.8)') k,hist(k)
+         write (out,'(f10.4,f20.8)') dble(k)*thbindeg,hist(k)
       END DO
-
+ 
       end

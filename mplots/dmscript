@@ -415,16 +415,19 @@ m0to0(){
     jmax=50
     djmax=39
     outfile=m0to0.dat
-    echo "#jbar dj sigma" >$outfile
+    echo "#jb dj m mp dtheta sigma" >$outfile
 
+    datadir=datfilesHe
+    qmdatadir=archiveHe/qmthetasHe
     while [ $dj -lt $djmax ]; do
+        echo running dj = $dj
         while [ $j -lt $(($jmax-$dj)) ]; do
             jp=$(($j+$dj))
-            datfile=archiveHe/qmthetasHe/qmth_j$j\_jp$jp\_dj$dj\.dat
-            echo j=$j, jp=$jp, dj=$dj
-            echo $datfile
-            awk '$1==0&&$2==0 {print '$jbar','$dj',$4}' $datfile
-            exit
+            jbar=$(awk 'BEGIN {print ('$j'+'$jp')/2}')
+            calcdtheta
+            datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
+            cat $datfile | sed '/#/d' | sort -k 3 -n | grep -A 1 '^0 0 0 .[0-9]*\.[0-9]*'\
+                | awk 'FNR==2{print '$jbar','$dj',$1,$2,$3,$4}' >>$outfile
             let j=j+1
         done
         let dj=dj+1

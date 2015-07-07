@@ -7,10 +7,10 @@ maxdj=10
 maxdj=6
 rm errfile.foo
 
-for i in $(find *ps); do
-    echo $i
-#    gv $i 2>/dev/null
-    gv $i &
+for i in $(find He_theta*ps); do
+#    echo $i
+    gv $i 2>/dev/null
+    #gv $i &
 done
 exit
 

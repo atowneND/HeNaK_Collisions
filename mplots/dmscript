@@ -59,9 +59,9 @@ singlem_plot(){
 
         cat $tmp1file | awk '$1=='$m'||$1==-'$m' {print ($2-$1), $4}' | awk '{n[$1]; \
             for(i=2;i<=NF;i++) a[$1,i]+=$i} END\
-            {for(x in n){ printf "%s ",x; for(y=2;y<=NF;y++) \
-                printf "%s%s", a[x,y],(y==NF?ORS:FS)}\
-            }' | sort -k 1 -n >$pfile
+                {for(x in n){ printf "%s ",x; for(y=2;y<=NF;y++) \
+                    printf "%s%s", a[x,y],(y==NF?ORS:FS)}\
+                }' | sort -k 1 -n >$pfile
 
         awk '$1==0 {print $1,$2/2}' $pfile >> $pfile2
         awk '$1>0 {print $1,$2}' $pfile >> $pfile2
@@ -264,7 +264,7 @@ eststd(){
     infile=$1
     tmp2file=tmp_j$j\jp$jp\.dat
     ofile=j$j\jp$jp\sorted.dat
-    
+
     # sort data
     cat $infile | sed '/#/d' >$tmp2file
 
@@ -312,7 +312,7 @@ weightedanglehist(){
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
-#    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+    #    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
@@ -320,8 +320,8 @@ weightedanglehist(){
     set title 'j=$j, jp=$jp'
     plot '$scfile' w lines smooth csplines title ''
     replot '$pfile' u 1:2 with impulse title '' linetype 1
-#    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
-#    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
+    #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
+    #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
     replot">>$plotfile
 
@@ -345,7 +345,7 @@ weighteddmhist(){
 
     normalize_dtheta $tmpfile $pfile
 
-#    opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
+    #    opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
@@ -409,6 +409,40 @@ normalize_dtheta(){
 ###############
 
 ###############
+dth_max(){
+    j=1
+    dj=1
+    jmax=50
+    djmax=39
+    outfile=dth_max.dat
+    echo "#jb dj m mp dtheta sigma" >$outfile
+    rm $tmpfile 2>/dev/null
+
+    datadir=datfilesHe
+    qmdatadir=archiveHe/qmthetasHe
+    while [ $dj -lt $djmax ]; do
+        echo running dj = $dj
+        while [ $j -lt $(($jmax-$dj)) ]; do
+            jp=$(($j+$dj))
+            jbar=$(awk 'BEGIN {print ('$j'+'$jp')/2}')
+            calcdtheta
+            datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
+            echo $datfile
+            cat $datfile | sed '/#/d' | sort -k 3 -n | awk 'BEGIN {print 0} 
+#                {if($4>max){max=$4;m=$1;mp=$2;th=$3}} END
+#                {print '$jbar','$dj',m,mp,th,max}' >>$tmpfile
+            let j=j+1
+            exit
+        done
+        let dj=dj+1
+        j=1
+    done
+    cat $tmpfile | sort -k 5 -n >>$outfile
+    rm $tmpfile
+}
+###############
+
+###############
 m0to0(){
     j=1
     dj=1
@@ -440,13 +474,89 @@ m0to0(){
 ###############
 
 ###############
+plotm0to0byjbar(){
+    origfile=$1
+    dj=1
+    djmax=10
+    rm $tmpfile $plotfile 2>/dev/null
+    echo "#!/usr/local/gnuplot
+    set samples 10000">$plotfile
+
+    while [ $dj -lt $djmax ]; do
+        outfile=changeme_dj$dj.dat
+        cat $origfile | awk '$2=='$dj' {print $1,$2,$5}' | sort -k 1 -n >$outfile
+
+        echo "
+        f1='$outfile'
+        f2='../He10/Stats/stats_dj$dj.dat'
+        set term postscript eps enhanced
+        set xrange [0:50]
+        plot f1 u 1:3 w linespoints smooth csplines title 'dj=$dj'
+        #replot f2 u ((\$1+\$2)/2):3 w lines title 'SC <{/Symbol a}>'
+        #replot f2 u ((\$1+\$2)/2):6 title 'QM <{/Symbol a}>'
+        set xlabel 'jbar'; set ylabel '{/Symbol D}{/Symbol q}'
+        set title 'Helium dj=$dj'
+        set output 'He_theta_dj$dj.ps'
+        replot
+        ">>$plotfile
+        
+        gnuplot <$plotfile >/dev/null
+        rm $plotfile
+        let dj=dj+1
+    done
+}
+###############
+
+###############
+plotm0to0bydj(){
+    origfile=$1
+    jbar=3.5
+    jbarmax=45
+    rm $tmpfile $plotfile 2>/dev/null
+    echo "#!/usr/local/gnuplot
+    set samples 10000">$plotfile
+
+    while [ $(awk 'BEGIN {print '$jbar'<='$jbarmax'}') -eq 1 ]; do
+        if [ "$jbar" -eq $jbar ] 2>/dev/null ; then
+            jstr=$(awk 'BEGIN {printf("%dd0\n",'$jbar')}')
+        else
+            jstr=$(awk 'BEGIN {printf("%dd5\n",'$jbar')}')
+        fi
+        
+        outfile=changeme_jbar$jstr.dat
+        cat $origfile | awk '$1=='$jbar' {print $1,$2,$5}' | sort -k 2 -n >$outfile
+
+        echo "
+        f1='$outfile'
+        set term postscript eps enhanced
+        set xrange [0:$jbarmax]
+        plot f1 u 2:3 w linespoints smooth csplines title 'jbar=$jbar'
+        replot f1 u 2:3 title ''
+        set xlabel 'dj'; set ylabel '{/Symbol D}{/Symbol q}'
+        set title 'Helium jbar=$jbar'
+        set output 'He_theta_jbar$jstr.ps'
+        replot
+        ">>$plotfile
+        
+        gnuplot <$plotfile >/dev/null 2>&1
+        rm $plotfile
+        jbar=$(awk 'BEGIN {print '$jbar'+0.5}')
+    done
+}
+###############
+
+###############
 #  MY SCRIPT  #
 ###############
 tmpfile=tmp1
-m0to0
+plotfile=plotme
+#m0to0
+dth_max
+exit
+plotm0to0bydj m0to0.dat
+plotm0to0byjbar m0to0.dat
 exit
 
-plotfile=plotme
 rm $tmpfile $plotfile 2>/dev/null
 
 datadir=datfilesHe
@@ -473,12 +583,12 @@ for jb in ${jblist[*]}; do
             jp=$(($jb+$jdiff+1))
         fi
         echo calculating for jbar=$jb, dj=$dj...
-opfile=HeHists/He_wth_j$j\jp$jp\_dj$dj\.ps
+        opfile=HeHists/He_wth_j$j\jp$jp\_dj$dj\.ps
 
         calcdtheta
 
         weightedanglehist
-opfile=HeHists/He_wdm_j$j\jp$jp\_dj$dj\.ps
+        opfile=HeHists/He_wdm_j$j\jp$jp\_dj$dj\.ps
         weighteddmhist
     done
 done
@@ -507,12 +617,12 @@ for jb in ${jblist[*]}; do
             jp=$(($jb+$jdiff+1))
         fi
         echo calculating for jbar=$jb, dj=$dj...
-opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+        opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
 
         calcdtheta
 
         weightedanglehist
-opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
+        opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
         weighteddmhist
     done
 done

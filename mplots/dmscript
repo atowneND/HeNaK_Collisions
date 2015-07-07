@@ -416,6 +416,7 @@ m0to0(){
     djmax=39
     outfile=m0to0.dat
     echo "#jb dj m mp dtheta sigma" >$outfile
+    rm $tmpfile 2>/dev/null
 
     datadir=datfilesHe
     qmdatadir=archiveHe/qmthetasHe
@@ -427,23 +428,25 @@ m0to0(){
             calcdtheta
             datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
             cat $datfile | sed '/#/d' | sort -k 3 -n | grep -A 1 '^0 0 0 .[0-9]*\.[0-9]*'\
-                | awk 'FNR==2{print '$jbar','$dj',$1,$2,$3,$4}' >>$outfile
+                | awk 'FNR==2{print '$jbar','$dj',$1,$2,$3,$4}' >>$tmpfile
             let j=j+1
         done
         let dj=dj+1
         j=1
     done
+    cat $tmpfile | sort -k 5 -n >>$outfile
+    rm $tmpfile
 }
 ###############
 
 ###############
 #  MY SCRIPT  #
 ###############
+tmpfile=tmp1
 m0to0
 exit
 
 plotfile=plotme
-tmpfile=tmp1
 rm $tmpfile $plotfile 2>/dev/null
 
 datadir=datfilesHe

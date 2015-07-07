@@ -8,7 +8,11 @@ dq2theta: ./dq2theta <dq.dat> <B.dat>
     ->Bnorm.dat
     STDOUT: <alphamin>
     STDOUT: <Bmax(alpha)>
-calcmm: <Bfile?> <output file>
+calcmm: echo j jp | ./calcmm <blam file> <jmp.dat>
+    ->jmp.dat
+dthetabar: echo th_bin alph_bin phi_bin| ./dthetabar <blam file> <sc.dat> j jp
+    ->sc.dat
+    STDOUT: # mean and rms of thprime are %5.4e %6.4e
 
 C:
 main.out: ./main.out <j> <jp> <workingdirectory>

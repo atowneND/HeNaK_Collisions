@@ -2,8 +2,11 @@
 j=1
 dj=1
 max=40
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
+atom=$1
+srcfile=$2
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
+#srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
+#srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
 echo $srcdir
 
 while [ $dj -lt $(($max-1)) ]; do
@@ -11,8 +14,8 @@ while [ $dj -lt $(($max-1)) ]; do
     while [ $j -lt $(($max-$dj+1)) ]; do
         # initialize parameters
         jp=$(($j+$dj))
-        rawfile=datfilesAr/jmp_j$j\_jp$jp\_dj$dj\.dat
-        scfile=scthetasAr/th_j$j\_jp$jp\_dj$dj\.dat
+        rawfile=datfiles$atom/jmp_j$j\_jp$jp\_dj$dj\.dat
+        scfile=scthetas$atom/th_j$j\_jp$jp\_dj$dj\.dat
 #        o2file=cp$rawfile
 
         # calculate datfile/jmp*
@@ -21,7 +24,10 @@ while [ $dj -lt $(($max-1)) ]; do
 #        sed '/# [0-9]*/d' $rawfile | sed 's/#/ /g' | awk '{print $1,$2,$3}'>>$o2file
 
         # get semiclassical model for thetas
-        ../dthetabar $srcdir $scfile $j $jp>/dev/null
+        thb=.5
+        alphb=.5
+        phb=.5
+        echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp>/dev/null
         let j=j+1
     done
     j=1

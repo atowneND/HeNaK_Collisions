@@ -294,15 +294,15 @@ weightedanglehist(){
         read lbin ubin <<<$(getbins2 $wbin $t $divfac)
         echo $lbin $ubin
 
-#        if [ $N -eq 0 ]; then
-#            foo=$(awk '($3<='$ubin') {sum=sum+$4} END {print sum}' $infile)
-#        else
-#            foo=$(awk '($3<='$ubin')&&($3>'$lbin') {sum=sum+$4} END {print sum}' $infile)
-#        fi
-#
+        if [ $N -eq 0 ]; then
+            foo=$(awk '($3<='$ubin') {sum=sum+$4} END {print sum}' $infile)
+        else
+            foo=$(awk '($3<='$ubin')&&($3>'$lbin') {sum=sum+$4} END {print sum}' $infile)
+        fi
+
         t=$ubin
-#        tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
-#        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
+        tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
+        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
         let N=N+1
     done
 
@@ -368,19 +368,25 @@ getbins2(){
     t=$2
     divfac=$3
 
-    read fn dn <<<$(awk 'BEGIN {printf("%f %d\n",180/'$wbin',180/'$wbin')}')
-    isodd=$(awk 'BEGIN {print '$wbin'%2}')
-    if [ $isodd -eq 1 ]; then
-        n=$(awk 'BEGIN {if ('$fn'=='$dn') {print '$dn'} else {print '$dn'+1}}')
+    ceilfac=$(awk 'BEGIN {print 180/'$wbin'}' | awk '{printf("%d\n",$0+=$0<0?0:0.9)}')
+    if [ $t -eq -180 ] 2>/dev/null; then
+        lbin=$(awk 'BEGIN {print -'$wbin'*'$ceilfac'-'$wbin'/2}')
     else
-        n=$dn
-    fi
-    if [ $t -eq -180 ] 2>/dev/null ; then
-        lbin=$(awk 'BEGIN {print -'$wbin'*'$n'-'$wbin'/2}')
-    else
-        lbin=$t
+        lbin=$(awk 'BEGIN {print '$t'}')
     fi
     ubin=$(awk 'BEGIN {print '$lbin'+'$wbin'}')
+    if [ $(awk 'BEGIN {print '$ubin'<-180}') -eq 1 ] 2>/dev/null; then
+        lbin=$ubin
+        ubin=$(awk 'BEGIN {print '$lbin'+'$wbin'}')
+    elif [ $(awk 'BEGIN {print '$lbin'>180}') -eq 1 ] 2>/dev/null; then
+        ubin=$lbin
+    fi
+#    if [ $(awk 'BEGIN {if('$ubin'<-180){print 1}else{print 0}}') -eq 1 ] 2>/dev/null; then
+#        lbin=$ubin
+#        ubin=$(awk 'BEGIN {print '$lbin'+'$wbin'}')
+#    elif [ $(awk 'BEGIN {if('$lbin'>180){print 1}else{print 0}}') -eq 1 ] 2>/dev/null; then
+#        ubin=$lbin
+#    fi
     echo $lbin $ubin
 }
 ###############
@@ -565,10 +571,9 @@ qmdatadir=qmthetasHe
 scdatadir=scthetasHe
 stdfile=stdHestats
 histdir=halfHeHists
-mkdir $histdir
 echo "#jbar dj std">$stdfile
 
-wbin=0.5
+wbin=10
 djlist=(1 2 3 4 5 6 7 8 9 10)
 djlist=(1 2 3)
 jblist=(5 10 20 30 35)
@@ -602,7 +607,6 @@ qmdatadir=qmthetasAr
 scdatadir=scthetasAr
 stdfile=stdArstats
 histdir=halfArHists
-mkdir $histdir
 echo "#jbar dj std">$stdfile
 
 echo Argon:

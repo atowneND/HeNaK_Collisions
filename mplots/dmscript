@@ -18,15 +18,15 @@
 # eststd
 # weightedanglehist
 # weighteddmhist
-# calcdtheta
-###############
-# CONSTANT
 # getbins2
-###############
-# UPDATED
+# calcdtheta
 # normalize_dtheta
 # m0to0
 ###############
+# NEEDS WORK
+# plotm0to0byjbar
+# plotm0to0bydj
+# dth_max
 
 ###############
 #    NOTES    #
@@ -292,16 +292,17 @@ weightedanglehist(){
     N=0
     while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
         read lbin ubin <<<$(getbins2 $wbin $t $divfac)
+        echo $lbin $ubin
 
-        if [ $N -eq 0 ]; then
-            foo=$(awk '($3<='$ubin') {sum=sum+$4} END {print sum}' $infile)
-        else
-            foo=$(awk '($3<='$ubin')&&($3>'$lbin') {sum=sum+$4} END {print sum}' $infile)
-        fi
-
+#        if [ $N -eq 0 ]; then
+#            foo=$(awk '($3<='$ubin') {sum=sum+$4} END {print sum}' $infile)
+#        else
+#            foo=$(awk '($3<='$ubin')&&($3>'$lbin') {sum=sum+$4} END {print sum}' $infile)
+#        fi
+#
         t=$ubin
-        tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
-        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
+#        tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
+#        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
         let N=N+1
     done
 
@@ -326,7 +327,7 @@ weightedanglehist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    rm $pfile $tmpfile $ofile $plotfile 2>/dev/null
+    rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
 
@@ -405,40 +406,6 @@ normalize_dtheta(){
     ofile=$2
     totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
     awk '{print $1,$2/'$totsum'}' $infile >$ofile
-}
-###############
-
-###############
-dth_max(){
-    j=1
-    dj=1
-    jmax=50
-    djmax=39
-    outfile=dth_max.dat
-    echo "#jb dj m mp dtheta sigma" >$outfile
-    rm $tmpfile 2>/dev/null
-
-    datadir=datfilesHe
-    qmdatadir=archiveHe/qmthetasHe
-    while [ $dj -lt $djmax ]; do
-        echo running dj = $dj
-        while [ $j -lt $(($jmax-$dj)) ]; do
-            jp=$(($j+$dj))
-            jbar=$(awk 'BEGIN {print ('$j'+'$jp')/2}')
-            calcdtheta
-            datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
-            echo $datfile
-            cat $datfile | sed '/#/d' | sort -k 3 -n | awk 'BEGIN {print 0} 
-#                {if($4>max){max=$4;m=$1;mp=$2;th=$3}} END
-#                {print '$jbar','$dj',m,mp,th,max}' >>$tmpfile
-            let j=j+1
-            exit
-        done
-        let dj=dj+1
-        j=1
-    done
-    cat $tmpfile | sort -k 5 -n >>$outfile
-    rm $tmpfile
 }
 ###############
 
@@ -546,28 +513,64 @@ plotm0to0bydj(){
 ###############
 
 ###############
+dth_max(){
+    j=1
+    dj=1
+    jmax=50
+    djmax=39
+    outfile=dth_max.dat
+    echo "#jb dj m mp dtheta sigma" >$outfile
+    rm $tmpfile 2>/dev/null
+
+    datadir=datfilesHe
+    qmdatadir=archiveHe/qmthetasHe
+    while [ $dj -lt $djmax ]; do
+        echo running dj = $dj
+        while [ $j -lt $(($jmax-$dj)) ]; do
+            jp=$(($j+$dj))
+            jbar=$(awk 'BEGIN {print ('$j'+'$jp')/2}')
+            calcdtheta
+            datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
+            echo $datfile
+            cat $datfile | sed '/#/d' | sort -k 3 -n | awk 'BEGIN {print 0} 
+#                {if($4>max){max=$4;m=$1;mp=$2;th=$3}} END
+#                {print '$jbar','$dj',m,mp,th,max}' >>$tmpfile
+            let j=j+1
+            exit
+        done
+        let dj=dj+1
+        j=1
+    done
+    cat $tmpfile | sort -k 5 -n >>$outfile
+    rm $tmpfile
+}
+###############
+
+###############
 #  MY SCRIPT  #
 ###############
 tmpfile=tmp1
 plotfile=plotme
 #m0to0
-dth_max
-exit
-plotm0to0bydj m0to0.dat
-plotm0to0byjbar m0to0.dat
-exit
+#dth_max
+#exit
+#plotm0to0bydj m0to0.dat
+#plotm0to0byjbar m0to0.dat
+#exit
 
 rm $tmpfile $plotfile 2>/dev/null
 
 datadir=datfilesHe
-qmdatadir=archiveHe/qmthetasHe
-scdatadir=archiveHe/scthetasHe
+qmdatadir=qmthetasHe
+scdatadir=scthetasHe
 stdfile=stdHestats
+histdir=halfHeHists
+mkdir $histdir
 echo "#jbar dj std">$stdfile
 
-wbin=1
-#j=28;jp=32;dj=4
-djlist=(1 2 3 4)
+wbin=0.5
+djlist=(1 2 3 4 5 6 7 8 9 10)
+djlist=(1 2 3)
 jblist=(5 10 20 30 35)
 
 echo Helium:
@@ -583,13 +586,14 @@ for jb in ${jblist[*]}; do
             jp=$(($jb+$jdiff+1))
         fi
         echo calculating for jbar=$jb, dj=$dj...
-        opfile=HeHists/He_wth_j$j\jp$jp\_dj$dj\.ps
+        opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
 
         calcdtheta
 
         weightedanglehist
-        opfile=HeHists/He_wdm_j$j\jp$jp\_dj$dj\.ps
+        opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
         weighteddmhist
+        exit
     done
 done
 
@@ -597,12 +601,9 @@ datadir=datfilesAr
 qmdatadir=qmthetasAr
 scdatadir=scthetasAr
 stdfile=stdArstats
+histdir=halfArHists
+mkdir $histdir
 echo "#jbar dj std">$stdfile
-
-wbin=1
-#j=28;jp=32;dj=4
-djlist=(1 2 3 4)
-jblist=(5 10 20 30 35)
 
 echo Argon:
 for jb in ${jblist[*]}; do
@@ -617,12 +618,12 @@ for jb in ${jblist[*]}; do
             jp=$(($jb+$jdiff+1))
         fi
         echo calculating for jbar=$jb, dj=$dj...
-        opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+        opfile=$histdir/Ar_wth_j$j\jp$jp\_dj$dj\.ps
 
         calcdtheta
 
         weightedanglehist
-        opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
+        opfile=$histdir/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
         weighteddmhist
     done
 done

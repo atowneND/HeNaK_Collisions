@@ -1,0 +1,8 @@
+#!/bin/bash
+
+filename=He_wth_*ps
+
+for i in $(find $filename); do
+    echo $i
+    gv $i -scale 3 2>/dev/null
+done

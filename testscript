@@ -21,13 +21,14 @@ do
     esac
 done
 jmin=$j
-jmax=$(($j+$range))
+#jmax=$(awk 'BEGIN {print '$j'+'$range'}')
 
 if [ $dj -ne $(($jp-$j)) ] ; then
     echo bad input values
     echo dj=$dj; j=$j; jp=$jp
     exit
 fi
+exit
 
 j=16
 jp=18

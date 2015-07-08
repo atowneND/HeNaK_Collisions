@@ -285,11 +285,11 @@ weightedanglehist(){
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
-    set xrange [-125:125]
+    set xrange [-50:50]
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
     plot '$scfile' w lines smooth csplines title 'SC' linetype 1
-    replot '$pfile' u 1:2 with lines title 'QM' linetype 2
+    replot '$pfile' u 1:2 title 'QM' linetype 2
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'

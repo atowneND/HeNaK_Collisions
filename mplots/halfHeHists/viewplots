@@ -25,7 +25,8 @@ if [ "$xconst" = "dj" ]; then
     for dj in ${djlist[*]}; do
         filename=$prefix\_w$thdm\_*dj$dj\.ps
         for i in $(find $filename); do
-            gv $i -scale 3 2>/dev/null &
+            gv $i -scale 2 2>/dev/null &
+#            gv $i -scale 2 2>/dev/null 
         done
         echo next dj?
         read goahead
@@ -48,7 +49,8 @@ elif [ "$xconst" = "jb" ]; then
             fi
             if [ $j -ne 0 ]; then
                 filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.ps
-                gv $filename -scale 3 2>/dev/null &
+                gv $filename -scale 2 2>/dev/null &
+#                gv $filename -scale 2 2>/dev/null 
             fi
         done
         echo next jbar?

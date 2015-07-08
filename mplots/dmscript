@@ -270,33 +270,34 @@ weightedanglehist(){
 
         t=$ubin
         tmean=$(awk 'BEGIN {print ('$lbin'+'$ubin')/2}')
-        echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
+        #echo $foo | awk '$1==0||$1 {print '$tmean',$1}' >>$tmpfile
+        echo $foo | awk '{print '$tmean',$1}' >>$tmpfile
         let N=N+1
     done
 
     normalize_dtheta $tmpfile $pfile
-    std=$(eststd $tmpfile)
-    echo $jb $dj $std >>$stdfile
-    ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
-    ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
-    ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
-
-    #    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
-    echo "set terminal postscript eps enhanced
-    set samples 10000
-    set xlabel '{/Symbol D}{/Symbol q}'
-    set xrange [-50:50]
-    set ylabel 'sum of {/Symbol s}s'
-    set title 'j=$j, jp=$jp'
-    plot '$scfile' w lines smooth csplines title 'SC' linetype 1
-    replot '$pfile' u 1:2 title 'QM' linetype 2
-    #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
-    #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
-    set output '$opfile'
-    replot">>$plotfile
-
-    gnuplot <$plotfile >deleteme1
-    rm $tmpfile $pfile $plotfile 2>/dev/null
+#    std=$(eststd $tmpfile)
+#    echo $jb $dj $std >>$stdfile
+#    ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
+#    ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
+#    ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
+#
+#    #    opfile=ArHists/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+#    echo "set terminal postscript eps enhanced
+#    set samples 10000
+#    set xlabel '{/Symbol D}{/Symbol q}'
+#    set xrange [-50:50]
+#    set ylabel 'sum of {/Symbol s}s'
+#    set title 'j=$j, jp=$jp'
+#    plot '$scfile' u 1:($2!=0?$2:1/0) w lines smooth csplines title 'SC' linetype 1
+#    replot '$pfile' u 1:2 title 'QM' linetype 2
+#    #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
+#    #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
+#    set output '$opfile'
+#    replot">>$plotfile
+#
+#    gnuplot <$plotfile >deleteme1
+#    rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
 
@@ -379,7 +380,8 @@ calcdtheta(){
 normalize_dtheta(){
     infile=$1
     ofile=$2
-    totsum=$(awk '{sum=sum+$2*'$wbin'}END{print sum}' $infile)
+    totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
+    echo wbin=$wbin: sum=$totsum
     awk '{print $1,$2/'$totsum'}' $infile >$ofile
 }
 ###############
@@ -537,13 +539,17 @@ datadir=datfilesHe
 qmdatadir=qmthetasHe
 scdatadir=scthetasHe
 stdfile=stdHestats
+
 histdir=halfHeHists
 echo "#jbar dj std">$stdfile
 
-wbin=0.5
+wbin=10
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
+djlist=(1)
+jblist=(5)
+wlist=(0.5 0.333 0.25 0.2 0.111)
 echo Helium:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
@@ -557,17 +563,22 @@ for jb in ${jblist[*]}; do
             jp=$(($jb+$jdiff+1))
         fi
         if [ $j -ne 0 ]; then
-            echo calculating for jbar=$jb, dj=$dj...
-            opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
+            for wbin in ${wlist[*]}; do
 
-            calcdtheta
+                #echo calculating for jbar=$jb, dj=$dj...
+                opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
 
-            weightedanglehist
+                calcdtheta
+
+                weightedanglehist
+                mv thplotfile $wbin\pfile
+            done
             opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
-            weighteddmhist
+            #weighteddmhist
         fi
     done
 done
+exit
 
 datadir=datfilesAr
 qmdatadir=qmthetasAr

@@ -48,7 +48,6 @@ elif [ "$xconst" = "jb" ]; then
             fi
             if [ $j -ne 0 ]; then
                 filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.ps
-                echo $filename
                 gv $filename -scale 3 2>/dev/null &
             fi
         done

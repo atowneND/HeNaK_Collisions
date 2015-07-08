@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename=He_wth_*ps
+filename=Ar_wth_*ps
 
 for i in $(find $filename); do
     echo $i

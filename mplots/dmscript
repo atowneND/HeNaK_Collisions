@@ -10,23 +10,22 @@
 # OLD
 # singlem_plot
 # singlem_plot_thetabins
-# anglebins
-# anglehist
-# dmhist
+# anglehist - - - - - - - - - number of transitions vs angle histogram
+# dmhist  - - - - - - - - - - number of transitions vs dm histogram
 ###############
 # UPDATED
-# eststd
-# weightedanglehist
-# weighteddmhist
-# getbins2
-# calcdtheta
-# normalize_dtheta
-# m0to0
+# eststd  - - - - - - - - - - find standard deviation
+# weightedanglehist - - - - - generate sum of sigma vs angle histogram
+# weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
+# getbins2  - - - - - - - - - get upper and lower bounds of bins for angle histogram
+# calcdtheta  - - - - - - - - calculate delta theta from m, mp, j, jp
+# normalize_dtheta  - - - - - QM normalization for plotting and comparing QM/SC
+# m0to0 - - - - - - - - - - - look at dthetas close to zero
+# plotm0to0byjbar - - - - - - plots smallest nonzero angle vs jbar for all dj
+# plotm0to0bydj - - - - - - - plots smallest nonzero angle vs dj for all jbar
 ###############
 # NEEDS WORK
-# plotm0to0byjbar
-# plotm0to0bydj
-# dth_max
+# dth_max - - - - - - - - - - plot the angle at maximum cross section vs jbar
 
 ###############
 #    NOTES    #
@@ -153,36 +152,6 @@ singlem_plot_thetabins(){
         rm $plotfile
         let m=m+1
     done
-}
-###############
-
-###############
-anglebins(){
-    dj=1
-    djmax=4
-    infile=$tmp1file
-    tmpfile=deleteme
-    nbins=27
-    scale=1
-    N=0
-    while [ $dj -le $djmax ];do
-        echo dj=$dj
-        while [ $N -le $nbins ]; do
-            lbin=$(($scale*$N))
-            ubin=$(($lbin+$scale))
-            if [ $N -eq 0 ]; then
-                foo[N]=$(awk '$2=='$dj'&&($3<'$ubin'&&$3>'$((-$ubin))') {sum=sum+$4} END {print sum}' $infile)
-            else
-                foo[N]=$(awk '$2=='$dj'&&($3<'$ubin'&&$3>'$((-$ubin))')&&($3>'$lbin'||$3<'$((-lbin))') {sum=sum+$4} END {print sum}' $infile)
-            fi
-            let N=N+1
-        done
-        foo[N]=$(awk '$2=='$dj'&&($3>'$ubin'||$3<'$((-ubin))') {sum=sum+$4} END {print sum}' $infile)
-        echo $dj ${foo[*]} >>$tmpfile
-        let dj=dj+1
-        N=0
-    done
-    awk '{for(c=1;c<=NF;c++){a[c,NR]=$c};if(max_nf<NF){max_nf=NF};}END{for(c=1;c<=max_nf;c++){for(r=1;r<=NR;r++){if(r==1){printf("%i %s ",1*(c-1),a[c,r]);}else{printf("%s ",a[c,r]);}}print ""}}' $tmpfile >>normbindata
 }
 ###############
 
@@ -319,8 +288,8 @@ weightedanglehist(){
     set xrange [-125:125]
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
-    plot '$scfile' w lines smooth csplines title ''
-    replot '$pfile' u 1:2 with impulse title '' linetype 1
+    plot '$scfile' w lines smooth csplines title 'SC' linetype 1
+    replot '$pfile' u 1:2 with lines title 'QM' linetype 2
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
@@ -465,8 +434,6 @@ plotm0to0byjbar(){
         set term postscript eps enhanced
         set xrange [0:50]
         plot f1 u 1:3 w linespoints smooth csplines title 'dj=$dj'
-        #replot f2 u ((\$1+\$2)/2):3 w lines title 'SC <{/Symbol a}>'
-        #replot f2 u ((\$1+\$2)/2):6 title 'QM <{/Symbol a}>'
         set xlabel 'jbar'; set ylabel '{/Symbol D}{/Symbol q}'
         set title 'Helium dj=$dj'
         set output 'He_theta_dj$dj.ps'
@@ -602,7 +569,6 @@ for jb in ${jblist[*]}; do
     done
 done
 
-exit
 datadir=datfilesAr
 qmdatadir=qmthetasAr
 scdatadir=scthetasAr
@@ -622,14 +588,16 @@ for jb in ${jblist[*]}; do
             j=$(($jb-$jdiff))
             jp=$(($jb+$jdiff+1))
         fi
-        echo calculating for jbar=$jb, dj=$dj...
-        opfile=$histdir/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+        if [ $j -ne 0 ]; then
+            echo calculating for jbar=$jb, dj=$dj...
+            opfile=$histdir/Ar_wth_j$j\jp$jp\_dj$dj\.ps
 
-        calcdtheta
+            calcdtheta
 
-        weightedanglehist
-        opfile=$histdir/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
-        weighteddmhist
+            weightedanglehist
+            opfile=$histdir/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
+            weighteddmhist
+        fi
     done
 done
 

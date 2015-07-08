@@ -382,7 +382,8 @@ normalize_dtheta(){
     ofile=$2
     totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
     echo wbin=$wbin: sum=$totsum
-    awk '{print $1,$2/'$totsum'}' $infile >$ofile
+    awk '{print $1,$2/('$wbin'*'$totsum')}' $infile >$ofile
+    #awk '{print $1,$2/'$totsum'}' $infile >$ofile
 }
 ###############
 
@@ -547,9 +548,9 @@ wbin=10
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
-djlist=(1)
-jblist=(5)
-wlist=(0.5 0.333 0.25 0.2 0.111)
+djlist=(2)
+jblist=(30)
+wlist=(0.5)
 echo Helium:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
@@ -562,6 +563,7 @@ for jb in ${jblist[*]}; do
             j=$(($jb-$jdiff))
             jp=$(($jb+$jdiff+1))
         fi
+        echo j=$j, jp=$jp
         if [ $j -ne 0 ]; then
             for wbin in ${wlist[*]}; do
 

@@ -148,7 +148,6 @@ weightedanglehist(){
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
-    #    opfile=arhists/ar_wth_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
@@ -182,7 +181,6 @@ weighteddmhist(){
 
     normalize_dtheta $tmpfile $pfile
 
-    #    opfile=ArHists/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'

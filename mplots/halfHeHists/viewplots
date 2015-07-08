@@ -1,0 +1,6 @@
+#!/bin/bash
+
+filename=He_wth_j*jp*dj*ps
+for i in $(find $filename); do
+    gv $i
+done

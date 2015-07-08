@@ -292,7 +292,6 @@ weightedanglehist(){
     N=0
     while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
         read lbin ubin <<<$(getbins2 $wbin $t $divfac)
-        echo $lbin $ubin
 
         if [ $N -eq 0 ]; then
             foo=$(awk '($3<='$ubin') {sum=sum+$4} END {print sum}' $infile)
@@ -317,6 +316,7 @@ weightedanglehist(){
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
+    set xrange [-125:125]
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
     plot '$scfile' w lines smooth csplines title ''
@@ -410,7 +410,7 @@ calcdtheta(){
 normalize_dtheta(){
     infile=$1
     ofile=$2
-    totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
+    totsum=$(awk '{sum=sum+$2*'$wbin'}END{print sum}' $infile)
     awk '{print $1,$2/'$totsum'}' $infile >$ofile
 }
 ###############
@@ -573,9 +573,8 @@ stdfile=stdHestats
 histdir=halfHeHists
 echo "#jbar dj std">$stdfile
 
-wbin=10
+wbin=0.5
 djlist=(1 2 3 4 5 6 7 8 9 10)
-djlist=(1 2 3)
 jblist=(5 10 20 30 35)
 
 echo Helium:
@@ -590,18 +589,20 @@ for jb in ${jblist[*]}; do
             j=$(($jb-$jdiff))
             jp=$(($jb+$jdiff+1))
         fi
-        echo calculating for jbar=$jb, dj=$dj...
-        opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
+        if [ $j -ne 0 ]; then
+            echo calculating for jbar=$jb, dj=$dj...
+            opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
 
-        calcdtheta
+            calcdtheta
 
-        weightedanglehist
-        opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
-        weighteddmhist
-        exit
+            weightedanglehist
+            opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
+            weighteddmhist
+        fi
     done
 done
 
+exit
 datadir=datfilesAr
 qmdatadir=qmthetasAr
 scdatadir=scthetasAr

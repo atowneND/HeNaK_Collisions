@@ -150,7 +150,9 @@ weightedanglehist(){
         else {print $1,$2}}' | awk '{a[$1]+=$2} END {for (i in a) print i*'$wbin',a[i]}'\
            | sed '/#/d' | sort -k 1 -n >$tmpfile
 
-    gaussfilter $tmpfile $pfile
+    gaussfilter $tmpfile tmp2
+    normalize_dtheta tmp2 $pfile
+    exit
 
     # normalization and statistics
 #    normalize_dtheta $tmpfile $pfile
@@ -229,6 +231,7 @@ calcdtheta(){
 normalize_dtheta(){
     infile=$1
     ofile=$2
+    rm $ofile 2>/dev/null
     totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
     awk '{print $1,$2/('$wbin'*'$totsum'),$2}' $infile >$ofile
 }
@@ -238,18 +241,20 @@ normalize_dtheta(){
 gaussfilter(){
     infile=$1
     ofile=$2
-    nbins=1000
+    rm tmp2 $ofile 2>/dev/null
     pi=3.141592654
-    wbin=0.5
+    nbins=360*$wbin
 
     wbinrad=$(awk 'BEGIN {print '$wbin'*'$pi'/180}')
-    th=$(awk 'BEGIN {print -180}')
-    checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
+    th=-180
+    checkrange=1
     while [ $checkrange -eq 1 ] ; do
-        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-(('$th'-$1)/('$wbin'))^2)\
-            /('$wbin'*sqrt('$pi'))}END{print '$th',sum}' $infile >>$ofile
+        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$wbin')^2))}END\
+            {print '$th',sum/('$wbin'*sqrt('$pi'))}' $infile >>$ofile
 
-        th=$(awk 'BEGIN {print '$th'+360/'$nbins'}')
+#        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$wbin')^2))}END\
+#            {print '$th',sum/('$wbin'*sqrt('$pi'))}' $infile >>$ofile
+        th=$(awk 'BEGIN {print '$th'+'$wbin'}')
         checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
     done
 }

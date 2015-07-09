@@ -154,6 +154,7 @@ weightedanglehist(){
     gaussfilter $tmpfile tmp2
     normalize_dtheta tmp2 $pfile
 
+    exit
     # normalization and statistics
 #    normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
@@ -242,13 +243,15 @@ gaussfilter(){
     rm tmp2 $ofile 2>/dev/null
     pi=3.141592654
     nbins=360*$wbin
+    gam=$wbin
+    gam=1
 
     wbinrad=$(awk 'BEGIN {print '$wbin'*'$pi'/180}')
     th=-180
     checkrange=1
     while [ $checkrange -eq 1 ] ; do
-        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$wbin')^2))}END\
-            {print '$th',sum/('$wbin'*sqrt('$pi'))}' $infile >>$ofile
+        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$gam')^2))}END\
+            {print '$th',sum/('$gam'*sqrt('$pi'))}' $infile >>$ofile
 
         th=$(awk 'BEGIN {print '$th'+'$wbin'}')
         checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
@@ -413,13 +416,13 @@ stdfile=stdHestats
 histdir=convHeHists
 echo "#jbar dj std">$stdfile
 
-wbin=0.5
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
 
-djlist=4
-jblist=30
+djlist=1
+jblist=5
+wbin=0.5
 
 echo Helium:
 for jb in ${jblist[*]}; do
@@ -441,6 +444,7 @@ for jb in ${jblist[*]}; do
             calcdtheta
 
             weightedanglehist
+            exit
             opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi

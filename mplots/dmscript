@@ -17,6 +17,7 @@
 # weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
 # calcdtheta  - - - - - - - - calculate delta theta from m, mp, j, jp
 # normalize_dtheta  - - - - - QM normalization for plotting and comparing QM/SC
+# gaussfilter - - - - - - - - passes binned raw data through gauss filter
 # m0to0 - - - - - - - - - - - look at dthetas close to zero
 # plotm0to0byjbar - - - - - - plots smallest nonzero angle vs jbar for all dj
 # plotm0to0bydj - - - - - - - plots smallest nonzero angle vs dj for all jbar
@@ -149,6 +150,9 @@ weightedanglehist(){
         else {print $1,$2}}' | awk '{a[$1]+=$2} END {for (i in a) print i*'$wbin',a[i]}'\
            | sed '/#/d' | sort -k 1 -n >$tmpfile
 
+    gaussfilter $tmpfile
+
+    exit
     # normalization and statistics
     normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
@@ -226,6 +230,26 @@ normalize_dtheta(){
     ofile=$2
     totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
     awk '{print $1,$2/('$wbin'*'$totsum'),$2}' $infile >$ofile
+}
+###############
+
+###############
+gaussfilter(){
+    infile=$1
+    nbins=1000
+    pi=3.141592654
+    wbin=0.5
+
+    wbinrad=$(awk 'BEGIN {print '$wbin'*'$pi'/180}')
+    th=$(awk 'BEGIN {print -180}')
+    checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
+    rm bar foo
+    while [ $checkrange -eq 1 ] ; do
+        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-(('$th'-$1)/('$wbin'))^2)/('$wbin'*sqrt('$pi'))}END{print '$th',sum}' $infile >>bar
+
+        th=$(awk 'BEGIN {print '$th'+360/'$nbins'}')
+        checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
+    done
 }
 ###############
 
@@ -376,6 +400,8 @@ plotfile=plotme
 #plotm0to0byjbar m0to0.dat
 #exit
 
+gaussfilter $tmpfile
+exit
 rm $tmpfile $plotfile 2>/dev/null
 
 datadir=datfilesHe
@@ -390,6 +416,9 @@ wbin=0.5
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
+
+djlist=4
+jblist=30
 
 echo Helium:
 for jb in ${jblist[*]}; do

@@ -145,8 +145,9 @@ weightedanglehist(){
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
-    awk '{printf("%.0f %f\n",$3/0.5,$4)}' $infile | awk '{a[$1]+=$2} END\
-        {for (i in a) print i*0.5,a[i]}' | sort -k 1 -n >$tmpfile
+    awk '{printf("%.0f %f\n",$3/'$wbin',$4)}' $infile | awk '{if($1==-0) {print 0,$2}\
+        else {print $1,$2}}' | awk '{a[$1]+=$2} END {for (i in a) print i*'$wbin',a[i]}'\
+           | sed '/#/d' | sort -k 1 -n >$tmpfile
 
     # normalization and statistics
     normalize_dtheta $tmpfile $pfile
@@ -164,14 +165,14 @@ weightedanglehist(){
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
     plot '$scfile' w lines smooth csplines title 'SC' linetype 1
-    replot '$pfile' w lines title 'QM' linetype 2
+    replot '$pfile' u 1:2 w lines title 'QM' linetype 2
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    rm $tmpfile $pfile $plotfile 2>/dev/null
+    #rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
 
@@ -224,7 +225,7 @@ normalize_dtheta(){
     infile=$1
     ofile=$2
     totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
-    awk '{print $1,$2/('$wbin'*'$totsum')}' $infile >$ofile
+    awk '{print $1,$2/('$wbin'*'$totsum'),$2}' $infile >$ofile
 }
 ###############
 
@@ -386,7 +387,8 @@ histdir=halfHeHists
 histdir=.
 echo "#jbar dj std">$stdfile
 
-wbin=1
+wbin=0.5
+wlist=(0.5)
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
@@ -407,15 +409,17 @@ for jb in ${jblist[*]}; do
         fi
         if [ $j -ne 0 ]; then
 
-            echo calculating for jbar=$jb, dj=$dj...
-            opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
-            opfile=nonormHe$wbin\_$j$jp\.ps
+            for wbin in ${wlist[*]}; do
+                echo calculating for jbar=$jb, dj=$dj...
+                opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
+                opfile=He$wbin\_$j$jp\.ps
 
-            calcdtheta
+                calcdtheta
 
-            weightedanglehist
+                weightedanglehist
+            done
             opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
-            weighteddmhist
+            #            weighteddmhist
         fi
     done
 done

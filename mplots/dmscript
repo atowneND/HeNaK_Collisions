@@ -151,8 +151,10 @@ weightedanglehist(){
            | sed '/#/d' | sort -k 1 -n >$tmpfile
 
     # Gaussian filter and normalization
+    rm tmp2 2>/dev/null
     gaussfilter $tmpfile tmp2
     normalize_dtheta tmp2 $pfile
+    rm tmp2 2>/dev/null
 
     exit
     # normalization and statistics
@@ -213,6 +215,10 @@ weighteddmhist(){
 
 ###############
 calcdtheta(){
+    j=$1
+    jp=$2
+    datadir=$3
+    qmdatadir=$4
     dj=$(($jp-$j))
     indata=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
     datoutfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
@@ -399,32 +405,28 @@ dth_max(){
 ###############
 tmpfile=tmp1
 plotfile=plotme
-#m0to0
-#dth_max
-#exit
-#plotm0to0bydj m0to0.dat
-#plotm0to0byjbar m0to0.dat
-#exit
 
 rm $tmpfile $plotfile 2>/dev/null
-
-datadir=datfilesHe
-qmdatadir=qmthetasHe
-scdatadir=scthetasHe
-stdfile=stdHestats
-
-histdir=convHeHists
-echo "#jbar dj std">$stdfile
-
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
 
 djlist=1
 jblist=5
 wbin=0.5
 
-echo Helium:
+# HELIUM
+atom=He
+
+datadir=datfiles$atom
+qmdatadir=qmthetas$atom
+scdatadir=scthetas$atom
+stdfile=std$atom\stats
+echo "#jbar dj std">$stdfile
+
+histdir=conv$atom\Hists
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
+
+echo $atom:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
         if [ $(($dj%2)) -eq 0 ]; then #even
@@ -439,27 +441,30 @@ for jb in ${jblist[*]}; do
         if [ $j -ne 0 ]; then
 
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=conv$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
 
-            calcdtheta
+            exit
+            calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
             exit
-            opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
+            opfile=conv$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi
     done
 done
 
-datadir=datfilesAr
-qmdatadir=qmthetasAr
-scdatadir=scthetasAr
-stdfile=stdArstats
-histdir=convArHists
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
+# ARGON
+datadir=datfiles$atom
+qmdatadir=qmthetas$atom
+scdatadir=scthetas$atom
+stdfile=std$atom\stats
 echo "#jbar dj std">$stdfile
 
-echo Argon:
+histdir=conv$atom\Hists
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
+
+echo $atom:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
         if [ $(($dj%2)) -eq 0 ]; then #even
@@ -473,42 +478,15 @@ for jb in ${jblist[*]}; do
         fi
         if [ $j -ne 0 ]; then
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=$histdir/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=conv$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
 
             calcdtheta
 
             weightedanglehist
-            opfile=$histdir/Ar_wdm_j$j\jp$jp\_dj$dj\.ps
+            opfile=conv$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi
     done
 done
 
 exit
-
-################
-#for jb in ${jblist[*]}; do
-#    for dj in ${djlist[*]}; do
-#        if [ $(($dj%2)) -eq 0 ]; then #even
-#            jdiff=$(($dj/2))
-#            j=$(($jb-$jdiff))
-#            jp=$(($jb+$jdiff))
-#        else
-#            jdiff=$(($dj/2))
-#            j=$(($jb-$jdiff))
-#            jp=$(($jb+$jdiff+1))
-#        fi
-#
-#        echo running \{$j,$jp\}
-#        echo \#j=$j jp=$jp wbin=$wbin>>$savethdata
-#        echo \#j=$j jp=$jp >>$savedmdata
-#        anglecount
-#        dmcount
-#        weightedanglehist
-#        weighteddmhist
-#    infile=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
-#eststd
-#        echo '' >>$savethdata
-#        echo '' >>$savedmdata
-#    done
-#done

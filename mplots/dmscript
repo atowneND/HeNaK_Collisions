@@ -135,12 +135,20 @@ weightedanglehist(){
     scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj\.dat
     rm $tmpfile $pfile $plotfile 2>/dev/null
 
+    # get semiclassical data
+    thb=$wbin #set bin sizes
+    alphb=$wbin
+    phb=$wbin
+    echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp>/dev/null
+
+    # binning
     t=-180
     divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
     N=0
     awk '{printf("%.0f %f\n",$3/0.5,$4)}' $infile | awk '{a[$1]+=$2} END\
         {for (i in a) print i*0.5,a[i]}' | sort -k 1 -n >$tmpfile
 
+    # normalization and statistics
     normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
     echo $jb $dj $std >>$stdfile
@@ -148,6 +156,7 @@ weightedanglehist(){
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
+    # plotting
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
@@ -374,12 +383,16 @@ scdatadir=scthetasHe
 stdfile=stdHestats
 
 histdir=halfHeHists
+histdir=.
 echo "#jbar dj std">$stdfile
 
-wbin=0.5
+wbin=1
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
 
+djlist=(4)
+jblist=(30)
 echo Helium:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
@@ -396,6 +409,7 @@ for jb in ${jblist[*]}; do
 
             echo calculating for jbar=$jb, dj=$dj...
             opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=nonormHe$wbin\_$j$jp\.ps
 
             calcdtheta
 
@@ -405,12 +419,14 @@ for jb in ${jblist[*]}; do
         fi
     done
 done
+exit
 
 datadir=datfilesAr
 qmdatadir=qmthetasAr
 scdatadir=scthetasAr
 stdfile=stdArstats
 histdir=halfArHists
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
 echo "#jbar dj std">$stdfile
 
 echo Argon:

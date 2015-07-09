@@ -383,7 +383,7 @@ qmdatadir=qmthetasHe
 scdatadir=scthetasHe
 stdfile=stdHestats
 
-histdir=HeHists
+histdir=convHeHists
 echo "#jbar dj std">$stdfile
 
 wbin=0.5
@@ -421,7 +421,7 @@ datadir=datfilesAr
 qmdatadir=qmthetasAr
 scdatadir=scthetasAr
 stdfile=stdArstats
-histdir=ArHists
+histdir=convArHists
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
 echo "#jbar dj std">$stdfile
 

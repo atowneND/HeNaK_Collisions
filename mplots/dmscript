@@ -172,7 +172,7 @@ weightedanglehist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    #rm $tmpfile $pfile $plotfile 2>/dev/null
+    rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
 
@@ -383,18 +383,14 @@ qmdatadir=qmthetasHe
 scdatadir=scthetasHe
 stdfile=stdHestats
 
-histdir=halfHeHists
-histdir=.
+histdir=HeHists
 echo "#jbar dj std">$stdfile
 
 wbin=0.5
-wlist=(0.5)
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
 
-djlist=(4)
-jblist=(30)
 echo Helium:
 for jb in ${jblist[*]}; do
     for dj in ${djlist[*]}; do
@@ -409,27 +405,23 @@ for jb in ${jblist[*]}; do
         fi
         if [ $j -ne 0 ]; then
 
-            for wbin in ${wlist[*]}; do
-                echo calculating for jbar=$jb, dj=$dj...
-                opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
-                opfile=He$wbin\_$j$jp\.ps
+            echo calculating for jbar=$jb, dj=$dj...
+            opfile=$histdir/He_wth_j$j\jp$jp\_dj$dj\.ps
 
-                calcdtheta
+            calcdtheta
 
-                weightedanglehist
-            done
+            weightedanglehist
             opfile=$histdir/He_wdm_j$j\jp$jp\_dj$dj\.ps
-            #            weighteddmhist
+            weighteddmhist
         fi
     done
 done
-exit
 
 datadir=datfilesAr
 qmdatadir=qmthetasAr
 scdatadir=scthetasAr
 stdfile=stdArstats
-histdir=halfArHists
+histdir=ArHists
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
 echo "#jbar dj std">$stdfile
 

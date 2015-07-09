@@ -1,56 +1,75 @@
 #!/bin/bash
 
-j=1
-dj=2
-maxdj=40
-maxdj=10
-maxdj=6
-rm errfile.foo
-
-for i in $(find He_theta*ps); do
-#    echo $i
-    gv $i 2>/dev/null
-    #gv $i &
+# type: th or dm
+# c: dj or jb
+#
+# defaults: -t th -c dj
+args='getopt t:c:r $*'
+thdm=th
+xconst=dj
+regex=0
+for i
+do
+    case "$i" in 
+        -t) shift; thdm=$1; shift
+            ;;
+        -c) shift; xconst=$1; shift
+            ;;
+        -r) shift; regex=$1; shift
+    esac
 done
-exit
 
-jb=4
-djlist=(1 2 3 4)
-jblist=(5 10 20 30 38)
+if [ "$regex" != 0 ]; then
+    filename=$regex
+    for i in $(find $regex); do
+        #gv $i 2>/dev/null &
+        gv $i 2>/dev/null 
+    done
+    exit
+else
+    djlist=(1 2 3 4 5 6 7 8 9 10)
+    jblist=(5 10 20 30 35)
+    prefix=He
 
-for jb in ${jblist[*]}; do
-    for dj in ${djlist[*]}; do
-        if [ $(($dj%2)) -eq 0 ]; then #even
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff))
-        else
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff+1))
-        fi
-        #thname=hist_wth_j$j\jp$jp\_dj$dj\.ps
-        #dmname=hist_wdm_j$j\jp$jp\_dj$dj\.ps
-        thname=rev*wth_j$j*dj$dj\.ps
-        #thname=rev*wth_j*dj$dj\.ps
-        #    dmname=hist_smallbins_wdm_j*dj$dj\.ps
-        for i in $(find $thname); do
-            #gv $i 2>/dev/null
-            gv $i &
+    if [ "$xconst" = "dj" ]; then
+        echo dj held constant
+        for dj in ${djlist[*]}; do
+            filename=$prefix\_w$thdm\_*dj$dj\.ps
+            for i in $(find $filename); do
+                #            gv $i -scale 2 2>/dev/null &
+                gv $i -scale 2 2>/dev/null 
+            done
+            echo next dj?
+            read goahead
+            if [[ "$goahead" = n* ]] || [[ "$goahead" = exit ]] || [[ "$goahead" = quit ]]; then
+                exit
+            fi
         done
-    done
-    read goahead
-done
-exit
-
-while [ $dj -lt $maxdj ]; do
-    while [ $j -lt $((50-$dj+1)) ]; do
-        jp=$(($j+$dj))
-        filename=hist_maxdm_j$j\_jp$jp\_dj$dj\.ps
-        gv $filename 2>errfile.foo
-        let j=j+1
-    done
-    j=1
-    let dj=dj+1
-done
+    elif [ "$xconst" = "jb" ]; then
+        echo jbar held constant
+        for jb in ${jblist[*]}; do
+            for dj in ${djlist[*]}; do
+                if [ $(($dj%2)) -eq 0 ]; then #even
+                    jdiff=$(($dj/2))
+                    j=$(($jb-$jdiff))
+                    jp=$(($jb+$jdiff))
+                else
+                    jdiff=$(($dj/2))
+                    j=$(($jb-$jdiff))
+                    jp=$(($jb+$jdiff+1))
+                fi
+                if [ $j -ne 0 ]; then
+                    filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.ps
+                    #                gv $filename -scale 2 2>/dev/null &
+                    gv $filename -scale 2 2>/dev/null 
+                fi
+            done
+            echo next jbar?
+            read goahead
+            if [[ "$goahead" = n* ]] || [[ "$goahead" = exit ]] || [[ "$goahead" = quit ]]; then
+                exit
+            fi
+        done
+    fi
+fi
 exit

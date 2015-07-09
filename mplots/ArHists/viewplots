@@ -1,57 +1,63 @@
 #!/bin/bash
 
-j=1
-dj=2
-maxdj=40
-maxdj=10
-maxdj=6
-rm errfile.foo
-
-#for i in $(find rev*wth*dj1.ps); do
-#    echo $i
-##    gv $i 2>/dev/null
-#    gv $i &
-#done
-#exit
+# type: th or dm
+# c: dj or jb
 #
-jb=4
-djlist=(1 2 3 4)
-jblist=(5 10 20 30 35)
-
-#for jb in ${jblist[*]}; do
-    for dj in ${djlist[*]}; do
-        if [ $(($dj%2)) -eq 0 ]; then #even
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff))
-        else
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff+1))
-        fi
-        #thname=hist_wth_j$j\jp$jp\_dj$dj\.ps
-        #dmname=hist_wdm_j$j\jp$jp\_dj$dj\.ps
-        thname=*wth_j*dj$dj\.ps
-        #thname=rev*wth_j*dj$dj\.ps
-        #    dmname=hist_smallbins_wdm_j*dj$dj\.ps
-        for i in $(find $thname); do
-            echo $i
-            gv $i 2>/dev/null
-            #gv $i &
-        done
-    read goahead
-    done
-#done
-exit
-
-while [ $dj -lt $maxdj ]; do
-    while [ $j -lt $((50-$dj+1)) ]; do
-        jp=$(($j+$dj))
-        filename=hist_maxdm_j$j\_jp$jp\_dj$dj\.ps
-        gv $filename 2>errfile.foo
-        let j=j+1
-    done
-    j=1
-    let dj=dj+1
+# defaults: -t th -c dj
+args='getopt t:c $*'
+thdm=th
+xconst=dj
+for i
+do
+    case "$i" in 
+        -t) shift; thdm=$1; shift
+            ;;
+        -c) shift; xconst=$1; shift
+    esac
 done
+
+djlist=(1 2 3 4 5 6 7 8 9 10)
+jblist=(5 10 20 30 35)
+prefix=He
+
+if [ "$xconst" = "dj" ]; then
+    echo dj held constant
+    for dj in ${djlist[*]}; do
+        filename=$prefix\_w$thdm\_*dj$dj\.ps
+        for i in $(find $filename); do
+#            gv $i -scale 2 2>/dev/null &
+            gv $i -scale 2 2>/dev/null 
+        done
+        echo next dj?
+        read goahead
+        if [[ "$goahead" = n* ]] || [[ "$goahead" = exit ]] || [[ "$goahead" = quit ]]; then
+            exit
+        fi
+    done
+elif [ "$xconst" = "jb" ]; then
+    echo jbar held constant
+    for jb in ${jblist[*]}; do
+        for dj in ${djlist[*]}; do
+            if [ $(($dj%2)) -eq 0 ]; then #even
+                jdiff=$(($dj/2))
+                j=$(($jb-$jdiff))
+                jp=$(($jb+$jdiff))
+            else
+                jdiff=$(($dj/2))
+                j=$(($jb-$jdiff))
+                jp=$(($jb+$jdiff+1))
+            fi
+            if [ $j -ne 0 ]; then
+                filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.ps
+#                gv $filename -scale 2 2>/dev/null &
+                gv $filename -scale 2 2>/dev/null 
+            fi
+        done
+        echo next jbar?
+        read goahead
+        if [[ "$goahead" = n* ]] || [[ "$goahead" = exit ]] || [[ "$goahead" = quit ]]; then
+            exit
+        fi
+    done
+fi
 exit

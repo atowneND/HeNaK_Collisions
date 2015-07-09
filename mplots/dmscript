@@ -150,9 +150,9 @@ weightedanglehist(){
         else {print $1,$2}}' | awk '{a[$1]+=$2} END {for (i in a) print i*'$wbin',a[i]}'\
            | sed '/#/d' | sort -k 1 -n >$tmpfile
 
+    # Gaussian filter and normalization
     gaussfilter $tmpfile tmp2
     normalize_dtheta tmp2 $pfile
-    exit
 
     # normalization and statistics
 #    normalize_dtheta $tmpfile $pfile
@@ -163,7 +163,6 @@ weightedanglehist(){
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
     # plotting
-    opfile=test.ps
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
@@ -178,8 +177,7 @@ weightedanglehist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    exit
-    #rm $tmpfile $pfile $plotfile 2>/dev/null
+    rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
 
@@ -252,8 +250,6 @@ gaussfilter(){
         awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$wbin')^2))}END\
             {print '$th',sum/('$wbin'*sqrt('$pi'))}' $infile >>$ofile
 
-#        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$wbin')^2))}END\
-#            {print '$th',sum/('$wbin'*sqrt('$pi'))}' $infile >>$ofile
         th=$(awk 'BEGIN {print '$th'+'$wbin'}')
         checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
     done

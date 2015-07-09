@@ -150,11 +150,10 @@ weightedanglehist(){
         else {print $1,$2}}' | awk '{a[$1]+=$2} END {for (i in a) print i*'$wbin',a[i]}'\
            | sed '/#/d' | sort -k 1 -n >$tmpfile
 
-    gaussfilter $tmpfile
+    gaussfilter $tmpfile $pfile
 
-    exit
     # normalization and statistics
-    normalize_dtheta $tmpfile $pfile
+#    normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
     echo $jb $dj $std >>$stdfile
     ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
@@ -162,6 +161,7 @@ weightedanglehist(){
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
     # plotting
+    opfile=test.ps
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
@@ -176,7 +176,8 @@ weightedanglehist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    rm $tmpfile $pfile $plotfile 2>/dev/null
+    exit
+    #rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
 
@@ -236,6 +237,7 @@ normalize_dtheta(){
 ###############
 gaussfilter(){
     infile=$1
+    ofile=$2
     nbins=1000
     pi=3.141592654
     wbin=0.5
@@ -243,9 +245,9 @@ gaussfilter(){
     wbinrad=$(awk 'BEGIN {print '$wbin'*'$pi'/180}')
     th=$(awk 'BEGIN {print -180}')
     checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
-    rm bar foo
     while [ $checkrange -eq 1 ] ; do
-        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-(('$th'-$1)/('$wbin'))^2)/('$wbin'*sqrt('$pi'))}END{print '$th',sum}' $infile >>bar
+        awk 'BEGIN {sum=0} {sum=sum+$2*exp(-(('$th'-$1)/('$wbin'))^2)\
+            /('$wbin'*sqrt('$pi'))}END{print '$th',sum}' $infile >>$ofile
 
         th=$(awk 'BEGIN {print '$th'+360/'$nbins'}')
         checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
@@ -400,8 +402,6 @@ plotfile=plotme
 #plotm0to0byjbar m0to0.dat
 #exit
 
-gaussfilter $tmpfile
-exit
 rm $tmpfile $plotfile 2>/dev/null
 
 datadir=datfilesHe

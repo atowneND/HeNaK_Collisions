@@ -152,11 +152,11 @@ weightedanglehist(){
 
     # Gaussian filter and normalization
     rm tmp2 2>/dev/null
-    gaussfilter $tmpfile tmp2
+#    gaussfilter $tmpfile tmp2
+cp $tmpfile tmp2
     normalize_dtheta tmp2 $pfile
     rm tmp2 2>/dev/null
 
-    exit
     # normalization and statistics
 #    normalize_dtheta $tmpfile $pfile
     std=$(eststd $tmpfile)
@@ -169,7 +169,7 @@ weightedanglehist(){
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
-    set xrange [-50:50]
+    set xrange [-100:100]
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
     plot '$scfile' w lines smooth csplines title 'SC' linetype 1
@@ -423,7 +423,6 @@ scdatadir=scthetas$atom
 stdfile=std$atom\stats
 echo "#jbar dj std">$stdfile
 
-histdir=conv$atom\Hists
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
 
 echo $atom:
@@ -441,27 +440,25 @@ for jb in ${jblist[*]}; do
         if [ $j -ne 0 ]; then
 
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=conv$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=bigx$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
 
-            exit
             calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
-            exit
-            opfile=conv$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
+            opfile=bigx$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi
     done
 done
 
 # ARGON
+atom=Ar
 datadir=datfiles$atom
 qmdatadir=qmthetas$atom
 scdatadir=scthetas$atom
 stdfile=std$atom\stats
 echo "#jbar dj std">$stdfile
 
-histdir=conv$atom\Hists
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
 
 echo $atom:
@@ -478,12 +475,12 @@ for jb in ${jblist[*]}; do
         fi
         if [ $j -ne 0 ]; then
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=conv$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=bigx$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
 
-            calcdtheta
+            calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
-            opfile=conv$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
+            opfile=bigx$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi
     done

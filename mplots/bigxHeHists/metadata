@@ -1,0 +1,4 @@
+data file: Ep002mf5i-50b.blam
+directory: bigxHeHists/
+smoothing: boxcar
+characteristics: xrange [-100:100]

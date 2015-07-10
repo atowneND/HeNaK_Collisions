@@ -1,0 +1,4 @@
+data file: Arp002-5i-40-384J-5.blam
+directory: convArHists/
+smoothing: gaussian
+characteristics: xrange [-50:50]

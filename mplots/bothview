@@ -12,6 +12,7 @@ args='getopt t:c:r $*'
 thdm=0
 xconst=0
 regex=0
+plotdir=0
 for i
 do
     case "$i" in 
@@ -20,11 +21,43 @@ do
         -c) shift; xconst=$1; shift
             ;;
         -r) shift; regex=$1; shift
+            ;;
+        -d) shift; plotdir=1; shift
     esac
 done
 
+Ardir=convArHists
+Hedir=convHeHists
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
+
+for dj in ${djlist[*]}; do
+    for jb in ${jblist[*]}; do
+        if [ $(($dj%2)) -eq 0 ]; then #even
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff))
+        else
+            jdiff=$(($dj/2))
+            j=$(($jb-$jdiff))
+            jp=$(($jb+$jdiff+1))
+        fi
+        echo jb=$jb \(j=$j, jp=$jp\)\; dj=$dj
+        if [ $j -ne 0 ]; then
+            Arfile=$Ardir/Ar_wth_j$j\jp$jp\_dj$dj\.ps
+            Hefile=$Hedir/He_wth_j$j\jp$jp\_dj$dj\.ps
+            #                echo opening $Arfile
+            gv $Arfile -geometry +1000+0 2>/dev/null &
+            #                echo opening $Hefile
+            gv $Hefile 2>/dev/null
+            pid=$(ps aux | grep "gv convArHists" | sed '/grep/d' | awk '{print $2}')
+            kill $pid
+        fi
+    done
+done
+exit
+
+
 prefix=He
 #if [ "$regex" != 0 ]; then
 if ( [ "$thdm" == 0 ] || [ "$xconst" == 0 ] ) && [ "$regex" != 0 ] ; then
@@ -42,6 +75,7 @@ elif [ "$xconst" = "dj" ]; then
     for dj in ${djlist[*]}; do
         if [ "$regex" == 0 ]; then
             filename=$prefix\_w$thdm\_*dj$dj\.ps
+            filename2=Ar_w$thdm\_*dj$dj\.ps
         else
             filename=$regex\*dj$dj\.ps
         fi
@@ -74,7 +108,7 @@ elif [ "$xconst" = "jb" ]; then
                 else
                     filename=$regex\*dj$dj\.ps
                 fi
-            
+
                 #                gv $filename -scale 2 2>/dev/null &
                 gv $filename -scale 2 2>/dev/null 
             fi

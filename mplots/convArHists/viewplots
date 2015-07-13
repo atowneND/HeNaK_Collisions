@@ -2,10 +2,6 @@
 
 # type: th or dm
 # c: dj or jb
-# r: 'regex'
-#   - by itself, match that regular expression and loop through all
-#   - with xconst=dj (DOESN'T WORK), regex before dj to match (overrides $thdm)
-#   - with xconst=jb (DOESN'T WORK), regex is the jbar to match
 #
 # defaults: -t th -c dj
 args='getopt t:c:r $*'
@@ -25,7 +21,7 @@ done
 
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
-prefix=He
+prefix=Ar
 #if [ "$regex" != 0 ]; then
 if ( [ "$thdm" == 0 ] || [ "$xconst" == 0 ] ) && [ "$regex" != 0 ] ; then
     echo here
@@ -46,8 +42,8 @@ elif [ "$xconst" = "dj" ]; then
             filename=$regex\*dj$dj\.ps
         fi
         for i in $(find $filename); do
-            #            gv $i -scale 2 2>/dev/null &
-            gv $i -scale 2 2>/dev/null 
+            gv $i -scale 2 2>/dev/null &
+            #gv $i -scale 2 2>/dev/null 
         done
         echo next dj?
         read goahead
@@ -75,8 +71,8 @@ elif [ "$xconst" = "jb" ]; then
                     filename=$regex\*dj$dj\.ps
                 fi
             
-                #                gv $filename -scale 2 2>/dev/null &
-                gv $filename -scale 2 2>/dev/null 
+                gv $filename -scale 2 2>/dev/null &
+                #gv $filename -scale 2 2>/dev/null 
             fi
         done
         echo next jbar?

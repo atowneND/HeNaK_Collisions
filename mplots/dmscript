@@ -140,7 +140,7 @@ weightedanglehist(){
     thb=$wbin #set bin sizes
     alphb=$wbin
     phb=$wbin
-    echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp>/dev/null
+    echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp >/dev/null
 
     # binning
     t=-180
@@ -152,8 +152,8 @@ weightedanglehist(){
 
     # Gaussian filter and normalization
     rm tmp2 2>/dev/null
-#    gaussfilter $tmpfile tmp2
-cp $tmpfile tmp2
+    gaussfilter $tmpfile tmp2
+#cp $tmpfile tmp2
     normalize_dtheta tmp2 $pfile
     rm tmp2 2>/dev/null
 
@@ -174,6 +174,7 @@ cp $tmpfile tmp2
     set title 'j=$j, jp=$jp'
     plot '$scfile' w lines smooth csplines title 'SC' linetype 1
     replot '$pfile' u 1:2 w lines title 'QM' linetype 2
+    #replot '$pfile' u 1:2 title 'QM' 
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
@@ -410,9 +411,9 @@ rm $tmpfile $plotfile 2>/dev/null
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
-djlist=1
-jblist=5
 wbin=0.5
+
+prefix=conv
 
 # HELIUM
 atom=He
@@ -423,7 +424,17 @@ scdatadir=scthetas$atom
 stdfile=std$atom\stats
 echo "#jbar dj std">$stdfile
 
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Ep002mf5i-50b.blam
+srcfile=Ep002mf5i-50b.blam
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
+
+smoothing="gaussian"
+uniqchar="normalized, gaussian filter"
+
+echo "data file: "$srcfile"
+directory: "$prefix$atom\Hists"
+smoothing: "$smoothing"
+characteristics: "$uniqchar"
+date: "$(date) > $prefix$atom\Hists/metadata
 
 echo $atom:
 for jb in ${jblist[*]}; do
@@ -440,12 +451,12 @@ for jb in ${jblist[*]}; do
         if [ $j -ne 0 ]; then
 
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=bigx$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
 
             calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
-            opfile=bigx$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
+            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi
     done
@@ -459,7 +470,14 @@ scdatadir=scthetas$atom
 stdfile=std$atom\stats
 echo "#jbar dj std">$stdfile
 
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/Arp002-5i-40-384J-5.blam
+srcfile=Arp002-5i-40-384J-5.blam
+srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
+
+echo "data file: "$srcfile"
+directory: "$prefix$atom\Hists"
+smoothing: "$smoothing"
+characteristics: "$uniqchar"
+date: "$(date) > $prefix$atom\Hists/metadata
 
 echo $atom:
 for jb in ${jblist[*]}; do
@@ -475,12 +493,12 @@ for jb in ${jblist[*]}; do
         fi
         if [ $j -ne 0 ]; then
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=bigx$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
 
             calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
-            opfile=bigx$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
+            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
             weighteddmhist
         fi
     done

@@ -178,6 +178,9 @@ weightedanglehist(){
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
     set output '$opfile'
+    replot
+    set terminal jpeg
+    set output '$op2file'
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
@@ -207,6 +210,9 @@ weighteddmhist(){
     plot '$pfile' u 1:2 with impulse
     replot '$pfile' u 1:2 title ''
     set output '$opfile'
+    replot
+    set terminal jpeg
+    set output '$op2file'
     replot">>$plotfile
 
     gnuplot <$plotfile >/dev/null 2>&1
@@ -452,12 +458,15 @@ for jb in ${jblist[*]}; do
 
             echo calculating for jbar=$jb, dj=$dj...
             opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            op2file=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.jpg
 
             calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
             opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
+            op2file=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.jpg
             weighteddmhist
+            exit
         fi
     done
 done

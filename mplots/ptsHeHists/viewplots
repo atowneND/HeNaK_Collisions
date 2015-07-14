@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# type: th or dm
+# c: dj or jb
+#
+# defaults: -t th -c dj
+args='getopt t:c:r $*'
+thdm=th
+xconst=dj
+regex=0
+for i
+do
+    case "$i" in 
+        -t) shift; thdm=$1; shift
+            ;;
+        -c) shift; xconst=$1; shift
+            ;;
+        -r) shift; regex=$1; shift
+    esac
+done
+
+if [ "$regex" != 0 ]; then
+    filename=$regex
+    for i in $(find $regex); do
+        #gv $i 2>/dev/null &
+        gv $i 2>/dev/null 
+    done
+    exit
+else
+    djlist=(1 2 3 4 5 6 7 8 9 10)
+    jblist=(5 10 20 30 35)
+    prefix=He
+
+    if [ "$xconst" = "dj" ]; then
+        echo dj held constant
+        for dj in ${djlist[*]}; do
+            filename=$prefix\_w$thdm\_*dj$dj\.ps
+            for i in $(find $filename); do
+                #            gv $i -scale 2 2>/dev/null &
+                gv $i -scale 2 2>/dev/null 
+            done
+            echo next dj?
+            read goahead
+            if [[ "$goahead" = n* ]] || [[ "$goahead" = exit ]] || [[ "$goahead" = quit ]]; then
+                exit
+            fi
+        done
+    elif [ "$xconst" = "jb" ]; then
+        echo jbar held constant
+        for jb in ${jblist[*]}; do
+            for dj in ${djlist[*]}; do
+                if [ $(($dj%2)) -eq 0 ]; then #even
+                    jdiff=$(($dj/2))
+                    j=$(($jb-$jdiff))
+                    jp=$(($jb+$jdiff))
+                else
+                    jdiff=$(($dj/2))
+                    j=$(($jb-$jdiff))
+                    jp=$(($jb+$jdiff+1))
+                fi
+                if [ $j -ne 0 ]; then
+                    filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.ps
+                    #                gv $filename -scale 2 2>/dev/null &
+                    gv $filename -scale 2 2>/dev/null 
+                fi
+            done
+            echo next jbar?
+            read goahead
+            if [[ "$goahead" = n* ]] || [[ "$goahead" = exit ]] || [[ "$goahead" = quit ]]; then
+                exit
+            fi
+        done
+    fi
+fi
+exit

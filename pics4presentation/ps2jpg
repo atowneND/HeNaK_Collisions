@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo enter a file name
+    exit
+fi
+
+pslist=($1)
+#for i in $(find *ps); do
+for i in ${pslist[*]}; do
+    fname=$(echo $i | sed 's/\(^.*\)\(\.eps\)/\1/g')
+    #gs -dEPSCrop -sDEVICE=jpeg -r1024x1200 -sOutputFile=$fname\.jpg - < $fname\.eps >/dev/null
+    gs -dEPSCrop -sDEVICE=jpeg -r512x600 -sOutputFile=$fname\.jpg - < $fname\.eps >/dev/null
+done
+exit
+
+for i in $(find *.jpg); do
+    gnome-open $i 2>/dev/null 
+done

@@ -1,4 +1,5 @@
 data file: Arp002-5i-40-384J-5.blam
-directory: convArHists/
+directory: convArHists
 smoothing: gaussian
-characteristics: xrange [-50:50]
+characteristics: normalized, gaussian filter
+date: Mon Jul 13 16:49:07 EDT 2015

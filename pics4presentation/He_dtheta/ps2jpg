@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pslist=($1)
+for i in $(find *ps); do
+    fname=$(echo $i | sed 's/\(^.*dj[0-9]\)\(\.ps\)/\1/g')
+    gs -dEPSCrop -sDEVICE=jpeg -r1024x1200 -sOutputFile=$fname\.jpg - < $fname\.ps >/dev/null
+done
+
+for i in $(find *.jpg); do
+    gnome-open $i 2>/dev/null 
+done

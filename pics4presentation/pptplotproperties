@@ -1,0 +1,12 @@
+#!/bin/bash
+filename=$1
+if [ -z "$filename" ] ; then
+    echo enter the name of the file
+fi
+
+sed 's/\/gnulinewidth 5.000 def/\/gnulinewidth 10.000 def/g' $filename \
+    | sed 's/currentlinewidth 0\.75/currentlinewidth 1\.5/g' \
+    | sed 's/Helvetica/Helvetica-Bold/g' \
+    | sed '/Begin plot #1/!b;n;c2.000 UL' > foo
+mv foo $filename
+

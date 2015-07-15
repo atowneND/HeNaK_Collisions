@@ -7,6 +7,7 @@
 *.dat
 *.ps
 *.eps
+*.odg
 .~*
 [0-9]*
 dq2theta

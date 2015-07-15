@@ -1,0 +1,44 @@
+FROM
+% Begin plot #1
+2.000 UL
+LT0
+LCb setrgbcolor
+6296 4486 M
+[ [(Helvetica-Bold) 200.0 0.0 true true 0 (Quantum Mechanical)]
+] -46.7 MRshow
+LT0
+6380 4486 M
+
+TO
+% Begin plot #1
+2.000 UL
+LT0
+LCb setrgbcolor
+6296 4456 M
+[ [(Helvetica-Bold) 200.0 0.0 true true 0 (Quantum Mechanical)]
+] -46.7 MRshow
+LT0
+6380 4456 M
+
+##############
+FROM
+% Begin plot #2
+stroke
+LT1
+LCb setrgbcolor
+6296 4346 M
+[ [(Helvetica-Bold) 200.0 0.0 true true 0 (Semiclassical)]
+] -46.7 MRshow
+LT1
+6380 4346 M
+
+TO
+% Begin plot #2
+stroke
+LT1
+LCb setrgbcolor
+6296 4246 M
+[ [(Helvetica-Bold) 200.0 0.0 true true 0 (Semiclassical)]
+] -46.7 MRshow
+LT1
+6380 4246 M

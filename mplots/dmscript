@@ -140,8 +140,8 @@ weightedanglehist(){
     thb=$wbin #set bin sizes
     alphb=$wbin
     phb=$wbin
-    echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp >/dev/null
-    # ../dthetascquad $srcdir $scfile $j $jp >/dev/null
+    #echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp >/dev/null
+    ../dthetascquad $srcdir $scfile $j $jp >/dev/null
 
     # binning
     t=-180
@@ -166,15 +166,30 @@ weightedanglehist(){
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
+    # set ymax
+    if [ $dj -eq 1 ]; then
+        ymax=0.14
+    elif [ $dj -eq 2 ]; then
+        ymax=0.1
+    elif [ $dj -eq 3 ]; then
+        ymax=0.06
+    elif [ $dj -eq 4 ]; then
+        ymax=0.07
+    else
+        ymax=''
+        echo Null ymax
+    fi
+
     # plotting
     echo "set terminal postscript eps enhanced
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
     set xrange [-100:100]
+    set yrange [0:$ymax]
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
-    plot '$scfile' w lines smooth csplines title 'SC' linetype 1
-    replot '$pfile' u 1:2 w lines title 'QM' linetype 2
+    plot '$pfile' u 1:2 w lines title 'QM' linetype 2
+    replot '$scfile' w lines smooth csplines title 'SC' linetype 1
     #replot '$pfile' u 1:2 title 'QM' 
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
@@ -182,8 +197,6 @@ weightedanglehist(){
     replot">>$plotfile
 
     gnuplot <$plotfile >deleteme1
-    cp $pfile $prefix$atom\Hists/qmplot$atom$j$jp\.dat
-    cp $tmpfile $prefix$atom\Hists/bindata$atom$j$jp\.dat
     rm $tmpfile $pfile $plotfile 2>/dev/null
 }
 ###############
@@ -414,9 +427,11 @@ rm $tmpfile $plotfile 2>/dev/null
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
+djlist=(1 2 3 4)
+jblist=(20)
 wbin=0.5
 
-prefix=conv
+prefix=plot
 
 # HELIUM
 atom=He

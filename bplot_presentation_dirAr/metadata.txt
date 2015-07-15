@@ -1,0 +1,5 @@
+Date: Wed Jul 15 14:28:41 EDT 2015
+Input file: newdata/Arp002-5i-40-384J-5.blam
+number of loops: 10
+Max=22; Maxdj=4
+

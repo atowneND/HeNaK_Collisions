@@ -34,6 +34,9 @@ if [ "$origfile" = "" ]; then
 
     echo Writing to $workdir using $origfile
 
+    CTR=18
+    MAX=22
+    MAXdj=4
     while [ $dj -le $MAXdj ]; do
         if [ $dj -lt 10 ]; then
             djstr=0$dj
@@ -125,20 +128,21 @@ if [ "$origfile" = "" ]; then
                 echo "#!/usr/local/gnuplot
                 #        set term x11 0
                 set samples 10000
-                set term postscript
+                set term postscript eps enhanced
 
                 plot '$normdir/$normblams' using 3:4 with impulse title 'Quantum Mechanical'
                 replot '$bthdir/$bthdat' using 1:3 with lines smooth csplines title 'Semiclassical'
 
                 set parametric
                 set trange [0:$Bmaxa]
+                set xrange [0:40]
                 #        set term x11 0
-                replot $alphamin,t title 'alpha_min'
-                replot $SCavg,t title 'SC average'
-                replot $QMavg,t title 'QM average'
-                set xlabel 'theta (deg)'
+                #replot $alphamin,t title '{/Symbol a}_min'
+                #replot $SCavg,t title 'SC average'
+                #replot $QMavg,t title 'QM average'
+                set xlabel '{/Symbol a} (deg)'
                 set ylabel 'B'
-                set title 'j=$j, jp=$jp'
+                set title 'Ar: j=$j, jp=$jp'
                 replot
 
                 #        set term postscript
@@ -156,6 +160,7 @@ if [ "$origfile" = "" ]; then
 
     let dj=dj+1
     CTR=1
+    CTR=18
 done
 
 echo "Date: $(date)

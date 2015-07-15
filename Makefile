@@ -4,10 +4,10 @@
 
 ############# GIVEN_SCRIPTS ##########
 # .o files for linking
-LIBS = datetime.o utility.o stdio.o dpackb.o
+LIBS = datetime.o utility.o stdio.o dpackb.o dsimp.o
 
 # Executables
-EXECS = dq2theta dqcalc pcc12 calcmm dthetabar
+EXECS = dq2theta dqcalc pcc12 calcmm dthetabar dthetascquad
 
 #################################
 

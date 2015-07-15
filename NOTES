@@ -10,7 +10,8 @@ dq2theta: ./dq2theta <dq.dat> <B.dat>
     STDOUT: <Bmax(alpha)>
 calcmm: echo j jp | ./calcmm <blam file> <jmp.dat>
     ->jmp.dat
-dthetabar: echo th_bin alph_bin phi_bin| ./dthetabar <blam file> <sc.dat> j jp
+dthetascquad: ./dthetascquad <blam file> <sc.dat> j jp
+dthetabar: echo th_bin alph_bin phi_bin | ./dthetabar <blam file> <sc.dat> j jp
     ->sc.dat
     STDOUT: # mean and rms of thprime are %5.4e %6.4e
 

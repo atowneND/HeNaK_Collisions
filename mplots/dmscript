@@ -141,6 +141,7 @@ weightedanglehist(){
     alphb=$wbin
     phb=$wbin
     echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp >/dev/null
+    # ../dthetascquad $srcdir $scfile $j $jp >/dev/null
 
     # binning
     t=-180

@@ -1,5 +1,0 @@
-Date: Wed Jul 15 14:24:14 EDT 2015
-Input file: newdata/Ep002mf5i-50b.blam
-number of loops: 10
-Max=22; Maxdj=4
-

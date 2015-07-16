@@ -8,6 +8,7 @@
 *.ps
 *.eps
 *.odg
+Presentation.pdf
 .~*
 [0-9]*
 dq2theta

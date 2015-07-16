@@ -177,7 +177,7 @@ weightedanglehist(){
         ymax=0.07
     else
         ymax=''
-        echo Null ymax
+    #    echo Null ymax
     fi
 
     # plotting
@@ -185,7 +185,6 @@ weightedanglehist(){
     set samples 10000
     set xlabel '{/Symbol D}{/Symbol q}'
     set xrange [-100:100]
-    set yrange [0:$ymax]
     set ylabel 'sum of {/Symbol s}s'
     set title 'j=$j, jp=$jp'
     plot '$pfile' u 1:2 w lines title 'QM' linetype 2
@@ -427,11 +426,9 @@ rm $tmpfile $plotfile 2>/dev/null
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
-djlist=(1 2 3 4)
-jblist=(20)
 wbin=0.5
 
-prefix=plot
+prefix=newconv
 
 # HELIUM
 atom=He

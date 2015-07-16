@@ -31,14 +31,10 @@ if [ "$origfile" = "" ]; then
     errfile=$workdir/errors.log
     metafile=$workdir/metadata.txt
     plotfile=$workdir/deleteme
-    dm=0
+    iter_count=0
 
     echo Writing to $workdir using $origfile
 
-    CTR=19
-    MAX=21
-    dj=2
-    MAXdj=2
     while [ $dj -le $MAXdj ]; do
         if [ $dj -lt 10 ]; then
             djstr=0$dj
@@ -55,7 +51,7 @@ if [ "$origfile" = "" ]; then
         echo Running dj = $dj
 
         while [ $CTR -lt $(($MAX-$dj+1)) ]; do
-            let dm=dm+1
+            let iter_count=iter_count+1
             j=$CTR
             jp=$((CTR+$dj))
 
@@ -126,20 +122,26 @@ if [ "$origfile" = "" ]; then
                 echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statdir/$statfile
 
                 # plot it
+                plotlw=6
+                fontsize=30
+                borderlw=3
+                plotlw=1
+                fontsize=''
+                borderlw=1
                 # suppress visual output
                 echo "#!/usr/local/gnuplot
                 #        set term x11 0
                 set samples 10000
-                set term postscript eps enhanced font 'Helvetica-Bold,30'
-                set encoding
-                set border lw 3
+                set term postscript eps enhanced font 'Helvetica-Bold,$fontsize'
+                #set encoding
+                set border lw $borderlw
 
-                plot '$normdir/$normblams' using 3:4 with impulse lw 6 title 'Quantum'
-                replot '$bthdir/$bthdat' using 1:3 with lines smooth csplines lw 6 title 'Semiclassical'
+                plot '$normdir/$normblams' using 3:4 with impulse lw $plotlw title 'Quantum'
+                replot '$bthdir/$bthdat' using 1:3 with lines smooth csplines lw $plotlw title 'Semiclassical'
 
                 set parametric
                 set trange [0:$Bmaxa]
-                set xrange [0:40]
+                #set xrange [0:40]
                 #        set term x11 0
                 #replot $alphamin,t title '{/Symbol a}_min'
                 #replot $SCavg,t title 'SC average'
@@ -164,11 +166,10 @@ if [ "$origfile" = "" ]; then
 
     let dj=dj+1
     CTR=1
-    CTR=18
 done
 
 echo "Date: $(date)
 Input file: $origfile
-number of loops: $dm
+number of loops: $iter_count
 Max=$MAX; Maxdj=$MAXdj
 ">$metafile

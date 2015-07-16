@@ -1,0 +1,5 @@
+plotAll:
+make font type a variable for plotting in gnuplot
+
+dmscript:
+allow command line entries for prefix/atom/etc

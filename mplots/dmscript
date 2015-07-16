@@ -161,18 +161,42 @@ weightedanglehist(){
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
+    # plot settings
+    fonttype=Helvetica-Bold
+    fontsize=30
+    plotlw=6
+    borderlw=3
+    xmin=-100
+    xmax=100
+    if [ $dj -eq 1 ]; then
+        ymax=0.14
+    elif [ $dj -eq 2 ]; then
+        ymax=0.1
+    elif [ $dj -eq 3 ]; then
+        ymax=0.06
+    elif [ $dj -eq 4 ]; then
+        ymax=0.07
+    else
+        ymax=''
+    fi
+
     # plotting
-    echo "set terminal postscript eps enhanced
+    echo "set terminal postscript eps enhanced font '$fonttype,$fontsize'
+    set border lw $borderlw
     set samples 10000
+
     set xlabel '{/Symbol D}{/Symbol q}'
-    set xrange [-100:100]
+    set xrange [$xmin:$xmax]
+    set yrange [0:$ymax]
     set ylabel 'sum of {/Symbol s}s'
-    set title '$atom: j=$j, jp=$jp'
-    plot '$pfile' u 1:2 w lines title 'QM' linetype 2
-    replot '$scfile' w lines smooth csplines title 'SC' linetype 1
+    set title '$atom: j=$j, j{\302}=$jp'
+
+    plot '$pfile' u 1:2 w lines lt 2 lw $plotlw title 'QM'
+    replot '$scfile' w lines smooth csplines lt 1 lw $plotlw title 'SC'
     #replot '$pfile' u 1:2 title 'QM' 
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
+
     set output '$opfile'
     replot">>$plotfile
 
@@ -410,6 +434,9 @@ jblist=(5 10 20 30 35)
 wbin=0.5
 
 prefix=newconv
+djlist=(1 2 3 4)
+jblist=(20)
+prefix=plotconv
 
 # HELIUM
 atom=He
@@ -423,7 +450,7 @@ echo "#jbar dj std">$stdfile
 srcfile=Ep002mf5i-50b.blam
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
 smoothfun="gaussian"
-uniqchar="plain gaussian convolution, normalized"
+uniqchar="gaussian filter, normalized, ppt settings"
 
 echo "data file: "$srcfile"
 directory: "$prefix$atom\Hists"
@@ -446,13 +473,13 @@ for jb in ${jblist[*]}; do
         if [ $j -ne 0 ]; then
 
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
 
             calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
-            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
-            weighteddmhist
+            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
+            #weighteddmhist
         fi
     done
 done
@@ -488,13 +515,13 @@ for jb in ${jblist[*]}; do
         fi
         if [ $j -ne 0 ]; then
             echo calculating for jbar=$jb, dj=$dj...
-            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.ps
+            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
 
             calcdtheta $j $jp $datadir $qmdatadir
 
             weightedanglehist
-            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.ps
-            weighteddmhist
+            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
+            #weighteddmhist
         fi
     done
 done

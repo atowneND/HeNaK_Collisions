@@ -8,22 +8,22 @@
 # LIST OF FUN #
 ###############
 # OLD
-# anglecount - - - - - - - - - number of transitions vs angle histogram
-# dmcount  - - - - - - - - - - number of transitions vs dm histogram
+# [.] anglecount - - - - - - - - - number of transitions vs angle histogram
+# [.] dmcount  - - - - - - - - - - number of transitions vs dm histogram
 ###############
 # UPDATED
-# eststd  - - - - - - - - - - find standard deviation
-# weightedanglehist - - - - - generate sum of sigma vs angle histogram
-# weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
-# calcdtheta  - - - - - - - - calculate delta theta from m, mp, j, jp
-# normalize_dtheta  - - - - - QM normalization for plotting and comparing QM/SC
-# gaussfilter - - - - - - - - passes binned raw data through gauss filter
-# m0to0 - - - - - - - - - - - look at dthetas close to zero
-# plotm0to0byjbar - - - - - - plots smallest nonzero angle vs jbar for all dj
-# plotm0to0bydj - - - - - - - plots smallest nonzero angle vs dj for all jbar
+# [ ] eststd  - - - - - - - - - - find standard deviation
+# [x] weightedanglehist - - - - - generate sum of sigma vs angle histogram
+# [ ] weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
+# [ ] calcdtheta  - - - - - - - - calculate delta theta from m, mp, j, jp
+# [x] normalize_dtheta  - - - - - QM normalization for plotting and comparing QM/SC
+# [ ] gaussfilter - - - - - - - - passes binned raw data through gauss filter
+# [ ] m0to0 - - - - - - - - - - - look at dthetas close to zero
+# [ ] plotm0to0byjbar - - - - - - plots smallest nonzero angle vs jbar for all dj
+# [ ] plotm0to0bydj - - - - - - - plots smallest nonzero angle vs dj for all jbar
 ###############
 # NEEDS WORK
-# dth_max - - - - - - - - - - plot the angle at maximum cross section vs jbar
+# [ ] dth_max - - - - - - - - - - plot the angle at maximum cross section vs jbar
 
 ###############
 #    NOTES    #

@@ -14,7 +14,69 @@ import numpy
 logger = logging.getLogger('data_model_analysis_logger')
 logging.basicConfig(level=logging.INFO)
 
-class DataModelAnalysis:
+class generateDataFiles:
+    def __init__(self, **kwargs):
+        self.__dict__.update(**kwargs)
+
+    j = None
+    j_prime = None
+    initial_raw_data = None
+
+    def calculate_delta_theta(self):
+        """
+            calculates delta theta from datfiles
+            generates a data file (quantum_model_data_path)
+        """
+        atom = 'He'
+        if not self.j:
+            raise IndexError('j not set')
+
+        if not self.j_prime:
+            raise IndexError('j_prime not set')
+
+        dj = self.j_prime - self.j
+
+        cross_section_data_path = (
+            'datfiles{atom}/jmp_j{j}_jp{j_prime}_dj{dj}.dat'.format(
+                atom=atom,
+                j=self.j,
+                j_prime=self.j_prime,
+                dj=dj,
+            )
+        )
+
+        quantum_model_data_path = (
+            'qmthetas{atom}/qmth_j{j}_jp{j_prime}_dj{dj}.dat'.format(
+                atom=atom,
+                j=self.j,
+                j_prime=self.j_prime,
+                dj=dj,
+            )
+        )
+
+        m_values = []
+        m_prime_values = []
+        cross_sections = []
+        delta_thetas = []
+
+        with open(cross_section_data_path, "r") as f:
+            for line in f.readlines():
+                stripped_line = line.lstrip()
+                if stripped_line[0] == '#':
+                    continue
+                tokens = stripped_line.split()
+                m_values.append(tokens[0])
+                m_prime_values.append(tokens[1])
+                cross_sections.append(tokens[2])
+                temp_dtheta = m_values
+                delta_thetas.append(temp_dtheta)
+
+class deltaThetaModelAnalysis:
+    # __init__
+    # normalize_data
+    # plot_data
+    # calculate_quantum_bins_histogram
+    # process_semiclassical_data
 
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
@@ -24,6 +86,10 @@ class DataModelAnalysis:
     initial_raw_data = None
 
     def normalize_data(self, y_values, bin_width):
+        """
+            normalizes by dividing each data point by the sum of all data
+            points times the bin width
+        """
         y_total = sum(y_values)
         y_normalized = y_values/(y_total*bin_width)
         return y_normalized
@@ -59,8 +125,9 @@ class DataModelAnalysis:
 
             returns [array(values), array(bin_edges)]
         """
-        bins = 720
         bin_width = .5
+        atom = 'He'
+        bins = 360./bin_width
 
         if not self.j:
             raise IndexError('j not set')
@@ -71,7 +138,8 @@ class DataModelAnalysis:
         dj = self.j_prime - self.j
 
         quantum_model_data_path = (
-            'qmthetasHe/qmth_j{j}_jp{j_prime}_dj{dj}.dat'.format(
+            'qmthetas{atom}/qmth_j{j}_jp{j_prime}_dj{dj}.dat'.format(
+                atom=atom,
                 j=self.j,
                 j_prime=self.j_prime,
                 dj=dj,
@@ -107,19 +175,6 @@ class DataModelAnalysis:
         y_normalized = self.normalize_data(hist[0], bin_width)
 
         return [y_normalized, avg_bin_edges]
-
-    def weighted_angle_hist(self):
-        """
-            Makes histogram of cross-sections
-            as a function of the change in theta.
-            First gets semiclassical data from 
-            fortran function. 
-
-            dj: deltaj
-            j: part of quantum number
-        """
-        if not self.quantum_model_data_path:
-            raise IndexError('quantom_model_data_path not set')
 
     def process_semiclassical_data(
         self,
@@ -171,7 +226,7 @@ class DataModelAnalysis:
 
 if __name__ == '__main__':
     initial_path = "../newdata/Ep002mf5i-50b.blam"
-    dma = DataModelAnalysis(
+    dma = deltaThetaModelAnalysis(
         initial_raw_data=os.path.abspath(initial_path),
         j=28,
         j_prime=32,

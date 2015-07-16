@@ -137,10 +137,6 @@ weightedanglehist(){
     rm $tmpfile $pfile $plotfile 2>/dev/null
 
     # get semiclassical data
-    thb=$wbin #set bin sizes
-    alphb=$wbin
-    phb=$wbin
-    #echo $thb $alphb $phb | ../dthetabar $srcdir $scfile $j $jp >/dev/null
     ../dthetascquad $srcdir $scfile $j $jp >/dev/null
 
     # binning
@@ -158,27 +154,12 @@ weightedanglehist(){
     normalize_dtheta tmp2 $pfile
     rm tmp2 2>/dev/null
 
-    # normalization and statistics
-#    normalize_dtheta $tmpfile $pfile
+    # statistics
     std=$(eststd $tmpfile)
     echo $jb $dj $std >>$stdfile
     ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
     ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
-
-    # set ymax
-    if [ $dj -eq 1 ]; then
-        ymax=0.14
-    elif [ $dj -eq 2 ]; then
-        ymax=0.1
-    elif [ $dj -eq 3 ]; then
-        ymax=0.06
-    elif [ $dj -eq 4 ]; then
-        ymax=0.07
-    else
-        ymax=''
-    #    echo Null ymax
-    fi
 
     # plotting
     echo "set terminal postscript eps enhanced
@@ -186,7 +167,7 @@ weightedanglehist(){
     set xlabel '{/Symbol D}{/Symbol q}'
     set xrange [-100:100]
     set ylabel 'sum of {/Symbol s}s'
-    set title 'j=$j, jp=$jp'
+    set title '$atom: j=$j, jp=$jp'
     plot '$pfile' u 1:2 w lines title 'QM' linetype 2
     replot '$scfile' w lines smooth csplines title 'SC' linetype 1
     #replot '$pfile' u 1:2 title 'QM' 
@@ -218,7 +199,7 @@ weighteddmhist(){
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
-    set title 'j=$j, jp=$jp'
+    set title '$atom: j=$j, jp=$jp'
     plot '$pfile' u 1:2 with impulse
     replot '$pfile' u 1:2 title ''
     set output '$opfile'

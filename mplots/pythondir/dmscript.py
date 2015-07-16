@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# dmpy.py
+# dmscript.py
 # MAINTAINER: Baetowne
 
 import logging
@@ -18,8 +18,6 @@ class DataModelAnalysis:
 
     def __init__(self, **kwargs):
         self.__dict__.update(**kwargs)
-
-            
 
     j = None
     j_prime = None
@@ -55,14 +53,12 @@ class DataModelAnalysis:
         plt.legend(loc='upper center')
         plt.show()
 
-
     def calculate_quantum_bins_histogram(self):
         """
             figures out quantum bins
 
             returns [array(values), array(bin_edges)]
         """
-
         bins = 720
         bin_width = .5
 
@@ -87,13 +83,14 @@ class DataModelAnalysis:
         with open(quantum_model_data_path, "r") as f:
             for line in f.readlines():
 
-                # Skip over commenw
+                # Skip over comment
                 if line[0] == '#':
                     continue
 
                 tokens = line.split()
                 x_values.append(float(tokens[2]))
                 weights.append(float(tokens[3]))
+        
         hist = numpy.histogram(
             x_values,
             bins=bins,
@@ -110,7 +107,6 @@ class DataModelAnalysis:
         y_normalized = self.normalize_data(hist[0], bin_width)
 
         return [y_normalized, avg_bin_edges]
-
 
     def weighted_angle_hist(self):
         """
@@ -136,7 +132,6 @@ class DataModelAnalysis:
             and calculates semiclassical data
             for plotting
         """
-
         f = NamedTemporaryFile("w+")
 
         if not self.initial_raw_data:
@@ -144,13 +139,9 @@ class DataModelAnalysis:
 
         logger.info("Using dthetabar to calculate data...")
         status_code = subprocess.check_call((
-            'echo {theta_bin} {alpha_bin} {phi_bin}'
-            ' | ../dthetabar '
+            '../dthetascquad '
             '{initial_raw_data} {semi_data_path} {j} {j_prime}'
             ).format(
-                theta_bin=theta_bin,
-                alpha_bin=alpha_bin,
-                phi_bin=phi_bin,
                 initial_raw_data=self.initial_raw_data,
                 semi_data_path=f.name,
                 j=self.j,
@@ -184,6 +175,5 @@ if __name__ == '__main__':
         initial_raw_data=os.path.abspath(initial_path),
         j=28,
         j_prime=32,
-
     )
     dma.plot_data()

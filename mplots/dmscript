@@ -162,12 +162,14 @@ weightedanglehist(){
     ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
     # plot settings
-    fonttype=Helvetica-Bold
+    fonttype=Helvetica
     fontsize=30
     plotlw=6
     borderlw=3
-    xmin=-100
-    xmax=100
+    xmin=-50
+    xmax=$((-$xmin))
+    qmcolor=red
+    sccolor=blue
     if [ $dj -eq 1 ]; then
         ymax=0.14
     elif [ $dj -eq 2 ]; then
@@ -181,7 +183,7 @@ weightedanglehist(){
     fi
 
     # plotting
-    echo "set terminal postscript eps enhanced font '$fonttype,$fontsize'
+    echo "set terminal postscript color eps enhanced font '$fonttype,$fontsize'
     set border lw $borderlw
     set samples 10000
 
@@ -191,8 +193,8 @@ weightedanglehist(){
     set ylabel 'sum of {/Symbol s}s'
     set title '$atom: j=$j, j{\302}=$jp'
 
-    plot '$pfile' u 1:2 w lines lt 2 lw $plotlw title 'QM'
-    replot '$scfile' w lines smooth csplines lt 1 lw $plotlw title 'SC'
+    plot '$pfile' u 1:2 w lines lt 2 lw $plotlw lc rgb '$qmcolor' title 'QM'
+    replot '$scfile' w lines smooth csplines lt 1 lw $plotlw lc rgb '$sccolor' title 'SC'
     #replot '$pfile' u 1:2 title 'QM' 
     #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
     #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
@@ -434,12 +436,12 @@ jblist=(5 10 20 30 35)
 wbin=0.5
 
 prefix=newconv
-djlist=(1 2 3 4)
-jblist=(20)
-prefix=plotconv
 
 # HELIUM
 atom=He
+if [ "$(find $prefix$atom\Hists)" == "" ]; then
+    mkdir $prefix$atom\Hists
+fi
 
 datadir=datfiles$atom
 qmdatadir=qmthetas$atom
@@ -486,6 +488,10 @@ done
 
 # ARGON
 atom=Ar
+if [ "$(find $prefix$atom\Hists)" == "" ]; then
+    mkdir $prefix$atom\Hists
+fi
+
 datadir=datfiles$atom
 qmdatadir=qmthetas$atom
 scdatadir=scthetas$atom

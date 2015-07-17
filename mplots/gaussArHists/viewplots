@@ -24,6 +24,7 @@ do
 done
 
 djlist=(1 2 3 4 5 6 7 8 9 10)
+djlist=(1 2 3 4)
 jblist=(5 10 20 30 35)
 prefix=Ar
 #if [ "$regex" != 0 ]; then
@@ -39,9 +40,9 @@ elif [ "$xconst" = "dj" ]; then
     echo dj held constant
     for dj in ${djlist[*]}; do
         if [ "$regex" == 0 ]; then
-            filename=$prefix\_w$thdm\_*dj$dj\.ps
+            filename=$prefix\_w$thdm\_*dj$dj\.eps
         else
-            filename=$regex\*dj$dj\.ps
+            filename=$regex\*dj$dj\.eps
         fi
         for i in $(find $filename); do
             #            gv $i -scale 2 2>/dev/null &
@@ -68,9 +69,9 @@ elif [ "$xconst" = "jb" ]; then
             fi
             if [ $j -ne 0 ]; then
                 if [ "$regex" == 0 ]; then
-                    filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.ps
+                    filename=$prefix\_w$thdm\_j$j\jp$jp\_dj$dj\.eps
                 else
-                    filename=$regex\*j$j\jp$jp\_dj$dj\.ps
+                    filename=$regex\*j$j\jp$jp\_dj$dj\.eps
                 fi
             
                 #                gv $filename -scale 2 2>/dev/null &

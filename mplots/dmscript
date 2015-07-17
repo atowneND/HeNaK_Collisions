@@ -166,18 +166,21 @@ weightedanglehist(){
     fontsize=30
     plotlw=6
     borderlw=3
+    fontsize=10
+    plotlw=1
+    borderlw=1
     xmin=-50
     xmax=$((-$xmin))
     qmcolor=red
     sccolor=blue
-    if [ $dj -eq 1 ]; then
-        ymax=0.14
-    elif [ $dj -eq 2 ]; then
-        ymax=0.1
-    elif [ $dj -eq 3 ]; then
-        ymax=0.06
-    elif [ $dj -eq 4 ]; then
+    if [ $jb -eq 30 ]; then
+        ymax=0.09
+    elif [ $jb -eq 20 ]; then
         ymax=0.07
+    elif [ $jb -eq 10 ]; then
+        ymax=0.04
+    elif [ $jb -eq 5 ]; then
+        ymax=0.045
     else
         ymax=''
     fi
@@ -188,8 +191,8 @@ weightedanglehist(){
     set samples 10000
 
     set xlabel '{/Symbol D}{/Symbol q}'
-    set xrange [$xmin:$xmax]
-    set yrange [0:$ymax]
+#    set xrange [$xmin:$xmax]
+#    set yrange [0:$ymax]
     set ylabel 'sum of {/Symbol s}s'
     set title '$atom: j=$j, j{\302}=$jp'
 
@@ -433,9 +436,10 @@ rm $tmpfile $plotfile 2>/dev/null
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
+djlist=(1 2 3 4)
 wbin=0.5
 
-prefix=newconv
+prefix=plot
 
 # HELIUM
 atom=He

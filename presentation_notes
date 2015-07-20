@@ -2,20 +2,25 @@
 - name, theory, rotationally inelastic collisions
 
 2.
+- molecule can vibrate and rotate
+- upon collision with an atom, quantum numbers can change
 - vibrational and rotational states that can change in collision
-- we choose the energy of the interactions that we want to study by our choice
-  of potential curve
 
 3.
 - electronic state -> potential curves
+- energy as a function of internuclear separation or bond length
 - our choice of potential curve specifies the energy at which the collisions
   in question take place
 
 4.
 - experiment can measure cross sections, which are a metric of the likelihood
   of interaction, averaged over the quantum number m
-- fraction of orientation is related to m
-- cell environment is random
+- fraction of orientation that is preserved, which is related to quantum number m
+- orientation is the extent to which all angular momenta point in the same
+  direction
+    - cell environment, angular momenta point in all directions
+    - collision is a randomizing process
+- preserved orientation is a measure of how randomizing the collisions are
 
 5.
 - the orientation is related to the geometric relationship between m and j
@@ -24,43 +29,51 @@
 - expectation value
 
 6.
-- lab's lasers polarization must be chosen carefully to properly alter the
-  system
-- ground to A: chosen energy
-- pump laser is right circularly polarized
-- after collision, probe laser is linearly polarized
-- before detector, linear probe laser goes through perpendicular polarizer
-- signal's presence depends on linear = left + right
+- ground potential curve
+- A potential curve: where the studied collisions happen
+- pump laser is right circularly polarized, populates vibrational and
+  rotational states in A
+- after collision, probe laser: swept across a range of frequencies to measure
+  the final orientation
 
 7.
-- right circular polarization of pump laser leads to selection rule
+- polarized light has selection rules for transitions
+- pump laser always pumps so delta m = plus one
+- each row's potential curve
 - nonzero <m> prior to collisions
-- linear probe laser -> left and right polarizations will interact differently
-- final polarization is elliptical
-- any signal is a measure of the final orientation
+- linear probe laser measures the orientation
 
 8.
 - results of experiment and initial theory
 - propensity for delta j
-- homonuclear vs heteronuclear
-- therefore something else is going on
+- cannot say it is approximately homonuclear because propensity depends on
+  collision partner
+- experiment and potassium
+- theory has large computational requirements and K is too large with current
+  methods
 - theory and experiment agree
 
 9.
 - theory of calculating cross sections
+- huge calculations to get B_lambdas - probability for transferring an amount
+  of angular momentum
 - vector model definition of lambda - metric of the discrete value of angular
   momentum transfered in the collision
 - alpha, discrete nature
-- remove the quantum mechanical restrictions and make alpha continuous for
-  semiclassical approximations
+- take the qm theory a step further to get a more intuitive physical
+  interpretation:
+    - remove the quantum mechanical restrictions and make alpha continuous for
+      semiclassical approximations
 
 10.
-- law of cosines, relate lambda and alpha, which we call the tipping angle
+- law of cosines, relate lambda and alpha
+    - tipping angle
 - instead of summing over lambda, integrate over alpha
 - alpha is the tipping angle (remember the vector model)
 - B is the distribution of tipping angles
 
 11.
+- B lambda and B alpha (difference between discrete and continuous)
 - Plotting B vs the tipping angle shows which alphas are most likely
 - biggest B's are near small alpha
 
@@ -71,7 +84,7 @@
 
 13.
 - He propensity, not for Ar
-- newer potential surfaces may change this for argon
+- newer potential curves may change this for argon
 - when expectation value of alpha is big the transitions are less likely
 - bigger j's meant less tipping
 
@@ -83,13 +96,21 @@
   happen often because they can precess
 
 15.
-- for a particular alpha, j' can be anywhere on the circle in the picture
-- distribution of delta theta
-- 2 models
-    - quantum data into a histogram binned by delta thetas and convolved with a
+- for a particular alpha, j' can be anywhere on the circle in the picture but
+  will tend to rest where theta = theta prime
+- even if delta theta is zero, j will not necessarily point in the same
+  direction as j prime (in fact this is quite rare)
+- QM
+    - average delta theta over all possible m/m' transitions
+    - histogram binned by delta thetas and convolved with a
       gaussian - essentially smoothing the discrete values into a distribution
       to compare with the semiclassical model
-    - semiclassical model
+- SC
+    - model that relates delta theta to alpha
+    - considered all azimuthal phi, given an initial theta, found distribution
+      of theta prime
+    - averaging over continuous distribution of tipping angles
+- relate delta theta to tipping angle
 
 16-17.
 - graphing the results show us that...

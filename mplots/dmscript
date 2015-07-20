@@ -249,7 +249,7 @@ calcdtheta(){
     indata=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
     datoutfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
     # check rad2deg placement
-    echo "#m mp dtheta sigma">$datoutfile
+    echo "#m mp dtheta sigma theta theta_prime">$datoutfile
 
     cat $indata | sed '/#/d' | awk '{jex=$1/sqrt('$jp'*('$jp'+1)); jpex=$2/sqrt('$j'*('$j'+1));\
         t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
@@ -451,18 +451,18 @@ datadir=datfiles$atom
 qmdatadir=qmthetas$atom
 scdatadir=scthetas$atom
 stdfile=std$atom\stats
-echo "#jbar dj std">$stdfile
+#echo "#jbar dj std">$stdfile
 
 srcfile=Ep002mf5i-50b.blam
 srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
 smoothfun="gaussian"
 uniqchar="gaussian filter, normalized, ppt settings"
 
-echo "data file: "$srcfile"
-directory: "$prefix$atom\Hists"
-smoothing: "$smoothfun"
-characteristics: "$uniqchar"
-date: "$(date) > $prefix$atom\Hists/metadata
+#echo "data file: "$srcfile"
+#directory: "$prefix$atom\Hists"
+#smoothing: "$smoothfun"
+#characteristics: "$uniqchar"
+#date: "$(date) > $prefix$atom\Hists/metadata
 
 echo $atom:
 for jb in ${jblist[*]}; do
@@ -483,9 +483,9 @@ for jb in ${jblist[*]}; do
 
             calcdtheta $j $jp $datadir $qmdatadir
 
-            #weightedanglehist
+#            weightedanglehist
             opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
-            #weighteddmhist
+#            weighteddmhist
         fi
     done
 done
@@ -529,7 +529,7 @@ for jb in ${jblist[*]}; do
 
             calcdtheta $j $jp $datadir $qmdatadir
 
-            #weightedanglehist
+#            weightedanglehist
             opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
             #weighteddmhist
         fi

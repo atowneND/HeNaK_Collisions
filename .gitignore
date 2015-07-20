@@ -8,6 +8,7 @@
 *.ps
 *.eps
 *.odg
+*.pptx
 Presentation.pdf
 .~*
 [0-9]*

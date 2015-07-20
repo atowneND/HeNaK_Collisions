@@ -1,0 +1,102 @@
+1.
+- name, theory, rotationally inelastic collisions
+
+2.
+- vibrational and rotational states that can change in collision
+- interested in comparing theory and experiment for collisions where momentum
+  changes but vibrational state is constant
+
+3.
+- electronic state -> potential curves
+- experiment and theory choose a subset of these curves to isolate a specific
+  energy
+
+4.
+- experiment can measure cross sections, which are a metric of the likelihood
+  of interaction, averaged over the quantum number m
+- fraction of orientation is related to m
+- cell environment is random
+
+5.
+- the orientation is a relationship between ma nd j
+- m, j, theta
+- j precesses about the z axis
+- expectation value
+
+6.
+- lab's lasers must alter the system
+- ground to A: specific energy
+- after collision, probe laser is linearly polarized
+- before detector, linear laser goes through perpendicular polarizer
+- signal's presence depends on linear = left + right
+
+7.
+- pump laser has a selection rule
+- nonzero <m> prior to collisions
+- linear laser -> left and right polarizations will interact differently
+- final polarization is elliptical and a measure of the final orientation
+
+8.
+- results of experiment and initial theory
+- propensity for delta j
+- homonuclear vs heteronuclear
+- experimental potassium negates quasi-homonuclear argument
+
+9.
+- theory of calculating cross sections
+- vector model definition of lambda - metric of the discrete value of angular
+  momentum transfered in the collision
+- alpha, discrete nature
+- remove the quantum mechanical restrictions and make alpha continuous for
+  semiclassical approximations
+
+10.
+- law of cosines
+- instead of summing over lambda, integrate over alpha
+- alpha is the tipping angle (remember the vector model)
+- integral looks like a distribution equation - because it is
+
+11.
+- results: B vs tipping angle
+- biggest B's are near small alpha
+
+12.
+- helium and argon display similar overall behaviors
+
+13.
+- He propensity
+- alpha tends to be small, and when it is big the transitions are less likely
+- Ar had no even/odd propensity
+- newer potential surfaces may change this
+- expectation value of alpha
+- argon is bigger
+- bigger j's meant less tipping
+
+14.
+- sum over lambda, integrate over alpha and look at the cross sections
+- back to the vector model: delta theta is not alpha
+- unless j, j' are coplanar with each other and the z axis, which doesn't
+  happen often because they can precess about the z axis
+
+15.
+- for a particular alpha, j' can be anywhere on the circle in the picture
+- distribution of delta theta
+- 2 models
+    - quantum data into a histogram binned by delta thetas and convolved with a
+      gaussian - essentially smoothing the delta functions into a distribution
+
+24.
+- delta theta tends to be small, which is consistent with other research in
+  this field
+- delta theta is rarely exactly zero
+- larger j transitions have more spread out distributions
+- delta j = 1, argon and helium swap at larger delta j's
+- jbar trend - SC tends not to work as well at small j's
+
+25.
+- money, computers
+- Teri and Kara
+- Prof. Huennekens
+- Prof. Hickman
+
+QUESTIONS

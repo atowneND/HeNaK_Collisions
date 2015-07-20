@@ -1,0 +1,178 @@
+1.
+Hi. My name is Ashley Towne and I will be talking about collisions between
+sodium potassium and helium or between sodium potassium and argon.
+
+2.
+Professor Huennekens' lab runs experiments to study this question, and
+Professor Hickman leads the theory group. 
+NaK, like any molecule, has vibrational and rotational states.  When it
+collides with a perturbing atom, such as helium or argon, its state can change.
+Specifically, we have been interested in rotationally inelastic collisions
+where there is a transfer of momentum from one j,m state to another but where
+its vibrational state remains constant.
+
+3.
+In addition to its rotational and vibrational states, NaK is also described by
+its electronic state, which gives us a set of potential curves.  Both theory
+and experiment focus on a subset of these curves.
+
+Experiment chooses a state to excite the system to by the frequency of the pump
+laser and then measures properties of that state by absorption of a probe laser
+that excites the system to a higher potential.
+
+4.
+The experimental group can measure the cross section of transitions from one
+angular momentum state to another. For those of you who have not yet taken a
+quantum mechanics class, the cross section is a metric of interaction.
+Experiments have also measured the fraction of NaK's orientation that is
+preserved after collisions.  This is related to the quantum number m. Typically
+in a cell environment – which is what Professor Huennekens uses in his lab – the
+orientation of the system is random.  The expectation value of m is zero for
+any given j value.  However, experimentalists are able to create an orientation
+using polarized lasers, so the expectation value of m is nonzero.
+
+5.
+The orientation is a relationship between m and j, which can be described using
+the vector model.  If m is on the z axis, the j vector points in some
+direction, and the angle between j and m is theta. The j vector precesses
+around the z axis but maintains the angle theta unless some interaction causes
+it to change.  Taking the expectation value of cosine of theta for a particular
+j yields the orientation.
+
+6.
+Professor Huennekens' lab uses polarized lasers alter the system so that the
+orientation is nonzero.
+A pump laser, which is right circularly polarized, excites the system from the
+ground state to another state with a particular energy.  On the right, the
+potential curves show this transition from the ground state to the A state.
+This technique can also yield information about the population of the A state
+after excitation.
+After the system has undergone collisions, a linearly polarized laser interacts
+with the system and then is passed through a polarizer perpendicular to the
+initial polarization.  Unless something changes, there will be no signal due to
+the nature of polarization.
+
+7.
+However, linear polarization can be thought of as a superposition of left and
+right circular polarization.
+When the right circularly polarized pump laser excites the system, there is a
+selection rule that states delta m must be positive one.  This means that the
+lower m states are not populated, and there is a net nonzero initial orientation.
+After the collisions – which presumably have changed the orientation of the
+system – the probe laser uses linear polarization, so that both left and right
+circular polarization must interact with the system.
+Because of the initial nonzero orientation, the two types of circular
+polarization will be absorbed at different rates, and the resulting total
+polarization is elliptical.  As it is no longer perfectly linearly polarized,
+passing it through the perpendicular polarizer will result in a small signal,
+which is related to the orientation of the system.
+
+8.
+It is possible to calculate these results theoretically.  Comparing them shows
+that there is a propensity for the change in j to be an even number, as shown
+by the rate constants in the graph.  The rate constant is related to the cross
+section.  One of the original explanations for this was that homonuclear
+diatomic molecules have a strict selection rule.  Sodium and potassium are in
+the same column of the periodic table; it is possible that they are close
+enough to homonuclear to explain this propensity.  However, experiments have
+shown that when the perturbing atom is potassium rather than a noble gas, there
+is no noticeable propensity for delta j to be even.  Due to computing
+constraints, theoretically  modeling potassium has proven to be challenging, so
+we can't compare those results, but for helium, the agreement is good.
+
+9.
+We can calculate the cross section of interaction using a quantum mechanical
+model.  The equation depends on the initial and final states, a few constants,
+and the parameter lambda.  Lambda is a metric of how much angular momentum was
+transferred in the collision.  In the vector model, it is the distance from the
+initial j vector to the final j vector.  Due to the quantum mechanical nature
+of the system, lambda must be a discrete value between j minus j prime and j
+plus j prime.  The angle between j and j prime is alpha, which also has a
+finite number of discrete values.
+However, if we remove the quantum mechanical restrictions and make lambda a
+continuous variable, we can use a semiclassical model to approximate the cross
+sections.
+
+10.
+By applying the law of cosines to the triangles on the previous slide, a
+relationship between lambda and alpha for a particular j/j prime pair can be
+determined.  This relationship can turn a sum over discrete lambda into a
+continous integral over alpha.
+Alpha is called the tipping angle, and in the semiclassical model, is a metric
+of the continuous amount of angular momentum transferred.  Integrating over
+alpha gives the cross section of interaction.
+The semiclassical equation also depends on a set of constants as well as the
+initial and final states.  One of these constants is B, which is the
+distribution of tipping angles.
+
+11.
+For helium, j is 19, j prime is 21, and delta j is two, this plot shows the
+distribution of tipping angles.  Note that the quantum mechanical model (in
+red) is multiplied by 2lambda plus one, and the semiclassical model (in blue)
+is multiplied by sine alpha. These are the values that were summed or
+integrated, so including them leads to no loss of generality and does provide a
+scale to see useful trends.
+
+12.
+Note that the largest B values are concentrated at small alpha.
+
+13.
+Helium's B values were much larger in magnitude for even delta j.  The
+distribution was much narrower for even delta j, as well.  As these are the
+most probable transitions, we can conclude that there is a propensity for a
+small tipping angle.
+Argon showed no propensity for even or odd delta j, although for small delta j
+(the most probable transitions) there was a propensity for small alpha. At
+least, the propensity has not been calculated yet.  The potential surface for
+argon is still being refined, so future calculations may show something
+different.  As delta j increased, the expected tipping angle grew, but the
+magnitude of the B values decreased.
+The latter trend was common to both argon and helium.  Argon's B values were
+much larger than helium's.  Argon is a bigger atom, so it makes sense that it
+is more likely to transfer angular momentum in a collision.  As jbar increased,
+the expected tipping angle decreased.  It also makes sense that higher j states
+will be less likely to tip as far as lower j states.
+
+14.
+Another metric to look at is how the cross section changes with delta theta.
+Note that delta theta is not equal to alpha unless j and j prime are coplanar
+with each other and the z axis.  J vectors can precess around the z axis.
+Theta measures the angle between j and m.  Alpha measures the angle between j
+vectors.
+The cross section sums over all lambda or alpha possibilities for each j j
+prime pair.  The distribution of alpha or lambda is related to delta theta.
+
+15.
+A j prime vector with a particular alpha can end up anywhere on the circle
+shown in this image.  All points on that circle have the same tipping angle of
+alpha, but theta prime changes which yields a distribution of delta thetas
+Again, there are two models to compare.  The cross sections for the quantum
+mechanical model are delta functions.  To find a meaningful distribution of
+delta thetas to compare to the semiclassical model, I put the quantum data into
+a histogram binned by delta thetas and convolved it with a gaussian –
+essentially smoothing the delta functions into a distribution.
+Professor Hickman computed the semiclassical model, initially using a numeric
+approach and then refining it to be analytic.
+
+16.
+These results show the distribution of cross sections across delta theta
+values.  Again, quantum is red and semiclassical is blue.
+
+24.
+One of the big conclusions is the delta theta tends to be small.  This is
+consistent with what we expected.  However, delta theta is rarely exactly zero,
+especially in the quantum mechanical model; there are very few state
+transitions that can result in a delta theta of zero.
+As delta j increases, the distribution of cross sections tends to spread out.
+Interestingly, argon's distribution is narrower than helium's at delta j of 1,
+but it spreads out much more quickly as delta j increases.
+As jbar increases, the agreement between the quantum and semiclassical models
+drastically improves, and the distribution becomes much narrower.
+
+25.
+I'd like to acknowledge and thank the NSF for funding this project, XSEDE at
+TACC for the hardware that allowed the data to be calculated, and the people
+who helped me.
+I'd like to thank Teri and Kara for helpful conversations, Professor Huennekens
+for explaining the experimental side of the project, and Professor Hickman for
+guiding me through the entire process.

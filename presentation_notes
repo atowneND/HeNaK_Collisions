@@ -1,5 +1,6 @@
 1.
-- name, theory, rotationally inelastic collisions
+- I'm going to talk about physical interpretations of theoretical analysis of
+  rotationally inelastic collisions
 
 2.
 - molecule can vibrate and rotate
@@ -9,10 +10,12 @@
 3.
 - electronic state -> potential curves
 - energy as a function of internuclear separation or bond length
+
+4.
 - our choice of potential curve specifies the energy at which the collisions
   in question take place
 
-4.
+5.
 - experiment can measure cross sections, which are a metric of the likelihood
   of interaction, averaged over the quantum number m
 - fraction of orientation that is preserved, which is related to quantum number m
@@ -22,13 +25,13 @@
     - collision is a randomizing process
 - preserved orientation is a measure of how randomizing the collisions are
 
-5.
+6.
 - the orientation is related to the geometric relationship between m and j
 - j precesses about the z axis
 - m, j, theta
 - expectation value
 
-6.
+7.
 - ground potential curve
 - A potential curve: where the studied collisions happen
 - pump laser is right circularly polarized, populates vibrational and
@@ -36,16 +39,16 @@
 - after collision, probe laser: swept across a range of frequencies to measure
   the final orientation
 
-7.
+8.
 - polarized light has selection rules for transitions
 - pump laser always pumps so delta m = plus one
 - each row's potential curve
 - nonzero <m> prior to collisions
 - linear probe laser measures the orientation
 
-8.
+9.
 - results of experiment and initial theory
-- propensity for delta j
+- propensity for even delta j
 - cannot say it is approximately homonuclear because propensity depends on
   collision partner
 - experiment and potassium
@@ -53,10 +56,10 @@
   methods
 - theory and experiment agree
 
-9.
-- theory of calculating cross sections
+10.
 - huge calculations to get B_lambdas - probability for transferring an amount
   of angular momentum
+- want a physical interpretation
 - vector model definition of lambda - metric of the discrete value of angular
   momentum transfered in the collision
 - alpha, discrete nature
@@ -65,37 +68,38 @@
     - remove the quantum mechanical restrictions and make alpha continuous for
       semiclassical approximations
 
-10.
+11.
 - law of cosines, relate lambda and alpha
     - tipping angle
 - instead of summing over lambda, integrate over alpha
 - alpha is the tipping angle (remember the vector model)
 - B is the distribution of tipping angles
 
-11.
+12.
 - B lambda and B alpha (difference between discrete and continuous)
 - Plotting B vs the tipping angle shows which alphas are most likely
 - biggest B's are near small alpha
 
-12.
+13.
 - helium and argon display similar overall behaviors
 - small tipping angles
 - argon is bigger
 
-13.
+14.
 - He propensity, not for Ar
 - newer potential curves may change this for argon
 - when expectation value of alpha is big the transitions are less likely
 - bigger j's meant less tipping
 
-14.
+15.
 - sum over lambda, integrate over alpha and look at the cross sectional
   distribution over delta theta
 - back to the vector model: delta theta is not alpha
 - unless j, j' are coplanar with each other and the z axis, which doesn't
   happen often because they can precess
+- give example where delta theta is zero
 
-15.
+16.
 - for a particular alpha, j' can be anywhere on the circle in the picture but
   will tend to rest where theta = theta prime
 - even if delta theta is zero, j will not necessarily point in the same
@@ -112,13 +116,11 @@
     - averaging over continuous distribution of tipping angles
 - relate delta theta to tipping angle
 
-16-17.
-- graphing the results show us that...
-    - spike near small delta theta
-    - delta theta is rarely exactly zero
-
-18-19.
-- semiclassical works better at larger j values
+17-19.
+- SC and QM agree really well at large j values
+- spike near small delta theta
+- delta theta is rarely exactly zero
+- SC tends not to work as well at smaller j values
 
 20.
 - theta tends to be conserved, which is consistent with other research in
@@ -127,6 +129,9 @@
 - delta j = 1, argon and helium swap at larger delta j's
 
 21.
+- m to m prime
+
+22.
 - money, computers
 - Teri and Kara
 - Prof. Huennekens

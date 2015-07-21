@@ -9,6 +9,8 @@
 *.eps
 *.odg
 *.pptx
+*.xcf
+*.gif
 Presentation.pdf
 .~*
 [0-9]*

@@ -1,0 +1,22 @@
+#!/usr/local/gnuplot
+plotlw=3
+
+set term postscript color eps enhanced font 'Helvetica,30'
+unset border
+unset xtics
+unset ytics
+set samples 10000
+set xrange [-4:6]
+set yrange [-4:6]
+plot "<(echo 0 -4 0 10)" w vectors nohead lt 1 lw plotlw lc rgb 'red' title ''
+replot 'jprimevector' w lines lt 3 lw 2 lc rgb 'blue' title ''
+replot 'jvector' w lines lt 1 lw plotlw lc rgb 'green' title 'j '
+set object 1 ellipse center 0,1.5 size 3,.5 lw plotlw fillstyle empty fc rgb 'black'
+set object 2 ellipse center 0,3 size 6,1 lw plotlw fillstyle empty fc rgb 'black'
+replot "<(echo 0 0 -2.5702 3.25788)" w vectors nohead lt 1 lw 3 lc rgb "blue" title "j{\302}"
+replot "<(echo 3 3 -5.5702 0.25788)" w vectors nohead lt 1 lw 3 lc rgb "magenta" title "{/Symbol a}"
+set label 1 "{/Symbol q} = 45^o" at 2.5,0
+set label 2 "{/Symbol q}{\302}= 45^o" at 2.5,-1
+set label 3 "{/Symbol a} = 89.857^o" at 2.5,-2
+set output 'vm_dtheta0_alphasweep/f030.ps'
+    replot

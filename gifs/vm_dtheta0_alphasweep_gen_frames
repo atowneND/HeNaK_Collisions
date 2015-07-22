@@ -6,7 +6,7 @@
 #vm_dtheta0_alphasweep
 
 rm jpoints
-plotdir=vm_alphaCONST_phisweep
+plotdir=vm_dtheta0_alphasweep
 rm $plotdir/frames/f*ps
 awk '
 BEGIN {

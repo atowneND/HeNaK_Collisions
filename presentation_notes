@@ -1,6 +1,5 @@
 1.
-- I'm going to talk about physical interpretations of theoretical analysis of
-  rotationally inelastic collisions
+- I'm going to talk about physical interpretations of theoretical analysis of rotationally inelastic collisions
 
 2.
 - molecule can vibrate and rotate
@@ -12,15 +11,12 @@
 - energy as a function of internuclear separation or bond length
 
 4.
-- our choice of potential curve specifies the energy at which the collisions
-  in question take place
+- our choice of potential curve specifies the energy at which the collisions in question take place
 
 5.
-- experiment can measure cross sections, which are a metric of the likelihood
-  of interaction, averaged over the quantum number m
+- experiment can measure cross sections, which are a metric of the likelihood of interaction, averaged over the quantum number m
 - fraction of orientation that is preserved, which is related to quantum number m
-- orientation is the extent to which all angular momenta point in the same
-  direction
+- orientation is the extent to which all angular momenta point in the same direction
     - cell environment, angular momenta point in all directions
     - collision is a randomizing process
 - preserved orientation is a measure of how randomizing the collisions are
@@ -34,10 +30,8 @@
 7.
 - ground potential curve
 - A potential curve: where the studied collisions happen
-- pump laser is right circularly polarized, populates vibrational and
-  rotational states in A
-- after collision, probe laser: swept across a range of frequencies to measure
-  the final orientation
+- pump laser is right circularly polarized, populates vibrational and rotational states in A
+- after collision, probe laser: swept across a range of frequencies to measure the final orientation
 
 8.
 - polarized light has selection rules for transitions
@@ -49,24 +43,18 @@
 9.
 - results of experiment and initial theory
 - propensity for even delta j
-- cannot say it is approximately homonuclear because propensity depends on
-  collision partner
+- cannot say it is approximately homonuclear because propensity depends on collision partner
 - experiment and potassium
-- theory has large computational requirements and K is too large with current
-  methods
+- theory has large computational requirements and K is too large with current methods
 - theory and experiment agree
 
 10.
-- huge calculations to get B_lambdas - probability for transferring an amount
-  of angular momentum
+- huge calculations to get B_lambdas - probability for transferring an amount of angular momentum
 - want a physical interpretation
-- vector model definition of lambda - metric of the discrete value of angular
-  momentum transfered in the collision
+- vector model definition of lambda - metric of the discrete value of angular momentum transfered in the collision
 - alpha, discrete nature
-- take the qm theory a step further to get a more intuitive physical
-  interpretation:
-    - remove the quantum mechanical restrictions and make alpha continuous for
-      semiclassical approximations
+- take the qm theory a step further to get a more intuitive physical interpretation:
+    - remove the quantum mechanical restrictions and make alpha continuous for semiclassical approximations
 
 11.
 - law of cosines, relate lambda and alpha
@@ -92,46 +80,44 @@
 - bigger j's meant less tipping
 
 15.
-- sum over lambda, integrate over alpha and look at the cross sectional
-  distribution over delta theta
+- sum over lambda, integrate over alpha and look at the cross sectional distribution over delta theta
 - back to the vector model: delta theta is not alpha
-- unless j, j' are coplanar with each other and the z axis, which doesn't
-  happen often because they can precess
+- unless j, j' are coplanar with each other and the z axis, which doesn't happen often because they can precess
 - give example where delta theta is zero
 
 16.
-- for a particular alpha, j' can be anywhere on the circle in the picture but
-  will tend to rest where theta = theta prime
-- even if delta theta is zero, j will not necessarily point in the same
-  direction as j prime (in fact this is quite rare)
+- for a particular alpha, j' can be anywhere on the circle in the picture but will tend to rest where theta = theta prime
+- even if delta theta is zero, j will not necessarily point in the same direction as j prime (in fact this is quite rare)
 - QM
     - average delta theta over all possible m/m' transitions
     - histogram binned by delta thetas and convolved with a
-      gaussian - essentially smoothing the discrete values into a distribution
-      to compare with the semiclassical model
+      gaussian - essentially smoothing the discrete values into a distribution to compare with the semiclassical model
 - SC
     - model that relates delta theta to alpha
-    - considered all azimuthal phi, given an initial theta, found distribution
-      of theta prime
+    - considered all azimuthal phi, given an initial theta, found distribution of theta prime
     - averaging over continuous distribution of tipping angles
 - relate delta theta to tipping angle
 
-17-19.
+17.
+- theta to theta prime distribution centers around delta theta = 0
+- semiclassical 
+
+18-20.
 - SC and QM agree really well at large j values
 - spike near small delta theta
 - delta theta is rarely exactly zero
 - SC tends not to work as well at smaller j values
 
-20.
-- theta tends to be conserved, which is consistent with other research in
-  this field
-- larger delta j's have more spread out distributions
-- delta j = 1, argon and helium swap at larger delta j's
-
 21.
-- m to m prime
+- m to m prime distribution centers around delta m != 0
+- quantum mechanical, no smoothing
 
 22.
+- theta tends to be conserved, which is consistent with other research in this field
+- m tends to change
+- vector model and semiclassical model give good physical interpretations of the jm->j'm' transitions
+
+23.
 - money, computers
 - Teri and Kara
 - Prof. Huennekens

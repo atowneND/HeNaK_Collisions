@@ -1,0 +1,13 @@
+set term postscript color eps enhanced solid
+fd='testqm2832.dat'
+set samples 10000
+set xlabel '{/Symbol q} prime'
+set ylabel 'cross section'
+set title 'all m curves (left to right: increasing m)'
+plot fd u 2:($5<-134&&$5>-136?$4:1/0) w lines smooth csplines title '{/Symbol q}=-135'
+replot fd u 2:($5<-45&&$5>134?$4:1/0) w lines smooth csplines title '{/Symbol q}=-45'
+replot fd u 2:($5<136&&$5>134?$4:1/0) w lines smooth csplines title '{/Symbol q}=135'
+replot fd u 2:($5<136&&$5>134?$4:1/0) w lines smooth csplines title '{/Symbol q}=135'
+replot fd u 2:($5<136&&$5>134?$4:1/0) w lines smooth csplines title '{/Symbol q}=135'
+set output 'test_selectedtheta_2832.eps'
+replot

@@ -1,0 +1,89 @@
+#!/bin/bash
+#awk 'BEGIN {for (i=-5;i<=5;i=i+.01) { print 0,i } }'>>vline
+#awk 'BEGIN {for (i=0;i<=3;i=i+.01) { print i,i } }'>>jvector
+#awk 'BEGIN {for (i=0;i<=1.5;i=i+.01) { print i,i } }'>>jprimevector
+
+#vm_dtheta0_alphasweep
+
+rm jpoints
+plotdir=vm_dtheta0_alphasweep
+rm $plotdir/frames/f*ps
+awk '
+BEGIN {
+    a=3;b=1/2; 
+    for(th=0;th<3.14/2+.01;th=th+.1){
+        x=sqrt(1/(1/(a^2)+(sin(th)/cos(th))^2/(b^2)));
+        y=a+x*sin(th)/cos(th)
+        cos_alpha=(cos(th)+1)/2
+        th_neg=atan2(sqrt(1-cos_alpha^2),cos_alpha)
+        print 0,0,x,y,th
+        print 0,0,-x,y,th
+    }
+}' | sort -k 3 -rn >>jpoints
+
+nf=$(awk 'END {print NR}' jpoints)
+for i in `seq 0 $nf`; do
+    if [ $i -lt 10 ]; then
+        newname=$plotdir/plotme00$i
+    elif [ $i -lt 100 ]; then
+        newname=$plotdir/plotme0$i
+    else
+        newname=$plotdir/plotme$i
+    fi
+    
+    cp $plotdir/plotme $newname
+done
+
+cat jpoints |
+awk 'BEGIN {
+    indnum=0;
+}
+{
+        if (indnum<10){
+            indstr="'$plotdir'/plotme00"indnum
+        }else if(indnum<100){
+            indstr="'$plotdir'/plotme0"indnum
+        }else{
+            indstr="'$plotdir'/plotme"indnum
+        }
+        
+        print "replot \"<(echo "$1,$2,$3,$4")\" w vectors nohead lt 1 lw 3 lc rgb \"blue\" title \"j{\\302}\"" >>indstr
+        print "replot \"<(echo 3 3 "$3-3,$4-3")\" w vectors nohead lt 1 lw 3 lc rgb \"magenta\" title \"{/Symbol a}\"" >>indstr
+        print "set label 1 \"{/Symbol q} = 45^o\" at 2.5,0" >>indstr
+        print "set label 2 \"{/Symbol q}{\\302}= 45^o\" at 2.5,-1" >>indstr
+        printf("set label 3 \"{/Symbol a} = %.3f^o\" at 2.5,-2\n",$5*180/3.141592654) >>indstr
+        indnum=indnum+1;
+}'
+for i in `seq 0 $nf`; do
+    if [ $i -lt 10 ]; then
+        plotcmds=$plotdir/plotme00$i
+        outputplot=$plotdir/f00$i.ps
+    elif [ $i -lt 100 ]; then
+        plotcmds=$plotdir/plotme0$i
+        outputplot=$plotdir/f0$i.ps
+    else
+        plotcmds=$plotdir/plotme$i
+        outputplot=$plotdir/f$i.ps
+    fi
+
+    echo "set output '$outputplot'
+    replot" >>$plotcmds
+
+    gnuplot <$plotcmds >/dev/null
+done
+mv $plotdir/*ps $plotdir/frames/
+
+#gnuplot:
+#set xrange [-5:5]
+#set yrange [-5:5]
+#plot 'vline' w lines
+#plot 'jprimevector' w lines
+#plot 'jvector' w lines
+#set object 1 ellipse center 0,1.5 size 3,.5 fillstyle empty fc rgb 'black'
+#set object 1 ellipse center 0,3 size 6,1 fillstyle empty fc rgb 'black'
+
+#for i in $(find ../jgifpts -name jpts*); do 
+#fnum=$(echo $i | sed 's/\(.*jpts\)\([0-9]*\)/\2/g');
+#cp plotme plotme$fnum;
+#echo "replot '$i' w lines" >> plotme$fnum;
+#done

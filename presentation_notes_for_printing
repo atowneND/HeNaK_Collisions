@@ -1,5 +1,6 @@
 1.
-- I'm going to talk about physical interpretations of theoretical analysis of rotationally inelastic collisions
+- I'm going to talk about physical interpretations of theoretical analysis of rotationally inelastic
+  collisions
 
 2.
 - molecule can vibrate and rotate
@@ -14,7 +15,8 @@
 - our choice of potential curve specifies the energy at which the collisions in question take place
 
 5.
-- experiment can measure information about the cross sections, which are a metric of the likelihood of transitions, averaged over the quantum number m
+- experiment can measure information about the cross sections, which are a metric of the likelihood
+  of transitions, averaged over the quantum number m
 - fraction of orientation that is preserved, which is related to quantum number m
 - orientation is the extent to which all angular momenta point in the same direction
     - cell environment, angular momenta point in all directions
@@ -50,7 +52,8 @@
 10.
 - huge calculations to get B_lambdas - probability for transferring an amount of angular momentum
 - want a physical interpretation
-- vector model definition of lambda - metric of the discrete value of angular momentum transfered in the collision
+- vector model definition of lambda - metric of the discrete value of angular momentum transfered in
+  the collision
 - alpha, discrete nature
 - take the qm theory a step further to get a more intuitive physical interpretation:
     - make alpha continuous for semiclassical approximations
@@ -74,33 +77,42 @@
 
 14.
 - He propensity, not for Ar
-    - experimental propensity for helium is much stronger than for argon, which could also account for not seeing it
+    - experimental propensity for helium is much stronger than for argon, which could also account
+  for not seeing it
     - newer potential curves may change this for argon
 - when expectation value of alpha is big the transitions are less likely
 - bigger j's meant less tipping
 
 15.
-- sum over lambda, integrate over alpha and look at the cross sectional distribution over delta theta
+- sum over lambda, integrate over alpha and look at the cross sectional distribution over delta
+  theta
 - back to the vector model: delta theta is not alpha
-- unless j, j' are coplanar with each other and the z axis, which doesn't happen often because they can precess
+- unless j, j' are coplanar with each other and the z axis, which doesn't happen often because they
+  can precess
 - give example where delta theta is zero
 
 16.
-- for a particular alpha, j' can be anywhere on the circle in the picture but will tend to rest where theta = theta prime
-- even if delta theta is zero, j will not necessarily point in the same direction as j prime (in fact this is quite rare)
+- for a particular alpha, j' can be anywhere on the circle in the picture but will tend to rest
+  where theta = theta prime
+- even if delta theta is zero, j will not necessarily point in the same direction as j prime (in
+  fact this is quite rare)
 - QM
     - average delta theta over all possible m/m' transitions
-    - histogram binned by delta thetas and convolved with a gaussian - essentially smoothing the discrete values into a distribution to compare with the semiclassical model
+    - histogram binned by delta thetas and convolved with a gaussian - essentially smoothing the
+      discrete values into a distribution to compare with the semiclassical model
 - SC
     - model that relates delta theta to alpha
     - considered all azimuthal phi, given an initial theta, found distribution of theta prime
     - averaging over continuous distribution of tipping angles
-    - *integral over the values of alpha allowed by geometry in form for Gauss-Chebyshev quadrature of the first kind
-    - *range of integration is cos(theta+theta') < cos(alpha) < cos(theta-theta')
+    - *integral over the values of alpha allowed by geometry in form for Gauss-Chebyshev quadrature
+      of the first kind
+    - *range of integration is cos(theta+theta') < cos(alpha) <
+      cos(theta-theta')
 
 17.
 - theta to theta prime distribution centers around delta theta = 0
-- semiclassical 
+- semiclassical
+  
 
 18-20.
 - SC and QM agree really well at large j values
@@ -116,7 +128,8 @@
 22.
 - theta tends to be conserved, which is consistent with other research in this field
 - m tends to change in such a way that delta theta is small
-- vector model and semiclassical model give good physical interpretations of the jm->j'm' transitions
+- vector model and semiclassical model give good physical interpretations of the jm->j'm'
+  transitions
 
 23.
 - money, computers

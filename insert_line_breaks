@@ -13,18 +13,4 @@ if [ -z $outputfile ]; then
     outputfile=$(echo formatted_$filename\_$(date -I) | sed 's/-/_/g')
     echo $outputfile
 fi
-#sed 's/\(.\{100,\}\) \(.*\)\(.\{100,\}\)\n/\1\n\2/g' $filename >$outputfile
-sed 's/\(.\{100,\}\) \(.*\)\(.\{100,\}\)\n/\1\n\2/g' $filename #>$outputfile
-
-#HISTORY
-#sed 's/.* \(.\{100,\}\)/\1 a/g' foofile 
-#sed 's/\(.*\) \(.\{100,\}\)/\1\n\2/g' foofile
-#sed 's/\(.\{100,\}\) \(.*\)\(.\{100,\}\)\n/\1\n\2/g' bar
-#sed 's/\(.*\)\(.\{100,\}\)\n/\1\n\2/g' bar
-#sed 's/\(.*\) \(.\{100,\}\)/\1\n\2/g' bar
-#sed 's/\(.*\) \(.\{100,\}\)\n/\1\n\2/g' bar
-#sed 's/\(*\) \(.\{100,\}\)\n/\1\n\2/g' bar
-#sed 's/*\(.\{100,\}\)\n/\1\n\2/g' bar
-#sed 's/*\(.\{100,\}\)\n/\1/g' bar
-#sed 's/*\(.\{100,\}\)\(.*\n\)/\1\n\2/g' bar
-\n#sed 's/\(.\{100,\}\)\(.*\) \(.\{100,\}\)/\1\n\3/g' bar
+sed 's/\(.\{0,100\}\) \(.*\)/\1\n  \2/g' $filename >$outputfile

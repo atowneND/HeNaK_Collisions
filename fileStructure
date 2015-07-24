@@ -1,0 +1,56 @@
+Bash:
+    plotAll
+    rmAll
+    viewplots
+
+C source code:
+    main.c
+    avgFun.c
+    avgFun.h
+C source libraries:
+    avgFun.a
+    main.a
+C executables:
+    main.out
+
+Fortran source code:
+    calcmm.for
+    datetime.for
+    ddiag2.for
+    dpackb.for
+    dq2theta.for
+    dqcalc.for
+    dsimp.for
+    dthetabar.for
+    dthetascquad.for
+    fpp.for
+    pcc12.for
+    stdio.for
+    utility.for
+Fortran links:
+    dsimp
+Fortran executables:
+    calcmm
+    dq2theta
+    dqcalc
+    dthetabar
+    dthetascquad
+    fpp
+    pcc12
+
+Working directories:
+    mplots
+    gifs
+    Presentation
+    bookkeeping
+
+Data:
+    Arnew
+    Comparisons
+    csComparisons
+    He10
+    He5i5015
+    newdata
+
+mplots:
+    SEE mplots/fileStructure

@@ -1,0 +1,36 @@
+Bash:
+    bothview
+    calcdtheta
+    dmscript
+    getdata
+    viewplots
+
+Source data:
+    datfilesAr
+    datfilesHe
+    qmthetasAr
+    qmthetasHe
+    scthetasAr
+    scthetasHe
+    
+Plot data:
+    archivehalfHeHists
+    archiveHe
+    ArHists
+    bigxArHists
+    bigxHeHists
+    convArHists
+    convHeHists
+    dtheta_near0
+    gaussArHists
+    gaussHeHists
+    Hebincomp
+    HeHists
+    newconvArHists
+    newconvHeHists
+    ptsArHists
+    ptsHeHists
+    standard_deviations
+
+pythondir:
+    for revisions

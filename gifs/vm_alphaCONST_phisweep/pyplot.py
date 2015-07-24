@@ -62,6 +62,33 @@ class plotComponents:
 
         plt.show()
 
+    def get_ellipse_coords(a=0.0, b=0.0, x=0.0, y=0.0, angle=0.0, k=2):
+        """ Draws an ellipse using (360*k + 1) discrete points; based on pseudo code
+        given at http://en.wikipedia.org/wiki/Ellipse
+        k = 1 means 361 points (degree by degree)
+        a = major axis distance,
+        b = minor axis distance,
+        x = offset along the x-axis
+        y = offset along the y-axis
+        angle = clockwise rotation [in degrees] of the ellipse;
+        * angle=0  : the ellipse is aligned with the positive x-axis
+        * angle=30 : rotated 30 degrees clockwise from positive x-axis
+        """
+        pts = numpy.zeros((360*k+1, 2))
+
+        beta = -angle * pi/180.0
+        sin_beta = sin(beta)
+        cos_beta = cos(beta)
+        alpha = numpy.radians(numpy.r_[0.:360.:1j*(360*k+1)])
+
+        sin_alpha = sin(alpha)
+        cos_alpha = cos(alpha)
+
+        pts[:, 0] = x + (a * cos_alpha * cos_beta - b * sin_alpha * sin_beta)
+        pts[:, 1] = y + (a * cos_alpha * sin_beta + b * sin_alpha * cos_beta)
+
+        return pts
+
     def get_point_on_ellipse(
         self,
         theta,
@@ -91,35 +118,54 @@ class plotComponents:
         """
         find point at angle theta on ellipse tilted by angle phi
         """
-        x=0.
-        y=0.
         a = ellipse_width
         b = ellipse_height
-#        foo = (cos(phi)**2+sin(phi)**2*tan(theta**2))/(a**2) + (sin(phi)**2+cos(phi)**2*tan(theta)**2)/(b**2) + 2*tan(theta)*sin(phi)*cos(phi)*(1/(a**2)-1/(b**2))
-#        print "foo =",foo
-#        print "a =",(cos(phi)**2+sin(phi)**2*tan(theta))/(a**2) 
-#        print "b =",(sin(phi)**2+cos(phi)**2*tan(theta)**2)/(b**2) 
-#        print "   ",theta
-#        print "c =",2*tan(theta)*sin(phi)*cos(phi)*(1/(a**2)-1/(b**2))
         foo = (cos(phi)**2 + 2*cos(phi)*sin(phi)*tan(theta) + sin(phi)**2*tan(theta)**2)/(a**2)+(sin(phi)**2 + 2*sin(phi)*cos(phi)*tan(theta) + cos(phi)**2*tan(theta)**2)/(b**2)
         x=1./sqrt(foo)
         y=x*tan(theta)
-        return x,y
+        return x,y,-x,-y
 
 if __name__=='__main__':
     dma = plotComponents()
     #dma.plot_data()
-    for k in xrange(1,101):
-        theta = k*pi/100
-        xt,yt=dma.get_point_on_tilted_ellipse(theta,0.,0.,1.,1.,0.)
-        x,y=dma.get_point_on_ellipse(theta,0.,0.,1.,1.)
-        if (abs(x-xt)>.01):
-            if (abs(x)==abs(xt)) and (abs(y)==abs(yt)):
-                break
-            if (abs(y-yt)>.01):
-                print "  ",theta*180/pi," x,y: (",xt,yt," )",x,y," )"
-            else:
-                print "  ",theta*180/pi," x:",xt,x
-        else:
-            if (abs(y-yt)>.01):
-                print "  ",theta*180/pi," y:",yt,y
+    xtvec=[]
+    ytvec=[]
+    xtpvec=[]
+    ytpvec=[]
+    xvec=[]
+    yvec=[]
+    foox=[]
+    fooy=[]
+    for j in xrange(0,10):
+        phi = j*pi/11
+        print phi*180/pi
+
+        xvec=[]
+        yvec=[]
+        foox=[]
+        fooy=[]
+
+	for k in xrange(0,101):
+	    theta = k*pi/50
+	    xt,yt,xtp,ytp=dma.get_point_on_tilted_ellipse(theta,0.,0.,2.,3.,phi)
+	    x,y=dma.get_point_on_ellipse(theta,0.,0.,1.,1.)
+	    xvec.append(x)
+	    yvec.append(y)
+	    foox.append(xt)
+	    foox.append(xtp)
+	    fooy.append(yt)
+	    fooy.append(ytp)
+	
+	plt.plot(
+	    foox,
+	    fooy,
+	    '.'
+	)
+	plt.plot(
+	    xvec,
+	    yvec,
+	)
+        plot_handle = plt.gca()
+        fooellipse = Ellipse(xy=(0,0), width = 6, height = 4, angle = 180-phi*180/pi, edgecolor = 'r', fc = 'None', lw = 1)
+        plot_handle.add_patch(fooellipse)
+	plt.show()

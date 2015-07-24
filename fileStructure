@@ -1,12 +1,12 @@
 Bash:
-    plotAll
-    rmAll
-    viewplots
+    [ ] plotAll
+    [?] rmAll
+    [?] viewplots
 
 C source code:
-    main.c
-    avgFun.c
-    avgFun.h
+    [x] main.c
+    [x] avgFun.c
+    [x] avgFun.h
 C source libraries:
     avgFun.a
     main.a
@@ -14,21 +14,21 @@ C executables:
     main.out
 
 Fortran source code:
-    calcmm.for
-    datetime.for
-    ddiag2.for
-    dpackb.for
-    dq2theta.for
-    dqcalc.for
-    dsimp.for
-    dthetabar.for
-    dthetascquad.for
-    fpp.for
-    pcc12.for
-    stdio.for
-    utility.for
+    [x] calcmm.for
+    [x] datetime.for
+    [x] ddiag2.for
+    [x] dpackb.for
+    [x] dq2theta.for
+    [x] dqcalc.for
+    [x] dsimp.for
+    [x] dthetabar.for
+    [x] dthetascquad.for
+    [x] fpp.for
+    [x] pcc12.for
+    [x] stdio.for
+    [x] utility.for
 Fortran links:
-    dsimp
+    dsimp.o
 Fortran executables:
     calcmm
     dq2theta
@@ -39,18 +39,16 @@ Fortran executables:
     pcc12
 
 Working directories:
-    mplots
-    gifs
-    Presentation
+    *mplots
+    [?] gifs
+    [ ] Presentation
     bookkeeping
 
 Data:
-    Arnew
-    Comparisons
-    csComparisons
-    He10
-    He5i5015
-    newdata
+    Comparisons - don't include?
+    csComparisons - don't include?
+    [?] He10 - useful
+    [?] newdata - move to new location
 
 mplots:
     SEE mplots/fileStructure

@@ -16,21 +16,21 @@ Source data:
 Plot data:
     archivehalfHeHists
     archiveHe
-    ArHists
-    bigxArHists
-    bigxHeHists
-    convArHists
-    convHeHists
-    dtheta_near0
-    gaussArHists
-    gaussHeHists
-    Hebincomp
-    HeHists
-    newconvArHists
-    newconvHeHists
-    ptsArHists
-    ptsHeHists
-    standard_deviations
+    ArHists - old? boxcar
+    HeHists - old? boxcar
+    bigxArHists - old? boxcar
+    bigxHeHists - old? boxcar
+    convArHists - gaussian, old dthetabar
+    convHeHists - gaussian, old dthetabar
+    dtheta_near0 - He: measure of smallest delta theta across jbar for a delta j
+    gaussArHists - gaussian, new dthetabar, not all j/j' pairs
+    gaussHeHists - gaussian, new dthetabar, not all j/j' pairs
+    Hebincomp - compare different bin sizes, prior to new dthetabar
+    newconvArHists - gaussian, new dthetabar, b/w
+    newconvHeHists - gaussian, new dthetabar, b/w
+    ptsArHists - old gaussian
+    ptsHeHists - old gaussian
+    [ ] standard_deviations
 
 pythondir:
     for revisions

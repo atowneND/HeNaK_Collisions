@@ -49,7 +49,7 @@
 
 10.
 - huge calculations to get B_lambdas - probability for transferring an amount of angular momentum
-- want a physical interpretation
+- want a physical interpretation - my job this summer
 - vector model definition of lambda - metric of the discrete value of angular momentum transfered in the collision
 - alpha, discrete nature
 - take the qm theory a step further to get a more intuitive physical interpretation:
@@ -82,8 +82,8 @@
 15.
 - sum over lambda, integrate over alpha and look at the cross sectional distribution over delta theta
 - back to the vector model: delta theta is not alpha
-- unless j, j' are coplanar with each other and the z axis, which doesn't happen often because they can precess
-- give example where delta theta is zero
+- unless j, j' are coplanar with each other and the z axis, as seen in picture
+- give example where delta theta is zero - CONTRAST WITH PIC
 
 16.
 - for a particular alpha, j' can be anywhere on the circle in the picture but will tend to rest where theta = theta prime
@@ -97,6 +97,7 @@
     - averaging over continuous distribution of tipping angles
     - *integral over the values of alpha allowed by geometry in form for Gauss-Chebyshev quadrature of the first kind
     - *range of integration is cos(theta+theta') < cos(alpha) < cos(theta-theta')
+    - y = (cos(alpha)-cos(theta)cos(theta'))/(sin(theta)sin(theta'))
 
 17.
 - theta to theta prime distribution centers around delta theta = 0

@@ -14,8 +14,8 @@ Source data:
     scthetasHe
     
 Plot data:
-    archivehalfHeHists
-    archiveHe
+    archivehalfHeHists - archive this one
+    archiveHe - remove this one
     ArHists - old? boxcar
     HeHists - old? boxcar
     bigxArHists - old? boxcar

@@ -1,0 +1,16 @@
+#!/bin/bash
+filename=$1
+if [ -z "$filename" ] ; then
+    echo enter the name of the file
+fi
+
+sed 's/\/gnulinewidth 5.000 def/\/gnulinewidth 10.000 def/g' $filename \
+    | sed 's/currentlinewidth 0\.75/currentlinewidth 1\.5/g' \
+    | sed 's/Helvetica)/Helvetica-Bold)/g' \
+    | sed '/Begin plot #1/!b;n;c2.000 UL' \
+    | sed 's/\(Helvetica.*).*\)\(140\.\)/\1200./g' \
+    | sed 's/\(Symbol.*).*\)\(140\.\)/\1200./g' > foo
+#    | sed 's/\(Begin plot #1\n.*\n.*\n.*\n[0-9]* \)\(4486*\)\( M\)/\14456\3/g' \
+#    | sed 's/\(Begin plot #1\n.*\n.*\n.*\n.*\n.*\n.*\n.*\n[0-9]* \)\(4486\)\( M\)/\14456\3/g' > foo
+mv foo $filename
+

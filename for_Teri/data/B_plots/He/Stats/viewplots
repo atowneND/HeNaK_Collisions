@@ -1,0 +1,11 @@
+#!/bin/bash
+dj=1
+while [ $dj -lt 10 ]; do
+    for i in $(find std_*dj0$dj.eps); do
+        echo $i
+        gv $i
+    done
+    let dj=dj+1
+done
+
+

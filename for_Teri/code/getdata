@@ -1,0 +1,46 @@
+#!/bin/bash
+#running parameters
+j=1
+dj=1
+max=40
+
+# parse input
+atom=$1 # this is the atom to analyze - it will be used in file naming conventions
+blam_path=$2 # relative path to data file
+
+# error checking - if this breaks, see troubleshooting tips or delete it
+if [ -z $blam_path ]; then
+    echo Please enter a file name.
+    exit
+elif [ "$(find $blam_path 2>/dev/null)" != "$blam_path" ]; then
+    # troubleshooting:
+    #   1) try entering the absolute path
+    #   2) remove the <exit> command on line 20 - be careful to make sure the file exists
+    echo  File not found. Please enter a valid file name.
+    exit
+fi
+
+# location for creation of files
+# NOTE: change this if you would like the files to be created in a different directory
+# troubleshooting: try using the absolute path if the relative path breaks it
+workdir=./
+
+# create directories if necessary
+mkdir $workdir/datfiles$atom 2>/dev/null
+mkdir $workdir/scthetas$atom 2>/dev/null
+
+while [ $dj -lt $(($max-1)) ]; do
+    echo running dj=$dj
+    while [ $j -lt $(($max-$dj+1)) ]; do
+        # initialize parameters
+        jp=$(($j+$dj))
+        rawfile=$workdir/datfiles$atom/jmp_j$j\_jp$jp\_dj$dj\.dat
+
+        # calculate datfile/jmp*
+        echo $j $jp|./calcmm $blam_path $rawfile>/dev/null
+
+        let j=j+1
+    done
+    j=1
+    let dj=dj+1
+done

@@ -1,0 +1,12 @@
+code:
+    getdata
+        - creates useful data files from raw blam file for cross section analysis
+        - runs <calcmm> looping over j, j', and delta-j values
+        USAGE: ./getdata <atom> <blam_file>
+        INPUTS:
+            - atom: He or Ar - used for naming conventions
+            - blam_file: blam file path - if relative path breaks it, try using the absolute path
+        OUTPUTS:
+            -> <./datadir/jmp.dat> useful datafile for j,j' transition
+
+->: creates file

@@ -15,4 +15,4 @@ if [ -z $outputfile ]; then
 fi
 #sed 's/\(.\{0,100\}\) \(.*\)/\1\n  \2/g' $filename >$outputfile
 #sed 's/\(.\{0,100\}\)\( \(.*\)$\|$\)/\1\n  \2/g' presentation_notes
-sed 's/\(.\{0,100\}\)\( \(.*\)$\|$\)/\1\n \2/g' $filename | sed '/^\s*$/d' | sed '/[0-9]*\./{N;s/^/\n/}' >$outputfile
+sed 's/\(.\{0,80\}\)\( \(.*\)$\|$\)/\1\n \2/g' $filename | sed '/^\s*$/d' | sed '/[0-9]*\./{N;s/^/\n/}' >$outputfile

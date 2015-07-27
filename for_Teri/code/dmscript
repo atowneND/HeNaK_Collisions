@@ -7,11 +7,6 @@
 ###############
 # LIST OF FUN #
 ###############
-# OLD
-# [.] anglecount - - - - - - - - - number of transitions vs angle histogram
-# [.] dmcount  - - - - - - - - - - number of transitions vs dm histogram
-###############
-# UPDATED
 # [ ] eststd  - - - - - - - - - - find standard deviation
 # [x] weightedanglehist - - - - - generate sum of sigma vs angle histogram
 # [ ] weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
@@ -22,8 +17,6 @@
 # [ ] plotm0to0byjbar - - - - - - plots smallest nonzero angle vs jbar for all dj
 # [ ] plotm0to0bydj - - - - - - - plots smallest nonzero angle vs dj for all jbar
 ###############
-# NEEDS WORK
-# [ ] dth_max - - - - - - - - - - plot the angle at maximum cross section vs jbar
 
 ###############
 #    NOTES    #
@@ -389,40 +382,6 @@ plotm0to0bydj(){
         rm $plotfile
         jbar=$(awk 'BEGIN {print '$jbar'+0.5}')
     done
-}
-###############
-
-###############
-dth_max(){
-    j=1
-    dj=1
-    jmax=50
-    djmax=39
-    outfile=dth_max.dat
-    echo "#jb dj m mp dtheta sigma" >$outfile
-    rm $tmpfile 2>/dev/null
-
-    datadir=datfilesHe
-    qmdatadir=archiveHe/qmthetasHe
-    while [ $dj -lt $djmax ]; do
-        echo running dj = $dj
-        while [ $j -lt $(($jmax-$dj)) ]; do
-            jp=$(($j+$dj))
-            jbar=$(awk 'BEGIN {print ('$j'+'$jp')/2}')
-            calcdtheta
-            datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
-            echo $datfile
-            cat $datfile | sed '/#/d' | sort -k 3 -n | awk 'BEGIN {print 0} 
-#                {if($4>max){max=$4;m=$1;mp=$2;th=$3}} END
-#                {print '$jbar','$dj',m,mp,th,max}' >>$tmpfile
-            let j=j+1
-            exit
-        done
-        let dj=dj+1
-        j=1
-    done
-    cat $tmpfile | sort -k 5 -n >>$outfile
-    rm $tmpfile
 }
 ###############
 

@@ -1,0 +1,159 @@
+Introduction and abstract
+
+Overview of system
+NaK, like any molecule, can vibrate and rotate and can be described by its
+rotational and vibrational states.  Upon collision with a perturbing atom,
+such as helium or argon, these states can change.  This project was primarily
+concerned with collisions where the vibrational state is conserved, but the
+rotational state is not.  Specifically, the purpose of this investigation was
+to explore the physical interpretations of how the quantum numbers that
+describe angular momentum change during collision.
+
+In addition to its rotational and vibrational states, NaK can also be described
+by its electronic state, of which the set of potential curves are an
+expression. The potential curves represent energy as a function of internuclear
+separation between sodium and potassium. Both experimental and theoretical
+investigations choose one potential curve to study, specifying the electronic
+energy level at which the collisions in question take place.
+
+At Lehigh University, the experimental investigation 
+
+Experimental measurements
+- experiment can measure information about the cross sections, which are a
+  metric of the likelihood of transitions, averaged over the quantum number m
+    - rates
+- fraction of orientation that is preserved, which is related to quantum number
+  m
+- orientation is the extent to which all angular momenta point in the same
+  direction
+    - cell environment, angular momenta point in all directions
+    - collision is a randomizing process
+- preserved orientation is a measure of how randomizing the collisions are
+
+Orientation and introduction of the vector model
+- the orientation is related to the geometric relationship between m and j
+- j precesses about the z axis
+- m, j, theta
+- expectation value
+
+Experimental procedure
+- ground potential curve
+- A potential curve: where the studied collisions happen
+- pump laser is left circularly polarized, populates vibrational and rotational
+  states in A
+- after collision, probe laser: swept across a range of frequencies to measure
+  the final orientation
+    - linear polarization
+
+- polarized light has selection rules for transitions
+- pump laser always pumps so delta m = plus one
+- each row's potential curve
+- nonzero <m> prior to collisions
+- linear probe laser measures the orientation
+    - superposition of left and rigth circular polarization
+
+Previous results
+- results of experiment and initial theory
+- propensity for even delta j
+- cannot say it is approximately homonuclear because propensity depends on
+  collision partner
+- theory has large computational requirements and K is too large with current
+  methods
+- theory and experiment agree
+
+Goal of this project: physical interpretation
+- huge calculations to get B_lambdas - probability for transferring an amount of
+  angular momentum
+    - large calculations were already done
+- want a physical interpretation - my job this summer
+- vector model definition of lambda - metric of the discrete value of angular
+  momentum transfered in the collision
+- alpha, discrete nature
+
+QM analysis
+- take the qm theory a step further to get a more intuitive physical
+  interpretation:
+    - make alpha continuous for semiclassical approximations
+
+SC analysis
+- law of cosines, relate lambda and alpha
+    - tipping angle
+- instead of summing over lambda, integrate over alpha
+- alpha is the tipping angle (remember the vector model)
+- B is the distribution of tipping angles
+
+Results of B analysis
+- theoretical B lambda and B alpha (difference between discrete and continuous)
+- Plotting B vs the tipping angle shows which alphas are most likely
+- biggest B's are near small alpha
+
+- helium and argon display similar overall behaviors
+- small tipping angles
+- argon is bigger
+
+Conclusions of B analysis
+- He propensity, not for Ar
+    - experimental propensity for helium is much stronger than for argon, which
+      could also account for not seeing it
+    - newer potential curves may change this for argon
+- when expectation value of alpha is big the transitions are less likely
+- bigger j's meant less tipping
+
+Cross section vs delta-theta analysis - vector model
+- sum over lambda, integrate over alpha and look at the cross sectional
+  distribution over delta theta
+- back to the vector model: delta theta is not alpha
+- unless j, j' are coplanar with each other and the z axis, as seen in picture
+- give example where delta theta is zero - CONTRAST WITH PIC
+
+- for a particular alpha, j' can be anywhere on the circle in the picture but
+  will tend to rest where theta = theta prime
+- even if delta theta is zero, j will not necessarily point in the same
+  direction as j prime (in fact this is quite rare)
+  
+Cross section vs delta-theta analysis - QM
+- average delta theta over all possible m/m' transitions
+- histogram binned by delta thetas and convolved with a gaussian -
+  essentially smoothing the discrete values into a distribution to compare with the semiclassical model
+
+Cross section vs delta-theta analysis - SC
+- model that relates delta theta to alpha
+- considered all azimuthal phi, given an initial theta, found distribution
+  of theta prime
+- averaging over continuous distribution of tipping angles
+- *integral over the values of alpha allowed by geometry in form for
+  Gauss-Chebyshev quadrature of the first kind
+- *range of integration is cos(theta+theta') < cos(alpha) <
+  cos(theta-theta')
+- *y = (cos(alpha)-cos(theta)cos(theta'))/(sin(theta)sin(theta'))
+
+Theta-theta' distribution
+- theta to theta prime distribution centers around delta theta = 0
+- semiclassical 
+
+Delta-theta distribution
+- SC and QM agree really well at large j values
+- spike near small delta theta
+- delta theta is rarely exactly zero
+- SC tends not to work as well at smaller j values
+
+Delta-m distribution
+- m to m prime distribution centers around delta m != 0
+- as expected
+- *quantum mechanical, no smoothing
+
+Conclusions
+- theta tends to be conserved, which is consistent with other research in this
+  field
+- m tends to change in such a way that delta theta is small
+- vector model and semiclassical model give good physical interpretations of the
+  jm->j'm' transitions
+
+Acknowledgments
+- NSF
+- Lehigh
+- Prof. McSwain
+- Computers
+- Teri and Kara
+- Prof. Huennekens
+- Prof. Hickman

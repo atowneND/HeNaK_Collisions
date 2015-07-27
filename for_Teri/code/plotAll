@@ -1,14 +1,17 @@
 #!/bin/bash
+
+# get inputs
 workdir=$1
 origfile=$2
 atom=$3
+
+# input validation for working directory
 if [ "$workdir" = "" ] ; then
     echo bad input
     exit
 else
     runprog=$(find . -name $workdir -nowarn)
     if [ "$runprog" != "./$workdir" ]; then
-        # input validation for working directory
         echo Directory not found: creating directory $workdir
         mkdir $workdir
     fi
@@ -34,6 +37,7 @@ if [ "$(find $workdir -name Stats -nowarn)" = "" ]; then
     mkdir $workdir/Stats
 fi
 
+# more input validation
 if [ "$origfile" = "" ]; then
     echo Enter an input file:
     read origfile
@@ -65,17 +69,12 @@ dj=1
 CTR=1
 MAX=40
 MAXdj=30
-make
 errfile=$workdir/errors.log
 metafile=$workdir/metadata.txt
 plotfile=$workdir/deleteme
 iter_count=0
 
-CTR=19
-MAX=21
-dj=2
-MAXdj=2
-
+make
 echo Writing to $workdir using $origfile
 
 while [ $dj -le $MAXdj ]; do
@@ -85,6 +84,7 @@ while [ $dj -le $MAXdj ]; do
         djstr=$dj
     fi
 
+    # set up output files
     statdir=$workdir/Stats
     statfile=stats_dj$djstr\.dat
     echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statdir/$statfile
@@ -156,27 +156,28 @@ while [ $dj -le $MAXdj ]; do
                 # stats
                 read SCavg SCstd SCvar QMavg QMstd QMvar <<<$(./main.out $j $jp $workdir)
                 echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar >>$errfile
-                #diffavg=$(awk "BEGIN {print "$SCavg"-"$QMavg"}")
                 diffavg=$(awk 'function isnum(x){return(x==x+0)} BEGIN{if (isnum("$SCavg")&&isnum("$QMavg")) print "$SCavg"-"$QMavg";else print "0";}')
-                #diffstd=$(awk "BEGIN {print "$SCstd"-"$QMstd"}")
                 diffstd=$(awk 'function isnum(x){return(x==x+0)} BEGIN{if (isnum("$SCstd")&&isnum("$QMstd")) print "$SCstd"-"$QMstd";else print "0";}')
-                #diffvar=$(awk "BEGIN {print "$SCvar"-"$QMvar"}")
                 diffvar=$(awk 'function isnum(x){return(x==x+0)} BEGIN{if (isnum("$SCvar")&&isnum("$QMvar")) print "$SCvar"-"$QMvar";else print "0";}')
                 echo $j $jp $SCavg $SCstd $SCvar $QMavg $QMstd $QMvar $diffavg $diffstd $diffvar >>$statdir/$statfile
 
                 # plot it
-                plotlw=1
-                fontsize=''
-                borderlw=1
                 plotlw=6
+                fonttype=Helvetica-Bold
                 fontsize=30
                 borderlw=3
+                plotlw=1
+                fonttype=Helvetica
+                fontsize=''
+                borderlw=1
                 qmcolor=red
                 sccolor=blue
-                # suppress visual output
+
+                # to plot minimum alpha, uncomment "replot $alphamin..." (189)
+                # to plot average values, uncomment "replot $SCavg..." (190) and "replot $QMavg..." (191)
                 echo "#!/usr/local/gnuplot
                 set samples 10000
-                set term postscript eps color enhanced font 'Helvetica-Bold,$fontsize'
+                set term postscript eps color enhanced font '$fonttype,$fontsize'
                 set border lw $borderlw
 
                 plot '$normdir/$normblams' using 3:4 with impulse lt 2 lw $plotlw lc rgb '$qmcolor' title 'Quantum'
@@ -185,7 +186,6 @@ while [ $dj -le $MAXdj ]; do
                 set parametric
                 set trange [0:$Bmaxa]
                 set xrange [0:40]
-                #        set term x11 0
                 #replot $alphamin,t title '{/Symbol a}_min'
                 #replot $SCavg,t title 'SC average'
                 #replot $QMavg,t title 'QM average'
@@ -194,7 +194,6 @@ while [ $dj -le $MAXdj ]; do
                 set title \"$atom: j=$j, j{\302}=$jp\"
                 replot
 
-                #        set term postscript
                 set output '$outdir/$outputfile'
                 replot
                 quit

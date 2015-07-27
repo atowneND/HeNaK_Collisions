@@ -427,6 +427,51 @@ dth_max(){
 ###############
 
 ###############
+plot_m_mprime(){
+    rm $plotfile 2>/dev/null
+    j=$1
+    jp=$2
+    dj=$(awk 'BEGIN {x='$j'-'$jp'; print sqrt(x*x)}')
+    qmdatadir=$3
+    scdatadir=$4
+    qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj.dat
+    scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj.dat
+
+    mlist=(-30 -15 0 15 30)
+
+    fonttype=Helvetica
+    fontsize=30
+
+    echo "#!/usr/local/gnuplot
+    set terminal postscript color eps enhanced solid font '$fonttype,$fontsize'
+    set samples 10000
+    set xlabel 'm{\302}'
+    set ylabel 'cross sections'
+    set title 'distribution of m{/Symbol \256}m{\302}, for j=$j{/Symbol \256}j{\302}=$jp'
+    " >$plotfile
+
+    for m in ${mlist[*]}; do
+        if [ $m -eq ${mlist[0]} ]; then
+            echo "plot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$plotfile
+        else
+            echo "replot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$plotfile
+        fi
+
+        read m_min max <<<$(awk '$1=='$m' {if ($4>max) {m_max=$2; max=$4}} END {print m_max,max}' $qmfile)
+
+        echo "set label 'm=$m' at $m_min,$max+5 center" >>$plotfile
+    done
+
+    echo "set output 'test.eps'
+    replot" >>$plotfile
+
+    gnuplot -persistent <$plotfile >/dev/null
+
+    rm $plotfile
+}
+###############
+
+###############
 #  MY SCRIPT  #
 ###############
 tmpfile=tmp1
@@ -437,6 +482,14 @@ djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 
 djlist=(1 2 3 4)
+
+djlist=(4)
+jblist=(20)
+
+plot_m_mprime 28 32 qmthetasHe scthetasHe
+
+exit
+
 wbin=0.5
 
 prefix=plot

@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 import numpy
 
 
-logger = logging.getLogger('data_model_analysis_logger')
 logging.basicConfig(level=logging.INFO)
 
 class generateDataFiles:
@@ -105,13 +104,13 @@ class deltaThetaModelAnalysis:
         plt.plot(
             semiclassical_data[0],
             semiclassical_data[1],
-            'rs',
+            'r-',
             label='Semiclassical data',
         )
         plt.plot(
             qm_data[1],
             qm_data[0],
-            'b--',
+            'b-',
             label='Quantum data',
         )
 
@@ -192,7 +191,6 @@ class deltaThetaModelAnalysis:
         if not self.initial_raw_data:
             raise IndexError('initial_raw_data not set')
 
-        logger.info("Using dthetabar to calculate data...")
         status_code = subprocess.check_call((
             '../dthetascquad '
             '{initial_raw_data} {semi_data_path} {j} {j_prime}'
@@ -204,12 +202,6 @@ class deltaThetaModelAnalysis:
                 ),
             shell=True,
         )
-
-        if status_code == 0:
-            logging.info("Data calculation returned 0")
-        else:
-            logging.warning("Data calculation returned 1")
-
 
         x_values = []
         y_values = []

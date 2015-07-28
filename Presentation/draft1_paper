@@ -5,7 +5,12 @@ NaK, like any molecule, can vibrate and rotate and can be described by its
 rotational and vibrational states.  Upon collision with a perturbing atom,
 such as helium or argon, these states can change.  This project was primarily
 concerned with collisions where the vibrational state is conserved, but the
-rotational state is not.  Specifically, the purpose of this investigation was
+rotational state is not, as equation 1 specifies.  
+\begin{equation}
+He+NaK(v,m,j)\rightarrow He+NaK(v,m',j')
+Ar+NaK(v,m,j)\rightarrow Ar+NaK(v,m',j')
+\end{equation}
+Specifically, the purpose of this investigation was
 to explore the physical interpretations of how the quantum numbers that
 describe angular momentum change during collision.
 
@@ -16,61 +21,96 @@ separation between sodium and potassium. Both experimental and theoretical
 investigations choose one potential curve to study, specifying the electronic
 energy level at which the collisions in question take place.
 
-At Lehigh University, the experimental investigation 
+At Lehigh University, the experimental and theoretical investigations have
+worked together to form a more complete picture of the collisions in question.
 
 Experimental measurements
-- experiment can measure information about the cross sections, which are a
-  metric of the likelihood of transitions, averaged over the quantum number m
-    - rates
-- fraction of orientation that is preserved, which is related to quantum number
-  m
-- orientation is the extent to which all angular momenta point in the same
-  direction
-    - cell environment, angular momenta point in all directions
-    - collision is a randomizing process
-- preserved orientation is a measure of how randomizing the collisions are
+Professor Huennekens' experimental group has measured the rate constants of
+transitions, which are related to the cross sections.  The rate constants are
+proportional to the expectation value of the product of the cross section and
+velocity, which can be approximated as the cross sections times the average
+velocity.  The cross section is a metric of the likelihood that a particular
+transition will occur from one j state to another.  The rate constants average
+over all values of the quantum number m.
+
+The experimental group has also measured the fraction of orientation that is
+preserved throughout the collisions, removing some of the granularity caused by
+averaging over all m values.  Collisions tend to be randomizing processes, so
+studying the extent to which orientation is preserved gives a metric of the
+extent to which a particular type of collision is actually a randomizing
+process.  In a cell environment, such as the system that the experimental group
+studies, the angular momenta initially point in all directions and the average
+value of m is zero.  In order to measure the change in orientation, the initial
+orientation must be nonzero.  The orientation is proportional to the
+expectation value of m; physically, it is the extent to which all angular
+momenta point in the same direction.
 
 Orientation and introduction of the vector model
-- the orientation is related to the geometric relationship between m and j
-- j precesses about the z axis
-- m, j, theta
-- expectation value
+The orientation is  related to the geometric relationship between m and j in
+the vector model.  The vector model is a way of understanding angular momentum,
+where j is the angular momentum vector which precesses around the z axis at
+some angle theta.  The quantum number m is the projection of j onto the z axis.
+The expectation value of the cosine of theta is the orientation.
 
 Experimental procedure
-- ground potential curve
-- A potential curve: where the studied collisions happen
-- pump laser is left circularly polarized, populates vibrational and rotational
-  states in A
-- after collision, probe laser: swept across a range of frequencies to measure
-  the final orientation
-    - linear polarization
+In order to choose a nonzero orientation for the initial state of the system,
+the experimental group excites the system from the ground state to a higher
+potential, the A state.  A pump laser that is left circularly polarized
+populates the A state's vibrational and rotational states in such a way that
+there is a preferential population of large m due to the selection rule imposed
+by the laser's polarization.  After the collisions, the probe laser is swept
+across a range of frequencies to measure the orientation.
 
-- polarized light has selection rules for transitions
-- pump laser always pumps so delta m = plus one
-- each row's potential curve
-- nonzero <m> prior to collisions
-- linear probe laser measures the orientation
-    - superposition of left and rigth circular polarization
+The probe laser is linearly polarized; linear polarization can be expressed as
+a superposition of left and right circularly polarized light.  Because of the
+initial nonzero orientation of the system, the different circular polarizations
+interact with the system differentially.  After interacting with the sample,
+the superposition of light that was not absorbed is passed through a linear
+polarizer perpendicular to the intial polarization.  If the laser is unchanged,
+no signal will pass through the polarizer.  However, because the left and right
+circular polarizations were absorbed differently, the superposition after
+interacting with the system is no longer perfectly linear but rather
+elliptically polarized.  Therefore, whatever signal is detected after the
+polarizer is a metric of the final orientation.
 
 Previous results
-- results of experiment and initial theory
-- propensity for even delta j
-- cannot say it is approximately homonuclear because propensity depends on
-  collision partner
-- theory has large computational requirements and K is too large with current
-  methods
-- theory and experiment agree
+Experiment and theory tend to agree in their determinations of the rate
+constants.  For helium, past work has shown that there is a propensity for the
+change in j to be an even number.
+
+It was originally thought that this propensity was related to the strict
+selection rule for homonuclear diatomic molecules where no odd delta j
+transitions are allowed.  Sodium and potassium are in the same column of the
+periodic table, so it was thought that perhaps NaK was approximately
+homonuclear, which would explain the propensity.  However, it has been
+demonstrated that the propensity for an even delta j depends on the collision
+partner, where as behavior of an approximately homonuclear molecule should
+depend solely on the molecule.  Some initial experimental results for certain
+states in a collision with potassium show no propensity for even delta j at
+all.  Unfortunately, theory has large computational requirements, and it is too
+computationally expensive to model NaK + K to confirm.
+
+Some mechanism other than approximate homonuclear behavior is affecting the
+delta j propensity, so theory and experiment are still investigating and
+getting good agreement.
 
 Goal of this project: physical interpretation
-- huge calculations to get B_lambdas - probability for transferring an amount of
-  angular momentum
-    - large calculations were already done
-- want a physical interpretation - my job this summer
-- vector model definition of lambda - metric of the discrete value of angular
-  momentum transfered in the collision
-- alpha, discrete nature
+The large calculations for the theoretical analysis are used to calculate
+B_lambda values.  These values are the discrete probabilities for transferring
+a specific amount of angular momentum to the NaK molecule in the transition.
+These calculations were done prior to the beginning of the summer.
+
+The goal of this summer's project was to gain a deeper physical understanding
+of this angular momentum transition.  Using the vector model facilitated
+understanding the relationship between j, j', lambda, and alpha.  The vector
+model definition of lambda is a metric of the discrete value of angular
+momentum transferred in the collision, or the distance between the tip of the j
+vector and the tip of the j' vector.  There are a finite number of discrete
+lambda values for a given j->j' transition.  Alpha is the angle between j and
+j' and is likewise discrete.
 
 QM analysis
+These discrete values 
 - take the qm theory a step further to get a more intuitive physical
   interpretation:
     - make alpha continuous for semiclassical approximations

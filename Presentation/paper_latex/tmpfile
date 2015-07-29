@@ -1,146 +1,20 @@
-Experimental procedure
-In order to choose a nonzero orientation for the initial state of the system,
-the experimental group excites the system from the ground state to a higher
-potential, the A state.  A pump laser that is left circularly polarized
-populates the A state's vibrational and rotational states in such a way that
-there is a preferential population of large m due to the selection rule imposed
-by the laser's polarization.  After the collisions, the probe laser is swept
-across a range of frequencies to measure the orientation.
-
-The probe laser is linearly polarized; linear polarization can be expressed as
-a superposition of left and right circularly polarized light.  Because of the
-initial nonzero orientation of the system, the different circular polarizations
-interact with the system differentially.  After interacting with the sample,
-the superposition of light that was not absorbed is passed through a linear
-polarizer perpendicular to the intial polarization.  If the laser is unchanged,
-no signal will pass through the polarizer.  However, because the left and right
-circular polarizations were absorbed differently, the superposition after
-interacting with the system is no longer perfectly linear but rather
-elliptically polarized.  Therefore, whatever signal is detected after the
-polarizer is a metric of the final orientation.
-
-Previous results
-Experiment and theory tend to agree in their determinations of the rate
-constants.  For helium, past work has shown that there is a propensity for the
-change in j to be an even number.
-
-It was originally thought that this propensity was related to the strict
-selection rule for homonuclear diatomic molecules where no odd delta j
-transitions are allowed.  Sodium and potassium are in the same column of the
-periodic table, so it was thought that perhaps NaK was approximately
-homonuclear, which would explain the propensity.  However, it has been
-demonstrated that the propensity for an even delta j depends on the collision
-partner, where as behavior of an approximately homonuclear molecule should
-depend solely on the molecule.  Some initial experimental results for certain
-states in a collision with potassium show no propensity for even delta j at
-all.  Unfortunately, theory has large computational requirements, and it is too
-computationally expensive to model NaK + K to confirm.
-
-Some mechanism other than approximate homonuclear behavior is affecting the
-delta j propensity, so theory and experiment are still investigating and
-getting good agreement.
-
-Goal of this project: physical interpretation
-The large calculations for the theoretical analysis are used to calculate
-B-lambda values.  These values are the discrete probabilities for transferring
-a specific amount of angular momentum to the NaK molecule in the transition.
-These calculations were done prior to the beginning of the summer.
-
-The goal of this summer's project was to gain a deeper physical understanding
-of this angular momentum transition.  Using the vector model facilitated
-understanding the relationship between j, j', lambda, and alpha.  The vector
-model definition of lambda is a metric of the discrete value of angular
-momentum transferred in the collision, or the distance between the tip of the j
-vector and the tip of the j' vector.  There are a finite number of discrete
-lambda values for a given j->j' transition.  Alpha is the angle between j and
-j' and is likewise discrete.
-
-QM analysis
-These discrete values 
-\newline take the qm theory a step further to get a more intuitive physical
-  interpretation:
-    * make alpha continuous for semiclassical approximations
-
-SC analysis
-\newline law of cosines, relate lambda and alpha
-    * tipping angle
-\newline instead of summing over lambda, integrate over alpha
-\newline alpha is the tipping angle (remember the vector model)
-\newline B is the distribution of tipping angles
-
-Results of B analysis
-\newline theoretical B lambda and B alpha (difference between discrete and continuous)
-\newline Plotting B vs the tipping angle shows which alphas are most likely
-\newline biggest B's are near small alpha
-
-\newline helium and argon display similar overall behaviors
-\newline small tipping angles
-\newline argon is bigger
-
-Conclusions of B analysis
-\newline He propensity, not for Ar
-    * experimental propensity for helium is much stronger than for argon, which
-      could also account for not seeing it
-    * newer potential curves may change this for argon
-\newline when expectation value of alpha is big the transitions are less likely
-\newline bigger j's meant less tipping
-
-Cross section vs delta-theta analysis: vector model
-\newline sum over lambda, integrate over alpha and look at the cross sectional
-  distribution over delta theta
-\newline back to the vector model: delta theta is not alpha
-\newline unless j, j' are coplanar with each other and the z axis, as seen in picture
-\newline give example where delta theta is zero: CONTRAST WITH PIC
-
-\newline for a particular alpha, j' can be anywhere on the circle in the picture but
-  will tend to rest where theta = theta prime
-\newline even if delta theta is zero, j will not necessarily point in the same
-  direction as j prime (in fact this is quite rare)
-  
-Cross section vs delta-theta analysis: QM
-\newline average delta theta over all possible m/m' transitions
-\newline histogram binned by delta thetas and convolved with a gaussian: essentially smoothing the discrete values into a distribution to compare with the semiclassical model
-
-Cross section vs delta-theta analysis: SC
-\newline model that relates delta theta to alpha
-\newline considered all azimuthal phi, given an initial theta, found distribution
-  of theta prime
-\newline averaging over continuous distribution of tipping angles
-\newline *integral over the values of alpha allowed by geometry in form for
-  Gauss-Chebyshev quadrature of the first kind
-\newline *range of integration is cos (theta+theta') < cos (alpha) <
-  cos (theta-theta')
-\begin{equation}
-    y={(\cos(\alpha)-\cos(\theta)\cos(\theta'))}\over{\sin(\theta)\sin(\theta')}
-\end{equation}
-
-Theta-theta' distribution
-\newline theta to theta prime distribution centers around delta theta = 0
-\newline semiclassical 
-
-Delta-theta distribution
-\newline SC and QM agree really well at large j values
-\newline spike near small delta theta
-\newline delta theta is rarely exactly zero
-\newline SC tends not to work as well at smaller j values
-
 Delta-m distribution
-\newline m to m prime distribution centers around delta m =/= 0
-\newline as expected
-\newline *quantum mechanical, no smoothing
+-m to m prime distribution centers around delta m =/= 0
+-as expected
+-*quantum mechanical, no smoothing
 
 Conclusions
-\newline theta tends to be conserved, which is consistent with other research in this
+-theta tends to be conserved, which is consistent with other research in this
   field
-\newline m tends to change in such a way that delta theta is small
-\newline vector model and semiclassical model give good physical interpretations of the
+-m tends to change in such a way that delta theta is small
+-vector model and semiclassical model give good physical interpretations of the
   jm->j'm' transitions
 
 Acknowledgments
-\newline NSF
-\newline Lehigh
-\newline Prof.\ McSwain
-\newline Computers
-\newline Teri and Kara
-\newline Prof.\ Huennekens
-\newline Prof.\ Hickman
+-NSF
+-Lehigh
+-Prof.\ McSwain
+-Computers
+-Teri and Kara
+-Prof.\ Huennekens
+-Prof.\ Hickman

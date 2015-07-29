@@ -1,267 +1,523 @@
 \documentclass[letterpaper,titlepage,12pt]{article}
 \author{Ashley Towne}
-\title{Semiclassical Analysis of Quantum Mechanical Calculations of Rotational
+\title{Semiclassical Analysis of Quantum Mechanical Calculations of Rotationally
 Inelastic Collisions of He and Ar with NaK}
 \pagestyle{plain}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{amsmath}
 \usepackage{epstopdf}
+\bibliographystyle{mysty}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
-\newpage
+\clearpage
 \section{Abstract}
+The purpose of this project was to find physical interpretations of
+rotationally inelastic collisions of He and Ar with NaK using an extension of
+the vector model and semiclassical (SC) approximations.  The theoretical
+probability of transferring a discrete amount of angular momentum in the
+quantum mechanical (QM) model was compared to the SC continuous distribution of
+probabilities.  The two models matched well, both displaying periodic behavior
+across values of angular momentum transferred.  For helium, the propensity for
+the change in angular momentum vector $j$ to be an even number was observed in
+these calculated probabilities, but argon showed no such propensity.  The
+helium results agree with experiment, but the argon results were somewhat
+unexpected.  The disagreement between theory and experiment for argon may be
+due to the sensitivity of the potential curve used in theoretical calculations,
+or it may be because the theoretical calculations were not sensitive enough to
+etect argon's smaller propensity.  The distributions of cross sections as a
+function of $\Delta\theta$ were also compared, where $\Delta\theta$ is the
+change in angle between the $j$ vector and the $z$ axis during collision.  The
+SC model agreed very well with the QM model, especially when the $j$ vector was
+large.  The distribution of projections of $j$ onto the $z$ axis before and
+after collision ($m\rightarrow m'$) demonstrated that $m$ changes in such a way
+that $\theta$ tends to be preserved.
 
-\newpage
+\clearpage
 \section{Introduction}
-NaK, like any molecule, can vibrate and rotate and can be described by its
-rotational and vibrational states.  Upon collision with a perturbing atom,
-such as helium or argon, these states can change.  This project was primarily
-concerned with collisions where the vibrational state is conserved, but the
-rotational state is not, as equation~\ref{eq:collisions} specifies.  
+NaK, like any molecule, can vibrate and rotate and can be described by the
+quantum numbers that characterize these vibrational and rotational states.
+Upon collision with a perturbing atom, such as helium or argon, these quantum
+numbers can change, signifying a transition from one state to another.  This
+project is primarily concerned with collisions where the vibrational state is
+conserved, but the rotational state changes, as eq.~\ref{eq:collisions}
+specifies.  
 \begin{eqnarray}
     He+NaK(v,m,j)&\rightarrow& He+NaK(v,m',j') \nonumber\\
     Ar+NaK(v,m,j)&\rightarrow& Ar+NaK(v,m',j')
     \label{eq:collisions}
 \end{eqnarray}
-Specifically, the purpose of this investigation was
-to explore the physical interpretations of how the quantum numbers that
-describe angular momentum change during collision.
+Specifically, the purpose of this investigation was to explore the physical
+interpretations of how the quantum numbers that describe angular momentum
+change during collision.  The vector model was extended to describe not only
+one angular momentum state but a transition between two states.
 
 In addition to its rotational and vibrational states, NaK can also be described
-by its electronic state, of which the set of potential curves are an
-expression. A set of NaK's potential curves can be seen in
-figure~\ref{fig:potentialcurves}. The potential curves represent energy as a function of internuclear
-separation between sodium and potassium. Both experimental and theoretical
-investigations choose one potential curve to study, specifying the electronic
-energy level at which the collisions in question take place.
-
-\begin{figure}[h]
+by its electronic state, which the set of potential curves express. A set of
+NaK's potential curves, calculated by Magnier~\cite{Mag00}, can be seen in
+figure~\ref{fig:potentialcurves}. The potential curves represent energy as a
+function of internuclear separation between sodium and potassium. Both
+experimental and theoretical investigations choose one potential curve to
+study, specifying the electronic energy level at which the collisions in
+question take place.
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.7\textwidth]{potentialcurves.eps}
+    \includegraphics[width=0.55\textwidth]{potentialcurves.eps}
     \caption{Potential curves for NaK}
 \label{fig:potentialcurves}
 \end{figure}
-At Lehigh University, the experimental and theoretical investigations have
-worked together to form a more complete picture of the collisions in question.
-Professor Huennekens leads the experimental group, and Professor Hickman leads
-the theory group.
 
-\newpage
+\clearpage
 \section{Background}
 \subsection{Experimental Measurements}
-Professor Huennekens' experimental group has measured the rate constants (k) of
-transitions, which are related to the cross sections.  The rate constants are
-proportional to the expectation value of the product of the cross section and
-velocity, which can be approximated as the cross sections times the average
-velocity:
+At Lehigh University, the experimental and theoretical investigations have
+worked together to form a more complete picture of the collisions in question.
+Past experiments have studied NaK+He, NaK+Ar, NaK+K, NaCs+He, and NaCs+Ar
+collisions~\cite{Jon15,Wol11}.  Related theory has examined NaK+He and NaK+Ar
+collisions as well as trends in the vector model and its semiclassical
+approximations in~\cite{Mal15,Ale83,Der84}.  Currently at Lehigh, Professor
+Huennekens leads the experimental group, and Professor Hickman leads the theory
+group.
+
+Professor Huennekens' group has measured the rate constants (k) of transitions,
+which are related to the cross sections~\cite{Hue15_conversation}.  The rate
+constants are proportional to the expectation value of the product of the cross
+section and velocity, which can be approximated as the cross sections times the
+average velocity:
 \begin{eqnarray}
     k&=&\langle\sigma v\rangle \nonumber\\
     k&\approx& \sigma \overline{v}
+\label{eq:rate_constants}
 \end{eqnarray}
-The cross section is a metric of the likelihood that a particular
-transition will occur from one \(j\) state to another.  The rate constants average
-over all values of the quantum number m.
+The cross section is a metric of the likelihood that a particular transition
+will occur from one $j$ state to another.  The rate constants average over all
+values of the quantum number $m$.
 
 The experimental group has also measured the fraction of orientation that is
-preserved throughout the collisions.  Collisions tend to be randomizing processes, so
-studying the extent to which orientation is preserved gives a metric of the
-extent to which a particular type of collision is actually a randomizing
-process.  In a cell environment, such as the system that the experimental group
-studies, the angular momenta initially point in all directions and the average
-value of \(m\) is zero.  In order to measure the change in orientation, the initial
-orientation must be nonzero.  The orientation is proportional to the
-expectation value of \(m\) for a particular \(j\) state:
+preserved throughout the collisions~\cite{Hue15_conversation}.  Collisions tend
+to be randomizing processes, so studying the extent to which orientation is
+preserved gives a metric of the extent to which a particular type of collision
+alters a nonzero orientation.  In a cell environment, such as the system that
+the experimental group studies, the angular momenta initially point in all
+directions and the average value of $m$, or $\langle m\rangle$ is zero; in
+other words, the orientation is zero.  In order to measure the change in
+orientation, the initial orientation must be nonzero.  The orientation is
+proportional to the expectation value of $m$ for a particular $j$ state:
 \begin{equation}
-    O^j={{\langle m\rangle}\over{\sqrt{j(j+1)}}}
+    O^j=\frac{\langle m\rangle}{\sqrt{j(j+1)}}
     \label{eq:orientation}
 \end{equation}
-Physically, it is the extent to which all angular momenta point in the same direction.
+Physically, it is the extent to which all angular momenta are oriented, or
+point in the same direction.
 
-\newpage
 \subsection{Vector Model}
-The orientation is  related to the geometric relationship between \(m\) and \(j\) in
-the vector model, as seen in figure~\ref{fig:vectormodel}.
-\begin{figure}[h!]
+The orientation is  related to the geometric relationship between $m$ and $j$
+in the vector model.  The vector model is a way of understanding angular
+momentum, where $j$ is the angular momentum vector, and what it means for all
+angular momenta to point in the same direction.  As seen in
+figure~\ref{fig:vectormodel}, the quantum number $m$ is the projection of $j$
+onto the $z$ axis:
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{vectormodel.eps}
+    \includegraphics[width=0.4\textwidth]{vectormodel.eps}
     \caption{Vector model of angular momentum}
 \label{fig:vectormodel}
 \end{figure}
-\newline
-The vector model is a way of understanding angular momentum,
-where \(j\) is the angular momentum vector.  The quantum number \(m\) is the
-projection of \(j\) onto the z axis.  \(j\) can precess around the z axis at a constant
-\(\theta\) without changing its magnitude or the magnitude of m, as stated by
-equation~\ref{eq:vector_model_geometry}:
+$j$ can precess around the $z$ axis at a constant $\theta$ without changing its
+magnitude or the magnitude of $m$, as stated by
+eq.~\ref{eq:vector_model_geometry}:
 \begin{equation}
-    \cos\theta={{m}\over{\sqrt{j(j+1)}}}
+    \cos\theta=\frac{m}{\sqrt{j(j+1)}}
     \label{eq:vector_model_geometry}
 \end{equation}
-The expectation value of the \(\cos\theta\) is the orientation, as
-equation~\ref{eq:orientation} stated.
+The expectation value of the $\cos\theta$ is the orientation, as
+eq.~\ref{eq:orientation} stated.
 
-\newpage
 \subsection{Experimental Procedure}
-In order to choose a nonzero orientation for the initial state of the system,
+In order to ensure a nonzero orientation for the initial state of the system,
 the experimental group excites the system from the ground state to a higher
-potential, the A state.  These states are selected potential curves from
-figure~\ref{fig:potentialcurves}, shown in more detail in
-figure~\ref{fig:selected_potcurves}.  A pump laser that is left circularly polarized
-populates the A state's vibrational and rotational states.  After the collisions, the probe laser is swept
-across a range of frequencies to measure the orientation.
-\begin{figure}[h]
+potential, the $A^1\Sigma^+$ state.  These states are selected potential curves
+from figure~\ref{fig:potentialcurves}, shown in more detail in
+figure~\ref{fig:selected_potcurves}.  The bottom curve is the ground state
+$X^1\Sigma^+$.  A circularly polarized pump laser populates the vibrational and
+rotational states in the $A^1\Sigma^+$ state.  After the collisions, the probe
+laser is swept across a range of frequencies to measure the orientation,
+exciting the system to the top curve, the $3^1\Pi$ state.
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=0.5\textwidth]{selected_potentialcurves.eps}
-    \caption{States used in experiment. \(X^1\Sigma^+\) is the ground state,
-    \(A^1\Sigma^+\) is the chosen excited state, and \(3^1\Pi\) is the state to
-which the system is excited by the probe laser}
+    \includegraphics[width=0.4\textwidth]{selected_potentialcurves.eps}
+    \caption{Selected potentials: $3^1\Pi$ (top), $A^1\Sigma^+$ (middle), $X^1\Sigma^+$ (bottom)}
 \label{fig:selected_potcurves}
 \end{figure}
 
-Polarized light always has selection rules for which states it populates, and
-the circularly polarized pump laser's selection rule for \(\Delta m=+1\) leads to
-a preferential population of large m.  This can be seen in
-figure~\ref{fig:m_potcurves}.
-\begin{figure}[h]
+Polarized light always has selection rules for the states it populates, and the
+circularly polarized pump laser's selection rule is that $\Delta m=+1$.  The
+$A^1\Sigma^+$ state has a preferential population of large m.  This can be seen
+in figure~\ref{fig:m_potcurves}, where each row represents the $m$ states
+available for the different potentials.  The arrows represent transitions
+between these states that are possible due to laser excitation.
+\begin{figure}[ht]
     \centering
-    \includegraphics[width=1\textwidth]{m_potcurves.jpg}
-    \caption{Bottom row: \(m\) states available in the ground state
-        Middle row: \(m\) states available in the \(A^1\Sigma^+\) state
-        Top row: \(m\) states available in the \(3^1\Pi\) state
-    Arrows show possible transitions}
+    \includegraphics[width=0.9\textwidth]{m_potcurves.eps}
+    \caption{Possible $m$ states and transitions: $3^1\Pi$ (top), $A^1\Sigma^+$ (middle), $X^1\Sigma^+$ (bottom)}
 \label{fig:m_potcurves}
 \end{figure}
 
 The probe laser is linearly polarized; linear polarization can be expressed as
 a superposition of left and right circularly polarized light.  Because of the
-initial nonzero orientation of the system, the different circular polarizations
-interact with the system differentially.  Essentially, the left circular
-polarization will see a different system than the right circular polarization
-because of the states occupied and available states for transition.  After
-interacting with the sample, the superposition of light that was not absorbed is passed through a linear
-polarizer perpendicular to the intial polarization.  If the laser is unchanged,
-no signal will pass through the polarizer.  However, because the left and right
-circular polarizations are absorbed differently, the superposition after
-interacting with the system is no longer perfectly linear but rather
-elliptically polarized.  Therefore, whatever signal is detected after the
-polarizer is a metric of the final orientation.
+initial nonzero orientation of the system, the opposing circular polarizations
+interact with the system differentially.  The left circular polarization will
+see a different set of states that are available for transition than right
+circular polarization.  After interacting with the sample, the remaining
+superposition of both polarizations of light is passed through a linear
+polarizer perpendicular to the intial polarization.  If the laser's total
+polarization is unchanged, that is if transitions are not detected, no signal
+will pass through the polarizer.  However, because the left and right circular
+polarizations are absorbed differently, the superposition after interacting
+with the system is no longer perfectly linear but rather elliptically
+polarized.  Therefore, whatever signal is detected after the polarizer is a
+metric of the final orientation~\cite{Jon15}.
 
-\newpage
 \subsection{Previous Results}
 Experiment and theory tend to agree in their determinations of the rate
 constants.  For helium, past work has shown that there is a propensity for the
-change in \(j\) to be an even number. See figure~\ref{fig:He_past_results}.
-\begin{figure}[h]
+change in $j$ to be an even number. See figure~\ref{fig:He_past_results}.
+\begin{figure}[ht]
     \centering
     \textbf{Helium Rate Constant}\par\medskip
-    \includegraphics{He_past_results.eps}
-    \caption{Rate constants for helium vs. \(\Delta\)j (Malenda et al)}
+    \includegraphics[width=0.7\textwidth]{He_past_results.eps}
+    \caption{Rate constants for helium vs. $\Delta j$~\cite{Mal15}}
 \label{fig:He_past_results}
 \end{figure}
 
 It was originally thought that this propensity was related to the strict
-selection rule for homonuclear diatomic molecules where no odd \(\Delta j\)
-transitions are allowed.  Sodium and potassium are in the same column of the
-periodic table, so it was thought that perhaps NaK was approximately
-homonuclear, which would explain the propensity.  However, it has been
-demonstrated that the propensity for an even \(\Delta j\) depends on the collision
-partner, where as behavior of an approximately homonuclear molecule should
-depend solely on the molecule.  Some initial experimental results for certain
-states in a collision with potassium show no propensity for even \(\Delta j\) at
-all.  Unfortunately, theory has large computational requirements, and it is too
-computationally expensive to model NaK+K to confirm.
+selection rule for homonuclear diatomic molecules where no odd $\Delta j$
+transitions are allowed at all.  Sodium and potassium are in the same column of
+the periodic table, so it was thought that perhaps NaK was approximately
+homonuclear, which would explain the propensity observed when the perturbing
+atom is the noble gas helium or argon~\cite{Jon15}.  However, it has been
+demonstrated that the propensity for an even $\Delta j$ depends on the
+collision partner, whereas behavior of an approximately homonuclear molecule
+should depend solely on the molecule.  Some experimental results for NaK in
+certain states in a collision with potassium show no propensity for even
+$\Delta j$ at all~\cite{Wol11}.  Unfortunately, theory has large computational
+requirements, and it is too computationally expensive to model NaK+K to
+confirm.  However, it can be concluded that some mechanism other than
+approximate homonuclear behavior is affecting the $\Delta j$ propensity in both
+experiment and theory.
 
-Some mechanism other than approximate homonuclear behavior is affecting the
-\(\Delta j\) propensity, so theory and experiment are still investigating and
-getting good agreement.
-
-\section{This Project: B analysis}
+\clearpage
+\section{B analysis}
 \subsection{Goals: Physical Interpretations}
 The large calculations for the theoretical analysis are used to calculate
-\(B_\lambda\) values.  These values are the discrete probabilities for transferring
+$B_\lambda$ values, which are the discrete probabilities for transferring
 a specific amount of angular momentum to the NaK molecule in the transition.
 These calculations were done prior to the beginning of the summer.
 
 The goal of this summer's project was to gain a deeper physical understanding
-of this angular momentum transition.  Using the vector model facilitated
-understanding the relationship between \(j\), \(j'\), \(\lambda\), and \(\alpha\).  The vector
-model definition of \(\lambda\) is a metric of the discrete value of angular
-momentum transferred in the collision, or the distance between the tip of the
-\(j\) vector and the tip of the \(j'\) vector.  There are a finite number of discrete
-\(\lambda\) values for a given \(j\rightarrow j'\) transition.  \(\alpha\) is the angle between 
-\(j\) and \(j'\) and is likewise discrete.
+of the angular momentum transitions.  The vector model facilitated
+understanding the relationship between $j$, $j'$, $\lambda$, and $\alpha$.
+$\lambda$ is a metric of the discrete value of angular momentum transferred in
+the collision, or the distance between the tip of the $j$ vector and the tip of
+the $j'$ vector in the vector model.  Quantum mechanically, there are a finite
+number of discrete $\lambda$ values for a given $j\rightarrow j'$ transition.
+$\alpha$ is the angle between $j$ and $j'$ and is likewise discrete.
 
-\newpage
 \subsection{Quantum Mechanical Model}
-The extensive calculations which the theoretical investigation requires
-calculate the quantum mechanical (QM) \(B_\lambda\) values, which are used to
-calculate the cross section of interaction, given by equation~\ref{eq:QM_cross_section}.
-\(B_\lambda\)'s are discrete probabilities for a particular transfer of angular
-momentum; this transfer is related to the parameter \(\lambda\).  
+$B_\lambda$ values are used to calculate the cross section of interaction; the
+latter is given by eq.~\ref{eq:QM_cross_section}.  $B_\lambda$'s are discrete
+probabilities for a particular transfer of angular momentum $\lambda$.
 \begin{equation}
-    \sigma(j\rightarrow j')={{\pi}\over{(2j+1)k_j^2}}{\sum_{\lambda=\lvert j-j'\rvert}^{j+j'} {(2\lambda+1)B_\lambda(j,j')}}
+    \sigma(j\rightarrow j')=\frac{\pi}{(2j+1)k_j^2}{\sum_{\lambda=\lvert j-j'\rvert}^{j+j'} {(2\lambda+1)B_\lambda(j,j')}}
     \label{eq:QM_cross_section}
 \end{equation}
 
-\(\lambda\) can best be described by going back to the vector model and extending it to include two
-different \(j\) vectors rather than one such that \(j\) is the initial angular
-momentum vector and \(j'\) is the final angular momentum vector.  See
+$\lambda$ can best be described by extending the vector model to include two
+different $j$ vectors rather than one, such that $j$ is the initial angular
+momentum vector and $j'$ is the final angular momentum vector.  See
 figure~\ref{fig:vectormodel_j_jp}.
-\begin{figure}[h]
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{vectormodel_j_jp_triangles.eps}
-    \caption{\(\lambda\)'s relation to \(j\), \(j'\), and \(\alpha\).}
+    \caption{$\lambda$'s relation to $j$, $j'$, and $\alpha$.}
 \label{fig:vectormodel_j_jp}
 \end{figure}
+$\lambda$ is the distance between the tip of the $j$ and $j'$ vectors.  Since
+$j$ and $j'$ can precess about the $z$ axis as well as have an altitude of any
+allowed $\theta$, $\lambda$ can range in magnitude from the difference in the
+two $j$ vectors to their sum.  Physically, $\lambda$ represents how much
+angular momentum was transferred in the collision.  The angle $\alpha$ is the
+angle between $j$ and $j'$.  This parameter is called the tipping angle.  It is
+a measure of how much the collision ``tipped'' $j'$ from $j$.
 
-\(\lambda\) is the distance between the tip of the \(j\) and \(j'\) vectors.
-As \(j\) and \(j'\) can precess about the z axis as well as have an altitude of
-any allowed \(\theta\), \(\lambda\) can range in magnitude from the difference
-in the two \(j\) vectors to their sum.  Physically, \(\lambda\) represents how much
-angular momentum was transferred in the collision.
-
-The angle \(\alpha\) is the angle between \(j\) and \(j'\).  This parameter is
-called the tipping angle; it is a measure of how much the collision ``tipped''
-\(j'\) from \(j\).
-
-\newpage
 \subsection{Semiclassical Model}
 In order to find a more intuitive physical interpretation, a semiclassical (SC)
-model was used.  Using the law of cosines and the relationship shown in
-figure~\ref{fig:vectormodel_j_jp}, the tipping angle can be related to the
-discrete amount of angular momentum, as in equation~\ref{eq:loc_alpha_lambda}. 
-By allowing \(\alpha\) to be a continuous variable and making the appropriate
-substitutions, the discrete sum over \(\lambda\) becomes a continuous integral
-over \(\alpha\), as in equation~\ref{eq:SC_cross_section}.
+model was used, based on ideas that Derouard put forth~\cite{Der84}.  Using the
+law of cosines and the relationship shown in figure~\ref{fig:vectormodel_j_jp},
+the tipping angle can be related to the discrete amount of angular momentum, as
+in eq.~\ref{eq:loc_alpha_lambda}.  By allowing $\alpha$ to be a continuous
+variable and making the appropriate substitutions, the discrete sum over
+$\lambda$ becomes a continuous integral over $\alpha$, as in
+eq.~\ref{eq:SC_cross_section}.
 \begin{equation}
     \lambda(\lambda+1)=j(j+1)+j'(j'+1)-2\sqrt{j(j+1)j'(j'+1)}\cos\alpha
     \label{eq:loc_alpha_lambda}
 \end{equation}
 \begin{equation}
-    \sigma(j\rightarrow j')={{\pi(j'+1/2)}\over{k_j^2}}{\int_{0}^{\pi}{B(j,j',\cos\alpha)\sin\alpha d\alpha}}
+    \sigma(j\rightarrow j')=\frac{\pi(j'+1/2)}{k_j^2}{\int_{0}^{\pi}{B(j,j',\cos\alpha)\sin\alpha d\alpha}}
     \label{eq:SC_cross_section}
 \end{equation}
-\(B(j,j',\cos\alpha)\), or \(B_\alpha\), is related to \(B_\lambda\); rather
-than a discrete probability, it is the distribution of tipping angles.
+$B(j,j',\cos\alpha)$, or $B_\alpha$, is related to $B_\lambda$.  Rather than a
+discrete probability, it is the continuous distribution of tipping angles.
 
 \subsection{Results of B analysis}
-Plotting the \(B_\lambda\) and \(B_\alpha\) values against the tipping angle
-\(\alpha\) shows which \(\alpha\)'s are most likely; larger B values correspond
-to a more likely tipping angle.  See figure~\ref{fig:He_B_1921} for an example.
-\begin{figure}
+Plotting the $B_\lambda$ and $B_\alpha$ values against the tipping angle
+$\alpha$ shows which $\alpha$'s are most likely.  Larger B values correspond to
+a more likely tipping angle.  Plotting B vs $\alpha$ shows which tipping angles
+are most likely.  As B tends to be larger for smaller $\alpha$, the most
+probable tipping angles are small.  Helium and argon display similar overall
+behaviors.  Compare figure~\ref{fig:He_B_1921} to figure~\ref{fig:Ar_B_1921}.
+\begin{figure}[ht!]
     \centering
-    \includegraphics{}
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\linewidth]{He_Bplot_j19jp21.eps}
+        \caption{Helium}
 \label{fig:He_B_1921}
+    \end{subfigure}
+    \hspace*{\fill}
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[width=\linewidth]{Ar_Bplot_j19jp21.eps}
+        \caption{Argon}
+\label{fig:Ar_B_1921}
+    \end{subfigure}
+    \caption{Quantum impulses are discret $B_\lambda(2\lambda+1)$, Semiclassical function is continuous $B_\alpha\sin\alpha$}
+\label{fig:B_plots}
 \end{figure}
-\newline theoretical B lambda and B alpha (difference between discrete and continuous)
-\newline Plotting B vs the tipping angle shows which alphas are most likely
-\newline biggest B's are near small alpha
+\newline Both collisions favor small tipping angles.  Argon's B values have
+larger magnitudes than helium's B values, so argon's cross sections also tend
+to be larger.  Helium and argon tend to have similar rate constants, but argon
+has lower average velocities at a given energy.  These trends are consistent
+with eq.~\ref{eq:rate_constants}.
 
-\newline helium and argon display similar overall behaviors
-\newline small tipping angles
-\newline argon is bigger
+\subsection{Conclusions for B Analysis}
+The quantum mechanical and semiclassical models agree rather well.  Both have
+periodic behavior across tipping angles, and the relative magnitudes between
+peaks and troughs tend to have similar trends.  For simplicity, the following
+conclusions apply to both models.
+
+Helium's B values were larger for even $\Delta j$ transitions than for odd
+$\Delta j$ transitions, which was expected due to the propensity for even
+$\Delta j$.  Argon showed no such propensity in its B values.  This is not
+entirely unexpected; in experiment, the propensity in collisions with helium is
+much stronger than it is for argon.  Theoretical calculations successfully
+demonstrate the propensity for helium, although the theoretical propensity is
+much smaller than what has been observed in experiment.  It is possible that,
+because argon's propensity is so much smaller than helium's, and because the
+theoretical model attenuates the propensity with respect to experiment, the
+propensity is too small for theory to detect at this point.  However, a refined
+potential curve has recently been calculated, which may improve the theoretical
+calculations.
+
+As $\overline j$ increases, the expected tipping angle decreases.  As $\Delta
+j$ increases, so does the average $\alpha$.  These conclusions for helium were
+determined by treating even $\Delta j$ separately from odd $\Delta j$. For
+example, as $\Delta j$ increases, the expected $\alpha$ for each successive
+even $\Delta j$ is larger than the last.However, $\alpha$ for even $\Delta j$
+tends to be smaller than for odd $\Delta j$ when the two $\Delta j$'s are not
+far apart.
+
+Overall, $\alpha$ tends to be small, especially for more likely transitions.
+When the tipping angle is large, the transitions are less likely; likewise the
+large tipping angles contribute less to the total number of transitions than
+smaller tipping angles.
+
+\clearpage
+\section{Cross Section Analysis}
+\subsection{$\Delta \theta$: Vector Model}
+To analyze the cross sections, equations~\ref{eq:QM_cross_section}
+and~\ref{eq:SC_cross_section} were evaluated to sum over $\lambda$ for the quantum
+mechanical model and integrate over $\alpha$ for the semiclassical model.
+Finding the cross section averages over all possible collisions.  Recall the
+geometric relationship between $m$, $j$, and $\theta$ from
+eq.~\ref{eq:vector_model_geometry}.
+\begin{equation*}
+    \cos\theta=\frac{m}{\sqrt{j(j+1)}}
+    \tag{\ref{eq:vector_model_geometry}}
+\end{equation*}
+$\Delta \theta$ is defined as:
+\begin{equation}
+    \Delta\theta\equiv\theta'-\theta\neq\alpha
+    \label{eq:delta_theta_def}
+\end{equation}
+Solving for $\theta$ from eq.~\ref{eq:vector_model_geometry} and plugging it
+into eq.~\ref{eq:delta_theta_def} gives the relation in eq.~\ref{eq:dtheta}.
+\begin{equation}
+    \Delta\theta = \arccos\left(\frac{m'}{\sqrt{j'(j'+1)}}\right)-\arccos\left(\frac{m}{\sqrt{j(j+1)}}\right)
+    \label{eq:dtheta}
+\end{equation}
+The purpose of this analysis is to examine the cross sectional distribution
+against $\Delta\theta$.  The difference between $\alpha$ and $\Delta\theta$
+must not be overlooked.  $\alpha$ and $\Delta \theta$ are only equivalent if
+$j$ and $j'$ are coplanar both with each other and the $z$ axis, as appears to
+be the case in figure~\ref{fig:vectormodel_coplanar}.
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[height=1\textwidth]{vectormodel_coplanar.eps}
+        \caption{$j$ and $j'$ appear to be coplanar with each other and the $z$ axis, so $\alpha=\Delta\theta$}
+\label{fig:vectormodel_coplanar}
+    \end{subfigure}
+    \hspace*{\fill}
+    \begin{subfigure}{0.49\textwidth}
+        \includegraphics[height=1\textwidth]{vectormodel_thetaprime_distribution.eps}
+        \caption{Possible $j'$ vectors given an initial $j$ and $\alpha$}
+\label{fig:vectormodel_tpdist}
+    \end{subfigure}
+    \caption{Vector model expansion}
+\label{fig:vectormodelexpansion}
+\end{figure}
+
+It is much more common, however, for $j$ and $j'$ to precess about the $z$
+axis.  For a particular $\alpha$ and initial $\theta$, then, the $j'$ vector
+can point anywhere on the circle in figure~\ref{fig:vectormodel_tpdist}.
+
+If the azimuthal angle $\phi$ in figure~\ref{fig:vectormodel_tpdist} is a
+continuous variable, there are exactly two possible $j'$ vectors (and thus two
+$\theta'$ values) where $\Delta\theta$ is exactly zero.  In this case,
+$j$ will not point in the same direction as $j'$; $j$ and $j'$ will
+never be colinear for a nonzero $\alpha$.
+
+\subsection{Quantum Mechanical Analysis}
+For the QM model, $\Delta\theta$ was computed from its initial and final states
+using $j$, $j'$, $m$, and $m'$ for all possible $m\rightarrow m'$ transitions,
+as in eq.~\ref{eq:dtheta}.  The cross sections associated with each
+$\Delta\theta$ was put into a histogram using ranges of $\Delta\theta$.  To
+transform discrete probabilities into a distribution for comparison with the SC
+model, the histogram values were convolved with a gaussian.  This broadened the
+discrete values, which were essentially delta functions
+($\delta\left(\Delta\theta\right)$) into a distribution that could be compared
+with the SC model.  Only a finite number of discrete values of $\phi$ (the
+azimuthal angle in figure~\ref{fig:vectormodel_tpdist}) are allowed due to
+quantum mechanics. $\alpha$, $j$, $j'$, $m$, and $m'$ likewise have a finite
+number of allowed values.
+
+\subsection{Semiclassical Analysis}
+The SC model allows $\phi$ to be a continuous variable.  Given an initial
+$\theta$, for all azimuthal $\phi$, a distribution of $\theta'$ can be
+determined.  The probabilities are given by eq.~\ref{eq:P_theta_thetaprime}.
+\begin{equation}
+    P(\theta,\theta')\sin\theta'=\frac{\sin\theta}{\pi}\int_{-1}^{1}\frac{B(j,j';\cos\theta\cos\theta'+y\sin\theta\sin\theta')}{\sqrt{1-y^2}}dy
+    \label{eq:P_theta_thetaprime}
+\end{equation}
+where
+\begin{equation}
+    y=\frac{\cos\alpha-\cos\theta\cos\theta'}{\sin\theta\sin\theta'}
+\end{equation}
+A complete derivation can be found in Professor Hickman's work~\cite{Hic15}, but suffice it to say that the
+distribution integrates over all values of alpha allowed by the geometry, and
+that the form is conventional for evaluation by Guass-Chebyshev quadrature of
+the first kind.  The range of integration is such that
+$\cos\left(\theta+\theta'\right)<\cos\alpha<\cos\left(\theta-\theta'\right)$.
+
+\subsection{Results: $\theta\rightarrow \theta'$}
+The semiclassical distribution for a few chosen $\theta$ values can be seen in
+figure~\ref{fig:SC_t_tp}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{SC_theta_thetaprime_distribution.eps}
+    \caption{Distribution of $\theta'$ for $\theta=0^o$, $\theta=45^o$, $\theta=90^o$, $\theta=135^o$, $\theta=180^o$}
+\label{fig:SC_t_tp}
+\end{figure}
+\newline For each distribution, the peak is centered where $\theta=\theta'$,
+or, equivalently, where $\Delta\theta=0$.  The orientation tends to be
+conserved exactly, according to the semiclassical model.
+
+\subsection{Results: Cross Section vs $\Delta\theta$} After averaging over all
+possible $\theta\rightarrow\theta'$ transitions and grouping them by
+$\Delta\theta$, the cross sectional distribution across $\Delta\theta$ could be
+analyzed.  Figure~\ref{fig:He_cs_jb30} compares the SC and QM results for
+$j\rightarrow j'=28\rightarrow 32$.  The QM curve is difficult to see in this
+figure because the two models agree very well.  However, the peak in the graph
+is evidently at $\Delta\theta=0$, which is as expected.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{He_cs_jb30_dj4.eps}
+    \caption{Cross sectional distribution vs $\Delta\theta$, averaged over all collisions; $\overline j=30$}
+\label{fig:He_cs_jb30}
+\end{figure}
+
+As $\overline j$ increases, however, the agreement declines. The disagreement
+depends both on the average value of $j$ and the value of $\Delta j$. It
+appears that the smaller value of $j$ must not be too small.  When the smaller
+value of $j$ is small, the disagreement is much greater.  As fewer $j$ states
+can be averaged over, the behavior looks less classical and more quantum
+mechanical.  See figure~\ref{fig:He_cs_jb20_10}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.49\textwidth]{He_cs_jb20_dj4.eps}
+    \includegraphics[width=.49\textwidth]{He_cs_jb10_dj4.eps}
+    \caption{Cross sectional distribution vs $\Delta\theta$, averaged over all collisions; $\overline j = 20$ (left); $\overline j = 10$ (right)}
+\label{fig:He_cs_jb20_10}
+\end{figure}
+For all $\overline j$, though, the most probable transitions are near small
+$\Delta\theta$.  In the QM model, however, the peak of the curve is rarely exactly
+$\Delta\theta=0$.  Only a few transitions allow a $\Delta\theta$ of exactly 0.
+This behavior is especially noticeable when $j$ and $j'$ are small or when
+$\Delta j$ is very large.
+
+\subsection{Results: $m\rightarrow m'$}
+Filtering the QM data by $m$ and $m'$ and smoothing with a spline gives
+figure~\ref{fig:He_cs_m_mp}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{QM_m_mprime_distribution.eps}
+    \caption{Cross sectional distribution vs $m'$ for $m=-30$, $m=-15$, $m=0$, $m=15$, $m=30$. Vertical lines represent where $\Delta m=0$} 
+\label{fig:He_cs_m_mp}
+\end{figure}
+The curves do not all peak where $m=m'$, unlike
+the $\theta\rightarrow\theta'$ distributions (figure~\ref{fig:SC_t_tp}).  This
+is to be expected.  $j$ and $j'$ change, and if $\theta$ is approximately
+constant, then $m$ must change in such a way that $\Delta\theta$ is close to
+zero.  Both the SC and QM models exhibit this behavior.  The SC model does not
+have the same oscillations that the QM model has for $m\neq0$ curves, but it
+appears to average over those oscillations, which is expected for a
+semiclassical approximation to a quantum mechanical system.  See
+figure~\ref{fig:He_cs_m_mp_comp}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{SC_m_mprime_distribution.eps}
+    \caption{Cross sectional distribution vs $m'$ for $m=-20$, $m=-10$, $m=0$, $m=10$, $m=20$.}
+\label{fig:He_cs_m_mp_comp}
+\end{figure}
+
+\subsection{Conclusions for Cross Section Analysis}
+$\theta$ tends to be conserved, which is consistent with other research in this
+field~\cite{Ale83}. $m$ tends to change in such a way that $\Delta\theta$ is
+small.  This means the orientation tends to be preserved during collisions of
+NaK with He and Ar.  The physical interpretation of the vector model offers
+deeper understanding of this behavior by modeling both $j$ and $j'$ vectors.
+By extending the vector model from one $j$ vector to account for both $j$ and
+$j'$, as well as modeling the changes in $m$ and $\theta$, it has been shown
+that, for a particular $j$ to $j'$ transition, $m$ will change in a certain way
+to approximately preserve $\theta$.  The semiclassical model is a good
+approximation for the quantum mechanical model, especially when $j$ and $j'$
+are large.
+
+\clearpage
+\section{Acknowledgments}
+A.C.T. acknowledges support by NSF under the REU program at Lehigh University
+Physics Department and Grant Nos. PHY-0968898 and PHY-1403060.  Computational
+facilities at the Texas Advanced Computing Center (TACC) used for this research
+were supported by NSF from XSEDE resources provided by the XSEDE Science
+Gateways Program.  The author acknowledges stimulating conversations with J.
+Huennekens, Teri Price, and Kara Richter as well as their patient hospitality.
+The autho would like to thank G. McSwain for logistical support.  The author
+would like to thank A. P. Hickman for his explanations and mentorship.
+
+\clearpage
+\bibliography{allbib5}
 
 \end{document}

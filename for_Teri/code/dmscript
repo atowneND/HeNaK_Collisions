@@ -84,7 +84,7 @@ weightedanglehist(){
     set output '$output_plot_file'
     replot">>$gnuplot_input_file
 
-    gnuplot <$gnuplot_input_file >deleteme1
+    gnuplot <$gnuplot_input_file >/dev/null
 
     # cleanup
     rm $sorted_data_file $data_for_plotting_file $gnuplot_input_file 2>/dev/null

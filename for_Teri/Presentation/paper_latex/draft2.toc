@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Abstract}{2}
+\contentsline {section}{\numberline {2}Introduction}{3}
+\contentsline {section}{\numberline {3}Background}{4}
+\contentsline {subsection}{\numberline {3.1}Experimental Measurements}{4}
+\contentsline {subsection}{\numberline {3.2}Vector Model}{5}
+\contentsline {subsection}{\numberline {3.3}Experimental Procedure}{5}
+\contentsline {subsection}{\numberline {3.4}Previous Results}{7}
+\contentsline {section}{\numberline {4}B analysis}{9}
+\contentsline {subsection}{\numberline {4.1}Goals: Physical Interpretations}{9}
+\contentsline {subsection}{\numberline {4.2}Quantum Mechanical Model}{9}
+\contentsline {subsection}{\numberline {4.3}Semiclassical Model}{10}
+\contentsline {subsection}{\numberline {4.4}Results of B analysis}{10}
+\contentsline {subsection}{\numberline {4.5}Conclusions for B Analysis}{11}
+\contentsline {section}{\numberline {5}Cross Section Analysis}{13}
+\contentsline {subsection}{\numberline {5.1}$\Delta \theta $: Vector Model}{13}
+\contentsline {subsection}{\numberline {5.2}Quantum Mechanical Analysis}{13}
+\contentsline {subsection}{\numberline {5.3}Semiclassical Analysis}{14}
+\contentsline {subsection}{\numberline {5.4}Results: $\theta \rightarrow \theta '$}{15}
+\contentsline {subsection}{\numberline {5.5}Results: Cross Section vs $\Delta \theta $}{15}
+\contentsline {subsection}{\numberline {5.6}Results: $m\rightarrow m'$}{16}
+\contentsline {subsection}{\numberline {5.7}Conclusions for Cross Section Analysis}{18}
+\contentsline {section}{\numberline {6}Acknowledgments}{19}

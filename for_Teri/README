@@ -1,0 +1,82 @@
+CODE:
+	USAGE:
+	    B_lambda/B_alpha:
+	        ./plotAll
+	
+	    Cross sections: (dmscript depends on getdata)
+	        ./getdata He raw_data/Ep002mf5i-50b.blam
+	        ./getdata Ar raw_data/Arp002-5i-40-384J-5.blam
+	        ./dmscript
+
+	EXECUTABLES:
+	    plotAll:
+	        - runs B_lambda and B_alpha analysis
+	        - if the target_directory and appropriate subdirectories do not exist, it will create them
+	        USAGE: ./plotAll <target_directory> <blam_file>
+	        -> target_directory
+	            -> Blambdas
+	                -> Blambda_##_##.dat (j, j')
+	                    - output file of dqcalc
+	            -> Blams
+	                -> Blam_##_##.dat (j,j')
+	                    - normalized B-lambdas, from dq2theta
+	            -> Bthetas
+	                -> Btheta_##_##_dj##.dat (j,j',delta-j)
+	                    - output file of dq2theta
+	            -> dtheta
+	                -> dtheta_dj##.dat (delta-j)
+	                    - table of delta-thetas for a particular delta-j
+	            -> plots
+	                -> BPlots_##_##_dj##.ps (j,j',delta-j)
+	                    - plots created from <plotme>
+	            -> Stats
+	                -> stats_dj##.dat (delta-j)
+	                    - average, standard deviations, etc.
+	                    - there are other files to be added
+	        - STDOUT: prints atom and delta-j currently running (status printout)
+	    getdata:
+	        - creates useful data files from raw blam file for cross section analysis
+	        - runs <calcmm> looping over j, j', and delta-j values
+	        USAGE: ./getdata <atom> <blam_file>
+	        INPUTS:
+	            - atom: He or Ar - used for naming conventions
+	            - blam_file: blam file path - if relative path breaks it, try using the absolute path
+	        OUTPUTS:
+	            -> <./datadir/jmp.dat> useful datafile for j,j' transition
+	            -> <./scthetas/sc.dat> useful datafile for semiclassical model
+	    dmscript:
+	        - computes quantum mechanical delta-thetas
+	        - plots SC and QM models on the same plots
+	        - don't use m_mprime function - it doesn't quite work!
+	        USAGE: ./dmscript
+	        INPUTS: none
+	        OUTPUS:
+	            -> targetDirectoryHe
+	                -> metadata - description of run parameters
+	                -> He_wdm_j##jp##_dj#.ps (j,j',delta-j)
+	                    - distribution of cross sections vs delta-m
+	                -> He_wth_j##jp##_dj#.ps (j,j',delta-j)
+	                    - distribution of cross sections vs delta-theta
+	            -> targetDirectoryAr
+	                -> metadata - description of run parameters
+	                -> Ar_wdm_j##jp##_dj#.ps (j,j',delta-j)
+	                    - distribution of cross sections vs delta-m
+	                -> Ar_wth_j##jp##_dj#.ps (j,j',delta-j)
+	                    - distribution of cross sections vs delta-tArta
+	            -> std<atom>
+	                -standard deviation file
+
+DATA:
+    B_plots: result of plotAll
+        - He
+        - Ar
+    mplots_results:
+        - Ar_distribution_deltaThetas: output of dmscript
+        - He_distribution_deltaThetas: output of dmscript
+        - oldQM_noSmoothing_standardDeviationPlots: standard deviation trends
+        - QMbinsize_test_He_oldSCmodel: testing on different bin sizes for
+          histogram, He, outdated semiclassical model
+        - smallest_nonzero_dtheta: comparison of smallest nonzero delta-thetas
+    raw_data: blam files
+
+->: creates file

@@ -1,0 +1,42 @@
+\newcommand{\LiLi}{Li Li} \newcommand{\PhMill}{Ph. Milli\'{e}}
+\begin{thebibliography}{1}
+
+\bibitem{Mag00}
+S. Magnier, M. Aubert-Fr\'{e}con, and {\PhMill}, ``Potential Energies,
+  Permanent and Transition Dipole Moments for Numerous Electronic Excited
+  States of {NaK}'', J. Mol. Spectrosc. {\bf 200},  96--103  (2000).
+
+\bibitem{Jon15}
+J.~A. Jones, Ph.D. thesis, Lehigh University, 2015.
+
+\bibitem{Wol11}
+C.~M. Wolfe, S. Ashman, J. Bai, B. Beser, E.~H. Ahmed, A.~M. Lyyra, and J.
+  Huennekens, ``Collisional transfer of population and orientation in {NaK}'',
+  J. Chem. Phys. {\bf 134},  174301 (17 pages)  (2011).
+
+\bibitem{Mal15}
+R.~F. Malenda, T.~J. Price, J. Stevens*, S.~L. Uppalapati*, A. Fragale*, P.~M.
+  Weiser, A. Kuczala*, D. Talbi, and A.~P. Hickman, ``Theoretical calculations
+  of rotationally inelastic collisions of {H}e with {NaK}($A\,^1\Sigma^+$):
+  Transfer of population, orientation, and alignment'', J. Chem. Phys. {\bf
+  142},  224301 (12 pages)  (2015).
+
+\bibitem{Ale83}
+M.~H. Alexander and S.~L. Davis, ``$M$ dependence in rotationally inelastic
+  scattering in cell experiments: {I}mplications of an irreducible tensor
+  expansion for molecules in $^1\Sigma$ electronic states'', J. Chem. Phys.
+  {\bf 78},  6754--6762  (1983).
+
+\bibitem{Der84}
+J. Derouard, ``Reorientation, polarization and scaling laws in rotational
+  transfer experiments'', Chem. Phys. {\bf 84},  181--192  (1984).
+
+\bibitem{Hue15_conversation}
+J. Huennekens, ``Private communication'',   J. Huennekens  (2015).
+
+\bibitem{Hic15}
+A.~P. Hickman, ``Semiclassiccal Model for the Distribution of Polar Angles
+  after Rotationally Inelastic Collisions in a Cell Environment'',   A.~P.
+  Hickman  (2015).
+
+\end{thebibliography}

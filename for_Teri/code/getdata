@@ -10,7 +10,8 @@ blam_path=$2 # relative path to data file
 
 # error checking - if this breaks, see troubleshooting tips or delete it
 if [ -z $blam_path ]; then
-    echo Please enter a file name.
+    echo Please enter the name of the source file.
+    echo USAGE: ./getdata \<atom\> \<file.blam\>
     exit
 elif [ "$(find $blam_path 2>/dev/null)" != "$blam_path" ]; then
     # troubleshooting:
@@ -25,6 +26,7 @@ fi
 # troubleshooting: try using the absolute path if the relative path breaks it
 workdir=./
 
+make
 # create directories if necessary
 mkdir $workdir/datfiles$atom 2>/dev/null
 mkdir $workdir/scthetas$atom 2>/dev/null

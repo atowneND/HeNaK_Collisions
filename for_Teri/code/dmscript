@@ -32,6 +32,7 @@ weightedanglehist(){
     qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
     data_for_plotting_file=thplotfile$(date +'%Y_%m_%d_%H%M')
     scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj\.dat
+    sorted_data_file=tmp_sorted_data_$(date +'%Y_%m_%d_%H%M')
     
     # cleanup
     rm $sorted_data_file $data_for_plotting_file $gnuplot_input_file 2>/dev/null
@@ -48,8 +49,7 @@ weightedanglehist(){
            | sed '/#/d' | sort -k 1 -n >$sorted_data_file
 
     # Gaussian filter and normalization
-#    tmp2=tmp2$(date +'%Y_%m_%d_%H%M')
-tmp2=tmp2test
+    tmp2=tmp2$(date +'%Y_%m_%d_%H%M')
     rm $tmp2 2>/dev/null
     gaussfilter $sorted_data_file $tmp2
     normalize_dtheta $tmp2 $data_for_plotting_file
@@ -96,6 +96,7 @@ tmp2=tmp2test
 weighteddmhist(){
     dj=$(($jp-$j))
     qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
+    normalized_data_for_plotting_file=thplotfile$(date +'%Y_%m_%d_%H%M')
     rm $tmpfile $normalized_data_for_plotting $gnuplot_input_file 2>/dev/null
 
     # for all unique delta-m's (m'-m)
@@ -289,11 +290,11 @@ uniqchar="gaussian filter, normalized, ppt settings"
 for atom in ${atomlist[*]}; do
     if [ "$atom" = "He" ]; then
         srcfile=Ep002mf5i-50b.blam
-        srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
     elif [ "$atom" = "Ar" ]; then
         srcfile=Arp002-5i-40-384J-5.blam
-        srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
     fi
+    srcdir=$(pwd)/raw_data/$srcfile
+    echo $srcdir
 
     outputdir=$prefix$atom\Hists
     if [ "$(find $outputdir)" == "" ]; then

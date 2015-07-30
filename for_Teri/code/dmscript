@@ -7,15 +7,12 @@
 ###############
 #  FUNCTIONS  #
 ###############
-# [ ] eststd  - - - - - - - - - - find standard deviation
-# [x] weightedanglehist - - - - - generate sum of sigma vs angle histogram
-# [ ] weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
-# [ ] calcdtheta  - - - - - - - - calculate delta theta from m, mp, j, jp
-# [x] normalize_dtheta  - - - - - QM normalization for plotting and comparing QM/SC
-# [ ] gaussfilter - - - - - - - - passes binned raw data through gauss filter
-# [ ] m0to0 - - - - - - - - - - - look at dthetas close to zero
-# [ ] plotm0to0byjbar - - - - - - plots smallest nonzero angle vs jbar for all dj
-# [ ] plotm0to0bydj - - - - - - - plots smallest nonzero angle vs dj for all jbar
+# weightedanglehist - - - - - generate sum of sigma vs angle histogram
+# weighteddmhist  - - - - - - generate sum of sigma vs dm histogram
+# eststd  - - - - - - - - - - find standard deviation
+# normalize_dtheta  - - - - - QM normalization for plotting and comparing QM/SC
+# gaussfilter - - - - - - - - passes binned raw data through gauss filter
+# calcdtheta  - - - - - - - - calculate delta theta from m, mp, j, jp
 ###############
 
 ###############
@@ -23,70 +20,47 @@
 ###############
 # raw data is in $datadir/jmp_j#_jp#_dj#.dat
 # semiclassical data is in $scdatadir/th_j#_jp#_dj#.dat
-# temporary file for plotting: $plotfile = plotme
+# temporary file for plotting: $gnuplot_input_file = plotme
 #   - deleted at beginning of script and at the end of functions that use it
 # temporary data file = $tmpfile tmp1
 ###############
 
 ###############
-eststd(){
-    # get datafile
-    infile=$1
-    tmp2file=tmp_j$j\jp$jp\.dat
-    ofile=j$j\jp$jp\sorted.dat
-
-    # sort data
-    cat $infile | sed '/#/d' >$tmp2file
-
-    # print out all angles greater than or equal to 0
-    awk '$1==0 {print $1,$2/2}' $tmp2file >$ofile
-    awk '$1>0 {print $1,$2}' $tmp2file >>$ofile
-    totsum=$(awk '{sum=sum+$2}END{print sum}' $tmp2file) # sum of all cross sections
-    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<1/3){sum=sum+$2;thispoint=$1}}\
-        END {print thispoint}' $ofile)
-    rm $tmp2file $ofile 2>/dev/null
-    echo $std
-}
-###############
-
-###############
 weightedanglehist(){
+    # initialization
     dj=$(($jp-$j))
-    infile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
-    pfile=thplotfile
+    qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
+    data_for_plotting_file=thplotfile$(date +'%Y_%m_%d_%H%M')
     scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj\.dat
-    rm $tmpfile $pfile $plotfile 2>/dev/null
+    
+    # cleanup
+    rm $sorted_data_file $data_for_plotting_file $gnuplot_input_file 2>/dev/null
 
     # get semiclassical data
-    ../dthetascquad $srcdir $scfile $j $jp >/dev/null
+    ./dthetascquad $srcdir $scfile $j $jp >/dev/null
+
 
     # binning
-    t=-180
-    divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
-    N=0
-    awk '{printf("%.0f %f\n",$3/'$wbin',$4)}' $infile | awk '{if($1==-0) {print 0,$2}\
+    # round delta-theta to nearest int, say 0=-0, sum cross sections for each
+    # delta-theta bin
+    awk '{printf("%.0f %f\n",$3/'$wbin',$4)}' $qmfile | awk '{if($1==-0) {print 0,$2}\
         else {print $1,$2}}' | awk '{a[$1]+=$2} END {for (i in a) print i*'$wbin',a[i]}'\
-           | sed '/#/d' | sort -k 1 -n >$tmpfile
+           | sed '/#/d' | sort -k 1 -n >$sorted_data_file
 
     # Gaussian filter and normalization
-    rm tmp2 2>/dev/null
-    gaussfilter $tmpfile tmp2
-#cp $tmpfile tmp2
-    normalize_dtheta tmp2 $pfile
-    rm tmp2 2>/dev/null
+#    tmp2=tmp2$(date +'%Y_%m_%d_%H%M')
+tmp2=tmp2test
+    rm $tmp2 2>/dev/null
+    gaussfilter $sorted_data_file $tmp2
+    normalize_dtheta $tmp2 $data_for_plotting_file
+    rm $tmp2 2>/dev/null
 
     # statistics
-    std=$(eststd $tmpfile)
+    std=$(eststd $sorted_data_file)
     echo $jb $dj $std >>$stdfile
-    ymax1=$(awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}' $pfile)
-    ymax2=$(cat $scfile | sed '/#/d' | awk 'BEGIN {max=0} {if($2>max) max=$2} END {print max}')
-    ymax=$(awk 'BEGIN {if('$ymax1'>'$ymax2'){print '$ymax1'}else{print '$ymax2'}}')
 
     # plot settings
     fonttype=Helvetica
-    fontsize=30
-    plotlw=6
-    borderlw=3
     fontsize=10
     plotlw=1
     borderlw=1
@@ -94,17 +68,6 @@ weightedanglehist(){
     xmax=$((-$xmin))
     qmcolor=red
     sccolor=blue
-    if [ $jb -eq 30 ]; then
-        ymax=0.09
-    elif [ $jb -eq 20 ]; then
-        ymax=0.07
-    elif [ $jb -eq 10 ]; then
-        ymax=0.04
-    elif [ $jb -eq 5 ]; then
-        ymax=0.045
-    else
-        ymax=''
-    fi
 
     # plotting
     echo "set terminal postscript color eps enhanced font '$fonttype,$fontsize'
@@ -112,99 +75,114 @@ weightedanglehist(){
     set samples 10000
 
     set xlabel '{/Symbol D}{/Symbol q}'
-#    set xrange [$xmin:$xmax]
-#    set yrange [0:$ymax]
+    set xrange [$xmin:$xmax]
     set ylabel 'sum of {/Symbol s}s'
     set title '$atom: j=$j, j{\302}=$jp'
 
-    plot '$pfile' u 1:2 w lines lt 2 lw $plotlw lc rgb '$qmcolor' title 'QM'
+    plot '$data_for_plotting_file' u 1:2 w lines lt 2 lw $plotlw lc rgb '$qmcolor' title 'QM'
     replot '$scfile' w lines smooth csplines lt 1 lw $plotlw lc rgb '$sccolor' title 'SC'
-    #replot '$pfile' u 1:2 title 'QM' 
-    #    replot '<echo \"$std $ymax\"' with impulse title 'QM standard deviation' linetype 2
-    #    replot '<echo \"-$std $ymax\"' with impulse title '' linetype 2
 
-    set output '$opfile'
-    replot">>$plotfile
+    set output '$output_plot_file'
+    replot">>$gnuplot_input_file
 
-    gnuplot <$plotfile >deleteme1
-    rm $tmpfile $pfile $plotfile 2>/dev/null
+    gnuplot <$gnuplot_input_file >deleteme1
+
+    # cleanup
+    rm $sorted_data_file $data_for_plotting_file $gnuplot_input_file 2>/dev/null
 }
 ###############
 
 ###############
 weighteddmhist(){
     dj=$(($jp-$j))
-    infile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
-    ofile=dmdatfile
-    pfile=dmplotfile
-    rm $tmpfile $pfile $ofile $plotfile 2>/dev/null
+    qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
+    rm $tmpfile $normalized_data_for_plotting $gnuplot_input_file 2>/dev/null
 
-    for dm in $(awk '{print $2-$1}' $infile|awk '!seen[$0]++'); do
-        ndm=$(awk '($2-$1)=='$dm' {sum=sum+$4} END {print sum}' $infile)
+    # for all unique delta-m's (m'-m)
+    for dm in $(awk '{print $2-$1}' $qmfile|awk '!seen[$0]++'); do
+        # add cross sections for all duplicate delta-ms
+        ndm=$(awk '($2-$1)=='$dm' {sum=sum+$4} END {print sum}' $qmfile)
         echo $dm $ndm >>$tmpfile
     done
 
-    normalize_dtheta $tmpfile $pfile
+    # normalization
+    normalize_dtheta $tmpfile $normalized_data_for_plotting
 
+    # plotting
     echo "set terminal postscript eps enhanced
     set xlabel '{/Symbol D}m'
     set ylabel 'sum of {/Symbol s}s'
     set title '$atom: j=$j, jp=$jp'
-    plot '$pfile' u 1:2 with impulse
-    replot '$pfile' u 1:2 title ''
-    set output '$opfile'
-    replot">>$plotfile
+    plot '$normalized_data_for_plotting' u 1:2 with impulse
+    replot '$normalized_data_for_plotting' u 1:2 title ''
+    set output '$output_plot_file'
+    replot">>$gnuplot_input_file
 
-    gnuplot <$plotfile >/dev/null 2>&1
-    rm $pfile $ofile $plotfile 2>/dev/null
+    gnuplot <$gnuplot_input_file >/dev/null 2>&1
+
+    # cleanup
+    rm $normalized_data_for_plotting $gnuplot_input_file 2>/dev/null
 }
 ###############
 
 ###############
-calcdtheta(){
-    j=$1
-    jp=$2
-    datadir=$3
-    qmdatadir=$4
-    dj=$(($jp-$j))
-    indata=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
-    datoutfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
-    # check rad2deg placement
-    echo "#m mp dtheta sigma theta theta_prime">$datoutfile
+eststd(){
+    # get datafile
+    raw_data_file=$1
+    tmpfile2=tmp_j$j\jp$jp$(date +'%Y_%m_%d_%H%M').dat
+    positive_raw_data=j$j\jp$jp\sorted.dat
 
-    cat $indata | sed '/#/d' | awk '{jex=$1/sqrt('$jp'*('$jp'+1)); jpex=$2/sqrt('$j'*('$j'+1));\
-        t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
-        t1appdeg=t1app*180/3.141592654;t2appdeg=t2app*180/3.141592654;t1exdeg=t1ex*180/3.141592654;t2exdeg=t2ex*180/3.141592654;\
-        print $1,$2,t2exdeg-t1exdeg,$3,t1exdeg,t2exdeg}' >>$datoutfile
+    # sort data
+    cat $raw_data_file | sed '/#/d' >$tmpfile2
+
+    # print out all angles greater than or equal to 0
+    awk '$1==0 {print $1,$2/2}' $tmpfile2 >$positive_raw_data
+    awk '$1>0 {print $1,$2}' $tmpfile2 >>$positive_raw_data
+    totsum=$(awk '{sum=sum+$2}END{print sum}' $tmpfile2) # sum over all cross sections
+
+    # compute standard devation - sum of half the data points < 1/3 (67% between -std and +std)
+    std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<1/3){sum=sum+$2;thispoint=$1}}\
+        END {print thispoint}' $positive_raw_data)
+
+    # cleanup
+    rm $tmpfile2 $positive_raw_data 2>/dev/null
+
+    # return standard deviation
+    echo $std
 }
 ###############
 
 ###############
 normalize_dtheta(){
-    infile=$1
-    ofile=$2
-    rm $ofile 2>/dev/null
-    totsum=$(awk '{sum=sum+$2}END{print sum}' $infile)
-    awk '{print $1,$2/('$wbin'*'$totsum'),$2}' $infile >$ofile
+    # initialization
+    original_data=$1
+    normalized_data=$2
+    rm $normalized_data 2>/dev/null
+
+    # normalize and write data to output file
+    totsum=$(awk '{sum=sum+$2}END{print sum}' $original_data)
+    awk '{print $1,$2/('$wbin'*'$totsum'),$2}' $original_data >$normalized_data
 }
 ###############
 
 ###############
 gaussfilter(){
-    infile=$1
-    ofile=$2
-    rm tmp2 $ofile 2>/dev/null
+    original_data=$1
+    smooth_data=$2
+    rm tmp2 $smooth_data 2>/dev/null
+
+    # set constants
     pi=3.141592654
-    nbins=360*$wbin
     gam=$wbin
     gam=1
 
-    wbinrad=$(awk 'BEGIN {print '$wbin'*'$pi'/180}')
     th=-180
     checkrange=1
+
+    # compute sum for each point and write to output file
     while [ $checkrange -eq 1 ] ; do
         awk 'BEGIN {sum=0} {sum=sum+$2*exp(-((('$th'-$1)/'$gam')^2))}END\
-            {print '$th',sum/('$gam'*sqrt('$pi'))}' $infile >>$ofile
+            {print '$th',sum/('$gam'*sqrt('$pi'))}' $original_data >>$smooth_data
 
         th=$(awk 'BEGIN {print '$th'+'$wbin'}')
         checkrange=$(awk 'BEGIN {if ('$th'<=180) {print 1} else {print 0}}')
@@ -213,109 +191,29 @@ gaussfilter(){
 ###############
 
 ###############
-m0to0(){
-    j=1
-    dj=1
-    jmax=50
-    djmax=39
-    outfile=m0to0.dat
-    echo "#jb dj m mp dtheta sigma" >$outfile
-    rm $tmpfile 2>/dev/null
+calcdtheta(){
+    # get inputs/initialization
+    j=$1
+    jp=$2
+    datadir=$3
+    qmdatadir=$4
+    dj=$(($jp-$j))
+    indata=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
+    datoutfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
 
-    datadir=datfilesHe
-    qmdatadir=archiveHe/qmthetasHe
-    while [ $dj -lt $djmax ]; do
-        echo running dj = $dj
-        while [ $j -lt $(($jmax-$dj)) ]; do
-            jp=$(($j+$dj))
-            jbar=$(awk 'BEGIN {print ('$j'+'$jp')/2}')
-            calcdtheta
-            datfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
-            cat $datfile | sed '/#/d' | sort -k 3 -n | grep -A 1 '^0 0 0 .[0-9]*\.[0-9]*'\
-                | awk 'FNR==2{print '$jbar','$dj',$1,$2,$3,$4}' >>$tmpfile
-            let j=j+1
-        done
-        let dj=dj+1
-        j=1
-    done
-    cat $tmpfile | sort -k 5 -n >>$outfile
-    rm $tmpfile
-}
-###############
+    echo "#m mp dtheta sigma theta theta_prime">$datoutfile
 
-###############
-plotm0to0byjbar(){
-    origfile=$1
-    dj=1
-    djmax=10
-    rm $tmpfile $plotfile 2>/dev/null
-    echo "#!/usr/local/gnuplot
-    set samples 10000">$plotfile
-
-    while [ $dj -lt $djmax ]; do
-        outfile=changeme_dj$dj.dat
-        cat $origfile | awk '$2=='$dj' {print $1,$2,$5}' | sort -k 1 -n >$outfile
-
-        echo "
-        f1='$outfile'
-        f2='../He10/Stats/stats_dj$dj.dat'
-        set term postscript eps enhanced
-        set xrange [0:50]
-        plot f1 u 1:3 w linespoints smooth csplines title 'dj=$dj'
-        set xlabel 'jbar'; set ylabel '{/Symbol D}{/Symbol q}'
-        set title 'Helium dj=$dj'
-        set output 'He_theta_dj$dj.ps'
-        replot
-        ">>$plotfile
-        
-        gnuplot <$plotfile >/dev/null
-        rm $plotfile
-        let dj=dj+1
-    done
-}
-###############
-
-###############
-plotm0to0bydj(){
-    origfile=$1
-    jbar=3.5
-    jbarmax=45
-    rm $tmpfile $plotfile 2>/dev/null
-    echo "#!/usr/local/gnuplot
-    set samples 10000">$plotfile
-
-    while [ $(awk 'BEGIN {print '$jbar'<='$jbarmax'}') -eq 1 ]; do
-        if [ "$jbar" -eq $jbar ] 2>/dev/null ; then
-            jstr=$(awk 'BEGIN {printf("%dd0\n",'$jbar')}')
-        else
-            jstr=$(awk 'BEGIN {printf("%dd5\n",'$jbar')}')
-        fi
-        
-        outfile=changeme_jbar$jstr.dat
-        cat $origfile | awk '$1=='$jbar' {print $1,$2,$5}' | sort -k 2 -n >$outfile
-
-        echo "
-        f1='$outfile'
-        set term postscript eps enhanced
-        set xrange [0:$jbarmax]
-        plot f1 u 2:3 w linespoints smooth csplines title 'jbar=$jbar'
-        replot f1 u 2:3 title ''
-        set xlabel 'dj'; set ylabel '{/Symbol D}{/Symbol q}'
-        set title 'Helium jbar=$jbar'
-        set output 'He_theta_jbar$jstr.ps'
-        replot
-        ">>$plotfile
-        
-        gnuplot <$plotfile >/dev/null 2>&1
-        rm $plotfile
-        jbar=$(awk 'BEGIN {print '$jbar'+0.5}')
-    done
+    # compute delta-theta
+    cat $indata | sed '/#/d' | awk '{jex=$1/sqrt('$jp'*('$jp'+1)); jpex=$2/sqrt('$j'*('$j'+1));\
+        t1ex=atan2(sqrt(1-jex*jex),jex); t2ex=atan2(sqrt(1-jpex*jpex),jpex);\
+        t1appdeg=t1app*180/3.141592654;t2appdeg=t2app*180/3.141592654;t1exdeg=t1ex*180/3.141592654;t2exdeg=t2ex*180/3.141592654;\
+        print $1,$2,t2exdeg-t1exdeg,$3,t1exdeg,t2exdeg}' >>$datoutfile
 }
 ###############
 
 ###############
 plot_m_mprime(){
-    rm $plotfile 2>/dev/null
+    rm $gnuplot_input_file 2>/dev/null
     j=$1
     jp=$2
     dj=$(awk 'BEGIN {x='$j'-'$jp'; print sqrt(x*x)}')
@@ -335,48 +233,56 @@ plot_m_mprime(){
     set xlabel 'm{\302}'
     set ylabel 'cross sections'
     set title 'distribution of m{/Symbol \256}m{\302}, for j=$j{/Symbol \256}j{\302}=$jp'
-    " >$plotfile
+    " >$gnuplot_input_file
 
     for m in ${mlist[*]}; do
         if [ $m -eq ${mlist[0]} ]; then
-            echo "plot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$plotfile
+            echo "plot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$gnuplot_input_file
         else
-            echo "replot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$plotfile
+            echo "replot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$gnuplot_input_file
         fi
 
         read m_min max <<<$(awk '$1=='$m' {if ($4>max) {m_max=$2; max=$4}} END {print m_max,max}' $qmfile)
 
-        echo "set label 'm=$m' at $m_min,$max+5 center" >>$plotfile
+        echo "set label 'm=$m' at $m_min,$max+5 center" >>$gnuplot_input_file
     done
 
     echo "set output 'test.eps'
-    replot" >>$plotfile
+    replot" >>$gnuplot_input_file
 
-    gnuplot -persistent <$plotfile >/dev/null
+    gnuplot -persistent <$gnuplot_input_file >/dev/null
 
-    rm $plotfile
+    rm $gnuplot_input_file
 }
 ###############
 
 ###############
 #  MY SCRIPT  #
 ###############
-# do not remove timestamp if you ever want to run multiple instances of dmscript simultaneously
+
+# temporary files
+# do not remove timestamp if you will want to run multiple instances of dmscript simultaneously
 tmpfile=tmp1_$(date +'%Y_%m_%d_%H%M') 
 plotfile=plotme_$(date +'%Y_%m_%d_%H%M') 
+gnuplot_input_file=plotme_$(date +'%Y_%m_%d_%H%M')
+rm $tmpfile $gnuplot_input_file 2>/dev/null
 
-rm $tmpfile $plotfile 2>/dev/null
+# runtime parameters - loop over all these
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 atomlist=(He Ar)
 
-plot_m_mprime 28 32 qmthetasHe scthetasHe
+djlist=(2 4)
+djlist=(1)
+jblist=(30)
 
-exit
-
+# bin size for semiclassical and quantum models
 wbin=0.5
 
+# for naming convention: output directory = <prefix><atom>Hists
 prefix=plot
+
+# for metadata file to describe what was run
 smoothfun="gaussian"
 uniqchar="gaussian filter, normalized, ppt settings"
 
@@ -389,8 +295,9 @@ for atom in ${atomlist[*]}; do
         srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
     fi
 
-    if [ "$(find $prefix$atom\Hists)" == "" ]; then
-        mkdir $prefix$atom\Hists
+    outputdir=$prefix$atom\Hists
+    if [ "$(find $outputdir)" == "" ]; then
+        mkdir $outputdir
     fi
 
     datadir=datfiles$atom
@@ -399,11 +306,15 @@ for atom in ${atomlist[*]}; do
     stdfile=std$atom\stats
     echo "#jbar dj std">$stdfile
 
+    if [ "$(find $qmdatadir)" == "" ]; then
+        mkdir $qmdatadir
+    fi
+
     echo "data file: "$srcfile"
-    directory: "$prefix$atom\Hists"
+    directory: "$outputdir"
     smoothing: "$smoothfun"
     characteristics: "$uniqchar"
-    date: "$(date) > $prefix$atom\Hists/metadata
+    date: "$(date) > $outputdir/metadata
 
     echo $atom:
     for jb in ${jblist[*]}; do
@@ -419,13 +330,16 @@ for atom in ${atomlist[*]}; do
             fi
             if [ $j -ne 0 ]; then
                 echo calculating for jbar=$jb, dj=$dj...
-                opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
 
                 calcdtheta $j $jp $datadir $qmdatadir
 
+                output_plot_file=$outputdir/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
                 weightedanglehist
-                opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
+
+                output_plot_file=$outputdir/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
                 weighteddmhist
+
+                plot_m_mprime $j $jp $qmdatadir $scdatadir
             fi
         done
     done

@@ -1,14 +1,38 @@
 #!/bin/bash
 
+# USAGE: ./plotAll -w <working_directory> -d <blam_file> -a <atom> [-v]
+# -w <working_directory>: directory where all output will be stored
+# -d <blam_file>: raw data file *.blam
+# -a <atom>: He or Ar
+# -v: (like verbose) - use this flag the first time. if dqcalc and dq2theta
+#     have already been run, do not use this flag to improve speed
+#
+# defaults: -w ./plotAll_output_<date> -d ../data/raw_data/Ep002mf5i-50b.blam -a He
+
 # get inputs
-workdir=$1
-origfile=$2
-atom=$3
+args='getopt w:d:a:v $*'
+workdir=""
+origfile=""
+atom=""
+run_everything=0
+
+for i; do
+    case "$i" in
+        -w) shift; workdir=$1; shift
+            ;;
+        -d) shift; origfile=$1; shift
+            ;;
+        -a) shift; atom=$1; shift
+            ;;
+        -v) shift; run_everything=1
+    esac
+done
 
 # input validation for working directory
 if [ "$workdir" = "" ] ; then
-    echo bad input
-    exit
+    workdir=plotAll_output_$(date +'%Y_%m_%d_%H%M')
+    echo No target directory specified. Creating output directory: $workdir
+    mkdir $workdir
 else
     runprog=$(find . -name $workdir -nowarn)
     if [ "$runprog" != "./$workdir" ]; then
@@ -85,9 +109,11 @@ while [ $dj -le $MAXdj ]; do
     fi
 
     # set up output files
+    # statistics file
     statdir=$workdir/Stats
     statfile=stats_dj$djstr\.dat
     echo \#j jp SCavg SCstd SCvar QMavg QMstd QMvar diffavg diffstd diffvar>$statdir/$statfile
+    # dtheta file
     dthdir=$workdir/dtheta
     dthout=dtheta_dj$djstr\.dat
     echo j jp jbar dtheta discrete continuous Bmax\(a\) Bmax\(l\) appalpha> $dthdir/$dthout
@@ -110,7 +136,9 @@ while [ $dj -le $MAXdj ]; do
             jstr=$j
         fi
 
-        # dqcalc
+        # run dqcalc - file output has B-lambdas and dq coefficients
+        # dqcalc is only run if the file does not already exist. To change
+        # this, go to line <> and set flag to 1
         blamdir=$workdir/Blambdas
         blamdat=Blambda_$jstr\_$jpstr.dat
         runprog=$(find $blamdir -name $blamdat -nowarn)

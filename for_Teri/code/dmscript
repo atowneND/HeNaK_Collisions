@@ -5,7 +5,7 @@
 ###############
 
 ###############
-# LIST OF FUN #
+#  FUNCTIONS  #
 ###############
 # [ ] eststd  - - - - - - - - - - find standard deviation
 # [x] weightedanglehist - - - - - generate sum of sigma vs angle histogram
@@ -26,78 +26,6 @@
 # temporary file for plotting: $plotfile = plotme
 #   - deleted at beginning of script and at the end of functions that use it
 # temporary data file = $tmpfile tmp1
-###############
-
-###############
-anglecount(){
-    # NEEDS TO BE REWORKED BEFORE IT'S USABLE
-    dj=$(($jp-$j))
-    infile=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
-    ofile=foofile
-    pfile=thplotfile
-    rm $ofile $pfile $plotfile 2>/dev/null
-    sed '/#/d' $infile|awk '{t=$1/sqrt('$j'*('$j'+1));tp=$2/sqrt('$jp'*('$jp'+1));dt=atan2(sqrt(1-tp*tp),tp)-atan2(sqrt(1-t*t),t);print dt*180/3.141592654,$3}'|sed '/nan/d' >$ofile
-
-    t=-180
-    divfac=$(awk 'BEGIN {print 2*'$t'/'$wbin'}')
-    N=0
-    while [ $(awk 'BEGIN {print '$t'<180}') -eq 1 ] 2>/dev/null; do
-
-        if [ $N -eq 0 ]; then
-            foo=$(awk '($1<='$ubin') {count++} END {print count}' $ofile)
-        else
-            foo=$(awk '($1<='$ubin')&&($1>'$lbin') {count++} END {print count}' $ofile)
-        fi
-
-        t=$ubin
-        let N=N+1
-        echo $lbin\to$ubin $foo>>$pfile
-    done
-
-    opfile=test_hist_th_j$j\jp$jp\_dj$dj\.ps
-    echo "set terminal postscript eps enhanced
-    set style data histogram
-    set xtic rotate -90
-    set xlabel '{/Symbol D}{/Symbol q}'
-    set ylabel 'sum of {/Symbol s}s'
-    set title 'j=$j, jp=$jp'
-    plot '$pfile' u 2:xtic(1)
-    set output '$opfile'
-    replot">>$plotfile
-
-    gnuplot <$plotfile >deleteme1
-    rm $ofile $pfile $plotfile 2>/dev/null
-}
-###############
-
-###############
-dmcount(){
-    dj=$(($jp-$j))
-    infile=$datadir/jmp_j$j\_jp$jp\_dj$dj\.dat
-    ofile=dmdatfile
-    pfile=dmplotfile
-    rm $pfile $ofile $plotfile 2>/dev/null
-    echo \#dm num_dm >$pfile
-    sed '/#/d' $infile|awk '{print $2-$1,$3}'>$ofile
-
-    for dm in $(awk '{print $1}' $ofile|awk '!seen[$0]++'); do
-        ndm=$(awk '$1=='$dm' {count++} END {print count}' $ofile)
-        echo $dm $ndm >>$pfile
-    done
-
-    opfile=test_hist_dm_j$j\jp$jp\_dj$dj\.ps
-    echo "set terminal postscript eps enhanced
-    set xlabel '{/Symbol D}m'
-    set ylabel 'count'
-    set title 'j=$j, jp=$jp'
-    plot '$pfile' with impulse
-    replot '$pfile' title ''
-    set output '$opfile'
-    replot">>$plotfile
-
-    gnuplot <$plotfile >/dev/null 2>&1
-    rm $pfile $ofile $plotfile 2>/dev/null
-}
 ###############
 
 ###############
@@ -433,17 +361,14 @@ plot_m_mprime(){
 ###############
 #  MY SCRIPT  #
 ###############
-tmpfile=tmp1
-plotfile=plotme
+# do not remove timestamp if you ever want to run multiple instances of dmscript simultaneously
+tmpfile=tmp1_$(date +'%Y_%m_%d_%H%M') 
+plotfile=plotme_$(date +'%Y_%m_%d_%H%M') 
 
 rm $tmpfile $plotfile 2>/dev/null
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
-
-djlist=(1 2 3 4)
-
-djlist=(4)
-jblist=(20)
+atomlist=(He Ar)
 
 plot_m_mprime 28 32 qmthetasHe scthetasHe
 
@@ -452,99 +377,57 @@ exit
 wbin=0.5
 
 prefix=plot
-
-# HELIUM
-atom=He
-if [ "$(find $prefix$atom\Hists)" == "" ]; then
-    mkdir $prefix$atom\Hists
-fi
-
-datadir=datfiles$atom
-qmdatadir=qmthetas$atom
-scdatadir=scthetas$atom
-stdfile=std$atom\stats
-#echo "#jbar dj std">$stdfile
-
-srcfile=Ep002mf5i-50b.blam
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
 smoothfun="gaussian"
 uniqchar="gaussian filter, normalized, ppt settings"
 
-#echo "data file: "$srcfile"
-#directory: "$prefix$atom\Hists"
-#smoothing: "$smoothfun"
-#characteristics: "$uniqchar"
-#date: "$(date) > $prefix$atom\Hists/metadata
+for atom in ${atomlist[*]}; do
+    if [ "$atom" = "He" ]; then
+        srcfile=Ep002mf5i-50b.blam
+        srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
+    elif [ "$atom" = "Ar" ]; then
+        srcfile=Arp002-5i-40-384J-5.blam
+        srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
+    fi
 
-echo $atom:
-for jb in ${jblist[*]}; do
-    for dj in ${djlist[*]}; do
-        if [ $(($dj%2)) -eq 0 ]; then #even
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff))
-        else
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff+1))
-        fi
-        if [ $j -ne 0 ]; then
+    if [ "$(find $prefix$atom\Hists)" == "" ]; then
+        mkdir $prefix$atom\Hists
+    fi
 
-            echo calculating for jbar=$jb, dj=$dj...
-            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
+    datadir=datfiles$atom
+    qmdatadir=qmthetas$atom
+    scdatadir=scthetas$atom
+    stdfile=std$atom\stats
+    echo "#jbar dj std">$stdfile
 
-            calcdtheta $j $jp $datadir $qmdatadir
+    echo "data file: "$srcfile"
+    directory: "$prefix$atom\Hists"
+    smoothing: "$smoothfun"
+    characteristics: "$uniqchar"
+    date: "$(date) > $prefix$atom\Hists/metadata
 
-#            weightedanglehist
-            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
-#            weighteddmhist
-        fi
-    done
-done
+    echo $atom:
+    for jb in ${jblist[*]}; do
+        for dj in ${djlist[*]}; do
+            if [ $(($dj%2)) -eq 0 ]; then #even
+                jdiff=$(($dj/2))
+                j=$(($jb-$jdiff))
+                jp=$(($jb+$jdiff))
+            else
+                jdiff=$(($dj/2))
+                j=$(($jb-$jdiff))
+                jp=$(($jb+$jdiff+1))
+            fi
+            if [ $j -ne 0 ]; then
+                echo calculating for jbar=$jb, dj=$dj...
+                opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
 
-# ARGON
-atom=Ar
-if [ "$(find $prefix$atom\Hists)" == "" ]; then
-    mkdir $prefix$atom\Hists
-fi
+                calcdtheta $j $jp $datadir $qmdatadir
 
-datadir=datfiles$atom
-qmdatadir=qmthetas$atom
-scdatadir=scthetas$atom
-stdfile=std$atom\stats
-#echo "#jbar dj std">$stdfile
-
-srcfile=Arp002-5i-40-384J-5.blam
-srcdir=/home/ashley/Documents/LeHigh/FortranResources/newdata/$srcfile
-
-#echo "data file: "$srcfile"
-#directory: "$prefix$atom\Hists"
-#smoothing: "$smoothfun"
-#characteristics: "$uniqchar"
-#date: "$(date) > $prefix$atom\Hists/metadata
-
-echo $atom:
-for jb in ${jblist[*]}; do
-    for dj in ${djlist[*]}; do
-        if [ $(($dj%2)) -eq 0 ]; then #even
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff))
-        else
-            jdiff=$(($dj/2))
-            j=$(($jb-$jdiff))
-            jp=$(($jb+$jdiff+1))
-        fi
-        if [ $j -ne 0 ]; then
-            echo calculating for jbar=$jb, dj=$dj...
-            opfile=$prefix$atom\Hists/$atom\_wth_j$j\jp$jp\_dj$dj\.eps
-
-            calcdtheta $j $jp $datadir $qmdatadir
-
-#            weightedanglehist
-            opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
-            #weighteddmhist
-        fi
+                weightedanglehist
+                opfile=$prefix$atom\Hists/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
+                weighteddmhist
+            fi
+        done
     done
 done
 

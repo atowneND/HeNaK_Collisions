@@ -115,7 +115,7 @@ class deltaThetaModelAnalysis:
         )
 
 
-        plt.legend(loc='upper center')
+        plt.legend(loc='upper right')
         plt.show()
 
     def calculate_quantum_bins_histogram(self):

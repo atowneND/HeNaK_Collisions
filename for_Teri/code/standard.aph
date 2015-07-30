@@ -1,0 +1,61 @@
+
+************** c:\f_cmpilr\include\standard.aph   Peet Hickman   6-23-90
+
+c     These are the standard defaults invoked in most programs.
+
+      implicit     none
+
+      integer*4    MINFILE, MAXFILE ! range of file numbers assigned
+      parameter    (MINFILE=7, MAXFILE=23)  ! MS Fortran allows 20 files
+
+      integer*4    STDIN, STDOUT ! standard input and output devices
+      parameter    (STDIN=5, STDOUT=6)
+    
+      integer*4    MAXARG, MAXCHAR ! max number and character length of
+      parameter    (MAXARG=7, MAXCHAR=128) ! command line arguments
+
+      integer*4    READq, WRITEq, APPENDq ! refers to file types 
+      parameter    (READq=1, WRITEq=2, APPENDq=3)
+    
+      integer*4    MAXERROR
+      parameter    (MAXERROR=5)
+      
+      integer*2    OK     !  'iostat=iflag' in read/write statements allows
+      parameter    (OK=0) !  'if (iflag.eq.OK) then...'  constructions
+      
+      real*8       PI
+      parameter    (PI = 3.1415 92653 58979d0)
+    
+      character    NEWPAGE*1, NULL*1, BLANK*1, ESC*1, BELL*1, DQUOTE*1,
+     -             TAB
+      parameter    (NEWPAGE=char(12), NULL=char(0), BLANK=char(32),
+     -             ESC=char(27), BELL=char(7), DQUOTE=char(34),
+     -             TAB = char(9) )
+
+      character    ALL BLANKS*(MAXCHAR)
+      parameter    (ALL BLANKS=' ')
+    
+      character    ESCHAR*1  !  eschar is escape char in strings
+      parameter    (eschar=char(94))  !  eschar = '^'
+      
+      real*4       HUGE_R4                   !  largest numbers
+      integer*4    INFINITY                  !  for various types 
+      parameter    (HUGE_R4=3.4028235e38, INFINITY=2147483647)
+    
+c     The next escape sequences are used for the HP LaserJet:
+c     printing greek, subscripts, superscripts, underlining,
+c     using small type-size, and reseting to defaults
+      
+      character    START GREEK*(*), END GREEK*(*), SKIP*(*)
+      parameter    (START GREEK=esc//'(8M', END GREEK=ESC//'(8U',
+     -             SKIP='#')
+      
+      character    START SUB*(*), END SUB *(*)
+      parameter    (START SUB=ESC//'&a+.30R', END SUB=ESC//'&a-.30R')
+      
+      character    START ULINE*(*), END ULINE*(*)
+      parameter    (START ULINE=ESC//'&dD', END ULINE=ESC//'&d@')
+      
+      character    HP_L165*(*),HP_RESET*(*)
+      parameter    (HP_L165=ESC//'&k2S',HP_RESET=ESC//'(s12H')
+

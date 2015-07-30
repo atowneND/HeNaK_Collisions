@@ -22,7 +22,6 @@
 # semiclassical data is in $scdatadir/th_j#_jp#_dj#.dat
 # temporary file for plotting: $gnuplot_input_file = plotme
 #   - deleted at beginning of script and at the end of functions that use it
-# temporary data file = $tmpfile tmp1
 ###############
 
 ###############
@@ -49,11 +48,11 @@ weightedanglehist(){
            | sed '/#/d' | sort -k 1 -n >$sorted_data_file
 
     # Gaussian filter and normalization
-    tmp2=tmp2$(date +'%Y_%m_%d_%H%M')
-    rm $tmp2 2>/dev/null
-    gaussfilter $sorted_data_file $tmp2
-    normalize_dtheta $tmp2 $data_for_plotting_file
-    rm $tmp2 2>/dev/null
+    tmpfile=tmpfile$(date +'%Y_%m_%d_%H%M')
+    rm $tmpfile 2>/dev/null
+    gaussfilter $sorted_data_file $tmpfile
+    normalize_dtheta $tmpfile $data_for_plotting_file
+    rm $tmpfile 2>/dev/null
 
     # statistics
     std=$(eststd $sorted_data_file)
@@ -97,6 +96,7 @@ weighteddmhist(){
     dj=$(($jp-$j))
     qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj\.dat
     normalized_data_for_plotting_file=thplotfile$(date +'%Y_%m_%d_%H%M')
+    tmpfile=tmpfile$(date +'%Y_%m_%d_%H%M')
     rm $tmpfile $normalized_data_for_plotting $gnuplot_input_file 2>/dev/null
 
     # for all unique delta-m's (m'-m)
@@ -107,7 +107,7 @@ weighteddmhist(){
     done
 
     # normalization
-    normalize_dtheta $tmpfile $normalized_data_for_plotting
+    normalize_dtheta $tmpfile $normalized_data_for_plotting_file
 
     # plotting
     echo "set terminal postscript eps enhanced
@@ -122,7 +122,7 @@ weighteddmhist(){
     gnuplot <$gnuplot_input_file >/dev/null 2>&1
 
     # cleanup
-    rm $normalized_data_for_plotting $gnuplot_input_file 2>/dev/null
+    rm $tmpfile $normalized_data_for_plotting_file $gnuplot_input_file 2>/dev/null
 }
 ###############
 
@@ -130,23 +130,23 @@ weighteddmhist(){
 eststd(){
     # get datafile
     raw_data_file=$1
-    tmpfile2=tmp_j$j\jp$jp$(date +'%Y_%m_%d_%H%M').dat
+    tmpfile=tmp_j$j\jp$jp$(date +'%Y_%m_%d_%H%M').dat
     positive_raw_data=j$j\jp$jp\sorted.dat
 
     # sort data
-    cat $raw_data_file | sed '/#/d' >$tmpfile2
+    cat $raw_data_file | sed '/#/d' >$tmpfile
 
     # print out all angles greater than or equal to 0
-    awk '$1==0 {print $1,$2/2}' $tmpfile2 >$positive_raw_data
-    awk '$1>0 {print $1,$2}' $tmpfile2 >>$positive_raw_data
-    totsum=$(awk '{sum=sum+$2}END{print sum}' $tmpfile2) # sum over all cross sections
+    awk '$1==0 {print $1,$2/2}' $tmpfile >$positive_raw_data
+    awk '$1>0 {print $1,$2}' $tmpfile >>$positive_raw_data
+    totsum=$(awk '{sum=sum+$2}END{print sum}' $tmpfile) # sum over all cross sections
 
     # compute standard devation - sum of half the data points < 1/3 (67% between -std and +std)
     std=$(awk 'BEGIN {sum=0} {if(sum/'$totsum'<1/3){sum=sum+$2;thispoint=$1}}\
         END {print thispoint}' $positive_raw_data)
 
     # cleanup
-    rm $tmpfile2 $positive_raw_data 2>/dev/null
+    rm $tmpfile $positive_raw_data 2>/dev/null
 
     # return standard deviation
     echo $std
@@ -170,7 +170,7 @@ normalize_dtheta(){
 gaussfilter(){
     original_data=$1
     smooth_data=$2
-    rm tmp2 $smooth_data 2>/dev/null
+    rm $smooth_data 2>/dev/null
 
     # set constants
     pi=3.141592654
@@ -220,10 +220,13 @@ plot_m_mprime(){
     dj=$(awk 'BEGIN {x='$j'-'$jp'; print sqrt(x*x)}')
     qmdatadir=$3
     scdatadir=$4
+
     qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj.dat
     scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj.dat
-
-    mlist=(-30 -15 0 15 30)
+    ouput_plot=$qmdatadir/m_mprime/m_mp_j$j\_jp$jp\_dj$dj.eps
+    if [ "$(find $qmdatadir/m_mprime 2>/dev/null)" == "" ]; then
+        mkdir $qmdatadir/m_mprime
+    fi
 
     fonttype=Helvetica
     fontsize=30
@@ -236,8 +239,11 @@ plot_m_mprime(){
     set title 'distribution of m{/Symbol \256}m{\302}, for j=$j{/Symbol \256}j{\302}=$jp'
     " >$gnuplot_input_file
 
-    for m in ${mlist[*]}; do
-        if [ $m -eq ${mlist[0]} ]; then
+    mlist=(-1 -0.5 0 0.5 1)
+    for mfactor in ${mlist[*]}; do
+        m=$(awk 'BEGIN {printf("%.0f",'$jp'*'$mfactor')}')
+        echo $m $jp $mfactor
+        if [ "$mfactor" = "${mlist[0]}" ]; then
             echo "plot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$gnuplot_input_file
         else
             echo "replot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$gnuplot_input_file
@@ -248,7 +254,7 @@ plot_m_mprime(){
         echo "set label 'm=$m' at $m_min,$max+5 center" >>$gnuplot_input_file
     done
 
-    echo "set output 'test.eps'
+    echo "set output '$output_plot'
     replot" >>$gnuplot_input_file
 
     gnuplot -persistent <$gnuplot_input_file >/dev/null
@@ -263,19 +269,14 @@ plot_m_mprime(){
 
 # temporary files
 # do not remove timestamp if you will want to run multiple instances of dmscript simultaneously
-tmpfile=tmp1_$(date +'%Y_%m_%d_%H%M') 
 plotfile=plotme_$(date +'%Y_%m_%d_%H%M') 
 gnuplot_input_file=plotme_$(date +'%Y_%m_%d_%H%M')
-rm $tmpfile $gnuplot_input_file 2>/dev/null
+rm $gnuplot_input_file 2>/dev/null
 
 # runtime parameters - loop over all these
 djlist=(1 2 3 4 5 6 7 8 9 10)
 jblist=(5 10 20 30 35)
 atomlist=(He Ar)
-
-djlist=(2 4)
-djlist=(1)
-jblist=(30)
 
 # bin size for semiclassical and quantum models
 wbin=0.5
@@ -294,10 +295,9 @@ for atom in ${atomlist[*]}; do
         srcfile=Arp002-5i-40-384J-5.blam
     fi
     srcdir=$(pwd)/raw_data/$srcfile
-    echo $srcdir
 
     outputdir=$prefix$atom\Hists
-    if [ "$(find $outputdir)" == "" ]; then
+    if [ "$(find $outputdir 2>/dev/null)" == "" ]; then
         mkdir $outputdir
     fi
 
@@ -307,7 +307,7 @@ for atom in ${atomlist[*]}; do
     stdfile=std$atom\stats
     echo "#jbar dj std">$stdfile
 
-    if [ "$(find $qmdatadir)" == "" ]; then
+    if [ "$(find $qmdatadir 2>/dev/null)" == "" ]; then
         mkdir $qmdatadir
     fi
 
@@ -340,7 +340,7 @@ for atom in ${atomlist[*]}; do
                 output_plot_file=$outputdir/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
                 weighteddmhist
 
-                plot_m_mprime $j $jp $qmdatadir $scdatadir
+#                plot_m_mprime $j $jp $qmdatadir $scdatadir
             fi
         done
     done

@@ -1,3 +1,12 @@
+USAGE:
+    B_lambda/B_alpha:
+        ./plotAll
+
+    Cross sections: (dmscript depends on getdata)
+        ./getdata He raw_data/Ep002mf5i-50b.blam
+        ./getdata Ar raw_data/Arp002-5i-40-384J-5.blam
+        ./dmscript
+
 code:
     plotAll:
         - runs B_lambda and B_alpha analysis

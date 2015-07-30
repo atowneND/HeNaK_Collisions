@@ -26,7 +26,7 @@ fi
 # troubleshooting: try using the absolute path if the relative path breaks it
 workdir=./
 
-make
+make >/dev/null
 # create directories if necessary
 mkdir $workdir/datfiles$atom 2>/dev/null
 mkdir $workdir/scthetas$atom 2>/dev/null

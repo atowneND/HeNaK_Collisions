@@ -223,9 +223,9 @@ plot_m_mprime(){
 
     qmfile=$qmdatadir/qmth_j$j\_jp$jp\_dj$dj.dat
     scfile=$scdatadir/th_j$j\_jp$jp\_dj$dj.dat
-    ouput_plot=$qmdatadir/m_mprime/m_mp_j$j\_jp$jp\_dj$dj.eps
-    if [ "$(find $qmdatadir/m_mprime 2>/dev/null)" == "" ]; then
-        mkdir $qmdatadir/m_mprime
+    output_plot=$outputdir/m_mprime/m_mp_j$j\_jp$jp\_dj$dj.eps
+    if [ "$(find $outputdir/m_mprime 2>/dev/null)" == "" ]; then
+        mkdir $outputdir/m_mprime
     fi
 
     fonttype=Helvetica
@@ -239,10 +239,10 @@ plot_m_mprime(){
     set title 'distribution of m{/Symbol \256}m{\302}, for j=$j{/Symbol \256}j{\302}=$jp'
     " >$gnuplot_input_file
 
+    # factors to multiply j' by to get m's to plot
     mlist=(-1 -0.5 0 0.5 1)
     for mfactor in ${mlist[*]}; do
         m=$(awk 'BEGIN {printf("%.0f",'$jp'*'$mfactor')}')
-        echo $m $jp $mfactor
         if [ "$mfactor" = "${mlist[0]}" ]; then
             echo "plot '$qmfile' u 2:(\$1==$m?\$4:1/0) w lines smooth csplines title ''" >>$gnuplot_input_file
         else
@@ -310,6 +310,9 @@ for atom in ${atomlist[*]}; do
     if [ "$(find $qmdatadir 2>/dev/null)" == "" ]; then
         mkdir $qmdatadir
     fi
+    if [ "$(find $scdatadir 2>/dev/null)" == "" ]; then
+        mkdir $scdatadir
+    fi
 
     echo "data file: "$srcfile"
     directory: "$outputdir"
@@ -340,7 +343,7 @@ for atom in ${atomlist[*]}; do
                 output_plot_file=$outputdir/$atom\_wdm_j$j\jp$jp\_dj$dj\.eps
                 weighteddmhist
 
-#                plot_m_mprime $j $jp $qmdatadir $scdatadir
+                plot_m_mprime $j $jp $qmdatadir $scdatadir
             fi
         done
     done

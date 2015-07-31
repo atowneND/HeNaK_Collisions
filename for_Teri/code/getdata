@@ -29,7 +29,6 @@ workdir=./
 make >/dev/null
 # create directories if necessary
 mkdir $workdir/datfiles$atom 2>/dev/null
-mkdir $workdir/scthetas$atom 2>/dev/null
 
 while [ $dj -lt $(($max-1)) ]; do
     echo running dj=$dj

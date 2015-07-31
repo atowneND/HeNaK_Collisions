@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.28)  29 JUL 2015 16:57
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.7.28)  31 JUL 2015 15:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,8 +8,8 @@ LaTeX2e <2011/06/27>
 Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -225,26 +225,26 @@ Package caption Info: End \AtBeginDocument code.
 \openout3 = `draft2.toc'.
 
 
-[1] [2
+[2
 
 ]
 Package epstopdf Info: Source file: <potentialcurves.eps>
 (epstopdf)                    date: 2015-07-28 09:12:38
 (epstopdf)                    size: 97081 bytes
 (epstopdf)             Output file: <potentialcurves-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 12:09:40
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 80871 bytes
 (epstopdf)             Command: <repstopdf --outfile=potentialcurves-eps-conver
 ted-to.pdf potentialcurves.eps>
-(epstopdf)             \includegraphics on input line 68.
+(epstopdf)             \includegraphics on input line 80.
 Package epstopdf Info: Output file is already uptodate.
- <potentialcurves-eps-converted-to.pdf, id=18, 574.145pt x 405.515pt>
+ <potentialcurves-eps-converted-to.pdf, id=21, 574.145pt x 405.515pt>
 File: potentialcurves-eps-converted-to.pdf Graphic file (type pdf)
 
 <use potentialcurves-eps-converted-to.pdf>
 Package pdftex.def Info: potentialcurves-eps-converted-to.pdf used on input lin
-e 68.
-(pdftex.def)             Requested size: 214.50119pt x 151.49847pt.
+e 80.
+(pdftex.def)             Requested size: 216.0022pt x 152.55656pt.
  [3
 
  <./potentialcurves-eps-converted-to.pdf>]
@@ -252,91 +252,88 @@ Package epstopdf Info: Source file: <vectormodel.eps>
 (epstopdf)                    date: 2015-07-28 09:48:41
 (epstopdf)                    size: 18454 bytes
 (epstopdf)             Output file: <vectormodel-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 12:09:40
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 17043 bytes
 (epstopdf)             Command: <repstopdf --outfile=vectormodel-eps-converted-
 to.pdf vectormodel.eps>
-(epstopdf)             \includegraphics on input line 125.
+(epstopdf)             \includegraphics on input line 135.
 Package epstopdf Info: Output file is already uptodate.
- <vectormodel-eps-converted-to.pdf, id=25, 574.145pt x 685.56125pt>
+ <vectormodel-eps-converted-to.pdf, id=29, 574.145pt x 685.56125pt>
 File: vectormodel-eps-converted-to.pdf Graphic file (type pdf)
 
 <use vectormodel-eps-converted-to.pdf>
-Package pdftex.def Info: vectormodel-eps-converted-to.pdf used on input line 12
+Package pdftex.def Info: vectormodel-eps-converted-to.pdf used on input line 13
 5.
-(pdftex.def)             Requested size: 155.99762pt x 186.26515pt.
- [4
-
-]
+(pdftex.def)             Requested size: 126.0022pt x 150.44734pt.
+ [4]
 Package epstopdf Info: Source file: <selected_potentialcurves.eps>
 (epstopdf)                    date: 2015-07-28 10:21:30
 (epstopdf)                    size: 20569 bytes
 (epstopdf)             Output file: <selected_potentialcurves-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2015-07-28 12:09:40
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 27938 bytes
 (epstopdf)             Command: <repstopdf --outfile=selected_potentialcurves-e
 ps-converted-to.pdf selected_potentialcurves.eps>
-(epstopdf)             \includegraphics on input line 151.
+(epstopdf)             \includegraphics on input line 161.
 Package epstopdf Info: Output file is already uptodate.
 
-<selected_potentialcurves-eps-converted-to.pdf, id=31, 547.04375pt x 754.82pt>
+<selected_potentialcurves-eps-converted-to.pdf, id=35, 547.04375pt x 754.82pt>
 File: selected_potentialcurves-eps-converted-to.pdf Graphic file (type pdf)
 
 <use selected_potentialcurves-eps-converted-to.pdf>
 Package pdftex.def Info: selected_potentialcurves-eps-converted-to.pdf used on 
-input line 151.
-(pdftex.def)             Requested size: 155.99762pt x 215.24112pt.
- [5 <./vectormodel-eps-converted-to.pdf>]
+input line 161.
+(pdftex.def)             Requested size: 136.80176pt x 188.76213pt.
 Package epstopdf Info: Source file: <m_potcurves.eps>
 (epstopdf)                    date: 2015-07-28 17:23:47
 (epstopdf)                    size: 1132221 bytes
 (epstopdf)             Output file: <m_potcurves-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 17:25:38
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 49756 bytes
 (epstopdf)             Command: <repstopdf --outfile=m_potcurves-eps-converted-
 to.pdf m_potcurves.eps>
-(epstopdf)             \includegraphics on input line 164.
+(epstopdf)             \includegraphics on input line 174.
 Package epstopdf Info: Output file is already uptodate.
 
-<m_potcurves-eps-converted-to.pdf, id=39, 601.24625pt x 174.6525pt>
+<m_potcurves-eps-converted-to.pdf, id=36, 601.24625pt x 174.6525pt>
 File: m_potcurves-eps-converted-to.pdf Graphic file (type pdf)
 
 <use m_potcurves-eps-converted-to.pdf>
-Package pdftex.def Info: m_potcurves-eps-converted-to.pdf used on input line 16
+Package pdftex.def Info: m_potcurves-eps-converted-to.pdf used on input line 17
 4.
-(pdftex.def)             Requested size: 350.99762pt x 101.9621pt.
- [6 <./selected_potentialcurves-eps-converted-to.pdf> <./m_potcurves-eps-conver
-ted-to.pdf>]
+(pdftex.def)             Requested size: 323.9978pt x 94.11906pt.
+ [5 <./vectormodel-eps-converted-to.pdf>] [6 <./selected_potentialcurves-eps-co
+nverted-to.pdf> <./m_potcurves-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <He_past_results.eps>
 (epstopdf)                    date: 2015-07-28 10:54:18
 (epstopdf)                    size: 83147 bytes
 (epstopdf)             Output file: <He_past_results-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 12:09:40
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 9064 bytes
 (epstopdf)             Command: <repstopdf --outfile=He_past_results-eps-conver
 ted-to.pdf He_past_results.eps>
-(epstopdf)             \includegraphics on input line 191.
+(epstopdf)             \includegraphics on input line 208.
 Package epstopdf Info: Output file is already uptodate.
 
-<He_past_results-eps-converted-to.pdf, id=50, 339.2675pt x 202.7575pt>
+<He_past_results-eps-converted-to.pdf, id=52, 339.2675pt x 202.7575pt>
 File: He_past_results-eps-converted-to.pdf Graphic file (type pdf)
 
 <use He_past_results-eps-converted-to.pdf>
 Package pdftex.def Info: He_past_results-eps-converted-to.pdf used on input lin
-e 191.
-(pdftex.def)             Requested size: 272.99881pt x 163.15912pt.
- [7 <./He_past_results-eps-converted-to.pdf>] [8]
+e 208.
+(pdftex.def)             Requested size: 251.9989pt x 150.60127pt.
+ [7 <./He_past_results-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <vectormodel_j_jp_triangles.eps>
 (epstopdf)                    date: 2015-07-28 11:15:47
 (epstopdf)                    size: 90693 bytes
 (epstopdf)             Output file: <vectormodel_j_jp_triangles-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2015-07-28 12:09:40
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 10169 bytes
 (epstopdf)             Command: <repstopdf --outfile=vectormodel_j_jp_triangles
 -eps-converted-to.pdf vectormodel_j_jp_triangles.eps>
-(epstopdf)             \includegraphics on input line 244.
+(epstopdf)             \includegraphics on input line 262.
 Package epstopdf Info: Output file is already uptodate.
 
 <vectormodel_j_jp_triangles-eps-converted-to.pdf, id=67, 292.09125pt x 274.0237
@@ -344,243 +341,243 @@ Package epstopdf Info: Output file is already uptodate.
 File: vectormodel_j_jp_triangles-eps-converted-to.pdf Graphic file (type pdf)
  <use vectormodel_j_jp_triangles-eps-converted-to.pdf>
 Package pdftex.def Info: vectormodel_j_jp_triangles-eps-converted-to.pdf used o
-n input line 244.
-(pdftex.def)             Requested size: 195.0pt x 182.94267pt.
- [9
-
-]
+n input line 262.
+(pdftex.def)             Requested size: 180.0pt x 168.87273pt.
+ [8]
 Package epstopdf Info: Source file: <He_Bplot_j19jp21.eps>
 (epstopdf)                    date: 2015-07-28 12:16:39
 (epstopdf)                    size: 69624 bytes
 (epstopdf)             Output file: <He_Bplot_j19jp21-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 12:16:46
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 28538 bytes
 (epstopdf)             Command: <repstopdf --outfile=He_Bplot_j19jp21-eps-conve
 rted-to.pdf He_Bplot_j19jp21.eps>
-(epstopdf)             \includegraphics on input line 286.
+(epstopdf)             \includegraphics on input line 304.
 Package epstopdf Info: Output file is already uptodate.
 
-<He_Bplot_j19jp21-eps-converted-to.pdf, id=72, 361.35pt x 252.945pt>
+<He_Bplot_j19jp21-eps-converted-to.pdf, id=74, 361.35pt x 252.945pt>
 File: He_Bplot_j19jp21-eps-converted-to.pdf Graphic file (type pdf)
 
 <use He_Bplot_j19jp21-eps-converted-to.pdf>
 Package pdftex.def Info: He_Bplot_j19jp21-eps-converted-to.pdf used on input li
-ne 286.
-(pdftex.def)             Requested size: 191.10214pt x 133.77074pt.
+ne 304.
+(pdftex.def)             Requested size: 176.40198pt x 123.48097pt.
 Package epstopdf Info: Source file: <Ar_Bplot_j19jp21.eps>
 (epstopdf)                    date: 2015-07-28 12:25:49
 (epstopdf)                    size: 66046 bytes
 (epstopdf)             Output file: <Ar_Bplot_j19jp21-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 12:25:58
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 24519 bytes
 (epstopdf)             Command: <repstopdf --outfile=Ar_Bplot_j19jp21-eps-conve
 rted-to.pdf Ar_Bplot_j19jp21.eps>
-(epstopdf)             \includegraphics on input line 292.
+(epstopdf)             \includegraphics on input line 310.
 Package epstopdf Info: Output file is already uptodate.
 
-<Ar_Bplot_j19jp21-eps-converted-to.pdf, id=73, 361.35pt x 252.945pt>
+<Ar_Bplot_j19jp21-eps-converted-to.pdf, id=75, 361.35pt x 252.945pt>
 File: Ar_Bplot_j19jp21-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Ar_Bplot_j19jp21-eps-converted-to.pdf>
 Package pdftex.def Info: Ar_Bplot_j19jp21-eps-converted-to.pdf used on input li
-ne 292.
-(pdftex.def)             Requested size: 191.10214pt x 133.77074pt.
- [10 <./vectormodel_j_jp_triangles-eps-converted-to.pdf>] [11 <./He_Bplot_j19jp
-21-eps-converted-to.pdf> <./Ar_Bplot_j19jp21-eps-converted-to.pdf>] [12]
+ne 310.
+(pdftex.def)             Requested size: 176.40198pt x 123.48097pt.
+ [9 <./vectormodel_j_jp_triangles-eps-converted-to.pdf>] [10 <./He_Bplot_j19jp2
+1-eps-converted-to.pdf> <./Ar_Bplot_j19jp21-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <vectormodel_coplanar.eps>
 (epstopdf)                    date: 2015-07-28 14:19:40
 (epstopdf)                    size: 188934 bytes
 (epstopdf)             Output file: <vectormodel_coplanar-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2015-07-28 14:19:59
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 8263 bytes
 (epstopdf)             Command: <repstopdf --outfile=vectormodel_coplanar-eps-c
 onverted-to.pdf vectormodel_coplanar.eps>
-(epstopdf)             \includegraphics on input line 369.
+(epstopdf)             \includegraphics on input line 387.
 Package epstopdf Info: Output file is already uptodate.
 
-<vectormodel_coplanar-eps-converted-to.pdf, id=124, 614.295pt x 794.97pt>
+<vectormodel_coplanar-eps-converted-to.pdf, id=121, 614.295pt x 794.97pt>
 File: vectormodel_coplanar-eps-converted-to.pdf Graphic file (type pdf)
 
 <use vectormodel_coplanar-eps-converted-to.pdf>
 Package pdftex.def Info: vectormodel_coplanar-eps-converted-to.pdf used on inpu
-t line 369.
-(pdftex.def)             Requested size: 147.66814pt x 191.10214pt.
+t line 387.
+(pdftex.def)             Requested size: 136.3076pt x 176.40198pt.
 Package epstopdf Info: Source file: <vectormodel_thetaprime_distribution.eps>
 (epstopdf)                    date: 2015-07-28 14:26:47
 (epstopdf)                    size: 435109 bytes
 (epstopdf)             Output file: <vectormodel_thetaprime_distribution-eps-co
 nverted-to.pdf>
-(epstopdf)                    date: 2015-07-28 14:27:01
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 32811 bytes
 (epstopdf)             Command: <repstopdf --outfile=vectormodel_thetaprime_dis
 tribution-eps-converted-to.pdf vectormodel_thetaprime_distribution.eps>
-(epstopdf)             \includegraphics on input line 375.
+(epstopdf)             \includegraphics on input line 393.
 Package epstopdf Info: Output file is already uptodate.
 
-<vectormodel_thetaprime_distribution-eps-converted-to.pdf, id=125, 362.35374pt 
+<vectormodel_thetaprime_distribution-eps-converted-to.pdf, id=122, 362.35374pt 
 x 299.1175pt>
 File: vectormodel_thetaprime_distribution-eps-converted-to.pdf Graphic file (ty
 pe pdf)
  <use vectormodel_thetaprime_distribution-eps-converted-to.pdf>
 Package pdftex.def Info: vectormodel_thetaprime_distribution-eps-converted-to.p
-df used on input line 375.
-(pdftex.def)             Requested size: 231.5075pt x 191.10214pt.
+df used on input line 393.
+(pdftex.def)             Requested size: 213.6984pt x 176.40198pt.
 
-Overfull \hbox (40.40536pt too wide) in paragraph at lines 375--376
+Overfull \hbox (37.29642pt too wide) in paragraph at lines 393--394
 [][] 
  []
 
-[13
-
-] [14 <./vectormodel_coplanar-eps-converted-to.pdf> <./vectormodel_thetaprime_d
-istribution-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <SC_theta_thetaprime_distribution.eps>
-(epstopdf)                    date: 2015-07-28 15:02:36
+[11] [12 <./vectormodel_coplanar-eps-converted-to.pdf> <./vectormodel_thetaprim
+e_distribution-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <SC_theta_thetaprime_distribution_revised.e
+ps>
+(epstopdf)                    date: 2015-07-31 15:33:24
 (epstopdf)                    size: 383905 bytes
-(epstopdf)             Output file: <SC_theta_thetaprime_distribution-eps-conve
-rted-to.pdf>
-(epstopdf)                    date: 2015-07-28 15:02:43
-(epstopdf)                    size: 42235 bytes
+(epstopdf)             Output file: <SC_theta_thetaprime_distribution_revised-e
+ps-converted-to.pdf>
+(epstopdf)                    date: 2015-07-31 15:33:35
+(epstopdf)                    size: 42164 bytes
 (epstopdf)             Command: <repstopdf --outfile=SC_theta_thetaprime_distri
-bution-eps-converted-to.pdf SC_theta_thetaprime_distribution.eps>
-(epstopdf)             \includegraphics on input line 430.
+bution_revised-eps-converted-to.pdf SC_theta_thetaprime_distribution_revised.ep
+s>
+(epstopdf)             \includegraphics on input line 449.
 Package epstopdf Info: Output file is already uptodate.
 
-<SC_theta_thetaprime_distribution-eps-converted-to.pdf, id=156, 341.275pt x 299
-.1175pt>
-File: SC_theta_thetaprime_distribution-eps-converted-to.pdf Graphic file (type 
-pdf)
- <use SC_theta_thetaprime_distribution-eps-converted-to.pdf>
-Package pdftex.def Info: SC_theta_thetaprime_distribution-eps-converted-to.pdf 
-used on input line 430.
-(pdftex.def)             Requested size: 312.00119pt x 273.47531pt.
+<SC_theta_thetaprime_distribution_revised-eps-converted-to.pdf, id=152, 341.275
+pt x 269.005pt>
+File: SC_theta_thetaprime_distribution_revised-eps-converted-to.pdf Graphic fil
+e (type pdf)
+
+<use SC_theta_thetaprime_distribution_revised-eps-converted-to.pdf>
+Package pdftex.def Info: SC_theta_thetaprime_distribution_revised-eps-converted
+-to.pdf used on input line 449.
+(pdftex.def)             Requested size: 251.9989pt x 198.63779pt.
+ [13 <./SC_theta_thetaprime_distribution_revised-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <He_cs_jb30_dj4.eps>
 (epstopdf)                    date: 2015-07-28 15:10:22
 (epstopdf)                    size: 63528 bytes
 (epstopdf)             Output file: <He_cs_jb30_dj4-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 15:13:39
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 20705 bytes
 (epstopdf)             Command: <repstopdf --outfile=He_cs_jb30_dj4-eps-convert
 ed-to.pdf He_cs_jb30_dj4.eps>
-(epstopdf)             \includegraphics on input line 447.
+(epstopdf)             \includegraphics on input line 472.
 Package epstopdf Info: Output file is already uptodate.
 
-<He_cs_jb30_dj4-eps-converted-to.pdf, id=157, 361.35pt x 252.945pt>
+<He_cs_jb30_dj4-eps-converted-to.pdf, id=169, 361.35pt x 252.945pt>
 File: He_cs_jb30_dj4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use He_cs_jb30_dj4-eps-converted-to.pdf>
 Package pdftex.def Info: He_cs_jb30_dj4-eps-converted-to.pdf used on input line
- 447.
-(pdftex.def)             Requested size: 312.00119pt x 218.40073pt.
- [15 <./SC_theta_thetaprime_distribution-eps-converted-to.pdf>]
+ 472.
+(pdftex.def)             Requested size: 288.0011pt x 201.60364pt.
 Package epstopdf Info: Source file: <He_cs_jb20_dj4.eps>
 (epstopdf)                    date: 2015-07-28 15:10:22
 (epstopdf)                    size: 64671 bytes
 (epstopdf)             Output file: <He_cs_jb20_dj4-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 15:29:27
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 22082 bytes
 (epstopdf)             Command: <repstopdf --outfile=He_cs_jb20_dj4-eps-convert
 ed-to.pdf He_cs_jb20_dj4.eps>
-(epstopdf)             \includegraphics on input line 460.
+(epstopdf)             \includegraphics on input line 478.
 Package epstopdf Info: Output file is already uptodate.
 
-<He_cs_jb20_dj4-eps-converted-to.pdf, id=174, 361.35pt x 252.945pt>
+<He_cs_jb20_dj4-eps-converted-to.pdf, id=170, 361.35pt x 252.945pt>
 File: He_cs_jb20_dj4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use He_cs_jb20_dj4-eps-converted-to.pdf>
 Package pdftex.def Info: He_cs_jb20_dj4-eps-converted-to.pdf used on input line
- 460.
-(pdftex.def)             Requested size: 191.10214pt x 133.77074pt.
+ 478.
+(pdftex.def)             Requested size: 176.40198pt x 123.48097pt.
 Package epstopdf Info: Source file: <He_cs_jb10_dj4.eps>
 (epstopdf)                    date: 2015-07-28 15:10:22
 (epstopdf)                    size: 66532 bytes
 (epstopdf)             Output file: <He_cs_jb10_dj4-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-28 15:29:28
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 24538 bytes
 (epstopdf)             Command: <repstopdf --outfile=He_cs_jb10_dj4-eps-convert
 ed-to.pdf He_cs_jb10_dj4.eps>
-(epstopdf)             \includegraphics on input line 461.
+(epstopdf)             \includegraphics on input line 479.
 Package epstopdf Info: Output file is already uptodate.
 
-<He_cs_jb10_dj4-eps-converted-to.pdf, id=175, 361.35pt x 252.945pt>
+<He_cs_jb10_dj4-eps-converted-to.pdf, id=171, 361.35pt x 252.945pt>
 File: He_cs_jb10_dj4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use He_cs_jb10_dj4-eps-converted-to.pdf>
 Package pdftex.def Info: He_cs_jb10_dj4-eps-converted-to.pdf used on input line
- 461.
-(pdftex.def)             Requested size: 191.10214pt x 133.77074pt.
+ 479.
+(pdftex.def)             Requested size: 176.40198pt x 123.48097pt.
 Package epstopdf Info: Source file: <QM_m_mprime_distribution.eps>
 (epstopdf)                    date: 2015-07-28 15:41:03
 (epstopdf)                    size: 211761 bytes
 (epstopdf)             Output file: <QM_m_mprime_distribution-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2015-07-28 15:41:25
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 40148 bytes
 (epstopdf)             Command: <repstopdf --outfile=QM_m_mprime_distribution-e
 ps-converted-to.pdf QM_m_mprime_distribution.eps>
-(epstopdf)             \includegraphics on input line 476.
+(epstopdf)             \includegraphics on input line 494.
 Package epstopdf Info: Output file is already uptodate.
 
-<QM_m_mprime_distribution-eps-converted-to.pdf, id=176, 361.35pt x 252.945pt>
+<QM_m_mprime_distribution-eps-converted-to.pdf, id=172, 361.35pt x 252.945pt>
 File: QM_m_mprime_distribution-eps-converted-to.pdf Graphic file (type pdf)
 
 <use QM_m_mprime_distribution-eps-converted-to.pdf>
 Package pdftex.def Info: QM_m_mprime_distribution-eps-converted-to.pdf used on 
-input line 476.
-(pdftex.def)             Requested size: 312.00119pt x 218.40073pt.
+input line 494.
+(pdftex.def)             Requested size: 288.0011pt x 201.60364pt.
 Package epstopdf Info: Source file: <SC_m_mprime_distribution.eps>
 (epstopdf)                    date: 2015-07-29 16:43:06
 (epstopdf)                    size: 422970 bytes
 (epstopdf)             Output file: <SC_m_mprime_distribution-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2015-07-29 16:44:47
+(epstopdf)                    date: 2015-07-29 20:15:06
 (epstopdf)                    size: 45280 bytes
 (epstopdf)             Command: <repstopdf --outfile=SC_m_mprime_distribution-e
 ps-converted-to.pdf SC_m_mprime_distribution.eps>
-(epstopdf)             \includegraphics on input line 491.
+(epstopdf)             \includegraphics on input line 508.
 Package epstopdf Info: Output file is already uptodate.
 
-<SC_m_mprime_distribution-eps-converted-to.pdf, id=177, 345.29pt x 224.84pt>
+<SC_m_mprime_distribution-eps-converted-to.pdf, id=173, 345.29pt x 224.84pt>
 File: SC_m_mprime_distribution-eps-converted-to.pdf Graphic file (type pdf)
 
 <use SC_m_mprime_distribution-eps-converted-to.pdf>
 Package pdftex.def Info: SC_m_mprime_distribution-eps-converted-to.pdf used on 
-input line 491.
-(pdftex.def)             Requested size: 312.00119pt x 203.16722pt.
- [16 <./He_cs_jb30_dj4-eps-converted-to.pdf>] [17 <./He_cs_jb20_dj4-eps-convert
+input line 508.
+(pdftex.def)             Requested size: 288.0011pt x 187.53659pt.
+ [14 <./He_cs_jb30_dj4-eps-converted-to.pdf>] [15 <./He_cs_jb20_dj4-eps-convert
 ed-to.pdf> <./He_cs_jb10_dj4-eps-converted-to.pdf> <./QM_m_mprime_distribution-
 eps-converted-to.pdf>]
-[18 <./SC_m_mprime_distribution-eps-converted-to.pdf>] [19
-
-] (./draft2.bbl)
-[20
-
-] (./draft2.aux) ) 
+[16 <./SC_m_mprime_distribution-eps-converted-to.pdf>] (./draft2.bbl) [17]
+(./draft2.aux) ) 
 Here is how much of TeX's memory you used:
- 3327 strings out of 493304
- 52068 string characters out of 6139871
- 113633 words of memory out of 5000000
- 6746 multiletter control sequences out of 15000+600000
- 11073 words of font info for 40 fonts, out of 8000000 for 9000
+ 3366 strings out of 493304
+ 52525 string characters out of 6139871
+ 113723 words of memory out of 5000000
+ 6770 multiletter control sequences out of 15000+600000
+ 17060 words of font info for 60 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,8n,40p,325b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmsy8.pfb>
-Output written on draft2.pdf (21 pages, 602309 bytes).
+ 42i,12n,40p,325b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmex
+tra/cmbsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmext
+ra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmb
+x10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on draft2.pdf (17 pages, 644727 bytes).
 PDF statistics:
- 277 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
+ 288 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

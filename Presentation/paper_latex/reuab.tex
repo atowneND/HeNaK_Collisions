@@ -1,0 +1,226 @@
+﻿\documentclass[11pt]{article}
+\usepackage{mystyle,mytable,myeqn}
+\usepackage{epsfig}
+
+\newcommand{\boldj}{\ensuremath{\mathbf{j}}}
+\newcommand{\boldjp}{\ensuremath{\mathbf{j}'}}
+
+\begin{document}
+
+\begin{coverpage}
+
+\title {Semiclassical Analysis of Quantum Mechanical Calculations \\ of Rotationally Inelastic Collisions of He and Ar with NaK$^\dagger$}
+
+\author{Ashley Towne}
+ \begin{center}
+Advisor: A. P. Hickman
+\vspace{10pt}
+
+ \today
+ \end{center}
+
+
+\abstract {Recent quantum mechanical (QM) calculations and laboratory experiments at Lehigh University have provided detailed information about rotationally inelastic collisions of He and Ar with NaK in a cell at thermal energies.  The purpose of this project was to develop a semiclassical (SC) model for these collisions based on the well-known vector model.  In the QM theory, Gravert coefficients $B_\lambda(j,j')$ (where $\lambda$ is an integer) give the probability that a discrete amount $\lambda \hbar$ of angular momentum is transferred from the projectile to the target in a transition between rotational levels $j$ and $j'$.  Derouard showed that one can develop a SC model by transforming from $\lambda$ to the continuous variable $\alpha$, the angle between initial and final angular momentum vectors \boldj\ and \boldjp.   In the present work we invoked the vector model, which relates the polar angle $\theta$ of the angular momentum vector to the azimuthal quantum number $m$, and showed that the distribution $P(\theta,\theta')\sin\theta'$ of final polar angles $\theta'$ could be expressed as a convolution of the semiclassical Gravert coefficient $B(j,j';\cos\alpha$).  Using this expression we calculated the expected distribution of values of $\Delta \theta = \theta' - \theta$ and compared it with the QM result.  The SC model agreed very well with the QM theory, especially when the quantum number $j$ was large.  The distribution of projections of $j$ onto the $z$ axis before and after collision (in a transition $jm \rightarrow j'm'$) demonstrated (as others have also noticed) that $m$ changes in such a way that $\theta$ tends to be preserved. The SC model also predicts the propensity for collision-induced changes in $j$ to be even numbers, in agreement with QM theory and experiment.
+
+\vspace{30pt}
+
+\noindent {$^\dagger$\small{Work supported by NSF grants PHY-1359195,  PHY-0968898, and PHY-1403060.}}}
+
+
+
+\end{coverpage}
+
+
+\end{document}
+
+\section{Expression for $\theta'$ in terms of $\theta$, $\alpha$, and $\phi$}
+
+
+\begin{figure}
+\epsfig{file=VectorModai.eps,width=200pt,clip=}
+\caption{Definitions of the angles $\theta$, $\alpha$, $\phi$, and  $\theta'$ related to the initial and final angular momenta \boldj\ and \boldjp. \label{fig:VectorMod}}
+\end{figure}
+
+Figure~\ref{fig:VectorMod} shows the basis of our model.  The initial angular momentum \boldj\ is shown at one point of its precession around the $z$ axis with cone angle $\theta$.  A collision tips \boldj\ by an angle $\alpha$, leading to the final angular momentum \boldjp. The polar angle $\theta'$ of the final \boldjp\ will depend on the azimuthal angle $\phi$ that specfies the direction in which \boldj\ tips.
+One can derive an expression for $\theta'$ in terms of $\theta$, $\alpha$, and $\phi$ by  considering a rotated polar coordinate system whose $z'$ axis coincides with \boldj.  If one lets the original polar axis $z$ lie in the $x'z'$ plane, then $\cos\theta'$ can easily be expressed as the dot product of unit vectors.  The result can be written
+\begin{equation}
+ \cos\theta'  = \cos\theta \cos\alpha + \sin\theta \sin\alpha \cos\phi.
+\end{equation}
+The angle $\phi$ varies between 0 and $2\pi$, but the range 0 to $\pi$ is sufficient to provide the full range of values of $\theta'$.  If \boldj\ and \boldjp\ are both in the $xz$ plane of Fig.~\ref{fig:VectorMod}, then $\phi=0$ corresponds to
+\begin{equation}
+\cos\theta'  = \cos\theta \cos\alpha + \sin\theta \sin\alpha = \cos(\theta - \alpha),
+\end{equation}
+and $\phi = \pi$ corresponds to
+\begin{equation}
+\cos\theta'  = \cos\theta \cos\alpha - \sin\theta \sin\alpha = \cos(\theta  + \alpha).
+\end{equation}
+
+
+
+\section{Expression for the Distribution $P(\theta,\theta')$}
+
+%We can write the following expression for the probability $P(\theta,\theta') \sin\theta' \, d\theta'$ that an average collision changes the cone angle of the precessing angular momentum from $\theta$ to an angle $\theta'$ in the range $\theta'$ to $\theta' + d\theta'$:
+%\begin{eqnarray}
+%\hspace{-\mathindent} P(\theta,\theta') \sin\theta' \, d\theta'  =        \label{eq:Pdef} \\
+%   \hspace{-10pt}    \label{eq:Pdef}   \frac{1}{\pi}   \int_0^\pi B(j,j';\cos\alpha) \sin\alpha \, d\alpha
+%     \int_0^\pi \delta \left( \theta' - \cos^{-1}  \left(     \cos\theta \cos\alpha + \sin\theta \sin\alpha \cos\phi  \right) \right)  d\phi   \, \sin\theta' \, d\theta' .  \nonumber
+%\end{eqnarray}
+
+Let us denote by $P(\theta,\theta') \sin\theta' \, d\theta'$ the probability that an average collision changes the cone angle of the precessing angular momentum from $\theta$ to an angle $\theta'$ in the range $\theta'$ to $\theta' + d\theta'$.  ($\sin\theta' \, d\theta'$ is the surface area element for a given $\theta'$ on the unit sphere.)  We write the following expression for $P(\theta,\theta') \sin\theta'\, d\theta'$:
+\begin{eqnarray}
+\hspace{-\mathindent} P(\theta,\theta') \sin\theta' \, d\theta' =        \label{eq:Pdef} \\
+   \hspace{-10pt}   \frac{1}{\pi}   \int_0^\pi B(j,j';\cos\alpha) \sin\alpha \, d\alpha
+     \int_0^\pi \delta \left( \theta' - \cos^{-1}  \left(     \cos\theta \cos\alpha + \sin\theta \sin\alpha \cos\phi  \right) \right)  d\phi \, d\theta',  \nonumber
+\end{eqnarray}
+where the factor $1/\pi$ ensures the correct normalization.  We integrate over all the possible tipping angles $\alpha$, weighting each by the probability $B(j,j';\cos\alpha) \sin\alpha$ of obtaining that tipping angle.  For each value of $\alpha$, the Dirac $\delta$-function picks out the value of $\phi$ that gives the final polar angle $\theta'$.
+
+ If we consider $\theta=0$, we have $\cos\theta = 1$ and $\sin\theta=0$, so that
+\begin{eqnarray}
+  P(0,\theta') \sin\theta'  & =        \label{eq:Pdefzerotheta}
+     \frac{1}{\pi}   \int_0^\pi B(j,j';\cos\alpha) \sin\alpha \, d\alpha
+     \int_0^\pi \delta \left( \theta' - \cos^{-1}  \left(      \cos\alpha   \right) \right)  d\phi.  \nonumber   \\
+%
+     & =   \frac{1}{\pi}   \int_0^\pi B(j,j';\cos\alpha) \sin\alpha \, d\alpha
+     \int_0^\pi \delta \left( \theta' -  \alpha  \right) \,  d\phi.  \nonumber  \\
+%
+     & =   \frac{1}{\pi}   \int_0^\pi B(j,j';\cos\alpha) \,
+    \delta \left( \theta' -  \alpha  \right) \, \sin\alpha \, d\alpha     \int_0^\pi \,  d\phi.  \nonumber  \\
+%
+  P(0,\theta') \sin\theta'     & =  B(j,j';\cos\theta') \sin\theta'.
+\end{eqnarray}
+This result is exactly what one would expect and confirms the normalization.
+
+We can evaluate the integral over $\phi$ in Eq.~(\ref{eq:Pdef}) for an arbitrary value of $\theta$ by considering the following property of $\delta$-functions:
+\begin{equation}
+  \int \delta \left(   \rule{0pt}{10pt} f(\phi)     \right) \, d\phi   =   \frac{1}{  \displaystyle \left| \frac{df}{d\phi}(\phi_0) \right| },
+\end{equation}
+where $\phi_0$ is the point such that $f(\phi_0) = 0$.  If there are multiple points, one must sum over them.  In the present case we integrate only from $\phi=0$ to $\pi$, and there is at most one value of $\phi$ where the argument of the $\delta$-function is zero.  We have
+\begin{eqnarray}
+ \frac{df}{d\phi}  & =   \frac{d}{d\phi}  \cos^{-1}  \left(  \cos\theta \cos\alpha + \sin\theta \sin\alpha \cos\phi  \right)
+  = \frac{1}{\sqrt{1 - \cos^2\theta'} } \sin\theta \sin\alpha \sin\phi   \\
+  %
+     & =  \frac{\sin\theta \sin\alpha \sin\phi}{\sin\theta'}    \label{eq:dfdphi}
+\end{eqnarray}
+We need to find the value of $\sin\phi$ that corresponds to a particular $\theta$, $\theta'$, and $\alpha$:
+\begin{eqnarray}
+\cos\theta' & =  \cos\theta \cos\alpha + \sin\theta \sin\alpha \cos\phi       \nonumber \\
+%
+\cos\phi    & = \frac{\cos\theta' - \cos\theta \cos\alpha}{\sin\theta \sin\alpha} \nonumber  \\ [7pt]
+%
+\sin\phi   &  = \frac{ \sqrt{  \left(\rule{0pt}{10pt} \sin\theta \sin\alpha     \right)^2  - \left(\rule{0pt}{10pt}\cos\theta' - \cos\theta \cos\alpha \right)^2}}{\sin\theta \sin\alpha}   \nonumber \\  [7pt]
+%
+        & = \frac{ \sqrt{  \left( \rule{0pt}{10pt}\sin\theta \sin\alpha - \cos\theta' + \cos\theta \cos\alpha   \right)    \left(\rule{0pt}{10pt}\sin\theta \sin\alpha + \cos\theta' - \cos\theta \cos\alpha \right) }}{\sin\theta \sin\alpha} \nonumber \\ [7pt]       %
+      & = \frac{ \sqrt{  \left( \rule{0pt}{10pt}\cos(\theta -\alpha) - \cos\theta'    \right)
+ \left(\rule{0pt}{10pt}  \cos\theta' - \cos(\theta +\alpha) \right) }}{\sin\theta \sin\alpha}    \label{eq:sinphi}
+        \end{eqnarray}
+
+
+Combining Eqs.~(\ref{eq:dfdphi}) and  (\ref{eq:sinphi}), we see that the integral over the $\delta$-function in Eq.~(\ref{eq:Pdef}) will contribute a factor
+\begin{equation}
+\left| \frac{df}{d\phi} \right|^{-1}  = \frac{\sin\theta'}{\sqrt{  \left( \rule{0pt}{10pt}\cos(\theta -\alpha) - \cos\theta'    \right)
+ \left(\rule{0pt}{10pt}  \cos\theta' - \cos(\theta +\alpha) \right) }}
+\end{equation}
+
+For given values of $\theta$ and $\theta'$, some values of $\alpha$ do not lead to a real solution for $\phi$, and the integral over the $\delta$-function in Eq.~(\ref{eq:Pdef}) gives zero.  We can account for this by adjusting the limits of the integral over $\alpha$.  The result is
+\begin{equation}
+P(\theta,\theta') \sin\theta' =  \frac{\sin\theta'}{\pi}  \int_{\alpha_\mathrm{min}}^{\alpha_\mathrm{max}} \frac{B(j,j';\cos\alpha) \sin\alpha \, d\alpha}%
+ {{\sqrt{  \left( \rule{0pt}{10pt}\cos(\theta -\alpha) - \cos\theta'    \right)
+ \left(\rule{0pt}{10pt}  \cos\theta' - \cos(\theta +\alpha) \right) }}}  \label{eq:firstPform}
+\end{equation}
+The minimum and maximum values of $\alpha$ are given by
+\begin{equation}
+  \alpha_\mathrm{min}  = \cos^{-1} \cos(\theta' - \theta)  \qquad \mbox{and} \qquad   \alpha_\mathrm{max}  = \cos^{-1} \cos(\theta' + \theta)
+\end{equation}
+The awkward expressions involving $\cos^{-1}\cos (\theta \pm \theta')$ are used instead of $\theta' \pm \theta$ to insure that the final polar angle is between $0$ and $\pi$.
+
+
+We discovered by serendipity an identity that leads to significant simplification of the integral above:
+\begin{eqnarray}
+ \left( \rule{0pt}{10pt}\cos(\theta -\alpha) - \cos\theta'    \right)
+ \left(\rule{0pt}{10pt}  \cos\theta' - \cos(\theta +\alpha) \right)      \nonumber   \\
+   \phantom{xxxxxxx}   =
+%     \left(\rule{0pt}{10pt} \cos\alpha - \cos\alpha_\mathrm{max} \right)    \left( \rule{0pt}{10pt}\cos\alpha_\mathrm{min} - \cos\alpha     \right)
+     \left(\rule{0pt}{10pt} \cos\alpha - \cos(\theta'+\theta) \right)    \left( \rule{0pt}{10pt}\cos(\theta'-\theta) - \cos\alpha     \right)  \label{eq:niceequality}
+\end{eqnarray}
+Using Eq.~(\ref{eq:niceequality}), which can be proved by brute force using standard trigonometric identites, we can transform Eq.~(\ref{eq:firstPform}) to
+\begin{equation}
+P(\theta,\theta') \sin\theta' =  \frac{\sin\theta'}{\pi}  \int_{\alpha_\mathrm{min}}^{\alpha_\mathrm{max}} \frac{B(j,j';\cos\alpha) \sin\alpha \, d\alpha}%
+ {{\sqrt{  \left(\rule{0pt}{10pt} \cos\alpha - \cos\alpha_\mathrm{max} \right)    \left( \rule{0pt}{10pt}\cos\alpha_\mathrm{min} - \cos\alpha     \right) }}}  \label{eq:secondPform}
+\end{equation}
+We can go one step further and make the change of variable $x = \cos\alpha$, which leads to
+\begin{equation}
+P(\theta,\theta') \sin\theta'  =  \frac{\sin\theta'}{\pi}   \int_{\cos(\theta'+\theta)}^{\cos(\theta'-\theta)} \frac{B(j,j';x)  \, dx}%
+ {{\sqrt{  \left(\rule{0pt}{10pt} x - \cos(\theta'+\theta) \right)    \left( \rule{0pt}{10pt}\cos(\theta'-\theta) - x     \right) }}}  \label{eq:secondPformx}
+\end{equation}
+The variable transformation simplifies the terms involving $\alpha_\mathrm{min}$ and $\alpha_\mathrm{max}$, because
+\begin{eqnarray}
+  \cos  \alpha_\mathrm{min} = \cos \left( \cos^{-1} \cos(\theta' - \theta) \right) =  \cos(\theta' - \theta)   \\
+  \cos  \alpha_\mathrm{max} = \cos \left( \cos^{-1} \cos(\theta' + \theta) \right)=  \cos(\theta' + \theta)
+\end{eqnarray}
+This simplification leads to nicer expressions for the  limits of integration and inside the square root of Eq.~(\ref{eq:secondPform})
+
+We can make a further transformation to bring  Eq.~(\ref{eq:secondPform}) to a standard form. Using the transformation
+\begin{equation}
+      y = \frac{2x}{b-a} - \frac{b+a}{b-a},
+\end{equation}
+one can show that
+\begin{equation}
+\int_a^b    \frac{f(x)}{\sqrt{(x-a)(b-x)}} \,dx  =   \int_{-1}^1
+  \frac{f \left(\frac{b-a}{2}y + \frac{b+a}{2} \right)}{\sqrt{1-y^2}} \, dy
+\end{equation}
+Applying this transformation to Eq.~(\ref{eq:secondPform}), we obtain
+\begin{equation}
+P(\theta,\theta')\sin\theta'  = \frac{\sin\theta'}{\pi}  \int_{-1}^1
+ \frac{B\left(j,j';  \rule{0pt}{10pt} \cos\theta \cos\theta' + y \sin\theta \sin\theta'\right) }%
+ {\sqrt{ 1 - y^2 }} \, dy.  \label{eq:thirdPform}
+\end{equation}
+It's easy to evaluate this expression for the limiting case $\theta=0$.  In this case we have $\cos\theta = 1$ and $\sin\theta=0$. The numerator of the integrand becomes $B(j,j'; \cos\theta'$, which is independent of the integration variable $y$,  so the left hand side of Eq.~(\ref{eq:thirdPform}) reduces to Eq.~(\ref{eq:Pdefzerotheta})
+
+
+Finally, we can   write Eq.~(\ref{eq:thirdPform}) in the simpler form without the surface area element:
+\begin{equation}
+P(\theta,\theta')  = \frac{1}{\pi}  \int_{-1}^1
+ \frac{B\left(j,j';  \rule{0pt}{10pt} \cos\theta \cos\theta' + y \sin\theta \sin\theta'\right) }%
+ {\sqrt{ 1 - y^2 }} \, dy.  \label{eq:fourthPform}
+\end{equation}
+$P(\theta,\theta')$ is a convolution of the values of $B(j,j';\cos\alpha)$ in the range $\cos(\theta+\theta')$ to $\cos(\theta-\theta')$.
+
+\section{Numerical Results}
+
+Figure~\ref{fig:thetaplota} shows the results of numerical calculations.  The integrals in Eq.~(\ref{eq:thirdPform}) were evaluated by Gauss-Chebyshev  quadrature of the first kind.  We also verified numerically that
+\begin{equation}
+\int_0^\pi P(\theta,\theta') \sin\theta' \, d\theta  = \int_0^\pi B(j,j'; \cos\theta') \sin\theta' \, d\theta,
+\end{equation}
+independent of the initial angle $\theta$.  This is consistent with the quantum result (for collisions in a cell environment) that the sum over $m'$ of the cross sections for the $jm \rightarrow j'm'$ transitions is independent of the initial $m$.
+
+
+
+\begin{figure}[h]
+\epsfig{file=P2832bai.eps,width=250pt,clip=}
+\caption{The distribution $P(\theta,\theta') \sin\theta'$ of final cone angles is shown for several initial cone angles $\theta$ for the $28 \rightarrow 32$ transition of NaK induced by He collisions at $E = 0.002$~au.  The distribution of final cone angles is clearly peaked near the initial cone angle. \label{fig:thetaplota} }
+\end{figure}
+
+
+
+Further calculations have shown that the distribution of final angles can exhibit different appearances, depending on the values of $j$ and $j'$.  Results are shown in Figs.~\ref{fig:thetaplotb} and \ref{fig:thetaplotc}.
+
+\begin{figure}
+\epsfig{file=P2930ai.eps,width=250pt,clip=}
+\caption{The distribution $P(\theta,\theta') \sin\theta'$ of final cone angles is shown for several initial cone angles $\theta$ for the $29 \rightarrow 30$ transition of NaK induced by He collisions at $E = 0.002$~au.  The distribution of final cone angles is clearly peaked near the initial cone angle, but the distributions show more oscillation than those in Fig.~\ref{fig:thetaplota} \label{fig:thetaplotb}}
+\end{figure}
+
+
+\begin{figure}
+\epsfig{file=P0506ai.eps,width=250pt,clip=}
+\caption{The distribution $P(\theta,\theta') \sin\theta'$ of final cone angles is shown for several initial cone angles $\theta$ for the $5 \rightarrow 6$ transition of NaK induced by He collisions at $E = 0.002$~au.  The distribution of final cone angles still has its largest value at the initial cone angle, but the distributions are much broader than those in Figs.~\ref{fig:thetaplota} or \ref{fig:thetaplotb} \label{fig:thetaplotc}}
+\end{figure}
+
+
+
+
+
+
+
+\end{document}
+
+
